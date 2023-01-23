@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742C2297E593800023B28 /* EasyCryptoApp.swift */; };
+		A81742C5297E593800023B28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742C4297E593800023B28 /* ContentView.swift */; };
+		A81742C7297E593D00023B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A81742C6297E593D00023B28 /* Assets.xcassets */; };
+		A81742CA297E593D00023B28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A81742C9297E593D00023B28 /* Preview Assets.xcassets */; };
+		A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742D3297E593D00023B28 /* EasyCryptoTests.swift */; };
+		A81742DE297E593D00023B28 /* EasyCryptoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */; };
+		A81742E0297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A81742D0297E593D00023B28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A81742B7297E593800023B28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A81742BE297E593800023B28;
+			remoteInfo = EasyCrypto;
+		};
+		A81742DA297E593D00023B28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A81742B7297E593800023B28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A81742BE297E593800023B28;
+			remoteInfo = EasyCrypto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A81742BF297E593800023B28 /* EasyCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A81742C2297E593800023B28 /* EasyCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoApp.swift; sourceTree = "<group>"; };
+		A81742C4297E593800023B28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A81742C6297E593D00023B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A81742C9297E593D00023B28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A81742CF297E593D00023B28 /* EasyCryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyCryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A81742D3297E593D00023B28 /* EasyCryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoTests.swift; sourceTree = "<group>"; };
+		A81742D9297E593D00023B28 /* EasyCryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyCryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoUITests.swift; sourceTree = "<group>"; };
+		A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A81742BC297E593800023B28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A81742CC297E593D00023B28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A81742D6297E593D00023B28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A81742B6297E593800023B28 = {
+			isa = PBXGroup;
+			children = (
+				A81742C1297E593800023B28 /* EasyCrypto */,
+				A81742D2297E593D00023B28 /* EasyCryptoTests */,
+				A81742DC297E593D00023B28 /* EasyCryptoUITests */,
+				A81742C0297E593800023B28 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A81742C0297E593800023B28 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A81742BF297E593800023B28 /* EasyCrypto.app */,
+				A81742CF297E593D00023B28 /* EasyCryptoTests.xctest */,
+				A81742D9297E593D00023B28 /* EasyCryptoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A81742C1297E593800023B28 /* EasyCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				A81742C2297E593800023B28 /* EasyCryptoApp.swift */,
+				A81742C4297E593800023B28 /* ContentView.swift */,
+				A81742C6297E593D00023B28 /* Assets.xcassets */,
+				A81742C8297E593D00023B28 /* Preview Content */,
+			);
+			path = EasyCrypto;
+			sourceTree = "<group>";
+		};
+		A81742C8297E593D00023B28 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A81742C9297E593D00023B28 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A81742D2297E593D00023B28 /* EasyCryptoTests */ = {
+			isa = PBXGroup;
+			children = (
+				A81742D3297E593D00023B28 /* EasyCryptoTests.swift */,
+			);
+			path = EasyCryptoTests;
+			sourceTree = "<group>";
+		};
+		A81742DC297E593D00023B28 /* EasyCryptoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */,
+				A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */,
+			);
+			path = EasyCryptoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A81742BE297E593800023B28 /* EasyCrypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A81742E3297E593D00023B28 /* Build configuration list for PBXNativeTarget "EasyCrypto" */;
+			buildPhases = (
+				A81742BB297E593800023B28 /* Sources */,
+				A81742BC297E593800023B28 /* Frameworks */,
+				A81742BD297E593800023B28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EasyCrypto;
+			productName = EasyCrypto;
+			productReference = A81742BF297E593800023B28 /* EasyCrypto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A81742CE297E593D00023B28 /* EasyCryptoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A81742E6297E593D00023B28 /* Build configuration list for PBXNativeTarget "EasyCryptoTests" */;
+			buildPhases = (
+				A81742CB297E593D00023B28 /* Sources */,
+				A81742CC297E593D00023B28 /* Frameworks */,
+				A81742CD297E593D00023B28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A81742D1297E593D00023B28 /* PBXTargetDependency */,
+			);
+			name = EasyCryptoTests;
+			productName = EasyCryptoTests;
+			productReference = A81742CF297E593D00023B28 /* EasyCryptoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A81742D8297E593D00023B28 /* EasyCryptoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A81742E9297E593D00023B28 /* Build configuration list for PBXNativeTarget "EasyCryptoUITests" */;
+			buildPhases = (
+				A81742D5297E593D00023B28 /* Sources */,
+				A81742D6297E593D00023B28 /* Frameworks */,
+				A81742D7297E593D00023B28 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A81742DB297E593D00023B28 /* PBXTargetDependency */,
+			);
+			name = EasyCryptoUITests;
+			productName = EasyCryptoUITests;
+			productReference = A81742D9297E593D00023B28 /* EasyCryptoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A81742B7297E593800023B28 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					A81742BE297E593800023B28 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					A81742CE297E593D00023B28 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = A81742BE297E593800023B28;
+					};
+					A81742D8297E593D00023B28 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = A81742BE297E593800023B28;
+					};
+				};
+			};
+			buildConfigurationList = A81742BA297E593800023B28 /* Build configuration list for PBXProject "EasyCrypto" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A81742B6297E593800023B28;
+			productRefGroup = A81742C0297E593800023B28 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A81742BE297E593800023B28 /* EasyCrypto */,
+				A81742CE297E593D00023B28 /* EasyCryptoTests */,
+				A81742D8297E593D00023B28 /* EasyCryptoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A81742BD297E593800023B28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A81742CA297E593D00023B28 /* Preview Assets.xcassets in Resources */,
+				A81742C7297E593D00023B28 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A81742CD297E593D00023B28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A81742D7297E593D00023B28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A81742BB297E593800023B28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A81742C5297E593800023B28 /* ContentView.swift in Sources */,
+				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A81742CB297E593D00023B28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A81742D5297E593D00023B28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A81742DE297E593D00023B28 /* EasyCryptoUITests.swift in Sources */,
+				A81742E0297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A81742D1297E593D00023B28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A81742BE297E593800023B28 /* EasyCrypto */;
+			targetProxy = A81742D0297E593D00023B28 /* PBXContainerItemProxy */;
+		};
+		A81742DB297E593D00023B28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A81742BE297E593800023B28 /* EasyCrypto */;
+			targetProxy = A81742DA297E593D00023B28 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A81742E1297E593D00023B28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A81742E2297E593D00023B28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A81742E4297E593D00023B28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EasyCrypto/Preview Content\"";
+				DEVELOPMENT_TEAM = 3KZWVBAJSN;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A81742E5297E593D00023B28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EasyCrypto/Preview Content\"";
+				DEVELOPMENT_TEAM = 3KZWVBAJSN;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A81742E7297E593D00023B28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3KZWVBAJSN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyCrypto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EasyCrypto";
+			};
+			name = Debug;
+		};
+		A81742E8297E593D00023B28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3KZWVBAJSN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCryptoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyCrypto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EasyCrypto";
+			};
+			name = Release;
+		};
+		A81742EA297E593D00023B28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3KZWVBAJSN;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCryptoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EasyCrypto;
+			};
+			name = Debug;
+		};
+		A81742EB297E593D00023B28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3KZWVBAJSN;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCryptoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EasyCrypto;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A81742BA297E593800023B28 /* Build configuration list for PBXProject "EasyCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A81742E1297E593D00023B28 /* Debug */,
+				A81742E2297E593D00023B28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A81742E3297E593D00023B28 /* Build configuration list for PBXNativeTarget "EasyCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A81742E4297E593D00023B28 /* Debug */,
+				A81742E5297E593D00023B28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A81742E6297E593D00023B28 /* Build configuration list for PBXNativeTarget "EasyCryptoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A81742E7297E593D00023B28 /* Debug */,
+				A81742E8297E593D00023B28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A81742E9297E593D00023B28 /* Build configuration list for PBXNativeTarget "EasyCryptoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A81742EA297E593D00023B28 /* Debug */,
+				A81742EB297E593D00023B28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A81742B7297E593800023B28 /* Project object */;
+}

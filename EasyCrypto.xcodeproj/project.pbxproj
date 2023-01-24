@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A803DFBF297E91FF00357A7F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */; };
+		A803DFC4297E92D000357A7F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC3297E92D000357A7F /* Color.swift */; };
+		A803DFC9297E93B700357A7F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC5297E93B600357A7F /* FontManager.swift */; };
+		A803DFCA297E93B700357A7F /* FontViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC6297E93B600357A7F /* FontViewModifier.swift */; };
+		A803DFCB297E93B700357A7F /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC7297E93B700357A7F /* FontStyle.swift */; };
+		A803DFCC297E93B700357A7F /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC8297E93B700357A7F /* FontType.swift */; };
+		A803DFD0297E941200357A7F /* Schedular.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFCF297E941200357A7F /* Schedular.swift */; };
+		A803DFD3297E943100357A7F /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD2297E943100357A7F /* Subscriber.swift */; };
+		A803DFD7297E9F9800357A7F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD6297E9F9800357A7F /* MainView.swift */; };
 		A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742C2297E593800023B28 /* EasyCryptoApp.swift */; };
 		A81742C5297E593800023B28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742C4297E593800023B28 /* ContentView.swift */; };
 		A81742C7297E593D00023B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A81742C6297E593D00023B28 /* Assets.xcassets */; };
@@ -34,6 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A803DFC3297E92D000357A7F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		A803DFC5297E93B600357A7F /* FontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		A803DFC6297E93B600357A7F /* FontViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontViewModifier.swift; sourceTree = "<group>"; };
+		A803DFC7297E93B700357A7F /* FontStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
+		A803DFC8297E93B700357A7F /* FontType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
+		A803DFCF297E941200357A7F /* Schedular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedular.swift; sourceTree = "<group>"; };
+		A803DFD2297E943100357A7F /* Subscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
+		A803DFD6297E9F9800357A7F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A81742BF297E593800023B28 /* EasyCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81742C2297E593800023B28 /* EasyCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoApp.swift; sourceTree = "<group>"; };
 		A81742C4297E593800023B28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +89,133 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A803DFB6297E913700357A7F /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A803DFB7297E918900357A7F /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFC2297E92B800357A7F /* Assets */,
+				A803DFC1297E92AD00357A7F /* Color */,
+				A803DFC0297E92A600357A7F /* Fonts */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		A803DFB8297E919C00357A7F /* DI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		A803DFB9297E91AF00357A7F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A803DFBA297E91BF00357A7F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A803DFBB297E91C600357A7F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A803DFBC297E91CF00357A7F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A803DFBD297E91E000357A7F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFD4297E9F8100357A7F /* Main */,
+				A803DFD5297E9F8600357A7F /* Detail */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A803DFC0297E92A600357A7F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFC5297E93B600357A7F /* FontManager.swift */,
+				A803DFC7297E93B700357A7F /* FontStyle.swift */,
+				A803DFC8297E93B700357A7F /* FontType.swift */,
+				A803DFC6297E93B600357A7F /* FontViewModifier.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A803DFC1297E92AD00357A7F /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFC3297E92D000357A7F /* Color.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		A803DFC2297E92B800357A7F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		A803DFCD297E93F600357A7F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFD1297E942600357A7F /* Subscriber */,
+				A803DFCE297E940A00357A7F /* Schedular */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A803DFCE297E940A00357A7F /* Schedular */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFCF297E941200357A7F /* Schedular.swift */,
+			);
+			path = Schedular;
+			sourceTree = "<group>";
+		};
+		A803DFD1297E942600357A7F /* Subscriber */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFD2297E943100357A7F /* Subscriber.swift */,
+			);
+			path = Subscriber;
+			sourceTree = "<group>";
+		};
+		A803DFD4297E9F8100357A7F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A803DFD6297E9F9800357A7F /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		A803DFD5297E9F8600357A7F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		A81742B6297E593800023B28 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +239,18 @@
 		A81742C1297E593800023B28 /* EasyCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				A803DFB6297E913700357A7F /* App */,
+				A803DFB7297E918900357A7F /* Theme */,
+				A803DFCD297E93F600357A7F /* Classes */,
+				A803DFB8297E919C00357A7F /* DI */,
+				A803DFB9297E91AF00357A7F /* Components */,
+				A803DFBA297E91BF00357A7F /* Core */,
+				A803DFBB297E91C600357A7F /* Data */,
+				A803DFBC297E91CF00357A7F /* Domain */,
+				A803DFBD297E91E000357A7F /* Presentation */,
 				A81742C2297E593800023B28 /* EasyCryptoApp.swift */,
 				A81742C4297E593800023B28 /* ContentView.swift */,
+				A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */,
 				A81742C6297E593D00023B28 /* Assets.xcassets */,
 				A81742C8297E593D00023B28 /* Preview Content */,
 			);
@@ -231,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A803DFBF297E91FF00357A7F /* Launch Screen.storyboard in Resources */,
 				A81742CA297E593D00023B28 /* Preview Assets.xcassets in Resources */,
 				A81742C7297E593D00023B28 /* Assets.xcassets in Resources */,
 			);
@@ -258,7 +414,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A81742C5297E593800023B28 /* ContentView.swift in Sources */,
+				A803DFCC297E93B700357A7F /* FontType.swift in Sources */,
 				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
+				A803DFD7297E9F9800357A7F /* MainView.swift in Sources */,
+				A803DFCB297E93B700357A7F /* FontStyle.swift in Sources */,
+				A803DFC9297E93B700357A7F /* FontManager.swift in Sources */,
+				A803DFD0297E941200357A7F /* Schedular.swift in Sources */,
+				A803DFD3297E943100357A7F /* Subscriber.swift in Sources */,
+				A803DFCA297E93B700357A7F /* FontViewModifier.swift in Sources */,
+				A803DFC4297E92D000357A7F /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,8 +587,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,6 +598,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -452,8 +621,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +632,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

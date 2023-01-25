@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct EasyCryptoApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }

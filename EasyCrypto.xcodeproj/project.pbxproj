@@ -16,8 +16,9 @@
 		A803DFD0297E941200357A7F /* Schedular.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFCF297E941200357A7F /* Schedular.swift */; };
 		A803DFD3297E943100357A7F /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD2297E943100357A7F /* Subscriber.swift */; };
 		A803DFD7297E9F9800357A7F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD6297E9F9800357A7F /* MainView.swift */; };
+		A8104F4D29814E88008A8DDE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8104F4C29814E88008A8DDE /* Assets.swift */; };
+		A8104F4F29814FDE008A8DDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8104F4E29814FDE008A8DDE /* Constants.swift */; };
 		A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742C2297E593800023B28 /* EasyCryptoApp.swift */; };
-		A81742C5297E593800023B28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742C4297E593800023B28 /* ContentView.swift */; };
 		A81742C7297E593D00023B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A81742C6297E593D00023B28 /* Assets.xcassets */; };
 		A81742CA297E593D00023B28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A81742C9297E593D00023B28 /* Preview Assets.xcassets */; };
 		A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742D3297E593D00023B28 /* EasyCryptoTests.swift */; };
@@ -52,9 +53,12 @@
 		A803DFCF297E941200357A7F /* Schedular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedular.swift; sourceTree = "<group>"; };
 		A803DFD2297E943100357A7F /* Subscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		A803DFD6297E9F9800357A7F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A8104F4629814AB6008A8DDE /* arialbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arialbold.ttf; sourceTree = "<group>"; };
+		A8104F4B29814BB7008A8DDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A8104F4C29814E88008A8DDE /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		A8104F4E29814FDE008A8DDE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A81742BF297E593800023B28 /* EasyCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81742C2297E593800023B28 /* EasyCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoApp.swift; sourceTree = "<group>"; };
-		A81742C4297E593800023B28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A81742C6297E593D00023B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A81742C9297E593D00023B28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A81742CF297E593D00023B28 /* EasyCryptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyCryptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,7 @@
 				A803DFC2297E92B800357A7F /* Assets */,
 				A803DFC1297E92AD00357A7F /* Color */,
 				A803DFC0297E92A600357A7F /* Fonts */,
+				A8104F4E29814FDE008A8DDE /* Constants.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 		A803DFC0297E92A600357A7F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A8104F4529814AA5008A8DDE /* Files */,
 				A803DFC5297E93B600357A7F /* FontManager.swift */,
 				A803DFC7297E93B700357A7F /* FontStyle.swift */,
 				A803DFC8297E93B700357A7F /* FontType.swift */,
@@ -172,6 +178,7 @@
 		A803DFC2297E92B800357A7F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A8104F4C29814E88008A8DDE /* Assets.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -216,6 +223,14 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		A8104F4529814AA5008A8DDE /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8104F4629814AB6008A8DDE /* arialbold.ttf */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		A81742B6297E593800023B28 = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +254,7 @@
 		A81742C1297E593800023B28 /* EasyCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				A8104F4B29814BB7008A8DDE /* Info.plist */,
 				A803DFB6297E913700357A7F /* App */,
 				A803DFB7297E918900357A7F /* Theme */,
 				A803DFCD297E93F600357A7F /* Classes */,
@@ -249,7 +265,6 @@
 				A803DFBC297E91CF00357A7F /* Domain */,
 				A803DFBD297E91E000357A7F /* Presentation */,
 				A81742C2297E593800023B28 /* EasyCryptoApp.swift */,
-				A81742C4297E593800023B28 /* ContentView.swift */,
 				A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */,
 				A81742C6297E593D00023B28 /* Assets.xcassets */,
 				A81742C8297E593D00023B28 /* Preview Content */,
@@ -413,7 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A81742C5297E593800023B28 /* ContentView.swift in Sources */,
+				A8104F4D29814E88008A8DDE /* Assets.swift in Sources */,
 				A803DFCC297E93B700357A7F /* FontType.swift in Sources */,
 				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
 				A803DFD7297E9F9800357A7F /* MainView.swift in Sources */,
@@ -423,6 +438,7 @@
 				A803DFD3297E943100357A7F /* Subscriber.swift in Sources */,
 				A803DFCA297E93B700357A7F /* FontViewModifier.swift in Sources */,
 				A803DFC4297E92D000357A7F /* Color.swift in Sources */,
+				A8104F4F29814FDE008A8DDE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +600,7 @@
 				DEVELOPMENT_TEAM = 3KZWVBAJSN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EasyCrypto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -618,6 +635,7 @@
 				DEVELOPMENT_TEAM = 3KZWVBAJSN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EasyCrypto/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

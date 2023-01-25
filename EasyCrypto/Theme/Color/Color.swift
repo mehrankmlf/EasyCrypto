@@ -12,7 +12,7 @@ extension Color {
     static let lightBlue  = Color(Color.Key.lightBlue.rawValue)
     
     enum Key: String {
-        case darkBlue = "DarkBlue"
+        case darkBlue = "DarkGray"
         case lightBlue = "LightBLue"
     }
 }

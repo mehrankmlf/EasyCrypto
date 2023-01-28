@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static let darkBLue  = Color(Color.Key.darkBlue.rawValue)
+    static let darkBlue  = Color(Color.Key.darkBlue.rawValue)
     static let lightBlue  = Color(Color.Key.lightBlue.rawValue)
     
     enum Key: String {

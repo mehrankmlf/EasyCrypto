@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 
 struct FontManager {
+    static let title = FontStyle(font: Font.custom(FontType.regular.rawValue,
+                                                  size: 18.0),
+                                                  weight: .regular,
+                                                  foregroundColor: .white)
     static let body = FontStyle(font: Font.custom(FontType.regular.rawValue,
                                                   size: 14.0),
                                                   weight: .regular,

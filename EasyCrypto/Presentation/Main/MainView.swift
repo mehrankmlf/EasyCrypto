@@ -10,10 +10,12 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         ZStack {
-            Color.darkBLue
+            Color.darkBlue
                 .ignoresSafeArea()
             VStack {
                 HeaderView()
+                SortView()
+                Spacer()
             }
         }
     }
@@ -33,7 +35,7 @@ struct HeaderView: View {
             }
             Spacer()
             Text(Constants.mainTitle)
-                .fontStyle(FontManager.body)
+                .fontStyle(FontManager.title)
             Spacer()
             Button {
                 
@@ -47,6 +49,42 @@ struct HeaderView: View {
         .padding(.horizontal)
     }
 }
+
+struct SortView: View {
+    
+    var body: some View {
+        HStack {
+            Button {
+                
+            } label: {
+                Rectangle()
+                    .frame(width: 130.0, height: 30.0)
+                    .foregroundColor(Color.white.opacity(0.1))
+                    .cornerRadius(5.0)
+                    .overlay {
+                        Text("Highest Holding")
+                            .fontStyle(FontManager.body)
+                    }
+            }
+            Spacer()
+            Button {
+                
+            } label: {
+                Rectangle()
+                    .frame(width: 90.0, height: 30.0)
+                    .foregroundColor(Color.white.opacity(0.1))
+                    .cornerRadius(5.0)
+                    .overlay {
+                        Text("24 Hours")
+                            .fontStyle(FontManager.body)
+                    }
+            }
+        }
+        .padding(.horizontal)
+    }
+}
+
+
 
 
 struct MainView_Previews: PreviewProvider {

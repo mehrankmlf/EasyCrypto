@@ -17,5 +17,8 @@ struct FontManager {
                                                   size: 14.0),
                                                   weight: .regular,
                                                   foregroundColor: .white)
-
+    static let bodyLight = FontStyle(font: Font.custom(FontType.regular.rawValue,
+                                                  size: 12.0),
+                                                  weight: .regular,
+                                                  foregroundColor: .white)
 }

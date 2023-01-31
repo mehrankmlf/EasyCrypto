@@ -24,6 +24,22 @@
 		A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742D3297E593D00023B28 /* EasyCryptoTests.swift */; };
 		A81742DE297E593D00023B28 /* EasyCryptoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */; };
 		A81742E0297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */; };
+		A851A20C29890B4D007F4CF9 /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A20A29890B4C007F4CF9 /* NetworkClientProtocol.swift */; };
+		A851A20D29890B4D007F4CF9 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A20B29890B4D007F4CF9 /* NetworkClient.swift */; };
+		A851A21029890B75007F4CF9 /* NetworkClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A20F29890B75007F4CF9 /* NetworkClientManager.swift */; };
+		A851A21429890B9F007F4CF9 /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21229890B9F007F4CF9 /* NetworkTarget.swift */; };
+		A851A21529890B9F007F4CF9 /* NetworkTarget + Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21329890B9F007F4CF9 /* NetworkTarget + Default.swift */; };
+		A851A21929890BB8007F4CF9 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21729890BB8007F4CF9 /* RequestBuilder.swift */; };
+		A851A21A29890BB8007F4CF9 /* NetworkTarget + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21829890BB8007F4CF9 /* NetworkTarget + Extension.swift */; };
+		A851A21F29890BDC007F4CF9 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21C29890BDB007F4CF9 /* HTTPMethod.swift */; };
+		A851A22029890BDC007F4CF9 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21D29890BDB007F4CF9 /* Encoding.swift */; };
+		A851A22129890BDC007F4CF9 /* Encoding + Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A21E29890BDB007F4CF9 /* Encoding + Dictionary.swift */; };
+		A851A22929890C0B007F4CF9 /* WorkScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A22329890C0A007F4CF9 /* WorkScheduler.swift */; };
+		A851A22B29890C0B007F4CF9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A22529890C0A007F4CF9 /* Configuration.swift */; };
+		A851A22C29890C0B007F4CF9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A22629890C0A007F4CF9 /* APIError.swift */; };
+		A851A22D29890C0B007F4CF9 /* BaseAPIDebuger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A22729890C0B007F4CF9 /* BaseAPIDebuger.swift */; };
+		A851A23329891243007F4CF9 /* URL + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A23229891243007F4CF9 /* URL + Extension.swift */; };
+		A851A2362989158F007F4CF9 /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A2352989158F007F4CF9 /* MessageHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +82,22 @@
 		A81742D9297E593D00023B28 /* EasyCryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyCryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoUITests.swift; sourceTree = "<group>"; };
 		A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A851A20A29890B4C007F4CF9 /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
+		A851A20B29890B4D007F4CF9 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		A851A20F29890B75007F4CF9 /* NetworkClientManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientManager.swift; sourceTree = "<group>"; };
+		A851A21229890B9F007F4CF9 /* NetworkTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
+		A851A21329890B9F007F4CF9 /* NetworkTarget + Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkTarget + Default.swift"; sourceTree = "<group>"; };
+		A851A21729890BB8007F4CF9 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		A851A21829890BB8007F4CF9 /* NetworkTarget + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkTarget + Extension.swift"; sourceTree = "<group>"; };
+		A851A21C29890BDB007F4CF9 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		A851A21D29890BDB007F4CF9 /* Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
+		A851A21E29890BDB007F4CF9 /* Encoding + Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encoding + Dictionary.swift"; sourceTree = "<group>"; };
+		A851A22329890C0A007F4CF9 /* WorkScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkScheduler.swift; sourceTree = "<group>"; };
+		A851A22529890C0A007F4CF9 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A851A22629890C0A007F4CF9 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		A851A22729890C0B007F4CF9 /* BaseAPIDebuger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAPIDebuger.swift; sourceTree = "<group>"; };
+		A851A23229891243007F4CF9 /* URL + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL + Extension.swift"; sourceTree = "<group>"; };
+		A851A2352989158F007F4CF9 /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +218,8 @@
 		A803DFCD297E93F600357A7F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A851A2342989155F007F4CF9 /* MessageHelper */,
+				A851A22F29891214007F4CF9 /* Extension */,
 				A803DFD1297E942600357A7F /* Subscriber */,
 				A803DFCE297E940A00357A7F /* Schedular */,
 			);
@@ -258,6 +292,7 @@
 				A803DFB6297E913700357A7F /* App */,
 				A803DFB7297E918900357A7F /* Theme */,
 				A803DFCD297E93F600357A7F /* Classes */,
+				A851A20829890AFC007F4CF9 /* Networking */,
 				A803DFB8297E919C00357A7F /* DI */,
 				A803DFB9297E91AF00357A7F /* Components */,
 				A803DFBA297E91BF00357A7F /* Core */,
@@ -295,6 +330,91 @@
 				A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */,
 			);
 			path = EasyCryptoUITests;
+			sourceTree = "<group>";
+		};
+		A851A20829890AFC007F4CF9 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A851A20929890B3E007F4CF9 /* Client */,
+				A851A20E29890B65007F4CF9 /* ClientManager */,
+				A851A21129890B92007F4CF9 /* Request */,
+				A851A21629890BAC007F4CF9 /* RequestBuilder */,
+				A851A21B29890BCC007F4CF9 /* Type */,
+				A851A22229890BE8007F4CF9 /* Utility */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A851A20929890B3E007F4CF9 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				A851A20A29890B4C007F4CF9 /* NetworkClientProtocol.swift */,
+				A851A20B29890B4D007F4CF9 /* NetworkClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		A851A20E29890B65007F4CF9 /* ClientManager */ = {
+			isa = PBXGroup;
+			children = (
+				A851A20F29890B75007F4CF9 /* NetworkClientManager.swift */,
+			);
+			path = ClientManager;
+			sourceTree = "<group>";
+		};
+		A851A21129890B92007F4CF9 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				A851A21329890B9F007F4CF9 /* NetworkTarget + Default.swift */,
+				A851A21229890B9F007F4CF9 /* NetworkTarget.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		A851A21629890BAC007F4CF9 /* RequestBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				A851A21829890BB8007F4CF9 /* NetworkTarget + Extension.swift */,
+				A851A21729890BB8007F4CF9 /* RequestBuilder.swift */,
+			);
+			path = RequestBuilder;
+			sourceTree = "<group>";
+		};
+		A851A21B29890BCC007F4CF9 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				A851A21E29890BDB007F4CF9 /* Encoding + Dictionary.swift */,
+				A851A21D29890BDB007F4CF9 /* Encoding.swift */,
+				A851A21C29890BDB007F4CF9 /* HTTPMethod.swift */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		A851A22229890BE8007F4CF9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A851A22629890C0A007F4CF9 /* APIError.swift */,
+				A851A22729890C0B007F4CF9 /* BaseAPIDebuger.swift */,
+				A851A22529890C0A007F4CF9 /* Configuration.swift */,
+				A851A22329890C0A007F4CF9 /* WorkScheduler.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		A851A22F29891214007F4CF9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A851A23229891243007F4CF9 /* URL + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A851A2342989155F007F4CF9 /* MessageHelper */ = {
+			isa = PBXGroup;
+			children = (
+				A851A2352989158F007F4CF9 /* MessageHelper.swift */,
+			);
+			path = MessageHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,17 +548,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A851A22129890BDC007F4CF9 /* Encoding + Dictionary.swift in Sources */,
+				A851A21F29890BDC007F4CF9 /* HTTPMethod.swift in Sources */,
 				A8104F4D29814E88008A8DDE /* Assets.swift in Sources */,
 				A803DFCC297E93B700357A7F /* FontType.swift in Sources */,
 				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
 				A803DFD7297E9F9800357A7F /* MainView.swift in Sources */,
+				A851A22B29890C0B007F4CF9 /* Configuration.swift in Sources */,
 				A803DFCB297E93B700357A7F /* FontStyle.swift in Sources */,
+				A851A21029890B75007F4CF9 /* NetworkClientManager.swift in Sources */,
+				A851A20C29890B4D007F4CF9 /* NetworkClientProtocol.swift in Sources */,
 				A803DFC9297E93B700357A7F /* FontManager.swift in Sources */,
 				A803DFD0297E941200357A7F /* Schedular.swift in Sources */,
+				A851A21529890B9F007F4CF9 /* NetworkTarget + Default.swift in Sources */,
+				A851A21429890B9F007F4CF9 /* NetworkTarget.swift in Sources */,
+				A851A20D29890B4D007F4CF9 /* NetworkClient.swift in Sources */,
 				A803DFD3297E943100357A7F /* Subscriber.swift in Sources */,
+				A851A21A29890BB8007F4CF9 /* NetworkTarget + Extension.swift in Sources */,
+				A851A22D29890C0B007F4CF9 /* BaseAPIDebuger.swift in Sources */,
 				A803DFCA297E93B700357A7F /* FontViewModifier.swift in Sources */,
+				A851A2362989158F007F4CF9 /* MessageHelper.swift in Sources */,
+				A851A22029890BDC007F4CF9 /* Encoding.swift in Sources */,
+				A851A22929890C0B007F4CF9 /* WorkScheduler.swift in Sources */,
 				A803DFC4297E92D000357A7F /* Color.swift in Sources */,
 				A8104F4F29814FDE008A8DDE /* Constants.swift in Sources */,
+				A851A23329891243007F4CF9 /* URL + Extension.swift in Sources */,
+				A851A22C29890C0B007F4CF9 /* APIError.swift in Sources */,
+				A851A21929890BB8007F4CF9 /* RequestBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

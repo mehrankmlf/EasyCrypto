@@ -15,6 +15,7 @@ struct MainView: View {
             VStack {
                 HeaderView()
                 SortView()
+                CryptoCellView()
                 Spacer()
             }
         }
@@ -84,6 +85,33 @@ struct SortView: View {
     }
 }
 
+struct CryptoCellView: View {
+    
+    var body: some View {
+        HStack {
+            Image("bitcoin")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 30.0, height: 30.0)
+            VStack(spacing: 5) {
+                Text("Bitcoin")
+                    .fontStyle(FontManager.body)
+                Text("2 TLCV")
+                    .foregroundColor(Color.gray)
+                    .fontStyle(FontManager.bodyLight)
+            }.padding(.leading, 5)
+            Spacer()
+            VStack(spacing: 5) {
+                Text("23456")
+                    .fontStyle(FontManager.body)
+                Text("+ 74.9")
+                    .foregroundColor(Color.green)
+                    .fontStyle(FontManager.body)
+            }
+        }
+        .padding()
+    }
+}
 
 
 

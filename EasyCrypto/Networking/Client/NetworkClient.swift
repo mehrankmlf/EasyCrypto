@@ -37,14 +37,14 @@ final class NetworkClient : NetworkClientProtocol {
             }
             .decode(type: type.self, decoder: decoder)
             .mapError { error in
-                if let error = error as? APIError {
-                    switch error {
-                    case .unauthorizedClient:
-                        print("")
-                    default:
-                        break
-                    }
-                }
+//                if let error = error as? APIError {
+//                    switch error {
+//                    case .unauthorizedClient:
+//                        print("")
+//                    default:
+//                        break
+//                    }
+//                }
                 return error as! APIError
             }
             .eraseToAnyPublisher()

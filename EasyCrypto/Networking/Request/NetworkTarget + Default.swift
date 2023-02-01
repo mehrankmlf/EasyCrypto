@@ -35,10 +35,6 @@ extension NetworkTarget {
     var headers: [String : String]? {
         return nil
     }
-    
-    var authorization: AuthorizationType {
-        return .none
-    }
 }
 
 

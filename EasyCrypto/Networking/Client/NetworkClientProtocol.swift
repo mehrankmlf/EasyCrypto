@@ -9,8 +9,6 @@
 import Foundation
 import Combine
 
-
-
 protocol NetworkClientProtocol : AnyObject {
     /// Sends the given request.
     ///
@@ -19,16 +17,12 @@ protocol NetworkClientProtocol : AnyObject {
     
     var session: URLSession { get }
     
-    func perform<M: Decodable, T>(with request: RequestBuilder, decoder: JSONDecoder, scheduler: T, responseObject type: M.Type) -> AnyPublisher<M, APIError> where M : Decodable, T : Scheduler
-    
     @available(iOS 13.0, *)
     @discardableResult
-    func request<M, T>(
-        with request: RequestBuilder,
-        decoder: JSONDecoder,
-        scheduler: T,
-        responseObject type: M.Type
-    ) -> AnyPublisher<M, APIError> where M: Decodable, T: Scheduler
+    func perform<M: Decodable, T>(with request: RequestBuilder,
+                                  decoder: JSONDecoder,
+                                  scheduler: T,
+                                  responseObject type: M.Type) -> AnyPublisher<M, APIError> where M : Decodable, T : Scheduler
 }
 
 protocol DebuggerProtocol {

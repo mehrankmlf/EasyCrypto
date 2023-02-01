@@ -111,10 +111,7 @@ struct HttpRequest : RequestBuilder {
         urlRequest.httpMethod = self.methodType.name
         //set requestHeaders for request
         urlRequest.allHTTPHeaderFields = self.headers
-        //set authorization header for reqeust
-        if authorization == .bearer {
-            urlRequest.setValue(authorization.rawValue, forHTTPHeaderField: HTTPHeader.authorization)
-        }
+
         //set query parameters for request
         if let queryParams = self.queryParams, queryParams.count > 0,
            let queryParamsEncoding = self.queryParamsEncoding {

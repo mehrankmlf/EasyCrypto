@@ -15,25 +15,26 @@ enum BaseURLType {
         
         switch self {
         case .baseApi :
-            return URL("https://test.api.amadeus.com")
+            return URL("https://www.coingecko.com/api/")
         case .staging :
-            return URL("https://test.api.amadeus.com")
+            return URL("https://www.coingecko.com/api/")
         }
     }
 }
 
 enum VersionType {
     case none
-    case v1, v2
-    
+    case v1, v2, v3
     var desc : String {
         switch self {
-        case .none :
+        case .none:
             return ""
-        case .v1 :
+        case .v1:
             return "/v1"
-        case .v2 :
+        case .v2:
             return "/v2"
+        case .v3:
+            return "/v3"
         }
     }
 }

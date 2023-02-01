@@ -19,5 +19,4 @@ protocol NetworkTarget {
     var cachePolicy: URLRequest.CachePolicy? { get }
     var timeoutInterval: TimeInterval? { get }
     var headers: [String: String]? { get }
-    var authorization: AuthorizationType { get }
 }

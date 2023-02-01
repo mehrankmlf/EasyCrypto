@@ -13,7 +13,6 @@
 		A803DFCA297E93B700357A7F /* FontViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC6297E93B600357A7F /* FontViewModifier.swift */; };
 		A803DFCB297E93B700357A7F /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC7297E93B700357A7F /* FontStyle.swift */; };
 		A803DFCC297E93B700357A7F /* FontType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC8297E93B700357A7F /* FontType.swift */; };
-		A803DFD0297E941200357A7F /* Schedular.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFCF297E941200357A7F /* Schedular.swift */; };
 		A803DFD3297E943100357A7F /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD2297E943100357A7F /* Subscriber.swift */; };
 		A803DFD7297E9F9800357A7F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD6297E9F9800357A7F /* MainView.swift */; };
 		A8104F4D29814E88008A8DDE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8104F4C29814E88008A8DDE /* Assets.swift */; };
@@ -24,6 +23,8 @@
 		A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742D3297E593D00023B28 /* EasyCryptoTests.swift */; };
 		A81742DE297E593D00023B28 /* EasyCryptoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */; };
 		A81742E0297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */; };
+		A82CB994298A7A5500699C22 /* Publisher + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82CB993298A7A5500699C22 /* Publisher + Extension.swift */; };
+		A82CB996298A7AB900699C22 /* URLRequest + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82CB995298A7AB900699C22 /* URLRequest + Extension.swift */; };
 		A851A20C29890B4D007F4CF9 /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A20A29890B4C007F4CF9 /* NetworkClientProtocol.swift */; };
 		A851A20D29890B4D007F4CF9 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A20B29890B4D007F4CF9 /* NetworkClient.swift */; };
 		A851A21029890B75007F4CF9 /* NetworkClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A20F29890B75007F4CF9 /* NetworkClientManager.swift */; };
@@ -40,6 +41,7 @@
 		A851A22D29890C0B007F4CF9 /* BaseAPIDebuger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A22729890C0B007F4CF9 /* BaseAPIDebuger.swift */; };
 		A851A23329891243007F4CF9 /* URL + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A23229891243007F4CF9 /* URL + Extension.swift */; };
 		A851A2362989158F007F4CF9 /* MessageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A2352989158F007F4CF9 /* MessageHelper.swift */; };
+		A851A23829891867007F4CF9 /* HTTPURLResponse + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851A23729891867007F4CF9 /* HTTPURLResponse + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +68,6 @@
 		A803DFC6297E93B600357A7F /* FontViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontViewModifier.swift; sourceTree = "<group>"; };
 		A803DFC7297E93B700357A7F /* FontStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		A803DFC8297E93B700357A7F /* FontType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontType.swift; sourceTree = "<group>"; };
-		A803DFCF297E941200357A7F /* Schedular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedular.swift; sourceTree = "<group>"; };
 		A803DFD2297E943100357A7F /* Subscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		A803DFD6297E9F9800357A7F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A8104F4629814AB6008A8DDE /* arialbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arialbold.ttf; sourceTree = "<group>"; };
@@ -82,6 +83,8 @@
 		A81742D9297E593D00023B28 /* EasyCryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyCryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81742DD297E593D00023B28 /* EasyCryptoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoUITests.swift; sourceTree = "<group>"; };
 		A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCryptoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A82CB993298A7A5500699C22 /* Publisher + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher + Extension.swift"; sourceTree = "<group>"; };
+		A82CB995298A7AB900699C22 /* URLRequest + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest + Extension.swift"; sourceTree = "<group>"; };
 		A851A20A29890B4C007F4CF9 /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
 		A851A20B29890B4D007F4CF9 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		A851A20F29890B75007F4CF9 /* NetworkClientManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientManager.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		A851A22729890C0B007F4CF9 /* BaseAPIDebuger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAPIDebuger.swift; sourceTree = "<group>"; };
 		A851A23229891243007F4CF9 /* URL + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL + Extension.swift"; sourceTree = "<group>"; };
 		A851A2352989158F007F4CF9 /* MessageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHelper.swift; sourceTree = "<group>"; };
+		A851A23729891867007F4CF9 /* HTTPURLResponse + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +142,6 @@
 				A803DFC2297E92B800357A7F /* Assets */,
 				A803DFC1297E92AD00357A7F /* Color */,
 				A803DFC0297E92A600357A7F /* Fonts */,
-				A8104F4E29814FDE008A8DDE /* Constants.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -174,6 +177,8 @@
 		A803DFBC297E91CF00357A7F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				A82CB999298A883900699C22 /* Entity */,
+				A82CB998298A882F00699C22 /* UseCase */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -215,23 +220,15 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		A803DFCD297E93F600357A7F /* Classes */ = {
+		A803DFCD297E93F600357A7F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				A82CB997298A867500699C22 /* Constants */,
 				A851A2342989155F007F4CF9 /* MessageHelper */,
 				A851A22F29891214007F4CF9 /* Extension */,
 				A803DFD1297E942600357A7F /* Subscriber */,
-				A803DFCE297E940A00357A7F /* Schedular */,
 			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		A803DFCE297E940A00357A7F /* Schedular */ = {
-			isa = PBXGroup;
-			children = (
-				A803DFCF297E941200357A7F /* Schedular.swift */,
-			);
-			path = Schedular;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		A803DFD1297E942600357A7F /* Subscriber */ = {
@@ -291,10 +288,10 @@
 				A8104F4B29814BB7008A8DDE /* Info.plist */,
 				A803DFB6297E913700357A7F /* App */,
 				A803DFB7297E918900357A7F /* Theme */,
-				A803DFCD297E93F600357A7F /* Classes */,
-				A851A20829890AFC007F4CF9 /* Networking */,
-				A803DFB8297E919C00357A7F /* DI */,
+				A803DFCD297E93F600357A7F /* Support */,
 				A803DFB9297E91AF00357A7F /* Components */,
+				A803DFB8297E919C00357A7F /* DI */,
+				A851A20829890AFC007F4CF9 /* Networking */,
 				A803DFBA297E91BF00357A7F /* Core */,
 				A803DFBB297E91C600357A7F /* Data */,
 				A803DFBC297E91CF00357A7F /* Domain */,
@@ -330,6 +327,28 @@
 				A81742DF297E593D00023B28 /* EasyCryptoUITestsLaunchTests.swift */,
 			);
 			path = EasyCryptoUITests;
+			sourceTree = "<group>";
+		};
+		A82CB997298A867500699C22 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A8104F4E29814FDE008A8DDE /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A82CB998298A882F00699C22 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		A82CB999298A883900699C22 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		A851A20829890AFC007F4CF9 /* Networking */ = {
@@ -405,6 +424,9 @@
 			isa = PBXGroup;
 			children = (
 				A851A23229891243007F4CF9 /* URL + Extension.swift */,
+				A851A23729891867007F4CF9 /* HTTPURLResponse + Extension.swift */,
+				A82CB993298A7A5500699C22 /* Publisher + Extension.swift */,
+				A82CB995298A7AB900699C22 /* URLRequest + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -548,6 +570,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82CB994298A7A5500699C22 /* Publisher + Extension.swift in Sources */,
 				A851A22129890BDC007F4CF9 /* Encoding + Dictionary.swift in Sources */,
 				A851A21F29890BDC007F4CF9 /* HTTPMethod.swift in Sources */,
 				A8104F4D29814E88008A8DDE /* Assets.swift in Sources */,
@@ -559,17 +582,18 @@
 				A851A21029890B75007F4CF9 /* NetworkClientManager.swift in Sources */,
 				A851A20C29890B4D007F4CF9 /* NetworkClientProtocol.swift in Sources */,
 				A803DFC9297E93B700357A7F /* FontManager.swift in Sources */,
-				A803DFD0297E941200357A7F /* Schedular.swift in Sources */,
 				A851A21529890B9F007F4CF9 /* NetworkTarget + Default.swift in Sources */,
 				A851A21429890B9F007F4CF9 /* NetworkTarget.swift in Sources */,
 				A851A20D29890B4D007F4CF9 /* NetworkClient.swift in Sources */,
 				A803DFD3297E943100357A7F /* Subscriber.swift in Sources */,
 				A851A21A29890BB8007F4CF9 /* NetworkTarget + Extension.swift in Sources */,
+				A82CB996298A7AB900699C22 /* URLRequest + Extension.swift in Sources */,
 				A851A22D29890C0B007F4CF9 /* BaseAPIDebuger.swift in Sources */,
 				A803DFCA297E93B700357A7F /* FontViewModifier.swift in Sources */,
 				A851A2362989158F007F4CF9 /* MessageHelper.swift in Sources */,
 				A851A22029890BDC007F4CF9 /* Encoding.swift in Sources */,
 				A851A22929890C0B007F4CF9 /* WorkScheduler.swift in Sources */,
+				A851A23829891867007F4CF9 /* HTTPURLResponse + Extension.swift in Sources */,
 				A803DFC4297E92D000357A7F /* Color.swift in Sources */,
 				A8104F4F29814FDE008A8DDE /* Constants.swift in Sources */,
 				A851A23329891243007F4CF9 /* URL + Extension.swift in Sources */,

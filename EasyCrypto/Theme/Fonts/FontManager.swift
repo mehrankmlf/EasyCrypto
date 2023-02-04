@@ -9,16 +9,10 @@ import Foundation
 import SwiftUI
 
 struct FontManager {
-    static let title = FontStyle(font: Font.custom(FontType.regular.rawValue,
-                                                  size: 18.0),
-                                                  weight: .regular,
-                                                  foregroundColor: .white)
-    static let body = FontStyle(font: Font.custom(FontType.regular.rawValue,
-                                                  size: 14.0),
-                                                  weight: .regular,
-                                                  foregroundColor: .white)
-    static let bodyLight = FontStyle(font: Font.custom(FontType.regular.rawValue,
-                                                  size: 12.0),
-                                                  weight: .regular,
-                                                  foregroundColor: .white)
+    static let headLine = Font.custom(FontNameManager.Arial.regular, size: 28.0)
+    static let title = Font.custom(FontNameManager.Arial.regular, size: 18.0)
+    static let body = Font.custom(FontNameManager.Arial.regular, size: 14.0)
 }
+
+
+

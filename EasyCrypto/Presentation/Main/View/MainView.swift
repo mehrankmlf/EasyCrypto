@@ -9,11 +9,13 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
+        
         ZStack {
             Color.darkBlue
                 .ignoresSafeArea()
-            VStack {
+            VStack(spacing: 30) {
                 HeaderView()
+                MarkertValueView()
                 SortView()
                 CryptoCellView()
                 Spacer()
@@ -36,7 +38,8 @@ struct HeaderView: View {
             }
             Spacer()
             Text(Constants.mainTitle)
-                .fontStyle(FontManager.title)
+                .foregroundColor(Color.white)
+                .font(FontManager.body)
             Spacer()
             Button {
                 
@@ -51,6 +54,26 @@ struct HeaderView: View {
     }
 }
 
+struct MarkertValueView: View {
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("14,2572.65")
+                    .foregroundColor(Color.white)
+                    .font(FontManager.headLine)
+                Text("+285.25")
+                    .foregroundColor(Color.lightGreen)
+                    .font(FontManager.title)
+            }
+            .padding(.horizontal)
+            Spacer()
+            ZStack{}
+        }
+    }
+}
+
+
 struct SortView: View {
     
     var body: some View {
@@ -64,7 +87,8 @@ struct SortView: View {
                     .cornerRadius(5.0)
                     .overlay {
                         Text("Highest Holding")
-                            .fontStyle(FontManager.body)
+                            .foregroundColor(Color.white)
+                            .font(FontManager.body)
                     }
             }
             Spacer()
@@ -77,7 +101,8 @@ struct SortView: View {
                     .cornerRadius(5.0)
                     .overlay {
                         Text("24 Hours")
-                            .fontStyle(FontManager.body)
+                            .foregroundColor(Color.white)
+                            .font(FontManager.body)
                     }
             }
         }
@@ -95,21 +120,23 @@ struct CryptoCellView: View {
                 .frame(width: 30.0, height: 30.0)
             VStack(spacing: 5) {
                 Text("Bitcoin")
-                    .fontStyle(FontManager.body)
+                    .foregroundColor(Color.white)
+                    .font(FontManager.body)
                 Text("2 TLCV")
                     .foregroundColor(Color.gray)
-                    .fontStyle(FontManager.bodyLight)
+                    .font(FontManager.body)
             }.padding(.leading, 5)
             Spacer()
             VStack(spacing: 5) {
                 Text("23456")
-                    .fontStyle(FontManager.body)
+                    .foregroundColor(Color.white)
+                    .font(FontManager.body)
                 Text("+ 74.9")
-                    .foregroundColor(Color.green)
-                    .fontStyle(FontManager.body)
+                    .foregroundColor(Color.lightGreen)
+                    .font(FontManager.body)
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 

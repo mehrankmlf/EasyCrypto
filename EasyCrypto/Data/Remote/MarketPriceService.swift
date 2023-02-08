@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MarketPricServiceInterface: AnyObject {
+protocol MarketPricRemoteInterface: AnyObject {
      func fetch(vs_currency:
                 String,
                 order: String,
@@ -17,7 +17,7 @@ protocol MarketPricServiceInterface: AnyObject {
                 sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError>
 }
 
-final class MarketPriceService : NetworkClientManager<HttpRequest>, MarketPricServiceInterface {
+final class MarketPriceRemote : NetworkClientManager<HttpRequest>, MarketPricRemoteInterface {
     func fetch(vs_currency: String,
                order: String,
                per_page: Int,

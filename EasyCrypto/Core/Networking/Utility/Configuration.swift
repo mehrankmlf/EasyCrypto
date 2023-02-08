@@ -15,9 +15,9 @@ enum BaseURLType {
         
         switch self {
         case .baseApi :
-            return URL("https://www.coingecko.com/api/")
+            return URL("https://api.coingecko.com/api")
         case .staging :
-            return URL("https://www.coingecko.com/api/")
+            return URL("https://api.coingecko.com/api")
         }
     }
 }

@@ -27,21 +27,17 @@ struct HttpRequest : RequestBuilder {
     
     var methodType: HTTPMethod
     
+    var queryParams: [String : String]?
+    
+    var queryParamsEncoding: URLEncoding?
+    
     init(request: NetworkTarget) {
         self.baseURL = request.baseURL
         self.version = request.version
         self.path = request.path
         self.methodType = request.methodType
-    }
-    
-    init(baseURL: BaseURLType = .baseApi,
-         version: VersionType = .v1,
-         path: String? = nil,
-         methodType: HTTPMethod = .get) {
-        self.baseURL = baseURL
-        self.version = version
-        self.path = path
-        self.methodType = methodType
+        self.queryParams = request.queryParams
+        self.queryParamsEncoding = request.queryParamsEncoding
     }
     
     var pathAppendedURL: URL {

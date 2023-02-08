@@ -12,7 +12,7 @@ struct EasyCryptoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewModel: MainViewModel(marketPriceUsecase: MarketPriceUsecase(marketPriceRepository: MarketPriceRepository(service: MarketPriceRemote()))))
         }
     }
 }

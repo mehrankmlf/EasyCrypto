@@ -8,13 +8,6 @@
 import Foundation
 
 extension NetworkTarget {
-    var queryParams: [String : String]? {
-        return nil
-    }
-    
-    var queryParamsEncoding: URLEncoding? {
-        return  nil
-    }
     
     var bodyEncoding: BodyEncoding? {
         return nil
@@ -33,7 +26,7 @@ extension NetworkTarget {
     }
     
     var headers: [String : String]? {
-        return nil
+        ["accept": "application/json"]
     }
 }
 

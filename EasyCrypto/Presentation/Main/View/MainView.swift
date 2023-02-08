@@ -6,20 +6,32 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MainView: View {
+    
+    @ObservedObject private(set) var viewModel: MainViewModel
+    
     var body: some View {
-        
-        ZStack {
-            Color.darkBlue
-                .ignoresSafeArea()
-            VStack(spacing: 30) {
-                HeaderView()
-                MarkertValueView()
-                SortView()
-                CryptoCellView()
-                Spacer()
+        NavigationView {
+            ZStack {
+                Color.darkBlue
+                    .ignoresSafeArea()
+                VStack(spacing: 30) {
+                    HeaderView()
+                    MarkertValueView()
+                    SortView()
+                    CryptoCellView()
+                    Spacer()
+                }
             }
+        }
+        .onAppear {
+            self.viewModel.getMarketData(vs_currency: "usd",
+                                         order: "market_cap_desc",
+                                         per_page: 100,
+                                         page: 1,
+                                         sparkline: false)
         }
     }
 }
@@ -144,6 +156,6 @@ struct CryptoCellView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainViewModel(marketPriceUsecase: MarketPriceUsecase(marketPriceRepository: MarketPriceRepository(service: MarketPriceRemote()))))
     }
 }

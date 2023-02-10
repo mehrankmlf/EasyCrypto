@@ -1,5 +1,5 @@
 //
-//  MarketPriceService.swift
+//  MarketPriceRemote.swift
 //  EasyCrypto
 //
 //  Created by Mehran on 11/15/1401 AP.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MarketPricRemoteInterface: AnyObject {
+protocol MarketPricRemoteProtocol: AnyObject {
      func fetch(vs_currency:
                 String,
                 order: String,
@@ -17,7 +17,7 @@ protocol MarketPricRemoteInterface: AnyObject {
                 sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError>
 }
 
-final class MarketPriceRemote : NetworkClientManager<HttpRequest>, MarketPricRemoteInterface {
+final class MarketPriceRemote : NetworkClientManager<HttpRequest>, MarketPricRemoteProtocol {
     func fetch(vs_currency: String,
                order: String,
                per_page: Int,

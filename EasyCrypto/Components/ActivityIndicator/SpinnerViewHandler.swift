@@ -15,11 +15,11 @@ struct SpinnerViewHandler: View {
     var body: some View {
         ZStack(alignment: .center) {
             VStack {
-                SpinnerViewIndicator(isAnimating: $isShowing, style: .large)
+                SpinnerViewIndicator(isAnimating: $isShowing, style: .medium)
             }
             .frame(width: geoSize.width,
                    height: geoSize.height)
-            .background(Color.white)
+            .background(Color.black.opacity(0.5))
             .opacity(self.isShowing ? 1 : 0)
 
         }

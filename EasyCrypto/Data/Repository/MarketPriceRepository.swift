@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MarketPricRepositoryInterface {
+protocol MarketPricRepositoryProrocol {
     func data(vs_currency: String,
               order: String,
               per_page: Int,
@@ -16,11 +16,11 @@ protocol MarketPricRepositoryInterface {
               sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError>
 }
 
-final class MarketPriceRepository: MarketPricRepositoryInterface {
+final class MarketPriceRepository: MarketPricRepositoryProrocol {
     
-    private let service: MarketPricRemoteInterface
+    private let service: MarketPricRemoteProtocol
     
-    init(service: MarketPricRemoteInterface) {
+    init(service: MarketPricRemoteProtocol) {
         self.service = service
     }
     

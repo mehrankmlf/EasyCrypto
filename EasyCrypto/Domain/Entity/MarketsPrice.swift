@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MarketsPrice: Decodable {
+struct MarketsPrice: Decodable, Identifiable {
     let id, symbol, name: String?
     let image: String?
     let currentPrice: Double?
@@ -51,3 +51,17 @@ struct MarketsPrice: Decodable {
     }
 }
 
+extension MarketsPrice {
+    // make image url safe
+    func safeImageURL() -> String {
+        guard let url = self.image else {return ""}
+        let safeURL = url.trimmingString()
+        return safeURL
+    }
+}
+
+extension MarketsPrice {
+    var price_CurrencyFormat: String {
+        return self.currentPrice?.currencyFormat() ?? "0.0"
+    }
+}

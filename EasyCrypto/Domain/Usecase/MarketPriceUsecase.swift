@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MarketPriceUsecaseInterface : AnyObject {
+protocol MarketPriceUsecaseProtocol : AnyObject {
     func execute(vs_currency: String,
                  order: String,
                  per_page: Int,
@@ -16,11 +16,11 @@ protocol MarketPriceUsecaseInterface : AnyObject {
                  sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError>
 }
 
-final class MarketPriceUsecase: MarketPriceUsecaseInterface {
+final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
     
-    private let marketPriceRepository: MarketPriceRepository
+    private let marketPriceRepository: MarketPricRepositoryProrocol
     
-    init(marketPriceRepository: MarketPriceRepository) {
+    init(marketPriceRepository: MarketPricRepositoryProrocol) {
         self.marketPriceRepository = marketPriceRepository
     }
     

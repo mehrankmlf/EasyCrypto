@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol SearchMarketUsecaseProtocol : AnyObject {
-    func execute(text: String) -> AnyPublisher<[SearchMarket]?, APIError>
+    func execute(text: String) -> AnyPublisher<SearchMarket?, APIError>
 }
 
 final class SearchMarketUsecase: SearchMarketUsecaseProtocol {
@@ -20,7 +20,7 @@ final class SearchMarketUsecase: SearchMarketUsecaseProtocol {
         self.searchMarketRepository = searchMarketRepository
     }
     
-    func execute(text: String) -> AnyPublisher<[SearchMarket]?, APIError> {
+    func execute(text: String) -> AnyPublisher<SearchMarket?, APIError> {
         return self.searchMarketRepository.data(text: text)
     }
 }

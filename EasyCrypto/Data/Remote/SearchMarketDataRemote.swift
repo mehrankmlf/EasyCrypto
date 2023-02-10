@@ -9,14 +9,14 @@ import Foundation
 import Combine
 
 protocol SearchMarketDataRemoteProtocol: AnyObject {
-    func fetch(text: String) -> AnyPublisher<[SearchMarket]?, APIError>
+    func fetch(text: String) -> AnyPublisher<SearchMarket?, APIError>
 }
 
 final class SearchMarketDataRemote : NetworkClientManager<HttpRequest>, SearchMarketDataRemoteProtocol {
-    func fetch(text: String) -> AnyPublisher<[SearchMarket]?, APIError> {
+    func fetch(text: String) -> AnyPublisher<SearchMarket?, APIError> {
         self.request(request: HttpRequest(request: SearchMarketDataRequest(text: text)),
                      scheduler: WorkScheduler.mainScheduler,
-                     responseObject: [SearchMarket]?.self)
+                     responseObject: SearchMarket?.self)
     }
 }
 

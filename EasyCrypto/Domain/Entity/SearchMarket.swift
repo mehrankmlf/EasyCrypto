@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct SearchMarket: Codable {
+struct SearchMarket: Decodable, Hashable {
+
+    let coins: [Coin]?
+
+    enum CodingKeys: String, CodingKey {
+        case coins = "coins"
+    }
+}
+
+struct Coin: Decodable, Hashable {
     let id, name, apiSymbol, symbol: String?
     let marketCapRank: Int?
     let large: String?
@@ -22,7 +31,7 @@ struct SearchMarket: Codable {
     }
 }
 
-extension SearchMarket {
+extension Coin {
     // make image url safe
     func safeImageURL() -> String {
         guard let url = self.large else {return ""}

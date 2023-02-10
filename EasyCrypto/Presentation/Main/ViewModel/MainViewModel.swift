@@ -22,13 +22,17 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
     
     enum Input {
         case onAppear
+        case searchData(text: String)
     }
     
     func apply(_ input: Input) {
         switch input {
         case .onAppear:
+            self.bindData()
             self.handleState()
             self.getMarketData()
+        case .searchData(text: let text):
+            self.searchMarketData(text: text)
         }
     }
     
@@ -41,8 +45,9 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
     var perPage: Int = 20
     
     @Published var marketData: [MarketsPrice] = []
-    @Published var searchData: [SearchMarket] = []
+    @Published var searchData: [Coin] = []
     @Published var isShowActivity : Bool = false
+    @Published var searchText: String = ""
     
     init(marketPriceUsecase: MarketPriceUsecaseProtocol,
          searchMarketUsecase: SearchMarketUsecaseProtocol) {
@@ -50,6 +55,15 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
         self.searchMarketUsecase = searchMarketUsecase
     }
     
+    private func bindData() {
+        $searchText
+            .debounce(for: 0.3, scheduler: WorkScheduler.mainThread)
+            .removeDuplicates()
+            .sink { text in
+                self.searchMarketData(text: text)
+            }.store(in: &subscriber)
+    }
+
     func getMarketData(vs_currency: String = "usd",
                        order: String = "market_cap_desc",
                        sparkline: Bool = false) {
@@ -57,17 +71,19 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
                                                                                      order: order,
                                                                                      per_page: self.perPage,
                                                                                      page: self.page,
-                                                                                     sparkline: sparkline)) { data in
+                                                                                     sparkline: sparkline)) { [ weak self] data in
             guard let data = data else {return}
-            self.marketData = data
-            self.page += 1
+            self?.marketData = data
+            self?.page += 1
         }
     }
     
     func searchMarketData(text: String) {
-        self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { data in
-            guard let data = data else {return}
-            self.searchData = data
+        guard !String.isNilOrEmpty(string: text) else {return}
+        self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
+            guard let data = data, let coin = data.coins else {return}
+            self?.searchData = []
+            self?.searchData = coin
         }
     }
 }
@@ -76,14 +92,14 @@ extension MainViewModel {
     private func handleState() {
         self.loadinState
             .receive(on: WorkScheduler.mainThread)
-            .sink { state in
+            .sink { [weak self] state in
                 switch state {
                 case .loadStart:
-                    self.isShowActivity = true
+                    self?.isShowActivity = true
                 case .dismissAlert:
-                    self.isShowActivity = false
+                    self?.isShowActivity = false
                 case .emptyStateHandler:
-                    self.isShowActivity = false
+                    self?.isShowActivity = false
                 }
             }.store(in: &subscriber)
     }

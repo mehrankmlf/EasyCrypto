@@ -33,6 +33,7 @@
 		02D986142996AA320070A7E0 /* SearchMarketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986132996AA320070A7E0 /* SearchMarketRepository.swift */; };
 		02D986162996AAAE0070A7E0 /* SearchMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986152996AAAE0070A7E0 /* SearchMarket.swift */; };
 		02D986182996AD5E0070A7E0 /* SearchMarketUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986172996AD5E0070A7E0 /* SearchMarketUsecase.swift */; };
+		02D9861B2996BCAC0070A7E0 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9861A2996BCAC0070A7E0 /* Dropdown.swift */; };
 		A803DFC4297E92D000357A7F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC3297E92D000357A7F /* Color.swift */; };
 		A803DFC9297E93B700357A7F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC5297E93B600357A7F /* FontManager.swift */; };
 		A803DFD3297E943100357A7F /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD2297E943100357A7F /* Subscriber.swift */; };
@@ -106,6 +107,7 @@
 		02D986132996AA320070A7E0 /* SearchMarketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketRepository.swift; sourceTree = "<group>"; };
 		02D986152996AAAE0070A7E0 /* SearchMarket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarket.swift; sourceTree = "<group>"; };
 		02D986172996AD5E0070A7E0 /* SearchMarketUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketUsecase.swift; sourceTree = "<group>"; };
+		02D9861A2996BCAC0070A7E0 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A803DFC3297E92D000357A7F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A803DFC5297E93B600357A7F /* FontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
@@ -247,6 +249,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		02D986192996BC990070A7E0 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				02D9861A2996BCAC0070A7E0 /* Dropdown.swift */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
 		A803DFB7297E918900357A7F /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +277,7 @@
 		A803DFB9297E91AF00357A7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				02D986192996BC990070A7E0 /* DropDown */,
 				02334930299381B100C1A20B /* ActivityIndicator */,
 			);
 			path = Components;
@@ -742,6 +753,7 @@
 				A851A22C29890C0B007F4CF9 /* APIError.swift in Sources */,
 				0233493729939D9200C1A20B /* DataFlowProtocol.swift in Sources */,
 				A851A21929890BB8007F4CF9 /* RequestBuilder.swift in Sources */,
+				02D9861B2996BCAC0070A7E0 /* Dropdown.swift in Sources */,
 				02334934299381C700C1A20B /* SpinnerViewIndicator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

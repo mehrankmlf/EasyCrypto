@@ -6,5 +6,7 @@
 	<array>
 		<string>arialbold</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

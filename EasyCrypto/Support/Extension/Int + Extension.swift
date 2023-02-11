@@ -16,8 +16,6 @@ extension Int {
                                            (1000.0, 1000.0, "K"),
                                            (100_000.0, 1_000_000.0, "M"),
                                            (100_000_000.0, 1_000_000_000.0, "B")]
-        // you can add more !
-        
         let startValue = Double (abs(self))
         let abbreviation:Abbrevation = {
             var prevAbbreviation = abbreviations[0]

@@ -29,7 +29,6 @@
 		02593C53298E992500ADDA20 /* MarketPriceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02593C52298E992500ADDA20 /* MarketPriceRepository.swift */; };
 		02593C55298ECDF300ADDA20 /* MarketPriceRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02593C54298ECDF300ADDA20 /* MarketPriceRemote.swift */; };
 		02593C58298ED0C000ADDA20 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02593C57298ED0C000ADDA20 /* BaseViewModel.swift */; };
-		025B6E5D299565E200B42898 /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B6E5C299565E200B42898 /* Double + Extension.swift */; };
 		02D9860E29960ECF0070A7E0 /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9860D29960ECF0070A7E0 /* View + Extension.swift */; };
 		02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9860F29963B5C0070A7E0 /* Array + Extension.swift */; };
 		02D986122996A8880070A7E0 /* SearchMarketDataRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986112996A8880070A7E0 /* SearchMarketDataRemote.swift */; };
@@ -106,7 +105,6 @@
 		02593C52298E992500ADDA20 /* MarketPriceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRepository.swift; sourceTree = "<group>"; };
 		02593C54298ECDF300ADDA20 /* MarketPriceRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRemote.swift; sourceTree = "<group>"; };
 		02593C57298ED0C000ADDA20 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		025B6E5C299565E200B42898 /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		02D9860D29960ECF0070A7E0 /* View + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		02D9860F29963B5C0070A7E0 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		02D986112996A8880070A7E0 /* SearchMarketDataRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketDataRemote.swift; sourceTree = "<group>"; };
@@ -585,7 +583,6 @@
 				A851A23729891867007F4CF9 /* HTTPURLResponse + Extension.swift */,
 				A82CB993298A7A5500699C22 /* Publisher + Extension.swift */,
 				A82CB995298A7AB900699C22 /* URLRequest + Extension.swift */,
-				025B6E5C299565E200B42898 /* Double + Extension.swift */,
 				022A25F229980CD7008368B1 /* Int + Extension.swift */,
 			);
 			path = Extension;
@@ -745,7 +742,6 @@
 				0233493929941A8600C1A20B /* DetailView.swift in Sources */,
 				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
 				02593C50298E95E800ADDA20 /* MainViewModel.swift in Sources */,
-				025B6E5D299565E200B42898 /* Double + Extension.swift in Sources */,
 				0233492D2993804100C1A20B /* ImageLoader.swift in Sources */,
 				02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */,
 				02593C58298ED0C000ADDA20 /* BaseViewModel.swift in Sources */,
@@ -949,6 +945,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -984,6 +981,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

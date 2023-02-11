@@ -15,7 +15,7 @@ struct DetailView: View {
         NavigationView {
                 ZStack {
                     Color.darkBlue
-                        .ignoresSafeArea()
+                        .edgesIgnoringSafeArea(.all)
                     VStack(spacing: 30) {
                         DetailHeaderView(item: item)
                         PriceView(item: item)
@@ -26,6 +26,7 @@ struct DetailView: View {
                         CoinDetailView(item: item)
                         Spacer()
                     }
+                    .padding(.top)
                 }
         }.navigationBarTitle("")
          .navigationBarHidden(true)
@@ -115,33 +116,24 @@ struct CoinDetailView: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            HStack(spacing: 20) {
                 let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
                 CoinDetailReusableView(title: "Market Cap",
                                        price: marketCapFormat ?? "")
-                Spacer()
                 let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0)!
                 CoinDetailReusableView(title: "Volume (24 Hours)",
                                        price: price24Hours)
-            }.padding(.trailing)
-            HStack(spacing: 30) {
                 let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0)
                 CoinDetailReusableView(title: "Circulating Supply",
                                        price: circulatingSupply ?? "-")
-                Spacer()
                 let totalSupply = DecimalFormatter().string(from: item.totalSupply as? NSNumber ?? 0)
                 CoinDetailReusableView(title: "Total Supply",
                                        price: totalSupply ?? "-")
-            }.padding(.trailing)
-            HStack(spacing: 30) {
                 let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H as? NSNumber ?? 0)!
                 CoinDetailReusableView(title: "Low (24 Hours)",
                                        price: low24H)
-                Spacer()
                 let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H as? NSNumber ?? 0)!
                 CoinDetailReusableView(title: "High (24 Hours)",
                                        price: high24H)
-            }.padding(.trailing)
         }
         .padding(.horizontal)
     }
@@ -162,6 +154,7 @@ struct CoinDetailReusableView: View {
                     .foregroundColor(Color.white)
                     .font(FontManager.title)
             }
+            Spacer()
         }
     }
 }

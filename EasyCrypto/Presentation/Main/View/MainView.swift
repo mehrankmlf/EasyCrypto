@@ -26,7 +26,7 @@ struct MainView: View {
                 let geoSize = geo.size
                 ZStack {
                     Color.darkBlue
-                        .ignoresSafeArea()
+                        .edgesIgnoringSafeArea(.all)
                     VStack(spacing: 20) {
                         HeaderView(viewModel: viewModel)
                         SearchBar(text: $viewModel.searchText, isLoading: $viewModel.isShowActivity, shouldShow: $shouldShowDropdown)
@@ -64,6 +64,7 @@ struct MainView: View {
                         )
                         .frame(width: geoSize.width)
                     }
+                    .padding(.top)
                 }
                 .onAppear {
                     self.viewModel.apply(.onAppear)

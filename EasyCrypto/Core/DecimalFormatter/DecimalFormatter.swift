@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// old school way :D
 final class DecimalFormatter: NumberFormatter {
 
     public override init() {

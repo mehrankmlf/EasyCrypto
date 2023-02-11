@@ -57,10 +57,14 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
     
     private func bindData() {
         $searchText
-            .debounce(for: 0.3, scheduler: WorkScheduler.mainThread)
+            .debounce(for: 1.0, scheduler: WorkScheduler.mainThread)
             .removeDuplicates()
             .sink { text in
-                self.searchMarketData(text: text)
+                if text.isEmpty {
+                    self.searchData = []
+                }else{
+                    self.searchMarketData(text: text)
+                }
             }.store(in: &subscriber)
     }
 
@@ -72,8 +76,7 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
                                                                                      per_page: self.perPage,
                                                                                      page: self.page,
                                                                                      sparkline: sparkline)) { [ weak self] data in
-            guard let data = data else {return}
-            self?.marketData = data
+            self?.marketData = data ?? []
             self?.page += 1
         }
     }
@@ -81,7 +84,7 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
     func searchMarketData(text: String) {
         guard !String.isNilOrEmpty(string: text) else {return}
         self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
-            guard let data = data, let coin = data.coins else {return}
+            let coin = data?.coins ?? []
             self?.searchData = []
             self?.searchData = coin
         }

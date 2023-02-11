@@ -29,7 +29,7 @@ struct MainView: View {
                         .ignoresSafeArea()
                     VStack(spacing: 20) {
                         HeaderView(viewModel: viewModel)
-                        SearchBar(text: $viewModel.searchText, placeholder: "Search in coins")
+                        SearchBar(text: $viewModel.searchText, isLoading: $viewModel.isShowActivity, shouldShow: $shouldShowDropdown)
                             .padding(.horizontal, 5)
                             .overlay(
                                 VStack {
@@ -39,6 +39,7 @@ struct MainView: View {
                                             shouldShowDropdown = false
                                             selectedOption = option
                                             self.onOptionSelected?(option)
+                                            viewModel.searchData = []
                                         })
                                         .padding(.horizontal)
                                         
@@ -69,6 +70,114 @@ struct MainView: View {
                 }
             }
         }
+    }
+}
+
+struct SearchBar: View {
+    
+    @Binding var text: String
+    @Binding var isLoading: Bool
+    @Binding var shouldShow: Bool
+    @State private var isEditing = false
+    
+    var body: some View {
+        ZStack(alignment: .leading) {
+            HStack {
+                TextField("", text: $text)
+                    .background(Color.clear)
+                    .foregroundColor(.white)
+                    .font(FontManager.headLine_2)
+                    .placeHolder(Text("Search").font(FontManager.headLine_2).foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
+                    .onTapGesture(perform: {
+                        isEditing = true
+                    })
+
+                if !text.isEmpty {
+                    if isLoading {
+                        Button(action: {
+                            text = ""
+                        }, label: {
+                            ActivityIndicator(style: .medium, animate: .constant(true))
+                                .configure {
+                                    $0.color = .white
+                                }
+                        })
+                        .frame(width: 35, height: 35)
+                        
+                    } else {
+                        Button(action: {
+                            text = ""
+                            self.isEditing = false
+                            self.shouldShow = false
+                            dismissKeyboard()
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.gray)
+                                .frame(width: 35, height: 35)
+                        }).frame(width: 35, height: 35)
+                    }
+                }
+//
+//                if isEditing {
+//                    Button(action: {
+//                        text = ""
+//                        isEditing = false
+//                        dismissKeyboard()
+//                    }, label: {
+//                        Text("Cancel")
+//                            .foregroundColor(.white)
+//                    })
+//                    .padding(.trailing, 10)
+//                    .transition(.move(edge: .trailing))
+//                    .animation(.default)
+//                }
+//
+                
+            }.padding(.horizontal)
+             .frame(height: 40.0)
+        }
+    }
+}
+
+struct PlaceHolder<T: View>: ViewModifier {
+    var placeHolder: T
+    var show: Bool
+    func body(content: Content) -> some View {
+        ZStack(alignment: .leading) {
+            if show { placeHolder }
+            content
+        }
+    }
+}
+
+extension View {
+    func placeHolder<T:View>(_ holder: T, show: Bool) -> some View {
+        self.modifier(PlaceHolder(placeHolder:holder, show: show))
+    }
+}
+
+struct ActivityIndicator: UIViewRepresentable {
+    
+    let style: UIActivityIndicatorView.Style
+    @Binding var animate: Bool
+    
+    private let spinner: UIActivityIndicatorView = {
+        $0.hidesWhenStopped = true
+        return $0
+    }(UIActivityIndicatorView(style: .medium))
+    
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        spinner.style = style
+        return spinner
+    }
+    
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        animate ? uiView.startAnimating() : uiView.stopAnimating()
+    }
+    
+    func configure(_ indicator: (UIActivityIndicatorView) -> Void) -> some View {
+        indicator(spinner)
+        return self
     }
 }
 
@@ -104,45 +213,45 @@ struct HeaderView: View {
     }
 }
 
-struct SearchBar: UIViewRepresentable {
-    
-    @Binding var text: String
-    var placeholder: String
-    
-    class Coordinator: NSObject, UISearchBarDelegate {
-        
-        @Binding var text: String
-        
-        init(text: Binding<String>) {
-            _text = text
-        }
-        
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
-        }
-    }
-    
-    func makeCoordinator() -> SearchBar.Coordinator {
-        return Coordinator(text: $text)
-    }
-    
-    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
-        let searchBar = UISearchBar(frame: .zero)
-        searchBar.delegate = context.coordinator
-        searchBar.placeholder = placeholder
-        searchBar.searchBarStyle = .minimal
-        searchBar.autocapitalizationType = .none
-        searchBar.searchTextField.tintColor = UIColor.white
-        searchBar.searchTextField.backgroundColor = .white.withAlphaComponent(0.1)
-        searchBar.searchTextField.textColor = .white
-        searchBar.barTintColor = UIColor.white
-        return searchBar
-    }
-    
-    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
-        uiView.text = text
-    }
-}
+//struct SearchBar: UIViewRepresentable {
+//
+//    @Binding var text: String
+//    var placeholder: String
+//
+//    class Coordinator: NSObject, UISearchBarDelegate {
+//
+//        @Binding var text: String
+//
+//        init(text: Binding<String>) {
+//            _text = text
+//        }
+//
+//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//            text = searchText
+//        }
+//    }
+//
+//    func makeCoordinator() -> SearchBar.Coordinator {
+//        return Coordinator(text: $text)
+//    }
+//
+//    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
+//        let searchBar = UISearchBar(frame: .zero)
+//        searchBar.delegate = context.coordinator
+//        searchBar.placeholder = placeholder
+//        searchBar.searchBarStyle = .minimal
+//        searchBar.autocapitalizationType = .none
+//        searchBar.searchTextField.tintColor = UIColor.white
+//        searchBar.searchTextField.backgroundColor = .white.withAlphaComponent(0.1)
+//        searchBar.searchTextField.textColor = .white
+//        searchBar.barTintColor = UIColor.white
+//        return searchBar
+//    }
+//
+//    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
+//        uiView.text = text
+//    }
+//}
 
 struct SortView: View {
     

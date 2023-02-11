@@ -10,4 +10,6 @@ import Foundation
 enum Assets {
     static let magnifier: String = "Magnifier"
     static let sort: String = "SortData"
+    static let back: String = "Back"
+    static let hashtag: String = "Hashtag"
 }

@@ -14,7 +14,7 @@ struct MainView: View {
     @ObservedObject private(set) var viewModel: MainViewModel
     @State private var searchText : String = ""
     
-    private let buttonHeight: CGFloat = 55
+    private let searchHeight: CGFloat = 55
     
     @State private var shouldShowDropdown = true
     @State private var selectedOption: Coin? = nil
@@ -34,7 +34,7 @@ struct MainView: View {
                             .overlay(
                                 VStack {
                                     if self.shouldShowDropdown {
-                                        Spacer(minLength: buttonHeight + 10)
+                                        Spacer(minLength: searchHeight + 10)
                                         Dropdown(options: viewModel.searchData, onOptionSelected: { option in
                                             shouldShowDropdown = false
                                             selectedOption = option
@@ -69,7 +69,8 @@ struct MainView: View {
                     self.viewModel.apply(.onAppear)
                 }
             }
-        }
+        }.navigationBarTitle("")
+            .navigationBarHidden(true)
     }
 }
 
@@ -87,11 +88,11 @@ struct SearchBar: View {
                     .background(Color.clear)
                     .foregroundColor(.white)
                     .font(FontManager.headLine_2)
-                    .placeHolder(Text("Search").font(FontManager.headLine_2).foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
+                    .placeHolder(Text("Search in coins").font(FontManager.headLine_2).foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
                     .onTapGesture(perform: {
                         isEditing = true
                     })
-
+                
                 if !text.isEmpty {
                     if isLoading {
                         Button(action: {
@@ -112,29 +113,13 @@ struct SearchBar: View {
                             dismissKeyboard()
                         }, label: {
                             Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.white)
                                 .frame(width: 35, height: 35)
                         }).frame(width: 35, height: 35)
                     }
                 }
-//
-//                if isEditing {
-//                    Button(action: {
-//                        text = ""
-//                        isEditing = false
-//                        dismissKeyboard()
-//                    }, label: {
-//                        Text("Cancel")
-//                            .foregroundColor(.white)
-//                    })
-//                    .padding(.trailing, 10)
-//                    .transition(.move(edge: .trailing))
-//                    .animation(.default)
-//                }
-//
-                
             }.padding(.horizontal)
-             .frame(height: 40.0)
+                .frame(height: 40.0)
         }
     }
 }
@@ -187,71 +172,17 @@ struct HeaderView: View {
     
     var body: some View {
         HStack {
-            Button {
-                
-            } label: {
-                Image(Assets.magnifier)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 20, height: 20)
-            }
+            VStack{}
             Spacer()
             Text(viewModel.title)
                 .foregroundColor(Color.white)
                 .font(FontManager.body)
             Spacer()
-            Button {
-                
-            } label: {
-                Image(Assets.sort)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 20, height: 20)
-            }
+            VStack{}
         }
         .padding(.horizontal)
     }
 }
-
-//struct SearchBar: UIViewRepresentable {
-//
-//    @Binding var text: String
-//    var placeholder: String
-//
-//    class Coordinator: NSObject, UISearchBarDelegate {
-//
-//        @Binding var text: String
-//
-//        init(text: Binding<String>) {
-//            _text = text
-//        }
-//
-//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//            text = searchText
-//        }
-//    }
-//
-//    func makeCoordinator() -> SearchBar.Coordinator {
-//        return Coordinator(text: $text)
-//    }
-//
-//    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
-//        let searchBar = UISearchBar(frame: .zero)
-//        searchBar.delegate = context.coordinator
-//        searchBar.placeholder = placeholder
-//        searchBar.searchBarStyle = .minimal
-//        searchBar.autocapitalizationType = .none
-//        searchBar.searchTextField.tintColor = UIColor.white
-//        searchBar.searchTextField.backgroundColor = .white.withAlphaComponent(0.1)
-//        searchBar.searchTextField.textColor = .white
-//        searchBar.barTintColor = UIColor.white
-//        return searchBar
-//    }
-//
-//    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
-//        uiView.text = text
-//    }
-//}
 
 struct SortView: View {
     

@@ -61,11 +61,5 @@ extension MarketsPrice {
 }
 
 extension MarketsPrice {
-    var price_CurrencyFormat: String {
-        return self.currentPrice?.currencyFormat() ?? "0.0"
-    }
-}
-
-extension MarketsPrice {
     static let mock  = MarketsPrice.init(id: "bitcoin", symbol: "btc", name: "Bitcoin", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", currentPrice: 21747, marketCap: 419320825566, marketCapRank: 1, fullyDilutedValuation: 456564533889, totalVolume: 50153133497, high24H: 22615, low24H: 21596, priceChange24H: -868.336685288763, priceChangePercentage24H: -3.83958, marketCapChange24H: -15645722770.546387, marketCapChangePercentage24H: -3.59699, circulatingSupply: 19286950, totalSupply: 21000000, maxSupply: 21000000, ath: 69045, athChangePercentage: -68.50931, athDate: "2021-11-10T14:24:11.849Z", atl: 67.81, atlChangePercentage: 31964.58036, atlDate: "2013-07-06T00:00:00.000Z", lastUpdated: "2023-02-10T18:23:21.500Z")
 }

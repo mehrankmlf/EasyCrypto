@@ -13,8 +13,6 @@ struct DetailView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geo in
-                let geoSize = geo.size
                 ZStack {
                     Color.darkBlue
                         .ignoresSafeArea()
@@ -29,9 +27,8 @@ struct DetailView: View {
                         Spacer()
                     }
                 }
-            }
         }.navigationBarTitle("")
-            .navigationBarHidden(true)
+         .navigationBarHidden(true)
     }
 }
 
@@ -75,32 +72,37 @@ struct PriceView: View {
                 Image(Assets.hashtag)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 25.0, height: 25.0)
+                    .frame(width: 20.0, height: 20.0)
                 Text(String(item.marketCapRank ?? 0))
                     .foregroundColor(Color.gray)
                     .font(FontManager.title)
                 Spacer()
             }
             HStack {
-                Text(item.price_CurrencyFormat)
+                let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice as? NSNumber ?? 0)!
+                Text(price)
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
                 Spacer()
                 if let url = URL(string: item.safeImageURL()) {
                     AsyncImage(
                         url: url,
-                        placeholder: { Text("Loading ...") },
+                        placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
+                                .configure {
+                                    $0.color = .white
+                                } },
                         image: { Image(uiImage: $0)
                             .resizable() })
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 35.0, height: 35.0)
+                    .frame(width: 40.0, height: 40.0)
                 }
             }
             .padding(.top)
             HStack {
-                Text(String(item.priceChangePercentage24H ?? 0.0))
+                let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0)!
+                Text(priceChange)
                     .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
-                    .font(FontManager.body)
+                    .font(FontManager.title)
                 Spacer()
             }
         }
@@ -113,61 +115,53 @@ struct CoinDetailView: View {
     
     var body: some View {
         VStack(spacing: 30) {
+            HStack(spacing: 20) {
+                let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
+                CoinDetailReusableView(title: "Market Cap",
+                                       price: marketCapFormat ?? "")
+                Spacer()
+                let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0)!
+                CoinDetailReusableView(title: "Volume (24 Hours)",
+                                       price: price24Hours)
+            }.padding(.trailing)
             HStack(spacing: 30) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Market Cap")
-                        .foregroundColor(Color.gray)
-                        .font(FontManager.body)
-                    Text(String(item.marketCap ?? 0))
-                        .foregroundColor(Color.white)
-                        .font(FontManager.title)
-                }
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Volume (24 Hours)")
-                        .foregroundColor(Color.gray)
-                        .font(FontManager.body)
-                    Text(String(item.priceChange24H ?? 0))
-                        .foregroundColor(Color.white)
-                        .font(FontManager.title)
-                }
-            }
+                let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0)
+                CoinDetailReusableView(title: "Circulating Supply",
+                                       price: circulatingSupply ?? "-")
+                Spacer()
+                let totalSupply = DecimalFormatter().string(from: item.totalSupply as? NSNumber ?? 0)
+                CoinDetailReusableView(title: "Total Supply",
+                                       price: totalSupply ?? "-")
+            }.padding(.trailing)
             HStack(spacing: 30) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Circulating Supply")
-                        .foregroundColor(Color.gray)
-                        .font(FontManager.body)
-                    Text(String(item.circulatingSupply ?? 0))
-                        .foregroundColor(Color.white)
-                        .font(FontManager.title)
-                }
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Total Supply")
-                        .foregroundColor(Color.gray)
-                        .font(FontManager.body)
-                    Text(String(item.priceChange24H ?? 0))
-                        .foregroundColor(Color.white)
-                        .font(FontManager.title)
-                }
+                let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H as? NSNumber ?? 0)!
+                CoinDetailReusableView(title: "Low (24 Hours)",
+                                       price: low24H)
+                Spacer()
+                let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H as? NSNumber ?? 0)!
+                CoinDetailReusableView(title: "High (24 Hours)",
+                                       price: high24H)
+            }.padding(.trailing)
+        }
+        .padding(.horizontal)
+    }
+}
+
+struct CoinDetailReusableView: View {
+    
+    var title: String
+    var price: String
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(title)
+                    .foregroundColor(Color.gray)
+                    .font(FontManager.body)
+                Text(price)
+                    .foregroundColor(Color.white)
+                    .font(FontManager.title)
             }
-            HStack(spacing: 30) {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Low (24 Hours)")
-                        .foregroundColor(Color.gray)
-                        .font(FontManager.body)
-                    Text(String(item.low24H?.currencyFormat() ?? "0.0"))
-                        .foregroundColor(Color.white)
-                        .font(FontManager.title)
-                }
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("High (24 Hours)")
-                        .foregroundColor(Color.gray)
-                        .font(FontManager.body)
-                    Text(String(item.high24H?.currencyFormat() ?? "0.0"))
-                        .foregroundColor(Color.white)
-                        .font(FontManager.title)
-                }
-            }
-            
         }
     }
 }

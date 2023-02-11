@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022A25F1299809E2008368B1 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A25F0299809E2008368B1 /* CurrencyFormatter.swift */; };
+		022A25F329980CD7008368B1 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A25F229980CD7008368B1 /* Int + Extension.swift */; };
+		022A25F629981203008368B1 /* DecimalFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A25F529981203008368B1 /* DecimalFormatter.swift */; };
 		0233492C2993804100C1A20B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023349282993804000C1A20B /* ImageCache.swift */; };
 		0233492D2993804100C1A20B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023349292993804000C1A20B /* ImageLoader.swift */; };
 		0233492E2993804100C1A20B /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233492A2993804000C1A20B /* EnvironmentValues+ImageCache.swift */; };
@@ -83,6 +86,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022A25F0299809E2008368B1 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		022A25F229980CD7008368B1 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
+		022A25F529981203008368B1 /* DecimalFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalFormatter.swift; sourceTree = "<group>"; };
 		023349282993804000C1A20B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		023349292993804000C1A20B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		0233492A2993804000C1A20B /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
@@ -171,6 +177,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022A25EF299809C9008368B1 /* CurencyFormetter */ = {
+			isa = PBXGroup;
+			children = (
+				022A25F0299809E2008368B1 /* CurrencyFormatter.swift */,
+			);
+			path = CurencyFormetter;
+			sourceTree = "<group>";
+		};
+		022A25F4299811F4008368B1 /* DecimalFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				022A25F529981203008368B1 /* DecimalFormatter.swift */,
+			);
+			path = DecimalFormatter;
+			sourceTree = "<group>";
+		};
 		0233492629937BCB00C1A20B /* Remote */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +308,8 @@
 		A803DFBA297E91BF00357A7F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				022A25F4299811F4008368B1 /* DecimalFormatter */,
+				022A25EF299809C9008368B1 /* CurencyFormetter */,
 				0233493529939D7100C1A20B /* DataFlow */,
 				023349272993803900C1A20B /* AsyncImage */,
 				02593C56298ED0A900ADDA20 /* Base */,
@@ -562,6 +586,7 @@
 				A82CB993298A7A5500699C22 /* Publisher + Extension.swift */,
 				A82CB995298A7AB900699C22 /* URLRequest + Extension.swift */,
 				025B6E5C299565E200B42898 /* Double + Extension.swift */,
+				022A25F229980CD7008368B1 /* Int + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -708,6 +733,7 @@
 				A82CB994298A7A5500699C22 /* Publisher + Extension.swift in Sources */,
 				A851A22129890BDC007F4CF9 /* Encoding + Dictionary.swift in Sources */,
 				0233493B29941C8800C1A20B /* String + Extension.swift in Sources */,
+				022A25F629981203008368B1 /* DecimalFormatter.swift in Sources */,
 				0233492C2993804100C1A20B /* ImageCache.swift in Sources */,
 				02D9860E29960ECF0070A7E0 /* View + Extension.swift in Sources */,
 				A851A21F29890BDC007F4CF9 /* HTTPMethod.swift in Sources */,
@@ -736,6 +762,7 @@
 				A851A20D29890B4D007F4CF9 /* NetworkClient.swift in Sources */,
 				A803DFD3297E943100357A7F /* Subscriber.swift in Sources */,
 				02593C4C298E90EF00ADDA20 /* MarketPriceUsecase.swift in Sources */,
+				022A25F1299809E2008368B1 /* CurrencyFormatter.swift in Sources */,
 				A851A21A29890BB8007F4CF9 /* NetworkTarget + Extension.swift in Sources */,
 				A82CB996298A7AB900699C22 /* URLRequest + Extension.swift in Sources */,
 				A851A22D29890C0B007F4CF9 /* BaseAPIDebuger.swift in Sources */,
@@ -747,6 +774,7 @@
 				02D986182996AD5E0070A7E0 /* SearchMarketUsecase.swift in Sources */,
 				02D986122996A8880070A7E0 /* SearchMarketDataRemote.swift in Sources */,
 				02593C4A298E8D1200ADDA20 /* MarketsPrice.swift in Sources */,
+				022A25F329980CD7008368B1 /* Int + Extension.swift in Sources */,
 				02593C55298ECDF300ADDA20 /* MarketPriceRemote.swift in Sources */,
 				A8104F4F29814FDE008A8DDE /* Constants.swift in Sources */,
 				A851A23329891243007F4CF9 /* URL + Extension.swift in Sources */,

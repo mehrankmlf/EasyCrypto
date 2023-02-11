@@ -70,7 +70,7 @@ struct MainView: View {
                 }
             }
         }.navigationBarTitle("")
-            .navigationBarHidden(true)
+         .navigationBarHidden(true)
     }
 }
 
@@ -229,7 +229,10 @@ struct SearchMarketCellView: View {
             if let url = URL(string: model.safeImageURL()) {
                 AsyncImage(
                     url: url,
-                    placeholder: { Text("Loading ...") },
+                    placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
+                            .configure {
+                                $0.color = .white
+                            } },
                     image: { Image(uiImage: $0)
                         .resizable() })
                 .aspectRatio(contentMode: .fit)
@@ -276,7 +279,8 @@ struct CryptoCellView: View {
             .padding(.leading, 5)
             Spacer()
             VStack(alignment: .trailing, spacing: 5) {
-                Text(String(model.price_CurrencyFormat))
+                let price = CurrencyFormatter.sharedInstance.string(from: model.currentPrice as? NSNumber ?? 0)!
+                Text(price)
                     .foregroundColor(Color.white)
                     .font(FontManager.body)
                 Text(String(model.priceChangePercentage24H ?? 0.0))

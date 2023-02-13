@@ -7,19 +7,19 @@
 import Foundation
 import Combine
 
-protocol SearchMarketRepositoryProtocol {
-    func data(text: String) -> AnyPublisher<SearchMarket?, APIError>
+protocol CoinDetailRepositoryProtocol {
+    func data(id: String) -> AnyPublisher<CoinUnitDetail?, APIError>
 }
 
-final class SearchMarketRepository: SearchMarketRepositoryProtocol {
+final class CoinDetailRepository: CoinDetailRepositoryProtocol {
     
-    private let service: SearchMarketDataRemoteProtocol
+    private let service: CoinDetailRemoteProtocol
     
-    init(service: SearchMarketDataRemoteProtocol) {
+    init(service: CoinDetailRemoteProtocol) {
         self.service = service
     }
     
-    func data(text: String) -> AnyPublisher<SearchMarket?, APIError> {
-        return self.service.fetch(text: text)
+    func data(id: String) -> AnyPublisher<CoinUnitDetail?, APIError> {
+        return self.service.fetch(id: id)
     }
 }

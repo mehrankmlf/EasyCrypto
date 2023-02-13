@@ -12,4 +12,5 @@ enum Assets {
     static let sort: String = "SortData"
     static let back: String = "Back"
     static let hashtag: String = "Hashtag"
+    static let coinGeckod: String = "CoinGecko"
 }

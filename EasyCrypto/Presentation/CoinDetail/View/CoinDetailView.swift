@@ -9,103 +9,144 @@ import SwiftUI
 
 struct CoinDetailView: View {
     
-    var coinId: String
+    var coin: Coin
+    
+    @ObservedObject private(set) var viewModel: CoinDetailViewModel
     
     var body: some View {
         NavigationView {
-                ZStack {
-                    Color.darkBlue
-                        .edgesIgnoringSafeArea(.all)
-                    VStack(spacing: 30) {
-//                        DetailHeaderView(item: item)
-////                        PriceView(item: item)
-//                            .padding(.horizontal)
-//                        Divider()
-//                            .background(Color.white.opacity(0.5))
-//                            .padding(.horizontal)
-//                        CoinDetailView(item: item)
-//                        Spacer()
+            ZStack {
+                Color.darkBlue
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    CoinDetailHeaderView(item: self.viewModel.coinData)
+                    ScrollView {
+                        VStack(spacing: 30) {
+                            CoinDetailTopView(item: self.viewModel.coinData)
+                                .padding(.horizontal)
+                        }
+                        Spacer()
                     }
                     .padding(.top)
                 }
-        }.navigationBarTitle("")
-         .navigationBarHidden(true)
+            }.onAppear {
+                self.viewModel.apply(.onAppear)
+                self.viewModel.apply(.coinDetail(id: coin.id ?? ""))
+            }
+        }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 
 struct CoinDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinDetailView(coinId: "bitcoin")
+        CoinDetailView(coin: Coin.mock, viewModel: CoinDetailViewModel(coinDetailUsecase: CoinMarketUsecase(coinDetailRepository: CoinDetailRepository(service: CoinDetailRemote())), coinData: CoinUnitDetail.mock))
     }
 }
-//
-//struct DetailHeaderView: View {
-//
-//    var item: Coin
-//
-//    var body: some View {
-//        HStack {
-//            Button {
-//
-//            } label: {
-//                Image(Assets.back)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 25.0, height: 15.5)
-//            }
-//            Spacer()
-//            Text("Bitcoin(btc)")
-//                .foregroundColor(Color.white)
-//                .font(FontManager.body)
-//            Spacer()
-//        }
-//        .padding(.horizontal)
-//    }
-//}
 
-//struct PriceView: View {
-//
-//    var item: Coin
-//
-//    var body: some View {
-//        VStack {
-//            HStack(spacing: 5) {
-//                Image(Assets.hashtag)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 20.0, height: 20.0)
-//                Text(String(item.marketCapRank ?? 0))
-//                    .foregroundColor(Color.gray)
-//                    .font(FontManager.title)
-//                Spacer()
-//            }
-//            HStack {
-//                let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice as? NSNumber ?? 0)!
-//                Text(price)
-//                    .foregroundColor(Color.white)
-//                    .font(FontManager.headLine)
-//                Spacer()
-//                if let url = URL(string: item.safeImageURL()) {
-//                    AsyncImage(
-//                        url: url,
-//                        placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
-//                                .configure {
-//                                    $0.color = .white
-//                                } },
-//                        image: { Image(uiImage: $0)
-//                            .resizable() })
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 40.0, height: 40.0)
-//                }
-//            }
-//            .padding(.top)
-//            HStack {
-//                let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0)!
-//                Text(priceChange)
-//                    .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
-//                    .font(FontManager.title)
-//                Spacer()
-//            }
-//        }
-//    }
-//}
+struct CoinDetailHeaderView: View {
+    
+    var item: CoinUnitDetail
+    
+    var body: some View {
+        HStack {
+            Button {
+                
+            } label: {
+                Image(Assets.back)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 25.0, height: 15.5)
+            }
+            Spacer()
+            Text(item.name ?? "")
+                .foregroundColor(Color.white)
+                .font(FontManager.title)
+            Spacer()
+        }
+        .padding(.horizontal)
+    }
+}
+
+struct CoinDetailTopView: View {
+    
+    var item: CoinUnitDetail
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 30.0) {
+            HStack {
+                if let url = URL(string: item.image?.safeImageURL() ?? "") {
+                    AsyncImage(
+                        url: url,
+                        placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
+                                .configure {
+                                    $0.color = .white
+                                } },
+                        image: { Image(uiImage: $0)
+                            .resizable() })
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50.0, height: 50.0)
+                }
+                Spacer()
+                CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
+                CoinRankView(image: Assets.coinGeckod, rank: item.coingeckoRank ?? 0)
+            }
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Name")
+                        .foregroundColor(Color.gray)
+                        .font(FontManager.body)
+                    Text(item.name ?? "")
+                        .foregroundColor(Color.white)
+                        .font(FontManager.title)
+                }
+                Spacer()
+                    .frame(width: 100)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Symbol")
+                        .foregroundColor(Color.gray)
+                        .font(FontManager.body)
+                    Text(item.symbol ?? "")
+                        .foregroundColor(Color.white)
+                        .font(FontManager.title)
+                }
+            }
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Link")
+                    .foregroundColor(Color.gray)
+                    .font(FontManager.body)
+                Link(item.links?.homepage?.first ?? "", destination: URL(string: item.links?.homepage?.first ?? "")!)
+                    .foregroundColor(Color.white)
+                    .font(FontManager.title)
+            }
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Description")
+                    .foregroundColor(Color.gray)
+                    .font(FontManager.body)
+                Text(item.description?.en ?? "")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(Color.white)
+                    .font(FontManager.title)
+            }
+        }
+    }
+}
+
+struct CoinRankView: View {
+    
+    var image: String
+    var rank: Int
+    
+    var body: some View {
+        HStack(spacing: 5) {
+            Image(image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 20.0, height: 20.0)
+            Text(String(rank))
+                .foregroundColor(Color.gray)
+                .font(FontManager.title)
+        }
+    }
+}

@@ -57,13 +57,13 @@ final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewMo
     
     private func bindData() {
         $searchText
-            .debounce(for: 1.0, scheduler: WorkScheduler.mainThread)
+            .debounce(for: 0.5, scheduler: WorkScheduler.mainThread)
             .removeDuplicates()
             .sink { text in
                 if text.isEmpty {
                     self.searchData = []
                 }else{
-                    self.searchMarketData(text: text)
+                    self.searchMarketData(text: text.lowercased())
                 }
             }.store(in: &subscriber)
     }

@@ -23,7 +23,7 @@ struct DetailView: View {
                         Divider()
                             .background(Color.white.opacity(0.5))
                             .padding(.horizontal)
-                        CoinDetailView(item: item)
+                        CoinDetailAreaView(item: item)
                         Spacer()
                     }
                     .padding(.top)
@@ -54,7 +54,7 @@ struct DetailHeaderView: View {
                     .frame(width: 25.0, height: 15.5)
             }
             Spacer()
-            Text("Bitcoin(btc)")
+            Text(item.name ?? "")
                 .foregroundColor(Color.white)
                 .font(FontManager.body)
             Spacer()
@@ -110,7 +110,7 @@ struct PriceView: View {
     }
 }
 
-struct CoinDetailView: View {
+struct CoinDetailAreaView: View {
     
     var item: MarketsPrice
     

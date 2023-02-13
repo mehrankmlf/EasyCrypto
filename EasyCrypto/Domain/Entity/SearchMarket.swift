@@ -39,3 +39,12 @@ extension Coin {
         return safeURL
     }
 }
+
+extension Coin {
+    static let mock = Coin.init(id: "zcoin",
+                                name: "Firo",
+                                apiSymbol: "zcoin",
+                                symbol: "FIRO",
+                                marketCapRank: 596,
+                                large: "https://assets.coingecko.com/coins/images/479/large/firocoingecko.png")
+}

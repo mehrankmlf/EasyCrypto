@@ -16,7 +16,7 @@ struct MainView: View {
     
     private let searchHeight: CGFloat = 55
     
-    @State private var shouldShowDropdown = true
+    @State private var shouldShowDropdown = false
     @State private var selectedOption: Coin? = nil
     var onOptionSelected: ((_ option: Coin) -> Void)?
     
@@ -29,7 +29,7 @@ struct MainView: View {
                         .edgesIgnoringSafeArea(.all)
                     VStack(spacing: 20) {
                         HeaderView(viewModel: viewModel)
-                        SearchBar(text: $viewModel.searchText, isLoading: $viewModel.isShowActivity, shouldShow: $shouldShowDropdown)
+                        SearchBar(text: $viewModel.searchText, isLoading: viewModel.isShowActivity, isEditing: $shouldShowDropdown)
                             .padding(.horizontal, 5)
                             .overlay(
                                 VStack {
@@ -38,7 +38,7 @@ struct MainView: View {
                                         Dropdown(options: viewModel.searchData, onOptionSelected: { option in
                                             shouldShowDropdown = false
                                             selectedOption = option
-                                            self.onOptionSelected?(option)
+                                            onOptionSelected?(option)
                                             viewModel.searchData = []
                                         })
                                         .padding(.horizontal)
@@ -78,9 +78,8 @@ struct MainView: View {
 struct SearchBar: View {
     
     @Binding var text: String
-    @Binding var isLoading: Bool
-    @Binding var shouldShow: Bool
-    @State private var isEditing = false
+    @State var isLoading: Bool
+    @Binding var isEditing: Bool
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -89,7 +88,7 @@ struct SearchBar: View {
                     .background(Color.clear)
                     .foregroundColor(.white)
                     .font(FontManager.headLine_2)
-                    .placeHolder(Text("Search in coins").font(FontManager.headLine_2).foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
+                    .placeHolder(Text("Search coins").font(FontManager.headLine_2).foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
                     .onTapGesture(perform: {
                         isEditing = true
                     })
@@ -101,7 +100,7 @@ struct SearchBar: View {
                         }, label: {
                             ActivityIndicator(style: .medium, animate: .constant(true))
                                 .configure {
-                                    $0.color = .white
+                                    $0.color = .black
                                 }
                         })
                         .frame(width: 35, height: 35)
@@ -109,8 +108,7 @@ struct SearchBar: View {
                     } else {
                         Button(action: {
                             text = ""
-                            self.isEditing = false
-                            self.shouldShow = false
+                             isEditing = false
                             dismissKeyboard()
                         }, label: {
                             Image(systemName: "xmark.circle.fill")
@@ -246,7 +244,7 @@ struct SearchMarketCellView: View {
                 .foregroundColor(Color.black)
                 .font(FontManager.body)
             Spacer()
-            Text("#" + String(model.marketCapRank ?? 0))
+            Text(model.marketCapRank != nil ? "#" + String(model.marketCapRank ?? 0) : "")
                 .foregroundColor(Color.black)
                 .font(FontManager.body)
         }

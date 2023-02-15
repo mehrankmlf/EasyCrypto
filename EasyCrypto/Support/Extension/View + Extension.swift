@@ -1,6 +1,6 @@
 //
 //  View + Extension.swift
-//  DrinkApp
+//  EasyCrypto
 //
 //  Created by Mehran on 5/31/1401 AP.
 //

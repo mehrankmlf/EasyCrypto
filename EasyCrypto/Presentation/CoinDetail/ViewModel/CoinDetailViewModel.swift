@@ -13,7 +13,7 @@ protocol CoinDetailViewModelInterface {
 
 protocol DefaultCoinDetailViewModel: CoinDetailViewModelInterface, DataFlowProtocol  {}
 
-final class CoinDetailViewModel: DefaultViewModel, ObservableObject, DefaultCoinDetailViewModel {
+final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
     typealias InputType = Input
     

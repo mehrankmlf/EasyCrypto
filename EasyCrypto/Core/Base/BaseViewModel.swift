@@ -25,7 +25,7 @@ protocol ViewModelService: AnyObject {
 
 typealias BaseViewModel = BaseViewModelEventSource & ViewModelService
 
-open class DefaultViewModel : BaseViewModel {
+open class DefaultViewModel : BaseViewModel, ObservableObject {
     
     var loadinState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
     var subscriber = Set<AnyCancellable>()

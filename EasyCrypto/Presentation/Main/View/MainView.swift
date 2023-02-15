@@ -36,10 +36,10 @@ struct MainView: View {
                                     if self.shouldShowDropdown {
                                         Spacer(minLength: searchHeight + 10)
                                         Dropdown(options: viewModel.searchData, onOptionSelected: { option in
-                                            NavigationLink(destination: DetailView(item: item)){
-                                                shouldShowDropdown = false
-                                                viewModel.searchData = []
-                                            }
+//                                            NavigationLink(destination: DetailView(item: item)){
+//                                                shouldShowDropdown = false
+//                                                viewModel.searchData = []
+//                                            }
                                         })
                                         .padding(.horizontal)
                                         
@@ -51,20 +51,19 @@ struct MainView: View {
                             )
                             .zIndex(1)
                         SortView()
-                        ScrollView {
-                            ForEach(self.viewModel.marketData) { item  in
-                                NavigationLink(destination: DetailView(item: item)){
-                                    CryptoCellView(model: item)
+                        SpinnerView(isShowing: $viewModel.isShowActivity, text: .constant(""), geoSize: geoSize) {
+                            ScrollView {
+                                ForEach(self.viewModel.marketData) { item  in
+                                    NavigationLink(destination: DetailView(item: item)){
+                                        CryptoCellView(model: item)
+                                    }
                                 }
                             }
                         }
-                        .overlay (
-                            SpinnerViewHandler(geoSize: geoSize,
-                                               isShowing: $viewModel.isShowActivity)
-                        )
-                        .frame(width: geoSize.width)
+                        
                     }
                     .padding(.top)
+                    .frame(width: geoSize.width)
                 }
                 .onAppear {
                     self.viewModel.apply(.onAppear)

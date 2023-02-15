@@ -1,9 +1,8 @@
 //
-//  Binding+Utils.swift
-//  
+//  Binding + Utils.swift
+//  EasyCrypto
 //
-//  Created by Huy Nguyen on 9/30/20.
-//
+//  Created by Mehran on 5/31/1401 AP.
 
 import SwiftUI
 

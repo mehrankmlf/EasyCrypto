@@ -16,7 +16,7 @@ protocol MainViewModelInterface {
 
 protocol DefaultMainViewModel: MainViewModelInterface, DataFlowProtocol  {}
 
-final class MainViewModel: DefaultViewModel, ObservableObject, DefaultMainViewModel {
+final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     typealias InputType = Input
     

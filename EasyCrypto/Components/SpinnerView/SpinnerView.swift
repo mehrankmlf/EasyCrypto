@@ -1,5 +1,5 @@
 //
-//  ActivityIndicatorView.swift
+//  SpinnerView.swift
 //  EasyCrypto
 //
 //  Created by Mehran on 11/24/1401 AP.

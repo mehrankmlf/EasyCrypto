@@ -8,11 +8,11 @@
 import Foundation
 
 struct CoinUnitDetail: Decodable, Identifiable {
-    let id, symbol, name: String?
-    let description: Tion?
-    let links: Links?
-    let image: Image_Large?
-    let marketCapRank, coingeckoRank: Int?
+    var id, symbol, name: String?
+    var description: Tion?
+    var links: Links?
+    var image: Image_Large?
+    var marketCapRank, coingeckoRank: Int?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"

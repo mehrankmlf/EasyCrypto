@@ -48,9 +48,9 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     @Published var searchData: [Coin] = []
     @Published var isShowActivity : Bool = false
     @Published var searchText: String = ""
-    
-    var navigate: ((MainView.Routes) -> Void)?
-    
+
+    var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
+
     init(marketPriceUsecase: MarketPriceUsecaseProtocol,
          searchMarketUsecase: SearchMarketUsecaseProtocol) {
         self.marketPriceUsecase = marketPriceUsecase
@@ -67,27 +67,28 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
                 }else{
                     self.searchMarketData(text: text.lowercased())
                 }
-            }.store(in: &subscriber)
+            }.store(in: subscriber)
     }
     
     func didTapFirst(item: MarketsPrice) {
-        navigate?(.first(item: item))
+        self.navigateSubject.send(.first(item: item))
     }
     
     func didTapSecond(id: String) {
-      navigate?(.second(id: id))
+        self.navigateSubject.send(.second(id: id))
     }
 
     func getMarketData(vs_currency: String = "usd",
                        order: String = "market_cap_desc",
                        sparkline: Bool = false) {
+        guard marketData == [] else {return}
         self.callWithProgress(argument: self.marketPriceUsecase.execute(vs_currency: vs_currency,
                                                                                      order: order,
                                                                                      per_page: self.perPage,
                                                                                      page: self.page,
                                                                                      sparkline: sparkline)) { [ weak self] data in
             self?.marketData = data ?? []
-            self?.page += 1
+//            self?.page += 1
         }
     }
     
@@ -114,7 +115,7 @@ extension MainViewModel {
                 case .emptyStateHandler:
                     self?.isShowActivity = false
                 }
-            }.store(in: &subscriber)
+            }.store(in: subscriber)
     }
 }
 

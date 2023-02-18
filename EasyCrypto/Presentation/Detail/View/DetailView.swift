@@ -12,14 +12,13 @@ struct DetailView: View {
     var item: MarketsPrice
     
     var body: some View {
-        NavigationView {
             ZStack {
                 Color.darkBlue
                     .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 30) {
-                    DetailHeaderView(item: item)
                     PriceView(item: item)
                         .padding(.horizontal)
+                        .padding(.top)
                     Divider()
                         .background(Color.white.opacity(0.5))
                         .padding(.horizontal)
@@ -27,39 +26,14 @@ struct DetailView: View {
                     Spacer()
                 }
                 .padding(.top)
-            }
-        }.navigationBarTitle("")
-            .navigationBarHidden(true)
+            }.navigationBarTitle(item.name ?? "", displayMode: .inline)
+             .navigationBarColor(backgroundColor: .clear, titleColor: .white)
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(item: MarketsPrice.mock)
-    }
-}
-
-struct DetailHeaderView: View {
-    
-    var item: MarketsPrice
-    
-    var body: some View {
-        HStack {
-            Button {
-                
-            } label: {
-                Image(Assets.back)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 25.0, height: 15.5)
-            }
-            Spacer()
-            Text(item.name ?? "")
-                .foregroundColor(Color.white)
-                .font(FontManager.title)
-            Spacer()
-        }
-        .padding(.horizontal)
     }
 }
 
@@ -85,7 +59,7 @@ struct PriceView: View {
                 if let url = URL(string: item.safeImageURL()) {
                     AsyncImage(
                         url: url,
-                        placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
+                        placeholder: { ActivityIndicator(style: .medium, animate: .constant(true) )
                                 .configure {
                                     $0.color = .white
                                 } },

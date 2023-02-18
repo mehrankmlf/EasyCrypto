@@ -12,7 +12,6 @@ struct MainView: Coordinatable {
     
     typealias Route = Routes
     
-    var isShowContent : Bool = false
     @ObservedObject private(set) var viewModel: MainViewModel
     @State private var searchText : String = ""
     
@@ -21,13 +20,11 @@ struct MainView: Coordinatable {
     @State private var shouldShowDropdown = false
     @State private var selectedOption: Coin? = nil
     var onOptionSelected: ((_ option: Coin) -> Void)?
-    
-    var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
+    var onMarketDataSelected: ((_ option: MarketsPrice) -> Void)?
     
     
     public init(viewModel: MainViewModel) {
-      self.viewModel = viewModel    
-        
+        self.viewModel = viewModel
     }
     
     var body: some View {
@@ -38,7 +35,6 @@ struct MainView: Coordinatable {
                     Color.darkBlue
                         .edgesIgnoringSafeArea(.all)
                     VStack(spacing: 20) {
-                        HeaderView(viewModel: viewModel)
                         SearchBar(text: $viewModel.searchText, isLoading: viewModel.isShowActivity, isEditing: $shouldShowDropdown)
                             .padding(.horizontal, 5)
                             .overlay(
@@ -46,10 +42,7 @@ struct MainView: Coordinatable {
                                     if self.shouldShowDropdown {
                                         Spacer(minLength: searchHeight + 10)
                                         Dropdown(options: viewModel.searchData, onOptionSelected: { option in
-//                                            NavigationLink(destination: DetailView(item: item)){
-//                                                shouldShowDropdown = false
-//                                                viewModel.searchData = []
-//                                            }
+                                            self.viewModel.didTapSecond(id: option.id ?? "")
                                         })
                                         .padding(.horizontal)
                                         
@@ -64,30 +57,79 @@ struct MainView: Coordinatable {
                         SpinnerView(isShowing: $viewModel.isShowActivity, text: .constant(""), geoSize: geoSize) {
                             ScrollView {
                                 ForEach(self.viewModel.marketData) { item  in
-                                    NavigationLink(destination: DetailView(item: item)){
-                                        CryptoCellView(model: item)
-                                    }
+                                    CryptoCellView(model: item)
+                                        .onTouchDownGesture {
+                                          self.viewModel.didTapFirst(item: item)
+                                        }
                                 }
                             }
                         }
-                        
                     }
-                    .padding(.top)
                     .frame(width: geoSize.width)
                 }
                 .onAppear {
                     self.viewModel.apply(.onAppear)
                 }
-            }
-        }.navigationBarTitle("")
-         .navigationBarHidden(true)
+            }.navigationBarTitle(viewModel.title, displayMode: .inline)
+                .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+        }
     }
 }
 
+struct NavigationBarModifier: ViewModifier {
+    
+    var backgroundColor: UIColor?
+    var titleColor: UIColor?
+    
+    init(backgroundColor: UIColor?, titleColor: UIColor?) {
+        self.backgroundColor = backgroundColor
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = backgroundColor
+        coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    }
+    
+    func body(content: Content) -> some View {
+        ZStack{
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+extension View {
+    
+    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
+    }
+    
+}
+
+extension UINavigationController {
+    
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationBar.topItem?.backButtonDisplayMode = .minimal
+    }
+    
+}
+
 extension MainView {
-     enum Routes: Routing {
-      case first(item: MarketsPrice)
-      case second(id: String)
+    enum Routes: Routing {
+        case first(item: MarketsPrice)
+        case second(id: String)
     }
 }
 
@@ -124,7 +166,7 @@ struct SearchBar: View {
                     } else {
                         Button(action: {
                             text = ""
-                             isEditing = false
+                            isEditing = false
                             dismissKeyboard()
                         }, label: {
                             Image(systemName: "xmark.circle.fill")
@@ -178,24 +220,6 @@ struct ActivityIndicator: UIViewRepresentable {
     func configure(_ indicator: (UIActivityIndicatorView) -> Void) -> some View {
         indicator(spinner)
         return self
-    }
-}
-
-struct HeaderView: View {
-    
-    @StateObject var viewModel: MainViewModel
-    
-    var body: some View {
-        HStack {
-            VStack{}
-            Spacer()
-            Text(viewModel.title)
-                .foregroundColor(Color.white)
-                .font(FontManager.body)
-            Spacer()
-            VStack{}
-        }
-        .padding(.horizontal)
     }
 }
 
@@ -277,7 +301,10 @@ struct CryptoCellView: View {
             if let url = URL(string: model.safeImageURL()) {
                 AsyncImage(
                     url: url,
-                    placeholder: { Text("Loading ...") },
+                    placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
+                            .configure {
+                                $0.color = .white
+                            } },
                     image: { Image(uiImage: $0)
                         .resizable() })
                 .aspectRatio(contentMode: .fit)
@@ -307,6 +334,32 @@ struct CryptoCellView: View {
         .padding(.horizontal)
     }
 }
+
+extension View {
+    func onTouchDownGesture(callback: @escaping () -> Void) -> some View {
+        modifier(OnTouchDownGestureModifier(callback: callback))
+    }
+}
+
+private struct OnTouchDownGestureModifier: ViewModifier {
+    @State private var tapped = false
+    let callback: () -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .simultaneousGesture(DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    if !self.tapped {
+                        self.tapped = true
+                        self.callback()
+                    }
+                }
+                .onEnded { _ in
+                    self.tapped = false
+                })
+    }
+}
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

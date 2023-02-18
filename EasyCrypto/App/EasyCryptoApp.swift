@@ -8,11 +8,11 @@
 import SwiftUI
 
 @main
-struct EasyCryptoApp: App {
+struct EasyCryptoApp: App, DependencyAssemblerInjector {
 
     var body: some Scene {
         WindowGroup {
-            MainCoordinator()
+            MainCoordinator(viewModel: self.dependencyAssembler.makeMainViewModel())
         }
     }
 }

@@ -13,8 +13,6 @@ import os.log
 class NetworkClientManager<Target: RequestBuilder> {
     
     typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>
-    
-    var subscriber = Set<AnyCancellable>()
 
     // The URLSession client is use to call request with URLSession Data Task Publisher
     private let clientURLSession : NetworkClientProtocol

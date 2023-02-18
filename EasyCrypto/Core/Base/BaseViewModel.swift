@@ -16,7 +16,6 @@ enum ViewModelStatus : Equatable {
 
 protocol BaseViewModelEventSource : AnyObject {
     var loadinState : CurrentValueSubject<ViewModelStatus, Never> { get }
-    var subscriber : Set<AnyCancellable> { get }
 }
 
 protocol ViewModelService: AnyObject {
@@ -28,7 +27,7 @@ typealias BaseViewModel = BaseViewModelEventSource & ViewModelService
 open class DefaultViewModel : BaseViewModel, ObservableObject {
     
     var loadinState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
-    var subscriber = Set<AnyCancellable>()
+    let subscriber = Subscriber()
     
     func callWithProgress<ReturnType>(argument: AnyPublisher<ReturnType?, APIError>, callback: @escaping (_ data: ReturnType?) -> Void) {
         self.loadinState.send(.loadStart)
@@ -51,7 +50,7 @@ open class DefaultViewModel : BaseViewModel, ObservableObject {
             .subscribe(on: WorkScheduler.backgroundWorkScheduler)
             .receive(on: WorkScheduler.mainScheduler)
             .sink(receiveCompletion: completionHandler, receiveValue: resultValueHandler)
-            .store(in: &subscriber)
+            .store(in: subscriber)
     }
     
     func callWithoutProgress<ReturnType>(argument: AnyPublisher<ReturnType?, APIError>, callback: @escaping (_ data: ReturnType?) -> Void) {
@@ -64,6 +63,6 @@ open class DefaultViewModel : BaseViewModel, ObservableObject {
             .subscribe(on: WorkScheduler.backgroundWorkScheduler)
             .receive(on: WorkScheduler.mainScheduler)
             .sink(receiveCompletion: {_ in }, receiveValue: resultValueHandler)
-            .store(in: &subscriber)
+            .store(in: subscriber)
     }
 }

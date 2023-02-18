@@ -6,27 +6,30 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MainCoordinator: Coordinator, DependencyAssemblerInjector {
-    
+
+    @StateObject var viewModel : MainViewModel
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
     @State var transition: Transition?
     
+    let subscriber = Subscriber()
+
     var body: some View {
         mainView
             .route(to: $activeRoute)
             .navigation()
             .onAppear {
-                self.mainView.viewModel.navigate = navigate(to:)
+                self.mainView.viewModel.navigateSubject
+                    .sink { route in
+                        activeRoute = Destination(route: route)
+                    }.store(in: subscriber)
             }
     }
     
     var mainView: MainView {
-        return self.dependencyAssembler.makeMainView(coordinator: self)
-    }
-    
-    func navigate(to route: MainView.Routes) {
-        activeRoute = Destination(route: route)
+        return MainView(viewModel: viewModel)
     }
 }
 

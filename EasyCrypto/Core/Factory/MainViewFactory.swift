@@ -8,10 +8,10 @@
 import Foundation
 
 protocol MainViewFactory {
-    func makeMainView(coordinator : MainCoordinator) -> MainView
-    func makeMainViewModel(coordinator : MainCoordinator) -> MainViewModel
-    func makeMarketPriceUsecase(coordinator: MainCoordinator) -> MarketPriceUsecase
-    func makSsearchMarketUsecase(coordinator: MainCoordinator) -> SearchMarketUsecase
-    func makeMarketPriceRepo(coordinator: MainCoordinator) -> MarketPriceRepository
-    func makeMarketSearchRepo(coordinator: MainCoordinator) -> SearchMarketRepository
+    func makeMainView() -> MainView
+    func makeMainViewModel() -> MainViewModel
+    func makeMarketPriceUsecase() -> MarketPriceUsecase
+    func makSsearchMarketUsecase() -> SearchMarketUsecase
+    func makeMarketPriceRepo() -> MarketPriceRepository
+    func makeMarketSearchRepo() -> SearchMarketRepository
 }

@@ -21,6 +21,5 @@ protocol Coordinator: View {
   associatedtype Destination: RouteDestination
   var mainView: MainContent { get }
   var activeRoute: Destination? { get }
-  func navigate(to route: MainContent.Route)
 }
 

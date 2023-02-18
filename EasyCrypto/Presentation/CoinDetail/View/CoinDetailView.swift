@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct CoinDetailView: View {
+struct CoinDetailView: Coordinatable {
     
+    typealias Route = Routes
+
     var id: String?
     
     var coinData: CoinUnitDetail {
-        return self.viewModel.coinData!
+        return self.viewModel.coinData
     }
     
     @ObservedObject private(set) var viewModel: CoinDetailViewModel
@@ -23,28 +25,32 @@ struct CoinDetailView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.darkBlue
-                    .edgesIgnoringSafeArea(.all)
-                VStack {
-                    CoinDetailHeaderView(item: coinData)
-                    ScrollView {
-                        VStack(spacing: 30) {
-                            CoinDetailTopView(item: coinData)
-                                .padding(.horizontal)
-                        }
-                        Spacer()
+        ZStack {
+            Color.darkBlue
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                CoinDetailHeaderView(item: coinData)
+                ScrollView {
+                    VStack(spacing: 30) {
+                        CoinDetailTopView(item: coinData)
+                            .padding(.horizontal)
                     }
-                    .padding(.top)
+                    Spacer()
                 }
-            }.onAppear {
+                .padding(.top)
+            }
+        }.navigationBarTitle("Bitcoin", displayMode: .inline)
+         .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+            .onAppear {
                 self.viewModel.apply(.onAppear)
                 self.viewModel.apply(.coinDetail(id: self.id ?? ""))
             }
-        }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+    }
+}
+
+extension CoinDetailView {
+    enum Routes: Routing {
+        case first(url: String)
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol CoinDetailViewModelInterface {
     func getCoinDetailData(id: String)
@@ -33,11 +34,17 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
     private let coinDetailUsecase: CoinDetailUsecaseProtocol
     
-    @Published private(set) var coinData: CoinUnitDetail?
+    @Published private(set) var coinData = CoinUnitDetail()
     @Published var isShowActivity : Bool = false
+    
+    var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
     
     init(coinDetailUsecase: CoinDetailUsecaseProtocol) {
         self.coinDetailUsecase = coinDetailUsecase
+    }
+    
+    func didTapFirst(url: String) {
+        self.navigateSubject.send(.first(url: url))
     }
     
     func getCoinDetailData(id: String) {
@@ -62,6 +69,6 @@ extension CoinDetailViewModel {
                 case .emptyStateHandler:
                     self?.isShowActivity = false
                 }
-            }.store(in: &subscriber)
+            }.store(in: subscriber)
     }
 }

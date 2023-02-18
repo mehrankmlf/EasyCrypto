@@ -26,29 +26,29 @@ final class AppDependencyAssembler {
 
 // MARK: - MainView
 extension AppDependencyAssembler: MainViewFactory {
-    func makeMainView(coordinator: MainCoordinator) -> MainView {
-        return MainView(viewModel: self.makeMainViewModel(coordinator: coordinator))
+    func makeMainView() -> MainView {
+        return MainView(viewModel: self.makeMainViewModel())
     }
-    func makeMainViewModel(coordinator: MainCoordinator) -> MainViewModel {
-        return MainViewModel(marketPriceUsecase: self.makeMarketPriceUsecase(coordinator: coordinator),
-                             searchMarketUsecase: self.makSsearchMarketUsecase(coordinator: coordinator))
+    func makeMainViewModel() -> MainViewModel {
+        return MainViewModel(marketPriceUsecase: self.makeMarketPriceUsecase(),
+                             searchMarketUsecase: self.makSsearchMarketUsecase())
     }
-    func makeMarketPriceUsecase(coordinator: MainCoordinator) -> MarketPriceUsecase {
-        return MarketPriceUsecase(marketPriceRepository: self.makeMarketPriceRepo(coordinator: coordinator))
+    func makeMarketPriceUsecase() -> MarketPriceUsecase {
+        return MarketPriceUsecase(marketPriceRepository: self.makeMarketPriceRepo())
     }
-    func makSsearchMarketUsecase(coordinator: MainCoordinator) -> SearchMarketUsecase {
-        return SearchMarketUsecase(searchMarketRepository: self.makeMarketSearchRepo(coordinator: coordinator))
+    func makSsearchMarketUsecase() -> SearchMarketUsecase {
+        return SearchMarketUsecase(searchMarketRepository: self.makeMarketSearchRepo())
     }
-    func makeMarketPriceRepo(coordinator: MainCoordinator) -> MarketPriceRepository {
+    func makeMarketPriceRepo() -> MarketPriceRepository {
         return MarketPriceRepository(service: MarketPriceRemote())
     }
-    func makeMarketSearchRepo(coordinator: MainCoordinator) -> SearchMarketRepository {
+    func makeMarketSearchRepo() -> SearchMarketRepository {
         return SearchMarketRepository(service: SearchMarketDataRemote())
     }
 }
 
 
-// MARK: - MainView
+// MARK: - CoinDetailView
 extension AppDependencyAssembler: CoinDetailViewFactory {
     func makeCoinDetailView() -> CoinDetailView {
         return CoinDetailView(viewModel: self.makeCoinDetailViewModel())

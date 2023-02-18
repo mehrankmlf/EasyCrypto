@@ -16,14 +16,16 @@ protocol MarketPricRepositoryProrocol {
               sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError>
 }
 
-final class MarketPriceRepository: MarketPricRepositoryProrocol {
+final class MarketPriceRepository {
     
     private let service: MarketPricRemoteProtocol
     
     init(service: MarketPricRemoteProtocol) {
         self.service = service
     }
-    
+}
+
+extension MarketPriceRepository: MarketPricRepositoryProrocol {
     func data(vs_currency: String,
               order: String,
               per_page: Int,
@@ -35,5 +37,6 @@ final class MarketPriceRepository: MarketPricRepositoryProrocol {
                                   page: page,
                                   sparkline: sparkline)
     }
+
 }
 

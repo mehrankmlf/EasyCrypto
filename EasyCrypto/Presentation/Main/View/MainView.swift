@@ -8,7 +8,9 @@
 import SwiftUI
 import Combine
 
-struct MainView: View {
+struct MainView: Coordinatable {
+    
+    typealias Route = Routes
     
     var isShowContent : Bool = false
     @ObservedObject private(set) var viewModel: MainViewModel
@@ -19,6 +21,14 @@ struct MainView: View {
     @State private var shouldShowDropdown = false
     @State private var selectedOption: Coin? = nil
     var onOptionSelected: ((_ option: Coin) -> Void)?
+    
+    var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
+    
+    
+    public init(viewModel: MainViewModel) {
+      self.viewModel = viewModel    
+        
+    }
     
     var body: some View {
         NavigationView {
@@ -71,6 +81,13 @@ struct MainView: View {
             }
         }.navigationBarTitle("")
          .navigationBarHidden(true)
+    }
+}
+
+extension MainView {
+     enum Routes: Routing {
+      case first(item: MarketsPrice)
+      case second(id: String)
     }
 }
 

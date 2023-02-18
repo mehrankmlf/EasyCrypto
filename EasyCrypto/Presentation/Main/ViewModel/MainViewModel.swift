@@ -49,6 +49,8 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     @Published var isShowActivity : Bool = false
     @Published var searchText: String = ""
     
+    var navigate: ((MainView.Routes) -> Void)?
+    
     init(marketPriceUsecase: MarketPriceUsecaseProtocol,
          searchMarketUsecase: SearchMarketUsecaseProtocol) {
         self.marketPriceUsecase = marketPriceUsecase
@@ -66,6 +68,14 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
                     self.searchMarketData(text: text.lowercased())
                 }
             }.store(in: &subscriber)
+    }
+    
+    func didTapFirst(item: MarketsPrice) {
+        navigate?(.first(item: item))
+    }
+    
+    func didTapSecond(id: String) {
+      navigate?(.second(id: id))
     }
 
     func getMarketData(vs_currency: String = "usd",
@@ -107,3 +117,4 @@ extension MainViewModel {
             }.store(in: &subscriber)
     }
 }
+

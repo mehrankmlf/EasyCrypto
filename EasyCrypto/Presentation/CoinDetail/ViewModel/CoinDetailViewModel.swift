@@ -33,12 +33,11 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
     private let coinDetailUsecase: CoinDetailUsecaseProtocol
     
-    @Published var coinData: CoinUnitDetail
+    @Published private(set) var coinData: CoinUnitDetail?
     @Published var isShowActivity : Bool = false
     
-    init(coinDetailUsecase: CoinDetailUsecaseProtocol, coinData: CoinUnitDetail) {
+    init(coinDetailUsecase: CoinDetailUsecaseProtocol) {
         self.coinDetailUsecase = coinDetailUsecase
-        self.coinData = coinData
     }
     
     func getCoinDetailData(id: String) {

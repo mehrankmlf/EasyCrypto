@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct MarketsPrice: Decodable, Identifiable {
-    let id, symbol, name: String?
-    let image: String?
-    let currentPrice: Double?
-    let marketCap, marketCapRank: Int?
-    let totalVolume, high24H, low24H, priceChange24H: Double?
-    let priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
-    let totalSupply, maxSupply: Double?
+struct MarketsPrice: Decodable, Identifiable, Equatable {
+    var id, symbol, name: String?
+    var image: String?
+    var currentPrice: Double?
+    var marketCap, marketCapRank: Int?
+    var totalVolume, high24H, low24H, priceChange24H: Double?
+    var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
+    var totalSupply, maxSupply: Double?
 
 
     enum CodingKeys: String, CodingKey {

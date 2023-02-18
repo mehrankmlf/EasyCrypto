@@ -11,14 +11,16 @@ protocol CoinDetailRepositoryProtocol {
     func data(id: String) -> AnyPublisher<CoinUnitDetail?, APIError>
 }
 
-final class CoinDetailRepository: CoinDetailRepositoryProtocol {
+final class CoinDetailRepository {
     
     private let service: CoinDetailRemoteProtocol
     
     init(service: CoinDetailRemoteProtocol) {
         self.service = service
     }
-    
+}
+
+extension CoinDetailRepository: CoinDetailRepositoryProtocol {
     func data(id: String) -> AnyPublisher<CoinUnitDetail?, APIError> {
         return self.service.fetch(id: id)
     }

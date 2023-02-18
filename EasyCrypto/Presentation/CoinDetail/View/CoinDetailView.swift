@@ -9,9 +9,18 @@ import SwiftUI
 
 struct CoinDetailView: View {
     
-    var coin: Coin
+    var id: String?
+    
+    var coinData: CoinUnitDetail {
+        return self.viewModel.coinData!
+    }
     
     @ObservedObject private(set) var viewModel: CoinDetailViewModel
+    
+    init(id: String? = nil, viewModel: CoinDetailViewModel) {
+        self.id = id
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -19,10 +28,10 @@ struct CoinDetailView: View {
                 Color.darkBlue
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    CoinDetailHeaderView(item: self.viewModel.coinData)
+                    CoinDetailHeaderView(item: coinData)
                     ScrollView {
                         VStack(spacing: 30) {
-                            CoinDetailTopView(item: self.viewModel.coinData)
+                            CoinDetailTopView(item: coinData)
                                 .padding(.horizontal)
                         }
                         Spacer()
@@ -31,7 +40,7 @@ struct CoinDetailView: View {
                 }
             }.onAppear {
                 self.viewModel.apply(.onAppear)
-                self.viewModel.apply(.coinDetail(id: coin.id ?? ""))
+                self.viewModel.apply(.coinDetail(id: self.id ?? ""))
             }
         }
         .navigationBarTitle("")
@@ -41,7 +50,7 @@ struct CoinDetailView: View {
 
 struct CoinDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinDetailView(coin: Coin.mock, viewModel: CoinDetailViewModel(coinDetailUsecase: CoinMarketUsecase(coinDetailRepository: CoinDetailRepository(service: CoinDetailRemote())), coinData: CoinUnitDetail.mock))
+        CoinDetailView(viewModel: CoinDetailViewModel(coinDetailUsecase: CoinMarketUsecase(coinDetailRepository: CoinDetailRepository(service: CoinDetailRemote()))))
     }
 }
 

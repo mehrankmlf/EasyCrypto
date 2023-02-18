@@ -12,14 +12,16 @@ protocol SearchMarketRepositoryProtocol {
     func data(text: String) -> AnyPublisher<SearchMarket?, APIError>
 }
 
-final class SearchMarketRepository: SearchMarketRepositoryProtocol {
+final class SearchMarketRepository {
     
     private let service: SearchMarketDataRemoteProtocol
     
     init(service: SearchMarketDataRemoteProtocol) {
         self.service = service
     }
-    
+}
+
+extension SearchMarketRepository: SearchMarketRepositoryProtocol {
     func data(text: String) -> AnyPublisher<SearchMarket?, APIError> {
         return self.service.fetch(text: text)
     }

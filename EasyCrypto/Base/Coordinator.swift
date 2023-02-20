@@ -21,5 +21,12 @@ protocol Coordinator: View {
   associatedtype Destination: RouteDestination
   var mainView: MainContent { get }
   var activeRoute: Destination? { get }
+  var url: String? { get }
+}
+
+extension Coordinator {
+    var url: String? {
+        return nil
+    }
 }
 

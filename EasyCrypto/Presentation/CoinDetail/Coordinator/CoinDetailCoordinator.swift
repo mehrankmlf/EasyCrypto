@@ -17,20 +17,22 @@ struct CoinDetailCoordinator: Coordinator, DependencyAssemblerInjector {
     let subscriber = Subscriber()
 
     var body: some View {
-        coinDetailView
+        mainView
             .route(to: $activeRoute)
             .navigation()
             .onAppear {
-                self.coinDetailView.viewModel.navigateSubject
+                self.mainView.viewModel.navigateSubject
                     .sink { route in
                         activeRoute = Destination(route: route)
                     }.store(in: subscriber)
             }
     }
     
-    var coinDetailView: CoinDetailView {
+    var mainView: CoinDetailView {
         return CoinDetailView(viewModel: viewModel)
     }
+    
+    var url: String?
 }
 
 extension CoinDetailCoordinator {
@@ -41,8 +43,8 @@ extension CoinDetailCoordinator {
         @ViewBuilder
         var content: some View {
             switch route {
-            case .first(let data):
-                print(data)
+            case .first(let url):
+                SafariView(url: URL(string: url)!)
             }
         }
         

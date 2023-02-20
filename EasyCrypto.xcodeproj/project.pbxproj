@@ -380,13 +380,6 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
-		A803DFB8297E919C00357A7F /* DI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
 		A803DFB9297E91AF00357A7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,7 +397,6 @@
 			children = (
 				A8D4A10F299E105500C11107 /* Coordinatable */,
 				A8D4A0FE299E056700C11107 /* Factory */,
-				A803DFB8297E919C00357A7F /* DI */,
 				0233493529939D7100C1A20B /* DataFlow */,
 				023349272993803900C1A20B /* AsyncImage */,
 				02593C56298ED0A900ADDA20 /* Base */,

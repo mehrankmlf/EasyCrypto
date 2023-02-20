@@ -22,7 +22,6 @@ struct MainView: Coordinatable {
     var onOptionSelected: ((_ option: Coin) -> Void)?
     var onMarketDataSelected: ((_ option: MarketsPrice) -> Void)?
     
-    
     public init(viewModel: MainViewModel) {
         self.viewModel = viewModel
     }
@@ -114,7 +113,6 @@ extension View {
     func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
         self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
     }
-    
 }
 
 extension UINavigationController {
@@ -123,7 +121,6 @@ extension UINavigationController {
         super.viewWillLayoutSubviews()
         navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
-    
 }
 
 extension MainView {
@@ -176,7 +173,7 @@ struct SearchBar: View {
                     }
                 }
             }.padding(.horizontal)
-                .frame(height: 40.0)
+             .frame(height: 40.0)
         }
     }
 }

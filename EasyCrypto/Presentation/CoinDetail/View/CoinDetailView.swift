@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct CoinDetailView: Coordinatable {
     
     typealias Route = Routes
-
+    
     var id: String?
     
     var coinData: CoinUnitDetail {
@@ -29,10 +30,11 @@ struct CoinDetailView: Coordinatable {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                CoinDetailHeaderView(item: coinData)
                 ScrollView {
                     VStack(spacing: 30) {
-                        CoinDetailTopView(item: coinData)
+                        CoinDetailTopView(item: coinData, url: { url in
+                            self.viewModel.didTapFirst(url: url ?? "")
+                        })
                             .padding(.horizontal)
                     }
                     Spacer()
@@ -40,7 +42,7 @@ struct CoinDetailView: Coordinatable {
                 .padding(.top)
             }
         }.navigationBarTitle("Bitcoin", displayMode: .inline)
-         .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+            .navigationBarColor(backgroundColor: .clear, titleColor: .white)
             .onAppear {
                 self.viewModel.apply(.onAppear)
                 self.viewModel.apply(.coinDetail(id: self.id ?? ""))
@@ -60,33 +62,26 @@ struct CoinDetailView_Previews: PreviewProvider {
     }
 }
 
-struct CoinDetailHeaderView: View {
+
+
+struct SafariView: UIViewControllerRepresentable {
+
+    let url: URL
     
-    var item: CoinUnitDetail
-    
-    var body: some View {
-        HStack {
-            Button {
-                
-            } label: {
-                Image(Assets.back)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 25.0, height: 15.5)
-            }
-            Spacer()
-            Text(item.name ?? "")
-                .foregroundColor(Color.white)
-                .font(FontManager.title)
-            Spacer()
-        }
-        .padding(.horizontal)
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        let configuration = SFSafariViewController.Configuration()
+        configuration.barCollapsingEnabled = false
+        return SFSafariViewController(url: url, configuration: configuration)
+    }
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
+        
     }
 }
 
 struct CoinDetailTopView: View {
     
     var item: CoinUnitDetail
+    var url: ((String?) -> Void)
     
     var body: some View {
         VStack(alignment: .leading, spacing: 30.0) {
@@ -131,9 +126,13 @@ struct CoinDetailTopView: View {
                 Text("Link")
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
-                Link(item.links?.homepage?.first ?? "", destination: URL(string: item.links?.homepage?.first ?? "")!)
-                    .foregroundColor(Color.white)
-                    .font(FontManager.title)
+                Button {
+                    self.url(item.links?.homepage?.first ?? "")
+                } label: {
+                    Text(item.links?.homepage?.first ?? "")
+                        .foregroundColor(Color.white)
+                        .font(FontManager.title)
+                }
             }
             VStack(alignment: .leading, spacing: 5) {
                 Text("Description")

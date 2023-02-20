@@ -22,6 +22,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     enum Input {
         case onAppear
+        case marketData(data: MarketsPrice)
         case searchData(text: String)
     }
     
@@ -30,7 +31,8 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         case .onAppear:
             self.bindData()
             self.handleState()
-            self.getMarketData()
+        case .marketData(data: let data):
+            self.listItem(item: data)
         case .searchData(text: let text):
             self.searchMarketData(text: text)
         }
@@ -42,7 +44,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     private let searchMarketUsecase: SearchMarketUsecaseProtocol
     
     var page: Int = 1
-    var perPage: Int = 20
+    var perPage: Int = 15
     
     @Published var marketData: [MarketsPrice] = []
     @Published var searchData: [Coin] = []
@@ -77,20 +79,30 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     func didTapSecond(id: String) {
         self.navigateSubject.send(.second(id: id))
     }
+    
+    func listItem(item: MarketsPrice) {
+        guard marketData.isLastItem(item) else {return}
+        getMarketData()
+    }
+    
+    func loadMore() {
+        self.getMarketData()
+    }
 
     func getMarketData(vs_currency: String = "usd",
                        order: String = "market_cap_desc",
                        sparkline: Bool = false) {
-        guard marketData == [] else {return}
         self.callWithProgress(argument: self.marketPriceUsecase.execute(vs_currency: vs_currency,
                                                                                      order: order,
                                                                                      per_page: self.perPage,
                                                                                      page: self.page,
-                                                                                     sparkline: sparkline)) { [ weak self] data in
-            self?.marketData = data ?? []
-//            self?.page += 1
+                                                                                    sparkline: sparkline)) { [ weak self] data in
+            guard let data = data else {return}
+            self?.marketData.append(contentsOf: data)
+            self?.page += 1
         }
     }
+
     
     func searchMarketData(text: String) {
         guard !String.isNilOrEmpty(string: text) else {return}

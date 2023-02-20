@@ -54,20 +54,53 @@ struct MainView: Coordinatable {
                             .zIndex(1)
                         SortView()
                         SpinnerView(isShowing: $viewModel.isShowActivity, text: .constant(""), geoSize: geoSize) {
-                            ScrollView {
+                            List {
                                 ForEach(self.viewModel.marketData) { item  in
-                                    CryptoCellView(model: item)
+                                    CryptoCellView(item: item)
+//                                        .onAppear {
+////                                            self.viewModel.apply(.marketData(data: item))
+//
+//                                        }
                                         .onTouchDownGesture {
-                                          self.viewModel.didTapFirst(item: item)
+                                            self.viewModel.didTapFirst(item: item)
                                         }
                                 }
+                                ActivityIndicator(style: .medium, animate: .constant(true))
+                                    .onAppear {
+                                        if !self.viewModel.isShowActivity {
+                                            self.viewModel.loadMore()
+                                        }
+                                    }
                             }
+                            .listStyle(.plain)
+                            .listRowSeparatorTint(.clear, edges: .all)
+                            .listSectionSeparator(.hidden, edges: .all)
+//                            .listItemTint(.clear)
+//                            .listRowBackground(.none)
+
+                            //                                List {
+                            //                                    ForEach(0..<viewModel.marketData.count, id: \.self, content: { index in
+                            //                                        CryptoCellView(item: viewModel.marketData[index])
+                            //                                            .onAppear {
+                            //                                                if index == (viewModel.marketData.count - 1) {
+                            //                                                    //if last item then call api with next page
+                            //                                                    self.viewModel.getMarketData()
+                            //                                                }
+                            //                                            }
+                            //                                            .onTouchDownGesture {
+                            //                                                self.viewModel.didTapFirst(item: viewModel.marketData[index])
+                            //                                            }
+                            //                                    })
+                            ////                                }
+                            //                            }
+                            
                         }
                     }
                     .frame(width: geoSize.width)
                 }
                 .onAppear {
                     self.viewModel.apply(.onAppear)
+                    self.viewModel.getMarketData()
                 }
             }.navigationBarTitle(viewModel.title, displayMode: .inline)
                 .navigationBarColor(backgroundColor: .clear, titleColor: .white)
@@ -173,7 +206,7 @@ struct SearchBar: View {
                     }
                 }
             }.padding(.horizontal)
-             .frame(height: 40.0)
+                .frame(height: 40.0)
         }
     }
 }
@@ -291,11 +324,11 @@ struct SearchMarketCellView: View {
 
 struct CryptoCellView: View {
     
-    var model: MarketsPrice
+    var item: MarketsPrice
     
     var body: some View {
         HStack {
-            if let url = URL(string: model.safeImageURL()) {
+            if let url = URL(string: item.safeImageURL()) {
                 AsyncImage(
                     url: url,
                     placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
@@ -308,22 +341,22 @@ struct CryptoCellView: View {
                 .frame(width: 30.0, height: 30.0)
             }
             VStack(alignment: .leading, spacing: 5) {
-                Text(model.name ?? "")
+                Text(item.name ?? "")
                     .foregroundColor(Color.white)
                     .font(FontManager.body)
-                Text(model.symbol ?? "")
+                Text(item.symbol ?? "")
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
             }
             .padding(.leading, 5)
             Spacer()
             VStack(alignment: .trailing, spacing: 5) {
-                let price = CurrencyFormatter.sharedInstance.string(from: model.currentPrice as? NSNumber ?? 0)!
+                let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice as? NSNumber ?? 0)!
                 Text(price)
                     .foregroundColor(Color.white)
                     .font(FontManager.body)
-                Text(String(model.priceChangePercentage24H ?? 0.0))
-                    .foregroundColor(model.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
+                Text(String(item.priceChangePercentage24H ?? 0.0))
+                    .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
                     .font(FontManager.body)
             }
         }
@@ -341,7 +374,7 @@ extension View {
 private struct OnTouchDownGestureModifier: ViewModifier {
     @State private var tapped = false
     let callback: () -> Void
-
+    
     func body(content: Content) -> some View {
         content
             .simultaneousGesture(DragGesture(minimumDistance: 0)

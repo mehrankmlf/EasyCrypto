@@ -22,10 +22,14 @@ struct MainView: Coordinatable {
     var onOptionSelected: ((_ option: Coin) -> Void)?
     var onMarketDataSelected: ((_ option: MarketsPrice) -> Void)?
     
-    public init(viewModel: MainViewModel) {
-        self.viewModel = viewModel
+    init(viewModel: MainViewModel) {
+     self.viewModel = viewModel
     }
     
+//     init(viewModel: MainViewModel) {
+//
+//    }
+//
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -57,10 +61,6 @@ struct MainView: Coordinatable {
                             List {
                                 ForEach(self.viewModel.marketData) { item  in
                                     CryptoCellView(item: item)
-//                                        .onAppear {
-////                                            self.viewModel.apply(.marketData(data: item))
-//
-//                                        }
                                         .onTouchDownGesture {
                                             self.viewModel.didTapFirst(item: item)
                                         }
@@ -71,10 +71,8 @@ struct MainView: Coordinatable {
                                             self.viewModel.loadMore()
                                         }
                                     }
-                            }
-                            .listStyle(.plain)
-                            .listRowSeparatorTint(.clear, edges: .all)
-                            .listSectionSeparator(.hidden, edges: .all)
+                            }.listStyle(.plain)
+    
 //                            .listItemTint(.clear)
 //                            .listRowBackground(.none)
 
@@ -360,8 +358,9 @@ struct CryptoCellView: View {
                     .font(FontManager.body)
             }
         }
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.clear)
         .padding(.vertical, 5)
-        .padding(.horizontal)
     }
 }
 

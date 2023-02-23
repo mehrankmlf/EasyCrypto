@@ -37,7 +37,7 @@ struct CoinDetailRequest : NetworkTarget {
     }
     
     var path: String? {
-        return "/coins"
+        return "/coins/\(id)"
     }
     
     var methodType: HTTPMethod {
@@ -45,7 +45,7 @@ struct CoinDetailRequest : NetworkTarget {
     }
     
     var queryParams: [String : String]? {
-        return ["id": id]
+        return nil
     }
     
     var queryParamsEncoding: URLEncoding? {

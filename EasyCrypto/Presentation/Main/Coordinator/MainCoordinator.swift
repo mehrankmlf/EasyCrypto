@@ -44,14 +44,14 @@ extension MainCoordinator {
             case .first(let data):
                 DetailView(item: data)
             case .second(let data):
-                CoinDetailView(id: data, viewModel: self.dependencyAssembler.makeCoinDetailViewModel())
+                CoinDetailCoordinator(viewModel: self.dependencyAssembler.makeCoinDetailViewModel(), id: data)
             }
         }
         
         var transition: Transition {
             switch route {
             case .first: return .push
-            case .second: return .push
+            case .second: return .bottomSheet
             }
         }
     }

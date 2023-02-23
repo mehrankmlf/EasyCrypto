@@ -11,8 +11,9 @@ import Combine
 struct CoinDetailCoordinator: Coordinator, DependencyAssemblerInjector {
 
     @StateObject var viewModel : CoinDetailViewModel
-    @State var activeRoute: Destination? = Destination(route: .first(url: ""))
+    @State var activeRoute: Destination? = Destination(route: .first(url: nil))
     @State var transition: Transition?
+    let id: String
     
     let subscriber = Subscriber()
 
@@ -29,7 +30,7 @@ struct CoinDetailCoordinator: Coordinator, DependencyAssemblerInjector {
     }
     
     var mainView: CoinDetailView {
-        return CoinDetailView(viewModel: viewModel)
+        return CoinDetailView(id: id, viewModel: viewModel)
     }
     
     var url: String?
@@ -44,7 +45,9 @@ extension CoinDetailCoordinator {
         var content: some View {
             switch route {
             case .first(let url):
-                SafariView(url: URL(string: url)!)
+                if let url = url {
+                    SafariView(url: url)
+                }
             }
         }
         

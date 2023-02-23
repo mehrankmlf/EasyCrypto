@@ -26,33 +26,42 @@ struct CoinDetailView: Coordinatable {
     }
     
     var body: some View {
-        ZStack {
-            Color.darkBlue
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                ScrollView {
-                    VStack(spacing: 30) {
-                        CoinDetailTopView(item: coinData, url: { url in
-                            self.viewModel.didTapFirst(url: url ?? "")
-                        })
-                            .padding(.horizontal)
+        GeometryReader { geo in
+            let geoSize = geo.size
+            ZStack {
+                Color.darkBlue
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(width: geoSize.width / 3.5, height: 4)
+                        .cornerRadius(10.0)
+                        .padding(.top)
+                    SpinnerView(isShowing: $viewModel.isShowActivity, text: .constant(""), geoSize: geoSize) {
+                        ScrollView {
+                            VStack(spacing: 30) {
+                                CoinDetailTopView(item: coinData, url: { url in
+                                    self.viewModel.didTapFirst(url: url ?? "")
+                                })
+                                .padding(.horizontal)
+                            }
+                            Spacer()
+                        }
+                        .padding(.top)
                     }
-                    Spacer()
                 }
-                .padding(.top)
-            }
-        }.navigationBarTitle("Bitcoin", displayMode: .inline)
-            .navigationBarColor(backgroundColor: .clear, titleColor: .white)
-            .onAppear {
-                self.viewModel.apply(.onAppear)
-                self.viewModel.apply(.coinDetail(id: self.id ?? ""))
-            }
+            }.navigationBarTitle("")
+             .navigationBarHidden(true)
+                .onAppear {
+                    self.viewModel.apply(.onAppear(id: self.id ?? ""))
+                }
+        }
     }
 }
 
 extension CoinDetailView {
     enum Routes: Routing {
-        case first(url: String)
+        case first(url: URL?)
     }
 }
 
@@ -61,8 +70,6 @@ struct CoinDetailView_Previews: PreviewProvider {
         CoinDetailView(viewModel: CoinDetailViewModel(coinDetailUsecase: CoinMarketUsecase(coinDetailRepository: CoinDetailRepository(service: CoinDetailRemote()))))
     }
 }
-
-
 
 struct SafariView: UIViewControllerRepresentable {
 

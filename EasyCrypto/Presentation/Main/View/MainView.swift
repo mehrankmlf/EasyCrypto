@@ -23,13 +23,9 @@ struct MainView: Coordinatable {
     var onMarketDataSelected: ((_ option: MarketsPrice) -> Void)?
     
     init(viewModel: MainViewModel) {
-     self.viewModel = viewModel
+        self.viewModel = viewModel
     }
     
-//     init(viewModel: MainViewModel) {
-//
-//    }
-//
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -57,51 +53,38 @@ struct MainView: Coordinatable {
                             )
                             .zIndex(1)
                         SortView()
-                        SpinnerView(isShowing: $viewModel.isShowActivity, text: .constant(""), geoSize: geoSize) {
-                            List {
-                                ForEach(self.viewModel.marketData) { item  in
-                                    CryptoCellView(item: item)
-                                        .onTouchDownGesture {
-                                            self.viewModel.didTapFirst(item: item)
-                                        }
-                                }
-                                ActivityIndicator(style: .medium, animate: .constant(true))
+                        List {
+                            ForEach(self.viewModel.marketData) { item  in
+                                CryptoCellView(item: item)
+                                    .onTouchDownGesture {
+                                        self.viewModel.didTapFirst(item: item)
+                                    }
+                            }
+                            if viewModel.isShowActivity {
+                                HStack {
+                                    Spacer()
+                                    ActivityIndicator(style: .medium, animate: .constant(true))
+                                    Spacer()
+                                }.background(Color.yellow
+                                )
+                            }else{
+                                Color.clear
                                     .onAppear {
-                                        if !self.viewModel.isShowActivity {
+                                        if !self.viewModel.isShowActivity, self.viewModel.marketData.count != 0 {
                                             self.viewModel.loadMore()
                                         }
                                     }
-                            }.listStyle(.plain)
-    
-//                            .listItemTint(.clear)
-//                            .listRowBackground(.none)
-
-                            //                                List {
-                            //                                    ForEach(0..<viewModel.marketData.count, id: \.self, content: { index in
-                            //                                        CryptoCellView(item: viewModel.marketData[index])
-                            //                                            .onAppear {
-                            //                                                if index == (viewModel.marketData.count - 1) {
-                            //                                                    //if last item then call api with next page
-                            //                                                    self.viewModel.getMarketData()
-                            //                                                }
-                            //                                            }
-                            //                                            .onTouchDownGesture {
-                            //                                                self.viewModel.didTapFirst(item: viewModel.marketData[index])
-                            //                                            }
-                            //                                    })
-                            ////                                }
-                            //                            }
-                            
-                        }
+                            }
+                        }.listStyle(.plain)
                     }
                     .frame(width: geoSize.width)
                 }
+                .navigationBarTitle(viewModel.title, displayMode: .inline)
+                .navigationBarColor(backgroundColor: .clear, titleColor: .white)
                 .onAppear {
                     self.viewModel.apply(.onAppear)
-                    self.viewModel.getMarketData()
                 }
-            }.navigationBarTitle(viewModel.title, displayMode: .inline)
-                .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+            }
         }
     }
 }
@@ -298,7 +281,7 @@ struct SearchMarketCellView: View {
                     url: url,
                     placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
                             .configure {
-                                $0.color = .white
+                                $0.color = .black
                             } },
                     image: { Image(uiImage: $0)
                         .resizable() })

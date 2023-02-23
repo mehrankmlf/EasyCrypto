@@ -22,8 +22,6 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     enum Input {
         case onAppear
-        case marketData(data: MarketsPrice)
-        case searchData(text: String)
     }
     
     func apply(_ input: Input) {
@@ -31,10 +29,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         case .onAppear:
             self.bindData()
             self.handleState()
-        case .marketData(data: let data):
-            self.listItem(item: data)
-        case .searchData(text: let text):
-            self.searchMarketData(text: text)
+            self.callFirstTime()
         }
     }
     
@@ -61,12 +56,13 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     private func bindData() {
         $searchText
-            .debounce(for: 0.5, scheduler: WorkScheduler.mainThread)
+            .debounce(for: 1.0, scheduler: WorkScheduler.mainThread)
             .removeDuplicates()
             .sink { text in
                 if text.isEmpty {
                     self.searchData = []
                 }else{
+                    guard self.searchData.count == 0 else {return}
                     self.searchMarketData(text: text.lowercased())
                 }
             }.store(in: subscriber)
@@ -80,9 +76,9 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         self.navigateSubject.send(.second(id: id))
     }
     
-    func listItem(item: MarketsPrice) {
-        guard marketData.isLastItem(item) else {return}
-        getMarketData()
+    func callFirstTime() {
+        guard self.marketData.count == 0 else {return}
+        self.getMarketData()
     }
     
     func loadMore() {
@@ -103,9 +99,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         }
     }
 
-    
     func searchMarketData(text: String) {
-        guard !String.isNilOrEmpty(string: text) else {return}
         self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
             let coin = data?.coins ?? []
             self?.searchData = []

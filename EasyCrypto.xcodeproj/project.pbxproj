@@ -329,14 +329,6 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		02593C56298ED0A900ADDA20 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				02593C57298ED0C000ADDA20 /* BaseViewModel.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		02593C59298EE12500ADDA20 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,7 +391,6 @@
 				A8D4A0FE299E056700C11107 /* Factory */,
 				0233493529939D7100C1A20B /* DataFlow */,
 				023349272993803900C1A20B /* AsyncImage */,
-				02593C56298ED0A900ADDA20 /* Base */,
 				A82CB997298A867500699C22 /* Constants */,
 				A851A20829890AFC007F4CF9 /* Networking */,
 			);
@@ -702,6 +693,7 @@
 		A8D4A10A299E0DFA00C11107 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				02593C57298ED0C000ADDA20 /* BaseViewModel.swift */,
 				A8D4A10B299E0E1200C11107 /* Coordinator.swift */,
 				A8D4A10C299E0E1200C11107 /* Router.swift */,
 			);

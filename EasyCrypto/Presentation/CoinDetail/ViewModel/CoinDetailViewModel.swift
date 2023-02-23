@@ -19,15 +19,13 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     typealias InputType = Input
     
     enum Input {
-        case onAppear
-        case coinDetail(id: String)
+        case onAppear(id: String)
     }
     
     func apply(_ input: Input) {
         switch input {
-        case .onAppear:
+        case .onAppear(let id):
             self.handleState()
-        case .coinDetail(let id):
             self.getCoinDetailData(id: id)
         }
     }
@@ -44,6 +42,7 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     }
     
     func didTapFirst(url: String) {
+        guard let url = URL(string: url) else {return}
         self.navigateSubject.send(.first(url: url))
     }
     

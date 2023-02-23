@@ -10,6 +10,7 @@ import SwiftUI
 // types of transitions
 enum Transition {
   case push
+  case bottomSheet
   case url
 }
 
@@ -18,6 +19,8 @@ struct Router<Destination: RouteDestination>: ViewModifier {
   @Binding var destination: Destination?
   @State var isLinkActive = false
   @State var isURLActive = false
+  @State var isBottomSheetActive = false
+    
 
   func body(content: Content) -> some View {
     ZStack {
@@ -26,6 +29,7 @@ struct Router<Destination: RouteDestination>: ViewModifier {
         isActive: $isLinkActive, label: {})
       content
     }.sheet(isPresented: $isURLActive, content: { destinationView })
+     .sheet(isPresented: $isBottomSheetActive, content: { destinationView })
      .onChange(of: destination, perform: {_ in routeChanged()})
      .onChange(of: isLinkActive, perform: {_ in routeDismissed()})
      .onChange(of: isURLActive, perform: {_ in routeDismissed()})
@@ -36,13 +40,14 @@ struct Router<Destination: RouteDestination>: ViewModifier {
   }
 
   func routeDismissed() {
-    if !isLinkActive && !isURLActive {
+    if !isLinkActive && !isURLActive && !isBottomSheetActive {
       destination = nil
     }
   }
 
   func routeChanged() {
     guard let destination = destination else { return }
+    isBottomSheetActive = destination.transition == .bottomSheet
     isURLActive = destination.transition == .url
     isLinkActive = destination.transition == .push
   }
@@ -52,7 +57,8 @@ struct Navigator: ViewModifier {
   func body(content: Content) -> some View {
     NavigationView {
       content
-    }
+    }.navigationBarTitle("")
+    .navigationBarHidden(true)
     .accentColor(.white)
   }
 }

@@ -11,9 +11,8 @@
 		022A25F329980CD7008368B1 /* Int + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A25F229980CD7008368B1 /* Int + Extension.swift */; };
 		022A25F629981203008368B1 /* DecimalFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022A25F529981203008368B1 /* DecimalFormatter.swift */; };
 		0233492C2993804100C1A20B /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023349282993804000C1A20B /* ImageCache.swift */; };
-		0233492D2993804100C1A20B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023349292993804000C1A20B /* ImageLoader.swift */; };
-		0233492E2993804100C1A20B /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233492A2993804000C1A20B /* EnvironmentValues+ImageCache.swift */; };
-		0233492F2993804100C1A20B /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233492B2993804000C1A20B /* AsyncImage.swift */; };
+		0233492D2993804100C1A20B /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023349292993804000C1A20B /* ImageView.swift */; };
+		0233492F2993804100C1A20B /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233492B2993804000C1A20B /* ImageDownloader.swift */; };
 		02334934299381C700C1A20B /* SpinnerViewIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02334932299381C700C1A20B /* SpinnerViewIndicator.swift */; };
 		0233493729939D9200C1A20B /* DataFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493629939D9200C1A20B /* DataFlowProtocol.swift */; };
 		0233493929941A8600C1A20B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493829941A8600C1A20B /* DetailView.swift */; };
@@ -105,9 +104,8 @@
 		022A25F229980CD7008368B1 /* Int + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Extension.swift"; sourceTree = "<group>"; };
 		022A25F529981203008368B1 /* DecimalFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalFormatter.swift; sourceTree = "<group>"; };
 		023349282993804000C1A20B /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		023349292993804000C1A20B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		0233492A2993804000C1A20B /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
-		0233492B2993804000C1A20B /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		023349292993804000C1A20B /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		0233492B2993804000C1A20B /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		02334932299381C700C1A20B /* SpinnerViewIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewIndicator.swift; sourceTree = "<group>"; };
 		0233493629939D9200C1A20B /* DataFlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowProtocol.swift; sourceTree = "<group>"; };
 		0233493829941A8600C1A20B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -233,15 +231,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
-		023349272993803900C1A20B /* AsyncImage */ = {
+		023349272993803900C1A20B /* ImageDownloader */ = {
 			isa = PBXGroup;
 			children = (
-				0233492B2993804000C1A20B /* AsyncImage.swift */,
-				0233492A2993804000C1A20B /* EnvironmentValues+ImageCache.swift */,
+				0233492B2993804000C1A20B /* ImageDownloader.swift */,
 				023349282993804000C1A20B /* ImageCache.swift */,
-				023349292993804000C1A20B /* ImageLoader.swift */,
+				023349292993804000C1A20B /* ImageView.swift */,
 			);
-			path = AsyncImage;
+			path = ImageDownloader;
 			sourceTree = "<group>";
 		};
 		02334930299381B100C1A20B /* SpinnerView */ = {
@@ -390,7 +387,6 @@
 				A8D4A10F299E105500C11107 /* Coordinatable */,
 				A8D4A0FE299E056700C11107 /* Factory */,
 				0233493529939D7100C1A20B /* DataFlow */,
-				023349272993803900C1A20B /* AsyncImage */,
 				A82CB997298A867500699C22 /* Constants */,
 				A851A20829890AFC007F4CF9 /* Networking */,
 			);
@@ -524,6 +520,7 @@
 				A803DFB7297E918900357A7F /* Theme */,
 				A803DFCD297E93F600357A7F /* Support */,
 				A803DFB9297E91AF00357A7F /* Components */,
+				023349272993803900C1A20B /* ImageDownloader */,
 				A803DFBA297E91BF00357A7F /* Core */,
 				A803DFBB297E91C600357A7F /* Data */,
 				A803DFBC297E91CF00357A7F /* Domain */,
@@ -847,16 +844,15 @@
 				0233492C2993804100C1A20B /* ImageCache.swift in Sources */,
 				02D9860E29960ECF0070A7E0 /* View + Extension.swift in Sources */,
 				A851A21F29890BDC007F4CF9 /* HTTPMethod.swift in Sources */,
-				0233492E2993804100C1A20B /* EnvironmentValues+ImageCache.swift in Sources */,
 				02D986162996AAAE0070A7E0 /* SearchMarket.swift in Sources */,
-				0233492F2993804100C1A20B /* AsyncImage.swift in Sources */,
+				0233492F2993804100C1A20B /* ImageDownloader.swift in Sources */,
 				0252F0A2299A313800CD0062 /* CoinDetailView.swift in Sources */,
 				A8104F4D29814E88008A8DDE /* Assets.swift in Sources */,
 				0233493929941A8600C1A20B /* DetailView.swift in Sources */,
 				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
 				0252F0A5299A3AC400CD0062 /* CoinUnitDetail.swift in Sources */,
 				02593C50298E95E800ADDA20 /* MainViewModel.swift in Sources */,
-				0233492D2993804100C1A20B /* ImageLoader.swift in Sources */,
+				0233492D2993804100C1A20B /* ImageView.swift in Sources */,
 				02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */,
 				02593C58298ED0C000ADDA20 /* BaseViewModel.swift in Sources */,
 				A803DFD7297E9F9800357A7F /* MainView.swift in Sources */,

@@ -12,22 +12,22 @@ struct DetailView: View {
     var item: MarketsPrice
     
     var body: some View {
-            ZStack {
-                Color.darkBlue
-                    .edgesIgnoringSafeArea(.all)
-                VStack(spacing: 30) {
-                    PriceView(item: item)
-                        .padding(.horizontal)
-                        .padding(.top)
-                    Divider()
-                        .background(Color.white.opacity(0.5))
-                        .padding(.horizontal)
-                    CoinDetailAreaView(item: item)
-                    Spacer()
-                }
-                .padding(.top)
-            }.navigationBarTitle(item.name ?? "", displayMode: .inline)
-             .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+        ZStack {
+            Color.darkBlue
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 30) {
+                PriceView(item: item)
+                    .padding(.horizontal)
+                    .padding(.top)
+                Divider()
+                    .background(Color.white.opacity(0.5))
+                    .padding(.horizontal)
+                CoinDetailAreaView(item: item)
+                Spacer()
+            }
+            .padding(.top)
+        }.navigationBarTitle(item.name ?? "", displayMode: .inline)
+            .navigationBarColor(backgroundColor: .clear, titleColor: .white)
     }
 }
 
@@ -56,18 +56,8 @@ struct PriceView: View {
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
                 Spacer()
-                if let url = URL(string: item.safeImageURL()) {
-                    AsyncImage(
-                        url: url,
-                        placeholder: { ActivityIndicator(style: .medium, animate: .constant(true) )
-                                .configure {
-                                    $0.color = .white
-                                } },
-                        image: { Image(uiImage: $0)
-                            .resizable() })
-                    .aspectRatio(contentMode: .fit)
+                ImageView(withURL: item.safeImageURL())
                     .frame(width: 40.0, height: 40.0)
-                }
             }
             .padding(.top)
             HStack {

@@ -93,18 +93,8 @@ struct CoinDetailTopView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 30.0) {
             HStack {
-                if let url = URL(string: item.image?.safeImageURL() ?? "") {
-                    AsyncImage(
-                        url: url,
-                        placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
-                                .configure {
-                                    $0.color = .white
-                                } },
-                        image: { Image(uiImage: $0)
-                            .resizable() })
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 50.0, height: 50.0)
-                }
+                ImageView(withURL: item.image?.safeImageURL() ?? "")
+                                    .frame(width: 50.0, height: 50.0)
                 Spacer()
                 CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
                 CoinRankView(image: Assets.coinGeckod, rank: item.coingeckoRank ?? 0)

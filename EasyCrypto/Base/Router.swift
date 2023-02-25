@@ -57,8 +57,8 @@ struct Navigator: ViewModifier {
   func body(content: Content) -> some View {
     NavigationView {
       content
-    }.navigationBarTitle("")
-    .navigationBarHidden(true)
+    }
+     .navigationBarColor(backgroundColor: .clear, titleColor: .white)
     .accentColor(.white)
   }
 }

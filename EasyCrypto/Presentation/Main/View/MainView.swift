@@ -76,6 +76,7 @@ struct MainView: Coordinatable {
                                     }
                             }
                         }.listStyle(.plain)
+                            .modifier(ListBackgroundModifier())
                     }
                     .frame(width: geoSize.width)
                 }
@@ -89,6 +90,19 @@ struct MainView: Coordinatable {
     }
 }
 
+struct ListBackgroundModifier: ViewModifier {
+    
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content
+                .scrollContentBackground(.hidden)
+        } else {
+            content
+        }
+    }
+}
+
 struct NavigationBarModifier: ViewModifier {
     
     var backgroundColor: UIColor?
@@ -97,7 +111,7 @@ struct NavigationBarModifier: ViewModifier {
     init(backgroundColor: UIColor?, titleColor: UIColor?) {
         self.backgroundColor = backgroundColor
         let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.configureWithOpaqueBackground()
         coloredAppearance.backgroundColor = backgroundColor
         coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
         coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
@@ -105,6 +119,7 @@ struct NavigationBarModifier: ViewModifier {
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().compactAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UINavigationBar.appearance().compactScrollEdgeAppearance = coloredAppearance
     }
     
     func body(content: Content) -> some View {
@@ -276,18 +291,9 @@ struct SearchMarketCellView: View {
     
     var body: some View {
         HStack {
-            if let url = URL(string: model.safeImageURL()) {
-                AsyncImage(
-                    url: url,
-                    placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
-                            .configure {
-                                $0.color = .black
-                            } },
-                    image: { Image(uiImage: $0)
-                        .resizable() })
-                .aspectRatio(contentMode: .fit)
+            ImageView(withURL: model.safeImageURL())
                 .frame(width: 25.0, height: 25.0)
-            }
+            
             Text(model.name ?? "")
                 .foregroundColor(Color.black)
                 .font(FontManager.body)
@@ -309,18 +315,9 @@ struct CryptoCellView: View {
     
     var body: some View {
         HStack {
-            if let url = URL(string: item.safeImageURL()) {
-                AsyncImage(
-                    url: url,
-                    placeholder: {ActivityIndicator(style: .medium, animate: .constant(true))
-                            .configure {
-                                $0.color = .white
-                            } },
-                    image: { Image(uiImage: $0)
-                        .resizable() })
-                .aspectRatio(contentMode: .fit)
+            ImageView(withURL: item.safeImageURL())
                 .frame(width: 30.0, height: 30.0)
-            }
+            
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.name ?? "")
                     .foregroundColor(Color.white)
@@ -346,6 +343,11 @@ struct CryptoCellView: View {
         .padding(.vertical, 5)
     }
 }
+
+
+
+
+
 
 extension View {
     func onTouchDownGesture(callback: @escaping () -> Void) -> some View {

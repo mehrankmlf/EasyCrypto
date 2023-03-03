@@ -16,7 +16,7 @@ final class SearchMarketRepository {
     
     private let service: SearchMarketDataRemoteProtocol
     
-    init(service: SearchMarketDataRemoteProtocol) {
+    init(service: SearchMarketDataRemoteProtocol = DIContainer.shared.resolve(type: SearchMarketDataRemoteProtocol.self)!) {
         self.service = service
     }
 }

@@ -17,6 +17,8 @@
 		0233493729939D9200C1A20B /* DataFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493629939D9200C1A20B /* DataFlowProtocol.swift */; };
 		0233493929941A8600C1A20B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493829941A8600C1A20B /* DetailView.swift */; };
 		0233493B29941C8800C1A20B /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493A29941C8800C1A20B /* String + Extension.swift */; };
+		0250EA7029B27F4200AA6040 /* AppDependencyContainer + Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250EA6F29B27F4200AA6040 /* AppDependencyContainer + Injection.swift */; };
+		0250EA7229B2826600AA6040 /* UIScreen + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250EA7129B2826600AA6040 /* UIScreen + Extension.swift */; };
 		0252F0A2299A313800CD0062 /* CoinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A1299A313800CD0062 /* CoinDetailView.swift */; };
 		0252F0A5299A3AC400CD0062 /* CoinUnitDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A4299A3AC400CD0062 /* CoinUnitDetail.swift */; };
 		0252F0AA299A450B00CD0062 /* CoinDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A9299A450B00CD0062 /* CoinDetailViewModel.swift */; };
@@ -79,7 +81,7 @@
 		A8D4A10D299E0E1300C11107 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D4A10B299E0E1200C11107 /* Coordinator.swift */; };
 		A8D4A10E299E0E1300C11107 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D4A10C299E0E1200C11107 /* Router.swift */; };
 		A8D4A111299E106700C11107 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D4A110299E106700C11107 /* Coordinatable.swift */; };
-		A8D4A115299E45D300C11107 /* AppDependencyAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D4A114299E45D300C11107 /* AppDependencyAssembler.swift */; };
+		A8D4A115299E45D300C11107 /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D4A114299E45D300C11107 /* AppDependencyContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		0233493629939D9200C1A20B /* DataFlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowProtocol.swift; sourceTree = "<group>"; };
 		0233493829941A8600C1A20B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0233493A29941C8800C1A20B /* String + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		0250EA6F29B27F4200AA6040 /* AppDependencyContainer + Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDependencyContainer + Injection.swift"; sourceTree = "<group>"; };
+		0250EA7129B2826600AA6040 /* UIScreen + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen + Extension.swift"; sourceTree = "<group>"; };
 		0252F0A1299A313800CD0062 /* CoinDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailView.swift; sourceTree = "<group>"; };
 		0252F0A4299A3AC400CD0062 /* CoinUnitDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUnitDetail.swift; sourceTree = "<group>"; };
 		0252F0A9299A450B00CD0062 /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
@@ -177,7 +181,7 @@
 		A8D4A10B299E0E1200C11107 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		A8D4A10C299E0E1200C11107 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A8D4A110299E106700C11107 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
-		A8D4A114299E45D300C11107 /* AppDependencyAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyAssembler.swift; sourceTree = "<group>"; };
+		A8D4A114299E45D300C11107 /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,7 +334,8 @@
 			isa = PBXGroup;
 			children = (
 				A81742C2297E593800023B28 /* EasyCryptoApp.swift */,
-				A8D4A114299E45D300C11107 /* AppDependencyAssembler.swift */,
+				A8D4A114299E45D300C11107 /* AppDependencyContainer.swift */,
+				0250EA6F29B27F4200AA6040 /* AppDependencyContainer + Injection.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -636,9 +641,9 @@
 		A851A21B29890BCC007F4CF9 /* Type */ = {
 			isa = PBXGroup;
 			children = (
+				A851A21C29890BDB007F4CF9 /* HTTPMethod.swift */,
 				A851A21E29890BDB007F4CF9 /* Encoding + Dictionary.swift */,
 				A851A21D29890BDB007F4CF9 /* Encoding.swift */,
-				A851A21C29890BDB007F4CF9 /* HTTPMethod.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -666,6 +671,7 @@
 				A82CB993298A7A5500699C22 /* Publisher + Extension.swift */,
 				A82CB995298A7AB900699C22 /* URLRequest + Extension.swift */,
 				022A25F229980CD7008368B1 /* Int + Extension.swift */,
+				0250EA7129B2826600AA6040 /* UIScreen + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -883,8 +889,9 @@
 				A851A23829891867007F4CF9 /* HTTPURLResponse + Extension.swift in Sources */,
 				A803DFC4297E92D000357A7F /* Color.swift in Sources */,
 				0252F0B3299A4B4000CD0062 /* CoinMarketUsecase.swift in Sources */,
-				A8D4A115299E45D300C11107 /* AppDependencyAssembler.swift in Sources */,
+				A8D4A115299E45D300C11107 /* AppDependencyContainer.swift in Sources */,
 				02D986182996AD5E0070A7E0 /* SearchMarketUsecase.swift in Sources */,
+				0250EA7229B2826600AA6040 /* UIScreen + Extension.swift in Sources */,
 				02D986122996A8880070A7E0 /* SearchMarketDataRemote.swift in Sources */,
 				02593C4A298E8D1200ADDA20 /* MarketsPrice.swift in Sources */,
 				0252F0B6299AB01F00CD0062 /* EmptyNavigationLink.swift in Sources */,
@@ -892,6 +899,7 @@
 				02593C55298ECDF300ADDA20 /* MarketPriceRemote.swift in Sources */,
 				A8104F4F29814FDE008A8DDE /* Constants.swift in Sources */,
 				A8D4A104299E06C700C11107 /* MainCoordinator.swift in Sources */,
+				0250EA7029B27F4200AA6040 /* AppDependencyContainer + Injection.swift in Sources */,
 				A851A23329891243007F4CF9 /* URL + Extension.swift in Sources */,
 				0252F0BB299AB99900CD0062 /* SpinnerView.swift in Sources */,
 				0252F0B8299AB15B00CD0062 /* Binding+Utils.swift in Sources */,

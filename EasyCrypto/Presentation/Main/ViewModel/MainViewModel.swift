@@ -14,7 +14,7 @@ protocol MainViewModelInterface {
                        sparkline: Bool)
 }
 
-protocol DefaultMainViewModel: DIContainerInjector, MainViewModelInterface, DataFlowProtocol  {}
+protocol DefaultMainViewModel: MainViewModelInterface, DataFlowProtocol  {}
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     

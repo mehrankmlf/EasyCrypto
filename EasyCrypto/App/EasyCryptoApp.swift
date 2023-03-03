@@ -8,11 +8,14 @@
 import SwiftUI
 
 @main
-struct EasyCryptoApp: App, DependencyAssemblerInjector {
-
+struct EasyCryptoApp: App {
+    
     var body: some Scene {
+        
+        let _ = DIContainer.shared.registration()
+        
         WindowGroup {
-            MainCoordinator(viewModel: self.dependencyAssembler.makeMainViewModel())
+            MainCoordinator(viewModel: MainViewModel())
         }
     }
 }

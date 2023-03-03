@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct MainCoordinator: Coordinator, DependencyAssemblerInjector {
+struct MainCoordinator: Coordinator {
 
     @StateObject var viewModel : MainViewModel
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
@@ -34,7 +34,7 @@ struct MainCoordinator: Coordinator, DependencyAssemblerInjector {
 }
 
 extension MainCoordinator {
-    struct Destination: RouteDestination, DependencyAssemblerInjector {
+    struct Destination: RouteDestination {
         
         var route: MainView.Routes
         
@@ -44,7 +44,7 @@ extension MainCoordinator {
             case .first(let data):
                 DetailView(item: data)
             case .second(let data):
-                CoinDetailCoordinator(viewModel: self.dependencyAssembler.makeCoinDetailViewModel(), id: data)
+                CoinDetailCoordinator(viewModel: CoinDetailViewModel(), id: data)
             }
         }
         

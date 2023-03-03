@@ -37,7 +37,7 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
     var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
     
-    init(coinDetailUsecase: CoinDetailUsecaseProtocol) {
+    init(coinDetailUsecase: CoinDetailUsecaseProtocol = DIContainer.shared.resolve(type: CoinDetailUsecaseProtocol.self)!) {
         self.coinDetailUsecase = coinDetailUsecase
     }
     

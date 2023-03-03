@@ -19,7 +19,7 @@ struct MainView: Coordinatable {
     @State private var shouldShowDropdown = false
     @State private var searchText : String = ""
     
-    init(viewModel: MainViewModel) {
+    init(viewModel: MainViewModel = DIContainer.shared.resolve(type: MainViewModel.self)!) {
         self.viewModel = viewModel
     }
     
@@ -91,11 +91,7 @@ struct MainView: Coordinatable {
     }
 }
 
-extension UIScreen{
-   static let screenWidth = UIScreen.main.bounds.size.width
-   static let screenHeight = UIScreen.main.bounds.size.height
-   static let screenSize = UIScreen.main.bounds.size
-}
+
 
 struct ListBackgroundModifier: ViewModifier {
     

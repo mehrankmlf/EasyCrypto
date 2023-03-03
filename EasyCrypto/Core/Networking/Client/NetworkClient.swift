@@ -64,12 +64,6 @@ final class NetworkClient : NetworkClientProtocol {
                         .eraseToAnyPublisher()
                 }
 
-                if httpResponse.statusCode == 401 {
-                    let error = APIError.unauthorizedClient
-                    return Fail(error: error)
-                        .eraseToAnyPublisher()
-                }
-
                 if httpResponse.statusCode >= 400 {
                     let error = APIError.httpError(httpResponse)
                     return Fail(error: error)

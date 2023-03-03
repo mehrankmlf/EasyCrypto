@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct CoinDetailCoordinator: Coordinator, DependencyAssemblerInjector {
+struct CoinDetailCoordinator: Coordinator {
 
     @StateObject var viewModel : CoinDetailViewModel
     @State var activeRoute: Destination? = Destination(route: .first(url: nil))

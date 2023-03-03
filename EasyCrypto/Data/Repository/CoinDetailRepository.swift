@@ -15,7 +15,7 @@ final class CoinDetailRepository {
     
     private let service: CoinDetailRemoteProtocol
     
-    init(service: CoinDetailRemoteProtocol) {
+    init(service: CoinDetailRemoteProtocol = DIContainer.shared.resolve(type: CoinDetailRemoteProtocol.self)!) {
         self.service = service
     }
 }

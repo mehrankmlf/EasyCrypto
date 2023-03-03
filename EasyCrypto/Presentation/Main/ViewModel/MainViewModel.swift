@@ -14,7 +14,7 @@ protocol MainViewModelInterface {
                        sparkline: Bool)
 }
 
-protocol DefaultMainViewModel: MainViewModelInterface, DataFlowProtocol  {}
+protocol DefaultMainViewModel: DIContainerInjector, MainViewModelInterface, DataFlowProtocol  {}
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
@@ -33,6 +33,11 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         }
     }
     
+    enum SortType {
+        case rankASC
+        case rankDSC
+    }
+    
     let title: String = Constants.mainTitle
     
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
@@ -41,15 +46,16 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     var page: Int = 1
     var perPage: Int = 15
     
-    @Published var marketData: [MarketsPrice] = []
-    @Published var searchData: [Coin] = []
     @Published var isShowActivity : Bool = false
     @Published var searchText: String = ""
-
+    @Published private(set) var marketData: [MarketsPrice] = []
+    @Published private(set) var searchData: [Coin] = []
+    @Published var rankSort: SortType = .rankASC
+    
     var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
-
-    init(marketPriceUsecase: MarketPriceUsecaseProtocol,
-         searchMarketUsecase: SearchMarketUsecaseProtocol) {
+    
+    init(marketPriceUsecase: MarketPriceUsecaseProtocol = DIContainer.shared.resolve(type: MarketPriceUsecaseProtocol.self)!,
+         searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.resolve(type: SearchMarketUsecaseProtocol.self)!) {
         self.marketPriceUsecase = marketPriceUsecase
         self.searchMarketUsecase = searchMarketUsecase
     }
@@ -84,26 +90,39 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     func loadMore() {
         self.getMarketData()
     }
-
+    
     func getMarketData(vs_currency: String = "usd",
                        order: String = "market_cap_desc",
                        sparkline: Bool = false) {
         self.callWithProgress(argument: self.marketPriceUsecase.execute(vs_currency: vs_currency,
-                                                                                     order: order,
-                                                                                     per_page: self.perPage,
-                                                                                     page: self.page,
-                                                                                    sparkline: sparkline)) { [ weak self] data in
+                                                                        order: order,
+                                                                        per_page: self.perPage,
+                                                                        page: self.page,
+                                                                        sparkline: sparkline)) { [ weak self] data in
             guard let data = data else {return}
             self?.marketData.append(contentsOf: data)
             self?.page += 1
         }
     }
-
+    
     func searchMarketData(text: String) {
         self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
             let coin = data?.coins ?? []
             self?.searchData = []
             self?.searchData = coin
+        }
+    }
+    
+    func sortList(type: SortType) {
+        switch type {
+        case .rankASC:
+            self.marketData.sort {
+                $0.marketCapRank ?? 0 < $1.marketCapRank ?? 0
+            }
+        case .rankDSC:
+            self.marketData.sort {
+                $0.marketCapRank ?? 0 > $1.marketCapRank ?? 0
+            }
         }
     }
 }
@@ -124,4 +143,3 @@ extension MainViewModel {
             }.store(in: subscriber)
     }
 }
-

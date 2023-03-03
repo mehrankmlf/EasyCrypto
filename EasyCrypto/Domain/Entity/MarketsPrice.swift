@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct MarketsPrice: Decodable, Identifiable, Equatable {
-    var id, symbol, name: String?
+struct MarketsPrice: Decodable, Identifiable {
+    var id = UUID()
+    var coinID, symbol, name: String?
     var image: String?
     var currentPrice: Double?
     var marketCap, marketCapRank: Int?
@@ -18,7 +19,7 @@ struct MarketsPrice: Decodable, Identifiable, Equatable {
 
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
+        case coinID = "id"
         case symbol = "symbol"
         case name = "name"
         case image = "image"
@@ -38,6 +39,12 @@ struct MarketsPrice: Decodable, Identifiable, Equatable {
     }
 }
 
+extension MarketsPrice: Equatable {
+    static func == (lhs: MarketsPrice, rhs: MarketsPrice) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 extension MarketsPrice {
     // make image url safe
     func safeImageURL() -> String {
@@ -48,5 +55,5 @@ extension MarketsPrice {
 }
 
 extension MarketsPrice {
-    static let mock  = MarketsPrice.init(id: "bitcoin", symbol: "btc", name: "Bitcoin", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", currentPrice: 21747, marketCap: 419320825566, marketCapRank: 1, totalVolume: 50153133497, high24H: 22615, low24H: 21596, priceChange24H: -868.336685288763, priceChangePercentage24H: -3.83958, marketCapChange24H: -15645722770.546387, marketCapChangePercentage24H: -3.59699, circulatingSupply: 19286950, totalSupply: 21000000, maxSupply: 21000000)
+    static let mock  = MarketsPrice.init(coinID: "bitcoin", symbol: "btc", name: "Bitcoin", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", currentPrice: 21747, marketCap: 419320825566, marketCapRank: 1, totalVolume: 50153133497, high24H: 22615, low24H: 21596, priceChange24H: -868.336685288763, priceChangePercentage24H: -3.83958, marketCapChange24H: -15645722770.546387, marketCapChangePercentage24H: -3.59699, circulatingSupply: 19286950, totalSupply: 21000000, maxSupply: 21000000)
 }

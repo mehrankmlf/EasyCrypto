@@ -80,9 +80,10 @@ struct CoinDetailAreaView: View {
             let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
             CoinDetailReusableView(title: "Market Cap",
                                    price: marketCapFormat ?? "")
-            let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0)!
-            CoinDetailReusableView(title: "Volume (24 Hours)",
-                                   price: price24Hours)
+            if let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0) {
+                CoinDetailReusableView(title: "Volume (24 Hours)",
+                                       price: price24Hours)
+            }
             let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0)
             CoinDetailReusableView(title: "Circulating Supply",
                                    price: circulatingSupply ?? "-")

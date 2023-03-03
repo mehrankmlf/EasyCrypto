@@ -66,3 +66,38 @@ extension AppDependencyAssembler: CoinDetailViewFactory {
         return CoinDetailRepository(service: CoinDetailRemote())
     }
 }
+
+protocol AwesomeDICProtocol {
+  func register<Service>(type: Service.Type, component: Any)
+  func resolve<Service>(type: Service.Type) -> Service?
+}
+
+//// an alternative way to replace singletons
+//fileprivate let sharedDIContainer : DIContainer = DIContainer()
+//
+//protocol DIContainerInjector {
+//    var dependency: DIContainer { get }
+//}
+//
+//extension DIContainerInjector {
+//    var dependency: DIContainer {
+//        return sharedDIContainer
+//    }
+//}
+
+final class DIContainer: AwesomeDICProtocol {
+    
+    static let shared = DIContainer()
+
+  private init() {}
+
+  var services: [String: Any] = [:]
+
+    func register<Service>(type: Service.Type, component service: Any) {
+      services["\(type)"] = service
+  }
+
+  func resolve<Service>(type: Service.Type) -> Service? {
+    return services["\(type)"] as? Service
+  }
+}

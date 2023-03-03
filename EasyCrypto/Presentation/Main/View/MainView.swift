@@ -13,14 +13,11 @@ struct MainView: Coordinatable {
     typealias Route = Routes
     
     @ObservedObject private(set) var viewModel: MainViewModel
-    @State private var searchText : String = ""
     
     private let searchHeight: CGFloat = 55
     
     @State private var shouldShowDropdown = false
-    @State private var selectedOption: Coin? = nil
-    var onOptionSelected: ((_ option: Coin) -> Void)?
-    var onMarketDataSelected: ((_ option: MarketsPrice) -> Void)?
+    @State private var searchText : String = ""
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -34,49 +31,53 @@ struct MainView: Coordinatable {
                     Color.darkBlue
                         .edgesIgnoringSafeArea(.all)
                     VStack(spacing: 20) {
-                        SearchBar(text: $viewModel.searchText, isLoading: viewModel.isShowActivity, isEditing: $shouldShowDropdown)
-                            .padding(.horizontal, 5)
-                            .overlay(
-                                VStack {
-                                    if self.shouldShowDropdown {
-                                        Spacer(minLength: searchHeight + 10)
-                                        Dropdown(options: viewModel.searchData, onOptionSelected: { option in
-                                            self.viewModel.didTapSecond(id: option.id ?? "")
-                                        })
-                                        .padding(.horizontal)
-                                        
-                                    }
-                                }, alignment: .topLeading
-                            )
-                            .background(
-                                RoundedRectangle(cornerRadius: 5).fill(Color.clear)
-                            )
-                            .zIndex(1)
-                        SortView()
+                        SearchBar(text: $viewModel.searchText,
+                                  isLoading: viewModel.isShowActivity,
+                                  isEditing: $shouldShowDropdown)
+                        .padding(.horizontal, 5)
+                        .overlay(
+                            VStack {
+                                if self.shouldShowDropdown {
+                                    Spacer(minLength: searchHeight + 10)
+                                    Dropdown(options: viewModel.searchData,
+                                             onOptionSelected: { option in
+                                        self.viewModel.didTapSecond(id: option.id ?? "")
+                                    })
+                                    .padding(.horizontal)
+                                    
+                                }
+                            }, alignment: .topLeading
+                        )
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.clear)
+                        )
+                        .zIndex(1)
+                        SortView(viewModel: self.viewModel)
                         List {
-                            ForEach(self.viewModel.marketData) { item  in
+                            ForEach(self.viewModel.marketData, id: \.coinID) { item  in
                                 CryptoCellView(item: item)
-                                    .onTouchDownGesture {
+                                    .onTapGesture {
                                         self.viewModel.didTapFirst(item: item)
                                     }
                             }
                             if viewModel.isShowActivity {
-                                HStack {
-                                    Spacer()
+                                ZStack {
+                                   
                                     ActivityIndicator(style: .medium, animate: .constant(true))
-                                    Spacer()
-                                }.background(Color.yellow
-                                )
+       
+                                }
                             }else{
                                 Color.clear
                                     .onAppear {
-                                        if !self.viewModel.isShowActivity, self.viewModel.marketData.count != 0 {
+                                        if !self.viewModel.isShowActivity, self.viewModel.marketData.count > 0 {
                                             self.viewModel.loadMore()
                                         }
                                     }
                             }
-                        }.listStyle(.plain)
-                            .modifier(ListBackgroundModifier())
+                        }
+                        .listStyle(.plain)
+                        .modifier(ListBackgroundModifier())
                     }
                     .frame(width: geoSize.width)
                 }
@@ -88,6 +89,12 @@ struct MainView: Coordinatable {
             }
         }
     }
+}
+
+extension UIScreen{
+   static let screenWidth = UIScreen.main.bounds.size.width
+   static let screenHeight = UIScreen.main.bounds.size.height
+   static let screenSize = UIScreen.main.bounds.size
 }
 
 struct ListBackgroundModifier: ViewModifier {
@@ -102,6 +109,7 @@ struct ListBackgroundModifier: ViewModifier {
         }
     }
 }
+
 
 struct NavigationBarModifier: ViewModifier {
     
@@ -172,7 +180,8 @@ struct SearchBar: View {
                     .background(Color.clear)
                     .foregroundColor(.white)
                     .font(FontManager.headLine_2)
-                    .placeHolder(Text("Search coins").font(FontManager.headLine_2).foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
+                    .placeHolder(Text("Search coins").font(FontManager.headLine_2)
+                        .foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
                     .onTapGesture(perform: {
                         isEditing = true
                     })
@@ -251,35 +260,29 @@ struct ActivityIndicator: UIViewRepresentable {
 
 struct SortView: View {
     
+    @State var viewModel: MainViewModel
+    
     var body: some View {
         HStack {
             Button {
-                
+                if (viewModel.rankSort == .rankASC){
+                    viewModel.rankSort = .rankDSC
+                } else {
+                    viewModel.rankSort = .rankASC
+                }
+                self.viewModel.sortList(type: viewModel.rankSort)
             } label: {
                 Rectangle()
-                    .frame(width: 130.0, height: 30.0)
+                    .frame(width: 140.0, height: 30.0)
                     .foregroundColor(Color.white.opacity(0.1))
                     .cornerRadius(5.0)
                     .overlay {
-                        Text("Highest Holding")
+                        Text("Market Cap Rank")
                             .foregroundColor(Color.white)
                             .font(FontManager.body)
                     }
             }
             Spacer()
-            Button {
-                
-            } label: {
-                Rectangle()
-                    .frame(width: 90.0, height: 30.0)
-                    .foregroundColor(Color.white.opacity(0.1))
-                    .cornerRadius(5.0)
-                    .overlay {
-                        Text("24 Hours")
-                            .foregroundColor(Color.white)
-                            .font(FontManager.body)
-                    }
-            }
         }
         .padding(.horizontal)
     }
@@ -343,11 +346,6 @@ struct CryptoCellView: View {
         .padding(.vertical, 5)
     }
 }
-
-
-
-
-
 
 extension View {
     func onTouchDownGesture(callback: @escaping () -> Void) -> some View {

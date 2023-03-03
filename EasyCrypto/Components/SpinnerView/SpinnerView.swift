@@ -38,7 +38,7 @@ struct SpinnerView<Content>: View where Content: View {
                        idealHeight: nil,
                        maxHeight: nil,
                        alignment: .center)
-                .background(Color.black.opacity(0.5))
+                .background(Color.white.opacity(0.5))
                 .foregroundColor(Color.primary)
                 .cornerRadius(6)
                 .opacity(self.isShowing ? 1 : 0)

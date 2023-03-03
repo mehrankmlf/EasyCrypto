@@ -16,12 +16,12 @@ enum Transition {
 
 // Manages the transitions between child routes of a certain view
 struct Router<Destination: RouteDestination>: ViewModifier {
+    
   @Binding var destination: Destination?
   @State var isLinkActive = false
   @State var isURLActive = false
   @State var isBottomSheetActive = false
     
-
   func body(content: Content) -> some View {
     ZStack {
       NavigationLink(
@@ -33,6 +33,7 @@ struct Router<Destination: RouteDestination>: ViewModifier {
      .onChange(of: destination, perform: {_ in routeChanged()})
      .onChange(of: isLinkActive, perform: {_ in routeDismissed()})
      .onChange(of: isURLActive, perform: {_ in routeDismissed()})
+     .onChange(of: isBottomSheetActive, perform: {_ in routeDismissed()})
   }
 
   var destinationView: some View {
@@ -47,9 +48,9 @@ struct Router<Destination: RouteDestination>: ViewModifier {
 
   func routeChanged() {
     guard let destination = destination else { return }
+    isLinkActive = destination.transition == .push
     isBottomSheetActive = destination.transition == .bottomSheet
     isURLActive = destination.transition == .url
-    isLinkActive = destination.transition == .push
   }
 }
 

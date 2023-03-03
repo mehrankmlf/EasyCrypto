@@ -372,6 +372,7 @@
 		A803DFB9297E91AF00357A7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				023349272993803900C1A20B /* ImageDownloader */,
 				022A25EF299809C9008368B1 /* CurencyFormetter */,
 				022A25F4299811F4008368B1 /* DecimalFormatter */,
 				0252F0B4299AB00D00CD0062 /* EmptyNavigationLink */,
@@ -520,7 +521,6 @@
 				A803DFB7297E918900357A7F /* Theme */,
 				A803DFCD297E93F600357A7F /* Support */,
 				A803DFB9297E91AF00357A7F /* Components */,
-				023349272993803900C1A20B /* ImageDownloader */,
 				A803DFBA297E91BF00357A7F /* Core */,
 				A803DFBB297E91C600357A7F /* Data */,
 				A803DFBC297E91CF00357A7F /* Domain */,

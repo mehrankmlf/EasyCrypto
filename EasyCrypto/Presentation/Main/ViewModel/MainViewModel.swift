@@ -137,8 +137,8 @@ extension MainViewModel {
                     self?.isShowActivity = true
                 case .dismissAlert:
                     self?.isShowActivity = false
-                case .emptyStateHandler:
-                    self?.isShowActivity = false
+                case .emptyStateHandler(let title):
+                    print(title)
                 }
             }.store(in: subscriber)
     }

@@ -53,47 +53,6 @@ extension APIError {
     }
 }
 
-extension APIError {
-    
-    var isRetry : Bool {
-        return shouldRetry || canRetryHTTPError
-    }
-    
-  private var shouldRetry: Bool {
-          if case let .urlError(urlError) = self {
-              switch urlError.code {
-              case .timedOut,
-                   .cannotFindHost,
-                   .cannotConnectToHost,
-                   .networkConnectionLost,
-                   .dnsLookupFailed,
-                   .httpTooManyRedirects,
-                   .resourceUnavailable,
-                   .notConnectedToInternet,
-                   .secureConnectionFailed,
-                   .cannotLoadFromNetwork:
-                  return true
-              default:
-                  break
-              }
-          }
-          return false
-      }
-    
-   private var canRetryHTTPError: Bool {
-        if case let .httpError(response) = self {
-            let code = response.statusCode
-            if /* Too Many Requests */ code == 429 ||
-                /* Service Unavailable */ code == 503 ||
-                /* Request Timeout */ code == 408 ||
-                /* Gateway Timeout */ code == 504 {
-                return true
-            }
-        }
-        return false
-    }
-}
-
 extension NetworkClient {
     
     static func errorType(type : Int) -> APIError {

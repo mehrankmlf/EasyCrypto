@@ -31,10 +31,6 @@ final class NetworkClient : NetworkClientProtocol {
     func perform<M, T>(with request: RequestBuilder, decoder: JSONDecoder, scheduler: T, responseObject type: M.Type) -> AnyPublisher<M, APIError> where M : Decodable, T : Scheduler {
         let urlRequest = request.buildURLRequest()
         print(urlRequest.url)
-        print(urlRequest.allHTTPHeaderFields)
-        print(urlRequest.httpBody)
-        print(urlRequest.httpMethod)
-        print(urlRequest.allHTTPHeaderFields?.urlEncodedQueryParams())
         return publisher(request: urlRequest)
             .receive(on: scheduler)
             .tryMap { result, response -> Data in
@@ -42,14 +38,6 @@ final class NetworkClient : NetworkClientProtocol {
             }
             .decode(type: type.self, decoder: decoder)
             .mapError { error in
-//                if let error = error as? APIError {
-//                    switch error {
-//                    case .unauthorizedClient:
-//                        print("")
-//                    default:
-//                        break
-//                    }
-//                }
                 return error as! APIError
             }
             .eraseToAnyPublisher()
@@ -61,12 +49,6 @@ final class NetworkClient : NetworkClientProtocol {
             .map { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in
                 guard let httpResponse = response.response as? HTTPURLResponse else {
                     return Fail(error: APIError.invalidResponse(httpStatusCode: 0))
-                        .eraseToAnyPublisher()
-                }
-
-                if httpResponse.statusCode >= 400 {
-                    let error = APIError.httpError(httpResponse)
-                    return Fail(error: error)
                         .eraseToAnyPublisher()
                 }
 
@@ -84,37 +66,3 @@ final class NetworkClient : NetworkClientProtocol {
             .eraseToAnyPublisher()
     }
 }
-//
-//extension Publishers {
-//    struct RetryIf<P: Publisher>: Publisher {
-//
-//        typealias Output = P.Output
-//        typealias Failure = P.Failure
-//
-//        let publisher: P
-//        let times: Int
-//        let condition: (P.Failure) -> Bool
-//        
-//        func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
-//            guard times > 0 else { return publisher.receive(subscriber: subscriber) }
-//
-//            publisher.catch { (error: P.Failure) -> AnyPublisher<Output, Failure> in
-//                if condition(error)  {
-//                    return RetryIf(publisher: publisher, times: times - 1, condition: condition).eraseToAnyPublisher()
-//                } else {
-//                    return Fail(error: error).eraseToAnyPublisher()
-//                }
-//            }.receive(subscriber: subscriber)
-//        }
-//    }
-//}
-//
-//extension Publisher {
-//    func retry(_ times: Int, if condition: @escaping (Failure) -> Bool) -> Publishers.RetryIf<Self> {
-//        Publishers.RetryIf(publisher: self, times: times, condition: condition)
-//    }
-//
-//    func retry(_ times: Int, unless condition: @escaping (Failure) -> Bool) -> Publishers.RetryIf<Self> {
-//        retry(times, if: { !condition($0) })
-//    }
-//}

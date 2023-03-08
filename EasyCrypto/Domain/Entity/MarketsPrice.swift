@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct MarketsPrice: Decodable, Identifiable {
-    var id = UUID()
+struct MarketsPrice: Decodable {
     var coinID, symbol, name: String?
     var image: String?
     var currentPrice: Double?
@@ -41,7 +40,7 @@ struct MarketsPrice: Decodable, Identifiable {
 
 extension MarketsPrice: Equatable {
     static func == (lhs: MarketsPrice, rhs: MarketsPrice) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.coinID == rhs.coinID
     }
 }
 

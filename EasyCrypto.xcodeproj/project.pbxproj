@@ -410,6 +410,16 @@
 			path = SafariView;
 			sourceTree = "<group>";
 		};
+		02BC669529B88E5C00785196 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A81742C6297E593D00023B28 /* Assets.xcassets */,
+				A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */,
+				02593C41298E8A6700ADDA20 /* Info.plist */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		02D986192996BC990070A7E0 /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,7 +586,6 @@
 		A81742C1297E593800023B28 /* EasyCrypto */ = {
 			isa = PBXGroup;
 			children = (
-				02593C41298E8A6700ADDA20 /* Info.plist */,
 				02593C59298EE12500ADDA20 /* App */,
 				A8D4A10A299E0DFA00C11107 /* Base */,
 				A803DFB7297E918900357A7F /* Theme */,
@@ -586,8 +595,7 @@
 				A803DFBB297E91C600357A7F /* Data */,
 				A803DFBC297E91CF00357A7F /* Domain */,
 				A803DFBD297E91E000357A7F /* Presentation */,
-				A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */,
-				A81742C6297E593D00023B28 /* Assets.xcassets */,
+				02BC669529B88E5C00785196 /* Resource */,
 				A81742C8297E593D00023B28 /* Preview Content */,
 			);
 			path = EasyCrypto;

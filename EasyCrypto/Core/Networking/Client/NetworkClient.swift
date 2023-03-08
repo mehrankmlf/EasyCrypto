@@ -30,7 +30,6 @@ final class NetworkClient : NetworkClientProtocol {
     @discardableResult
     func perform<M, T>(with request: RequestBuilder, decoder: JSONDecoder, scheduler: T, responseObject type: M.Type) -> AnyPublisher<M, APIError> where M : Decodable, T : Scheduler {
         let urlRequest = request.buildURLRequest()
-        print(urlRequest.url)
         return publisher(request: urlRequest)
             .receive(on: scheduler)
             .tryMap { result, response -> Data in

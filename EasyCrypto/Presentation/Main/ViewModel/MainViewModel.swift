@@ -37,7 +37,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         case rankASC
         case rankDSC
     }
-    
+
     let title: String = Constants.mainTitle
     
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
@@ -45,8 +45,8 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     var page: Int = 1
     var perPage: Int = 15
-    
-    @Published var isShowActivity : Bool = false
+
+    @Published var isloading : Bool = false
     @Published var searchText: String = ""
     @Published private(set) var marketData: [MarketsPrice] = []
     @Published private(set) var searchData: [Coin] = []
@@ -54,8 +54,8 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
     
-    init(marketPriceUsecase: MarketPriceUsecaseProtocol = DIContainer.shared.resolve(type: MarketPriceUsecaseProtocol.self)!,
-         searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.resolve(type: SearchMarketUsecaseProtocol.self)!) {
+    init(marketPriceUsecase: MarketPriceUsecaseProtocol = DIContainer.shared.inject(type: MarketPriceUsecaseProtocol.self)!,
+         searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.inject(type: SearchMarketUsecaseProtocol.self)!) {
         self.marketPriceUsecase = marketPriceUsecase
         self.searchMarketUsecase = searchMarketUsecase
     }
@@ -134,11 +134,11 @@ extension MainViewModel {
             .sink { [weak self] state in
                 switch state {
                 case .loadStart:
-                    self?.isShowActivity = true
+                    self?.isloading = true
                 case .dismissAlert:
-                    self?.isShowActivity = false
-                case .emptyStateHandler(let title):
-                    print(title)
+                    self?.isloading = false
+                case .emptyStateHandler(let title, let isShow):
+                    self?.isloading = false
                 }
             }.store(in: subscriber)
     }

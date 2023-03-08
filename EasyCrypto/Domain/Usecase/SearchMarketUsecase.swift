@@ -16,7 +16,7 @@ final class SearchMarketUsecase: SearchMarketUsecaseProtocol {
     
     private let searchMarketRepository: SearchMarketRepositoryProtocol
     
-    init(searchMarketRepository: SearchMarketRepositoryProtocol = DIContainer.shared.resolve(type: SearchMarketRepositoryProtocol.self)!) {
+    init(searchMarketRepository: SearchMarketRepositoryProtocol = DIContainer.shared.inject(type: SearchMarketRepositoryProtocol.self)!) {
         self.searchMarketRepository = searchMarketRepository
     }
     

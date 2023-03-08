@@ -20,7 +20,7 @@ final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
     
     private let marketPriceRepository: MarketPricRepositoryProrocol
     
-    init(marketPriceRepository: MarketPricRepositoryProrocol = DIContainer.shared.resolve(type: MarketPricRepositoryProrocol.self)!) {
+    init(marketPriceRepository: MarketPricRepositoryProrocol = DIContainer.shared.inject(type: MarketPricRepositoryProrocol.self)!) {
         self.marketPriceRepository = marketPriceRepository
     }
     

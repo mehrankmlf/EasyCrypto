@@ -20,7 +20,7 @@ final class MarketPriceRepository {
     
     private let service: MarketPricRemoteProtocol
     
-    init(service: MarketPricRemoteProtocol = DIContainer.shared.resolve(type: MarketPricRemoteProtocol.self)!) {
+    init(service: MarketPricRemoteProtocol = DIContainer.shared.inject(type: MarketPricRemoteProtocol.self)!) {
         self.service = service
     }
 }

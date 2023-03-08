@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol AwesomeDICProtocol {
+protocol DIContainerProtocol {
   func register<Service>(type: Service.Type, component: Any)
-  func resolve<Service>(type: Service.Type) -> Service?
+  func inject<Service>(type: Service.Type) -> Service?
 }
 
-final class DIContainer: AwesomeDICProtocol {
+final class DIContainer: DIContainerProtocol {
     
   static let shared = DIContainer()
 
@@ -24,7 +24,7 @@ final class DIContainer: AwesomeDICProtocol {
       services["\(type)"] = service
   }
 
-  func resolve<Service>(type: Service.Type) -> Service? {
+  func inject<Service>(type: Service.Type) -> Service? {
     return services["\(type)"] as? Service
   }
 }

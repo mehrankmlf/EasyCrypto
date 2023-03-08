@@ -41,7 +41,7 @@ struct CoinDetailView: Coordinatable {
                         ScrollView {
                             VStack(spacing: 30) {
                                 CoinDetailTopView(item: coinData, url: { url in
-                                    self.viewModel.didTapFirst(url: url ?? "")
+                                    self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(""))
                                 })
                                 .padding(.horizontal)
                             }
@@ -53,7 +53,7 @@ struct CoinDetailView: Coordinatable {
             }.navigationBarTitle("")
                 .navigationBarHidden(true)
                 .onAppear {
-                    self.viewModel.apply(.onAppear(id: self.id ?? ""))
+                    self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty("")))
                 }
         }
     }
@@ -104,7 +104,7 @@ struct CoinDetailTopView: View {
                     Text("Name")
                         .foregroundColor(Color.gray)
                         .font(FontManager.body)
-                    Text(item.name ?? "")
+                    Text(item.name.orWhenNilOrEmpty(""))
                         .foregroundColor(Color.white)
                         .font(FontManager.title)
                 }
@@ -114,7 +114,7 @@ struct CoinDetailTopView: View {
                     Text("Symbol")
                         .foregroundColor(Color.gray)
                         .font(FontManager.body)
-                    Text(item.symbol ?? "")
+                    Text(item.symbol.orWhenNilOrEmpty(""))
                         .foregroundColor(Color.white)
                         .font(FontManager.title)
                 }
@@ -124,7 +124,7 @@ struct CoinDetailTopView: View {
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
                 Button {
-                    self.url(item.links?.homepage?.first ?? "")
+                    self.url(item.links?.homepage?.first.orWhenNilOrEmpty(""))
                 } label: {
                     Text(item.links?.homepage?.first ?? "")
                         .foregroundColor(Color.white)

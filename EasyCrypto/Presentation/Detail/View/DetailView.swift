@@ -26,7 +26,7 @@ struct DetailView: View {
                 Spacer()
             }
             .padding(.top)
-        }.navigationBarTitle(item.name ?? "", displayMode: .inline)
+        }.navigationBarTitle(item.name.orWhenNilOrEmpty(""), displayMode: .inline)
             .navigationBarColor(backgroundColor: .clear, titleColor: .white)
     }
 }
@@ -37,86 +37,7 @@ struct DetailView_Previews: PreviewProvider {
     }
 }
 
-struct PriceView: View {
-    
-    var item: MarketsPrice
-    
-    var body: some View {
-        VStack {
-            HStack {
-                CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
-                Text("Global Rank")
-                    .foregroundColor(Color.gray)
-                    .font(FontManager.body)
-                Spacer()
-            }
-            HStack {
-                let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice as? NSNumber ?? 0)!
-                Text(price)
-                    .foregroundColor(Color.white)
-                    .font(FontManager.headLine)
-                Spacer()
-                ImageView(withURL: item.safeImageURL())
-                    .frame(width: 40.0, height: 40.0)
-            }
-            .padding(.top)
-            HStack {
-                let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0)!
-                Text(priceChange)
-                    .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
-                    .font(FontManager.title)
-                Spacer()
-            }
-        }
-    }
-}
 
-struct CoinDetailAreaView: View {
-    
-    var item: MarketsPrice
-    
-    var body: some View {
-        VStack(spacing: 30) {
-            let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
-            CoinDetailReusableView(title: "Market Cap",
-                                   price: marketCapFormat ?? "")
-            if let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0) {
-                CoinDetailReusableView(title: "Volume (24 Hours)",
-                                       price: price24Hours)
-            }
-            let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0)
-            CoinDetailReusableView(title: "Circulating Supply",
-                                   price: circulatingSupply ?? "-")
-            let totalSupply = DecimalFormatter().string(from: item.totalSupply as? NSNumber ?? 0)
-            CoinDetailReusableView(title: "Total Supply",
-                                   price: totalSupply ?? "-")
-            let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H as? NSNumber ?? 0)!
-            CoinDetailReusableView(title: "Low (24 Hours)",
-                                   price: low24H)
-            let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H as? NSNumber ?? 0)!
-            CoinDetailReusableView(title: "High (24 Hours)",
-                                   price: high24H)
-        }
-        .padding(.horizontal)
-    }
-}
 
-struct CoinDetailReusableView: View {
-    
-    var title: String
-    var price: String
-    
-    var body: some View {
-        HStack(spacing: 20) {
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .foregroundColor(Color.gray)
-                    .font(FontManager.body)
-                Text(price)
-                    .foregroundColor(Color.white)
-                    .font(FontManager.title)
-            }
-            Spacer()
-        }
-    }
-}
+
+

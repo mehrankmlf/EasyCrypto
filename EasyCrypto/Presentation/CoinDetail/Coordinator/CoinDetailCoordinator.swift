@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct CoinDetailCoordinator: Coordinator {
+struct CoinDetailCoordinator: CoordinatorProtocol {
 
     @StateObject var viewModel : CoinDetailViewModel
     @State var activeRoute: Destination? = Destination(route: .first(url: nil))
@@ -37,7 +37,7 @@ struct CoinDetailCoordinator: Coordinator {
 }
 
 extension CoinDetailCoordinator {
-    struct Destination: RouteDestination {
+    struct Destination: DestinationProtocol {
         
         var route: CoinDetailView.Routes
         

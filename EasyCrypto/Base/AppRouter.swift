@@ -15,7 +15,7 @@ enum Transition {
 }
 
 // Manages the transitions between child routes of a certain view
-struct Router<Destination: RouteDestination>: ViewModifier {
+struct AppRouter<Destination: DestinationProtocol>: ViewModifier {
     
   @Binding var destination: Destination?
   @State var isLinkActive = false
@@ -64,10 +64,9 @@ struct Navigator: ViewModifier {
   }
 }
 
-// Convenience modifiers
 extension View {
-  func route<Destination: RouteDestination>(to destination: Binding<Destination?>) -> some View {
-    modifier(Router(destination: destination))
+  func route<Destination: DestinationProtocol>(to destination: Binding<Destination?>) -> some View {
+    modifier(AppRouter(destination: destination))
   }
 
   func navigation() -> some View {

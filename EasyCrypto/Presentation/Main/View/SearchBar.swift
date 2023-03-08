@@ -1,0 +1,81 @@
+//
+//  SearchBar.swift
+//  EasyCrypto
+//
+//  Created by Mehran on 12/17/1401 AP.
+//
+
+import SwiftUI
+
+struct SearchBar: View {
+    
+    @Binding var text: String
+    @State var isLoading: Bool
+    @Binding var isEditing: Bool
+    
+    var body: some View {
+        ZStack(alignment: .leading) {
+            HStack {
+                TextField("", text: $text)
+                    .background(Color.clear)
+                    .foregroundColor(.white)
+                    .font(FontManager.headLine_2)
+                    .placeHolder(Text("Search coins").font(FontManager.headLine_2)
+                        .foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
+                    .onTapGesture(perform: {
+                        isEditing = true
+                    })
+                
+                if !text.isEmpty {
+                    if isLoading {
+                        Button(action: {
+                            text = ""
+                        }, label: {
+                            ActivityIndicator(style: .medium, animate: .constant(true))
+                                .configure {
+                                    $0.color = .black
+                                }
+                        })
+                        .frame(width: 35, height: 35)
+                        
+                    } else {
+                        Button(action: {
+                            text = ""
+                            isEditing = false
+                            dismissKeyboard()
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.white)
+                                .frame(width: 35, height: 35)
+                        }).frame(width: 35, height: 35)
+                    }
+                }
+            }.padding(.horizontal)
+                .frame(height: 40.0)
+        }
+    }
+}
+
+struct SearchMarketCellView: View {
+    
+    var model: Coin
+    
+    var body: some View {
+        HStack {
+            ImageView(withURL: model.safeImageURL())
+                .frame(width: 25.0, height: 25.0)
+            
+            Text(model.name.orWhenNilOrEmpty(""))
+                .foregroundColor(Color.black)
+                .font(FontManager.body)
+            Text("(\(model.symbol.orWhenNilOrEmpty(""))")
+                .foregroundColor(Color.black)
+                .font(FontManager.body)
+            Spacer()
+            Text(model.marketCapRank != nil ? "#" + String(model.marketCapRank ?? 0) : "")
+                .foregroundColor(Color.black)
+                .font(FontManager.body)
+        }
+        .padding(.vertical, 5)
+    }
+}

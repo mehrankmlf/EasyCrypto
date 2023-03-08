@@ -16,7 +16,7 @@ final class CoinMarketUsecase: CoinDetailUsecaseProtocol {
     
     private let coinDetailRepository: CoinDetailRepositoryProtocol
     
-    init(coinDetailRepository: CoinDetailRepositoryProtocol = DIContainer.shared.resolve(type: CoinDetailRepositoryProtocol.self)!) {
+    init(coinDetailRepository: CoinDetailRepositoryProtocol = DIContainer.shared.inject(type: CoinDetailRepositoryProtocol.self)!) {
         self.coinDetailRepository = coinDetailRepository
     }
     

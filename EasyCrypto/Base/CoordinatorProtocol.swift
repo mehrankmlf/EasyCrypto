@@ -7,24 +7,20 @@
 
 import SwiftUI
 
-// implemented by the route factory
-// it manages view creation and transition
-protocol RouteDestination: Equatable {
+protocol DestinationProtocol: Equatable {
   associatedtype Destination: View
   var content: Destination { get }
   var transition: Transition { get }
 }
 
-// implemented by the wrapper view which acts as a coordinator
-protocol Coordinator: View {
+protocol CoordinatorProtocol: View {
   associatedtype MainContent: Coordinatable
-  associatedtype Destination: RouteDestination
+  associatedtype Destination: DestinationProtocol
   var mainView: MainContent { get }
   var activeRoute: Destination? { get }
-  var url: String? { get }
 }
 
-extension Coordinator {
+extension CoordinatorProtocol {
     var url: String? {
         return nil
     }

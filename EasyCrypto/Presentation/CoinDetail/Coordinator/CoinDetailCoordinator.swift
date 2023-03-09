@@ -32,8 +32,6 @@ struct CoinDetailCoordinator: CoordinatorProtocol {
     var mainView: CoinDetailView {
         return CoinDetailView(id: id, viewModel: viewModel)
     }
-    
-    var url: String?
 }
 
 extension CoinDetailCoordinator {

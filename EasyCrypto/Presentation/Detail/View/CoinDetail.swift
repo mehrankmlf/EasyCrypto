@@ -20,18 +20,22 @@ struct CoinDetailAreaView: View {
                 CoinDetailCell(title: "Volume (24 Hours)",
                                        price: price24Hours)
             }
-            let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0)
-            CoinDetailCell(title: "Circulating Supply",
-                                   price: circulatingSupply ?? "-")
-            let totalSupply = DecimalFormatter().string(from: item.totalSupply as? NSNumber ?? 0)
-            CoinDetailCell(title: "Total Supply",
-                                   price: totalSupply ?? "-")
-            let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H as? NSNumber ?? 0)!
-            CoinDetailCell(title: "Low (24 Hours)",
-                                   price: low24H)
-            let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H as? NSNumber ?? 0)!
-            CoinDetailCell(title: "High (24 Hours)",
-                                   price: high24H)
+            if let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0) {
+                CoinDetailCell(title: "Circulating Supply",
+                               price: circulatingSupply)
+            }
+            if let totalSupply = DecimalFormatter().string(from: item.totalSupply as? NSNumber ?? 0) {
+                CoinDetailCell(title: "Total Supply",
+                               price: totalSupply)
+            }
+            if let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H as? NSNumber ?? 0) {
+                CoinDetailCell(title: "Low (24 Hours)",
+                               price: low24H)
+            }
+            if let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H as? NSNumber ?? 0) {
+                CoinDetailCell(title: "High (24 Hours)",
+                               price: high24H)
+            }
         }
         .padding(.horizontal)
     }

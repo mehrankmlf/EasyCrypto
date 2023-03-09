@@ -31,11 +31,12 @@ struct PriceView: View {
             }
             .padding(.top)
             HStack {
-                let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0)!
-                Text(priceChange)
-                    .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
-                    .font(FontManager.title)
-                Spacer()
+                if let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0) {
+                    Text(priceChange)
+                        .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
+                        .font(FontManager.title)
+                    Spacer()
+                }
             }
         }
     }

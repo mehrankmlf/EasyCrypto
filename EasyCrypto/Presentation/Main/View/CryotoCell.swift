@@ -27,10 +27,11 @@ struct CryptoCellView: View {
             .padding(.leading, 5)
             Spacer()
             VStack(alignment: .trailing, spacing: 5) {
-                let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice as? NSNumber ?? 0)!
-                Text(price)
-                    .foregroundColor(Color.white)
-                    .font(FontManager.body)
+                if let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice as? NSNumber ?? 0) {
+                    Text(price)
+                        .foregroundColor(Color.white)
+                        .font(FontManager.body)
+                }
                 Text(String(item.priceChangePercentage24H ?? 0.0))
                     .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
                     .font(FontManager.body)

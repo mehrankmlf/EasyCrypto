@@ -11,6 +11,11 @@ struct CoinDetailView: Coordinatable {
     
     typealias Route = Routes
     
+    enum Constant {
+        static let spacing: CGFloat = 30
+        static let cornerRadius: CGFloat = 10
+    }
+    
     var id: String?
     
     var coinData: CoinUnit {
@@ -34,11 +39,11 @@ struct CoinDetailView: Coordinatable {
                     Rectangle()
                         .fill(Color.white)
                         .frame(width: geoSize.width / 3.5, height: 4)
-                        .cornerRadius(10.0)
+                        .cornerRadius(Constant.cornerRadius)
                         .padding(.top)
                     SpinnerView(isShowing: $viewModel.isShowActivity, text: .constant(""), geoSize: geoSize) {
                         ScrollView {
-                            VStack(spacing: 30) {
+                            VStack(spacing: Constant.spacing) {
                                 CoinDetailHeaderView(item: coinData, url: { url in
                                     self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(""))
                                 })
@@ -49,11 +54,12 @@ struct CoinDetailView: Coordinatable {
                         .padding(.top)
                     }
                 }
-            }.navigationBarTitle("")
-                .navigationBarHidden(true)
-                .onAppear {
-                    self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty("")))
-                }
+            }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .onAppear {
+                self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty("")))
+            }
         }
     }
 }
@@ -66,7 +72,7 @@ extension CoinDetailView {
 
 struct CoinDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinDetailView(viewModel: CoinDetailViewModel(coinDetailUsecase: CoinMarketUsecase(coinDetailRepository: CoinDetailRepository(service: CoinDetailRemote()))))
+        CoinDetailView(viewModel: CoinDetailViewModel())
     }
 }
 

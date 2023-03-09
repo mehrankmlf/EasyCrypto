@@ -17,6 +17,7 @@ struct MainView: Coordinatable {
     enum Constant {
         static let searchHeight: CGFloat = 55
         static let topPadding: CGFloat = 5
+        static let cornerRadius: CGFloat = 10
     }
     
     @State private var shouldShowDropdown = false
@@ -69,7 +70,7 @@ struct MainView: Coordinatable {
                             }
                             if viewModel.isloading {
                                 ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
+                                    RoundedRectangle(cornerRadius: Constant.cornerRadius)
                                         .foregroundColor(Color.white.opacity(0.8))
                                         .frame(width: 40.0, height: 40.0)
                                     ActivityIndicator(style: .medium, animate: .constant(true))

@@ -11,11 +11,15 @@ struct DetailView: View {
     
     var item: MarketsPrice
     
+    enum Constant {
+        static let spacing: CGFloat = 30
+    }
+    
     var body: some View {
         ZStack {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 30) {
+            VStack(spacing: Constant.spacing) {
                 PriceView(item: item)
                     .padding(.horizontal)
                     .padding(.top)
@@ -26,8 +30,9 @@ struct DetailView: View {
                 Spacer()
             }
             .padding(.top)
-        }.navigationBarTitle(item.name.orWhenNilOrEmpty(""), displayMode: .inline)
-            .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+        }
+        .navigationBarTitle(item.name.orWhenNilOrEmpty(""), displayMode: .inline)
+        .navigationBarColor(backgroundColor: .clear, titleColor: .white)
     }
 }
 

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol CoinDetailUsecaseProtocol : AnyObject {
-    func execute(id: String) -> AnyPublisher<CoinUnitDetail?, APIError>
+    func execute(id: String) -> AnyPublisher<CoinUnit?, APIError>
 }
 
 final class CoinMarketUsecase: CoinDetailUsecaseProtocol {
@@ -20,7 +20,7 @@ final class CoinMarketUsecase: CoinDetailUsecaseProtocol {
         self.coinDetailRepository = coinDetailRepository
     }
     
-    func execute(id: String) -> AnyPublisher<CoinUnitDetail?, APIError> {
+    func execute(id: String) -> AnyPublisher<CoinUnit?, APIError> {
         return self.coinDetailRepository.data(id: id)
     }
 }

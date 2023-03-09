@@ -17,10 +17,20 @@
 		0233493729939D9200C1A20B /* DataFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493629939D9200C1A20B /* DataFlowProtocol.swift */; };
 		0233493929941A8600C1A20B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493829941A8600C1A20B /* DetailView.swift */; };
 		0233493B29941C8800C1A20B /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493A29941C8800C1A20B /* String + Extension.swift */; };
+		024515C729B9B4840013B54C /* MarketPriceRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */; };
+		024515CA29B9B5AB0013B54C /* DummyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515C929B9B5AB0013B54C /* DummyEndpoint.swift */; };
+		024515D529B9C67E0013B54C /* MockMarketPriceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */; };
+		024515D829B9CCBB0013B54C /* MockMarketPriceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D729B9CCBB0013B54C /* MockMarketPriceRepository.swift */; };
+		024515DA29B9CE3F0013B54C /* MockMarketPriceRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D929B9CE3F0013B54C /* MockMarketPriceRemote.swift */; };
+		024515DF29BA14580013B54C /* MockSearchMarketUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515DE29BA14580013B54C /* MockSearchMarketUsecase.swift */; };
+		024515E129BA169F0013B54C /* MockSearchMarketeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515E029BA169F0013B54C /* MockSearchMarketeRepository.swift */; };
+		024515E329BA16FF0013B54C /* MockSearchMarketRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515E229BA16FF0013B54C /* MockSearchMarketRemote.swift */; };
+		024515E529BA42880013B54C /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515E429BA42880013B54C /* RequestBuilderTest.swift */; };
+		024515E829BA47CE0013B54C /* MockNetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515E729BA47CE0013B54C /* MockNetworkTarget.swift */; };
 		0250EA7029B27F4200AA6040 /* AppDependencyContainer + Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250EA6F29B27F4200AA6040 /* AppDependencyContainer + Injection.swift */; };
 		0250EA7229B2826600AA6040 /* UIScreen + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0250EA7129B2826600AA6040 /* UIScreen + Extension.swift */; };
 		0252F0A2299A313800CD0062 /* CoinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A1299A313800CD0062 /* CoinDetailView.swift */; };
-		0252F0A5299A3AC400CD0062 /* CoinUnitDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A4299A3AC400CD0062 /* CoinUnitDetail.swift */; };
+		0252F0A5299A3AC400CD0062 /* CoinUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A4299A3AC400CD0062 /* CoinUnit.swift */; };
 		0252F0AA299A450B00CD0062 /* CoinDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0A9299A450B00CD0062 /* CoinDetailViewModel.swift */; };
 		0252F0AF299A466900CD0062 /* CoinDetailRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0AE299A466900CD0062 /* CoinDetailRemote.swift */; };
 		0252F0B1299A48A400CD0062 /* CoinDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0252F0B0299A48A400CD0062 /* CoinDetailRepository.swift */; };
@@ -51,6 +61,10 @@
 		02BC668E29B8853C00785196 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC668D29B8853C00785196 /* SafariView.swift */; };
 		02BC669029B88CF600785196 /* CoinDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC668F29B88CF600785196 /* CoinDetailHeaderView.swift */; };
 		02BC669229B88D8100785196 /* CoinDetailRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669129B88D8100785196 /* CoinDetailRank.swift */; };
+		02BC669929B8D25300785196 /* MarketsPriceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669829B8D25300785196 /* MarketsPriceTest.swift */; };
+		02BC669B29B8D8C200785196 /* SearchMarketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669A29B8D8C200785196 /* SearchMarketTest.swift */; };
+		02BC669D29B8D94500785196 /* CoinUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669C29B8D94500785196 /* CoinUnitTest.swift */; };
+		02BC66A029B8E3C000785196 /* MainViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669F29B8E3C000785196 /* MainViewModelTest.swift */; };
 		02D9860E29960ECF0070A7E0 /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9860D29960ECF0070A7E0 /* View + Extension.swift */; };
 		02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9860F29963B5C0070A7E0 /* Array + Extension.swift */; };
 		02D986122996A8880070A7E0 /* SearchMarketDataRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986112996A8880070A7E0 /* SearchMarketDataRemote.swift */; };
@@ -123,10 +137,20 @@
 		0233493629939D9200C1A20B /* DataFlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowProtocol.swift; sourceTree = "<group>"; };
 		0233493829941A8600C1A20B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0233493A29941C8800C1A20B /* String + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRequestTest.swift; sourceTree = "<group>"; };
+		024515C929B9B5AB0013B54C /* DummyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyEndpoint.swift; sourceTree = "<group>"; };
+		024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceUseCase.swift; sourceTree = "<group>"; };
+		024515D729B9CCBB0013B54C /* MockMarketPriceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceRepository.swift; sourceTree = "<group>"; };
+		024515D929B9CE3F0013B54C /* MockMarketPriceRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceRemote.swift; sourceTree = "<group>"; };
+		024515DE29BA14580013B54C /* MockSearchMarketUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchMarketUsecase.swift; sourceTree = "<group>"; };
+		024515E029BA169F0013B54C /* MockSearchMarketeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchMarketeRepository.swift; sourceTree = "<group>"; };
+		024515E229BA16FF0013B54C /* MockSearchMarketRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchMarketRemote.swift; sourceTree = "<group>"; };
+		024515E429BA42880013B54C /* RequestBuilderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
+		024515E729BA47CE0013B54C /* MockNetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkTarget.swift; sourceTree = "<group>"; };
 		0250EA6F29B27F4200AA6040 /* AppDependencyContainer + Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDependencyContainer + Injection.swift"; sourceTree = "<group>"; };
 		0250EA7129B2826600AA6040 /* UIScreen + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen + Extension.swift"; sourceTree = "<group>"; };
 		0252F0A1299A313800CD0062 /* CoinDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailView.swift; sourceTree = "<group>"; };
-		0252F0A4299A3AC400CD0062 /* CoinUnitDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUnitDetail.swift; sourceTree = "<group>"; };
+		0252F0A4299A3AC400CD0062 /* CoinUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUnit.swift; sourceTree = "<group>"; };
 		0252F0A9299A450B00CD0062 /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
 		0252F0AE299A466900CD0062 /* CoinDetailRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailRemote.swift; sourceTree = "<group>"; };
 		0252F0B0299A48A400CD0062 /* CoinDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailRepository.swift; sourceTree = "<group>"; };
@@ -155,6 +179,10 @@
 		02BC668D29B8853C00785196 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		02BC668F29B88CF600785196 /* CoinDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailHeaderView.swift; sourceTree = "<group>"; };
 		02BC669129B88D8100785196 /* CoinDetailRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailRank.swift; sourceTree = "<group>"; };
+		02BC669829B8D25300785196 /* MarketsPriceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsPriceTest.swift; sourceTree = "<group>"; };
+		02BC669A29B8D8C200785196 /* SearchMarketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketTest.swift; sourceTree = "<group>"; };
+		02BC669C29B8D94500785196 /* CoinUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUnitTest.swift; sourceTree = "<group>"; };
+		02BC669F29B8E3C000785196 /* MainViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTest.swift; sourceTree = "<group>"; };
 		02D9860D29960ECF0070A7E0 /* View + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		02D9860F29963B5C0070A7E0 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		02D986112996A8880070A7E0 /* SearchMarketDataRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketDataRemote.swift; sourceTree = "<group>"; };
@@ -282,6 +310,51 @@
 				0233493629939D9200C1A20B /* DataFlowProtocol.swift */,
 			);
 			path = DataFlow;
+			sourceTree = "<group>";
+		};
+		024515C529B9B4400013B54C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */,
+				024515E429BA42880013B54C /* RequestBuilderTest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		024515C829B9B5920013B54C /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				024515C929B9B5AB0013B54C /* DummyEndpoint.swift */,
+			);
+			path = Dummy;
+			sourceTree = "<group>";
+		};
+		024515D629B9CC930013B54C /* MarketPrice */ = {
+			isa = PBXGroup;
+			children = (
+				024515D929B9CE3F0013B54C /* MockMarketPriceRemote.swift */,
+				024515D729B9CCBB0013B54C /* MockMarketPriceRepository.swift */,
+				024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */,
+			);
+			path = MarketPrice;
+			sourceTree = "<group>";
+		};
+		024515DB29BA13F40013B54C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				024515E229BA16FF0013B54C /* MockSearchMarketRemote.swift */,
+				024515E029BA169F0013B54C /* MockSearchMarketeRepository.swift */,
+				024515DE29BA14580013B54C /* MockSearchMarketUsecase.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		024515E629BA47BB0013B54C /* NetworkTarget */ = {
+			isa = PBXGroup;
+			children = (
+				024515E729BA47CE0013B54C /* MockNetworkTarget.swift */,
+			);
+			path = NetworkTarget;
 			sourceTree = "<group>";
 		};
 		0252F0A3299A376800CD0062 /* CoinDetail */ = {
@@ -418,6 +491,44 @@
 				02593C41298E8A6700ADDA20 /* Info.plist */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		02BC669629B8CFF700785196 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				024515C529B9B4400013B54C /* Networking */,
+				02BC669E29B8E39900785196 /* ViewModel */,
+				02BC669729B8CFFF00785196 /* Entity */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		02BC669729B8CFFF00785196 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				02BC669829B8D25300785196 /* MarketsPriceTest.swift */,
+				02BC669A29B8D8C200785196 /* SearchMarketTest.swift */,
+				02BC669C29B8D94500785196 /* CoinUnitTest.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		02BC669E29B8E39900785196 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				02BC669F29B8E3C000785196 /* MainViewModelTest.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		02BC66A129B8E4CE00785196 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				024515E629BA47BB0013B54C /* NetworkTarget */,
+				024515DB29BA13F40013B54C /* Search */,
+				024515D629B9CC930013B54C /* MarketPrice */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		02D986192996BC990070A7E0 /* DropDown */ = {
@@ -612,6 +723,9 @@
 		A81742D2297E593D00023B28 /* EasyCryptoTests */ = {
 			isa = PBXGroup;
 			children = (
+				02BC669629B8CFF700785196 /* Cases */,
+				02BC66A129B8E4CE00785196 /* Mock */,
+				024515C829B9B5920013B54C /* Dummy */,
 				A81742D3297E593D00023B28 /* EasyCryptoTests.swift */,
 			);
 			path = EasyCryptoTests;
@@ -649,7 +763,7 @@
 			children = (
 				02593C49298E8D1200ADDA20 /* MarketsPrice.swift */,
 				02D986152996AAAE0070A7E0 /* SearchMarket.swift */,
-				0252F0A4299A3AC400CD0062 /* CoinUnitDetail.swift */,
+				0252F0A4299A3AC400CD0062 /* CoinUnit.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -687,8 +801,8 @@
 		A851A21129890B92007F4CF9 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				A851A21329890B9F007F4CF9 /* NetworkTarget + Default.swift */,
 				A851A21229890B9F007F4CF9 /* NetworkTarget.swift */,
+				A851A21329890B9F007F4CF9 /* NetworkTarget + Default.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -913,7 +1027,7 @@
 				A8104F4D29814E88008A8DDE /* Assets.swift in Sources */,
 				0233493929941A8600C1A20B /* DetailView.swift in Sources */,
 				A81742C3297E593800023B28 /* EasyCryptoApp.swift in Sources */,
-				0252F0A5299A3AC400CD0062 /* CoinUnitDetail.swift in Sources */,
+				0252F0A5299A3AC400CD0062 /* CoinUnit.swift in Sources */,
 				02593C50298E95E800ADDA20 /* MainViewModel.swift in Sources */,
 				0233492D2993804100C1A20B /* ImageView.swift in Sources */,
 				02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */,
@@ -986,7 +1100,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				024515E129BA169F0013B54C /* MockSearchMarketeRepository.swift in Sources */,
 				A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */,
+				024515D529B9C67E0013B54C /* MockMarketPriceUseCase.swift in Sources */,
+				024515E529BA42880013B54C /* RequestBuilderTest.swift in Sources */,
+				024515D829B9CCBB0013B54C /* MockMarketPriceRepository.swift in Sources */,
+				02BC66A029B8E3C000785196 /* MainViewModelTest.swift in Sources */,
+				024515DF29BA14580013B54C /* MockSearchMarketUsecase.swift in Sources */,
+				024515CA29B9B5AB0013B54C /* DummyEndpoint.swift in Sources */,
+				02BC669B29B8D8C200785196 /* SearchMarketTest.swift in Sources */,
+				024515E329BA16FF0013B54C /* MockSearchMarketRemote.swift in Sources */,
+				024515C729B9B4840013B54C /* MarketPriceRequestTest.swift in Sources */,
+				024515E829BA47CE0013B54C /* MockNetworkTarget.swift in Sources */,
+				02BC669D29B8D94500785196 /* CoinUnitTest.swift in Sources */,
+				024515DA29B9CE3F0013B54C /* MockMarketPriceRemote.swift in Sources */,
+				02BC669929B8D25300785196 /* MarketsPriceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,7 +1193,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1119,7 +1247,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1148,7 +1276,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1184,7 +1312,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1210,7 +1338,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3KZWVBAJSN;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCryptoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1230,7 +1358,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3KZWVBAJSN;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ir.gravityapp.EasyCryptoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

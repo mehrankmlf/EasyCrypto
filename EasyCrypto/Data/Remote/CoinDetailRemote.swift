@@ -9,14 +9,14 @@ import Foundation
 import Combine
 
 protocol CoinDetailRemoteProtocol: AnyObject {
-    func fetch(id: String) -> AnyPublisher<CoinUnitDetail?, APIError>
+    func fetch(id: String) -> AnyPublisher<CoinUnit?, APIError>
 }
 
 final class CoinDetailRemote : NetworkClientManager<HttpRequest>, CoinDetailRemoteProtocol {
-    func fetch(id: String) -> AnyPublisher<CoinUnitDetail?, APIError> {
+    func fetch(id: String) -> AnyPublisher<CoinUnit?, APIError> {
         self.request(request: HttpRequest(request: CoinDetailRequest(id: id)),
                      scheduler: WorkScheduler.mainScheduler,
-                     responseObject: CoinUnitDetail?.self)
+                     responseObject: CoinUnit?.self)
     }
 }
 

@@ -32,7 +32,7 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
     private let coinDetailUsecase: CoinDetailUsecaseProtocol
     
-    @Published private(set) var coinData = CoinUnitDetail()
+    @Published private(set) var coinData = CoinUnit()
     @Published var isShowActivity : Bool = false
     
     var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()

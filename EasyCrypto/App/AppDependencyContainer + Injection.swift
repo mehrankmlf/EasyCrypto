@@ -25,3 +25,11 @@ extension DIContainer {
         register(type: CoinDetailUsecaseProtocol.self, component: CoinMarketUsecase())
     }
 }
+
+extension DIContainer {
+    func mockRegiatration() {
+        register(type: MarketPricRemoteProtocol.self, component: MarketPriceRemote())
+        register(type: MarketPricRepositoryProrocol.self, component: MarketPriceRepository())
+        register(type: MarketPriceUsecaseProtocol.self, component: MarketPriceUsecase())
+    }
+}

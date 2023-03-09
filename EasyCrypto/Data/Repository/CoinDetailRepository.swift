@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 protocol CoinDetailRepositoryProtocol {
-    func data(id: String) -> AnyPublisher<CoinUnitDetail?, APIError>
+    func data(id: String) -> AnyPublisher<CoinUnit?, APIError>
 }
 
 final class CoinDetailRepository {
@@ -21,7 +21,7 @@ final class CoinDetailRepository {
 }
 
 extension CoinDetailRepository: CoinDetailRepositoryProtocol {
-    func data(id: String) -> AnyPublisher<CoinUnitDetail?, APIError> {
+    func data(id: String) -> AnyPublisher<CoinUnit?, APIError> {
         return self.service.fetch(id: id)
     }
 }

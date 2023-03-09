@@ -9,6 +9,10 @@
 import Foundation
 import Combine
 
+typealias BaseAPIProtocol = NetworkClientProtocol & DebuggerProtocol
+
+typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>
+
 protocol NetworkClientProtocol : AnyObject {
     /// Sends the given request.
     ///
@@ -29,6 +33,4 @@ protocol DebuggerProtocol {
     var debugger : BaseAPIDebuger { get }
 }
 
-typealias BaseAPIProtocol = NetworkClientProtocol & DebuggerProtocol 
 
-typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>

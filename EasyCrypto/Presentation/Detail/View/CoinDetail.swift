@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CoinDetailAreaView: View {
     
-    var item: MarketsPrice
+    let item: MarketsPrice
     
     var body: some View {
         VStack(spacing: 30) {

@@ -17,7 +17,7 @@ private struct HTTPHeader {
     static let authorization = "Authorization"
 }
 
-struct HttpRequest : RequestBuilder {
+struct HttpRequest: RequestBuilder {
 
     var baseURL: BaseURLType
     

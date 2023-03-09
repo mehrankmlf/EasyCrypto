@@ -61,7 +61,7 @@ struct MainView: Coordinatable {
                     Spacer()
                     ScrollView {
                         LazyVStack {
-                            ForEach(viewModel.marketData, id: \.coinID) { item  in
+                            ForEach(viewModel.marketData, id: \.id) { item  in
                                 CryptoCellView(item: item)
                                     .onTapGesture {
                                         self.viewModel.didTapFirst(item: item)

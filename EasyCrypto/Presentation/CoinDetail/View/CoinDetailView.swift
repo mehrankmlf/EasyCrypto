@@ -13,7 +13,7 @@ struct CoinDetailView: Coordinatable {
     
     var id: String?
     
-    var coinData: CoinUnitDetail {
+    var coinData: CoinUnit {
         return self.viewModel.coinData
     }
     

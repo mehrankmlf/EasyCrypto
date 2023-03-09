@@ -37,6 +37,5 @@ extension MarketPriceRepository: MarketPricRepositoryProrocol {
                                   page: page,
                                   sparkline: sparkline)
     }
-
 }
 

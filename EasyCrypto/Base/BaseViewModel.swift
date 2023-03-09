@@ -20,6 +20,7 @@ protocol BaseViewModelEventSource : AnyObject {
 
 protocol ViewModelService: AnyObject {
     func callWithProgress<ReturnType>(argument: AnyPublisher<ReturnType?, APIError>, callback: @escaping (_ data: ReturnType?) -> Void)
+    func callWithoutProgress<ReturnType>(argument: AnyPublisher<ReturnType?, APIError>, callback: @escaping (_ data: ReturnType?) -> Void) 
 }
 
 typealias BaseViewModel = BaseViewModelEventSource & ViewModelService

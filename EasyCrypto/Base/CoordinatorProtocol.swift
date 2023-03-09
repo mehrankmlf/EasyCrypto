@@ -20,9 +20,4 @@ protocol CoordinatorProtocol: View {
   var activeRoute: Destination? { get }
 }
 
-extension CoordinatorProtocol {
-    var url: String? {
-        return nil
-    }
-}
 

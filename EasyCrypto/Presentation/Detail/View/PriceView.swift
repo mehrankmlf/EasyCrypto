@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PriceView: View {
     
-    var item: MarketsPrice
+    let item: MarketsPrice
     
     var body: some View {
         VStack {

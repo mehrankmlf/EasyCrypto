@@ -137,7 +137,7 @@ extension MainViewModel {
                     self?.isloading = true
                 case .dismissAlert:
                     self?.isloading = false
-                case .emptyStateHandler(let title, let isShow):
+                case .emptyStateHandler(_, _):
                     self?.isloading = false
                 }
             }.store(in: subscriber)

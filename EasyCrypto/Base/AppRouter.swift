@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-// types of transitions
 enum Transition {
   case push
   case bottomSheet
   case url
 }
 
-// Manages the transitions between child routes of a certain view
 struct AppRouter<Destination: DestinationProtocol>: ViewModifier {
     
   @Binding var destination: Destination?

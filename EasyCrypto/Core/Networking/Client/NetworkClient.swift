@@ -19,7 +19,6 @@ final class NetworkClient : NetworkClientProtocol {
     let session : URLSession
     let debugger : BaseAPIDebuger
     var subscriber = Set<AnyCancellable>()
-    let retryCount: Int = 2
     
     init(session : URLSession = .shared,
          debugger : BaseAPIDebuger = BaseAPIDebuger()) {

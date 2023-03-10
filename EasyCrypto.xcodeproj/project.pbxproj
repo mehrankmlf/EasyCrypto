@@ -531,6 +531,14 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		02D8622229BBAE4500F77BC7 /* WorkScheduler */ = {
+			isa = PBXGroup;
+			children = (
+				A851A22329890C0A007F4CF9 /* WorkScheduler.swift */,
+			);
+			path = WorkScheduler;
+			sourceTree = "<group>";
+		};
 		02D986192996BC990070A7E0 /* DropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +575,7 @@
 		A803DFBA297E91BF00357A7F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				02D8622229BBAE4500F77BC7 /* WorkScheduler */,
 				02BC668C29B8852E00785196 /* SafariView */,
 				A803DFD1297E942600357A7F /* Subscriber */,
 				A8D4A10F299E105500C11107 /* Coordinatable */,
@@ -832,7 +841,6 @@
 				A851A22629890C0A007F4CF9 /* APIError.swift */,
 				A851A22729890C0B007F4CF9 /* BaseAPIDebuger.swift */,
 				A851A22529890C0A007F4CF9 /* Configuration.swift */,
-				A851A22329890C0A007F4CF9 /* WorkScheduler.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";

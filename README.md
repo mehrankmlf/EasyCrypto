@@ -1,3 +1,7 @@
 # EasyCrypto
 
-![Group](https://user-images.githubusercontent.com/24524023/224508181-cf274a1e-8b42-41f5-940a-2898ed9a78b9.png)
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/24524023/224508181-cf274a1e-8b42-41f5-940a-2898ed9a78b9.png" alt="SecurityKit" width="256" height="256">
+</p>
+
+

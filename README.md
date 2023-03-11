@@ -23,6 +23,6 @@ If your XCode 12.0 is not available, you can change `deployment target` to lower
 ## Usage
 I have explained about EasyCrypto in the form of a post on Medium.
 
-https://medium.com/@mehran.kmlf/build-a-secure-envelope-in-ios-swift-f1f0297d2562
+https://medium.com/@mehran.kmlf/clean-architecture-combine-for-swiftui-caf252c0f10c
 
 Thank you!

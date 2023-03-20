@@ -1,7 +1,7 @@
 # EasyCrypto
 
 <p align="center">
-	<img src="https://user-images.githubusercontent.com/24524023/226400418-b0833cea-9613-4e2f-a89c-f23e2cc03350.png" alt="SecurityKit" width="290" height="590">
+	<img src="https://user-images.githubusercontent.com/24524023/226400418-b0833cea-9613-4e2f-a89c-f23e2cc03350.png" alt="SecurityKit" width="490" height="590">
 </p>
 
 This project Contains Clean Architecture + Combine aprroach wich implemented with SwiftUI.

@@ -6,6 +6,13 @@
 
 This project Contains Clean Architecture + Combine aprroach wich implemented with SwiftUI.
 
+## Concepts Used Here
+
+- Clean Architecture
+- MVVM
+- Coordinator Pattern
+- Dependency Injection
+
 ## How to run
 EasyCrypto requires iOS 15.0 or later. If you are developer, you can set its deployment target to lower iOS version if needed.
 

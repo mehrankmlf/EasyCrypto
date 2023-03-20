@@ -4,7 +4,11 @@
 
 # EasyCrypto
 
-This project Contains Clean Architecture + Combine aprroach wich implemented with SwiftUI.
+This project Contains An iOS app designed using Clean Architecture and MVVM wich implemented with SwiftUI.
+
+## Description of The App
+
+This is an example of a Crypto Price application, which fetches the data using the CoinGecko services.
 
 ## Concepts Used Here
 

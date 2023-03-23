@@ -66,7 +66,6 @@
 		02BC669D29B8D94500785196 /* CoinUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669C29B8D94500785196 /* CoinUnitTest.swift */; };
 		02BC66A029B8E3C000785196 /* MainViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BC669F29B8E3C000785196 /* MainViewModelTest.swift */; };
 		02D9860E29960ECF0070A7E0 /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9860D29960ECF0070A7E0 /* View + Extension.swift */; };
-		02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D9860F29963B5C0070A7E0 /* Array + Extension.swift */; };
 		02D986122996A8880070A7E0 /* SearchMarketDataRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986112996A8880070A7E0 /* SearchMarketDataRemote.swift */; };
 		02D986142996AA320070A7E0 /* SearchMarketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986132996AA320070A7E0 /* SearchMarketRepository.swift */; };
 		02D986162996AAAE0070A7E0 /* SearchMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D986152996AAAE0070A7E0 /* SearchMarket.swift */; };
@@ -184,7 +183,6 @@
 		02BC669C29B8D94500785196 /* CoinUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUnitTest.swift; sourceTree = "<group>"; };
 		02BC669F29B8E3C000785196 /* MainViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTest.swift; sourceTree = "<group>"; };
 		02D9860D29960ECF0070A7E0 /* View + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
-		02D9860F29963B5C0070A7E0 /* Array + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Extension.swift"; sourceTree = "<group>"; };
 		02D986112996A8880070A7E0 /* SearchMarketDataRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketDataRemote.swift; sourceTree = "<group>"; };
 		02D986132996AA320070A7E0 /* SearchMarketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarketRepository.swift; sourceTree = "<group>"; };
 		02D986152996AAAE0070A7E0 /* SearchMarket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMarket.swift; sourceTree = "<group>"; };
@@ -850,7 +848,6 @@
 			children = (
 				0252F0B7299AB15B00CD0062 /* Binding+Utils.swift */,
 				02D9860D29960ECF0070A7E0 /* View + Extension.swift */,
-				02D9860F29963B5C0070A7E0 /* Array + Extension.swift */,
 				0233493A29941C8800C1A20B /* String + Extension.swift */,
 				A851A23229891243007F4CF9 /* URL + Extension.swift */,
 				A851A23729891867007F4CF9 /* HTTPURLResponse + Extension.swift */,
@@ -1038,7 +1035,6 @@
 				0252F0A5299A3AC400CD0062 /* CoinUnit.swift in Sources */,
 				02593C50298E95E800ADDA20 /* MainViewModel.swift in Sources */,
 				0233492D2993804100C1A20B /* ImageView.swift in Sources */,
-				02D9861029963B5C0070A7E0 /* Array + Extension.swift in Sources */,
 				02593C58298ED0C000ADDA20 /* BaseViewModel.swift in Sources */,
 				A803DFD7297E9F9800357A7F /* MainView.swift in Sources */,
 				A851A22B29890C0B007F4CF9 /* Configuration.swift in Sources */,

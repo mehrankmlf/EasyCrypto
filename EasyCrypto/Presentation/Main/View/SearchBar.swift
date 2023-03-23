@@ -20,7 +20,7 @@ struct SearchBar: View {
                     .background(Color.clear)
                     .foregroundColor(.white)
                     .font(FontManager.headLine_2)
-                    .placeHolder(Text("Search coins").font(FontManager.headLine_2)
+                    .placeHolder(Text(Constants.PlaceHolder.searchCoins).font(FontManager.headLine_2)
                         .foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
                     .onTapGesture(perform: {
                         isEditing = true

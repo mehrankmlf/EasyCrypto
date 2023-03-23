@@ -15,7 +15,7 @@ struct PriceView: View {
         VStack {
             HStack {
                 CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
-                Text("Global Rank")
+                Text(Constants.PlaceHolder.globalRank)
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
                 Spacer()

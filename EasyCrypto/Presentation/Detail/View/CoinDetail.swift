@@ -14,26 +14,26 @@ struct CoinDetailAreaView: View {
     var body: some View {
         VStack(spacing: 30) {
             let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
-            CoinDetailCell(title: "Market Cap",
+            CoinDetailCell(title: Constants.PlaceHolder.marketCap,
                                    price: marketCapFormat.orWhenNilOrEmpty(""))
             if let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0) {
-                CoinDetailCell(title: "Volume (24 Hours)",
+                CoinDetailCell(title: Constants.PlaceHolder.volume24,
                                        price: price24Hours)
             }
             if let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply as? NSNumber ?? 0) {
-                CoinDetailCell(title: "Circulating Supply",
+                CoinDetailCell(title: Constants.PlaceHolder.circulatingSupply,
                                price: circulatingSupply)
             }
             if let totalSupply = DecimalFormatter().string(from: item.totalSupply as? NSNumber ?? 0) {
-                CoinDetailCell(title: "Total Supply",
+                CoinDetailCell(title: Constants.PlaceHolder.totalSupply,
                                price: totalSupply)
             }
             if let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H as? NSNumber ?? 0) {
-                CoinDetailCell(title: "Low (24 Hours)",
+                CoinDetailCell(title: Constants.PlaceHolder.low24h,
                                price: low24H)
             }
             if let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H as? NSNumber ?? 0) {
-                CoinDetailCell(title: "High (24 Hours)",
+                CoinDetailCell(title: Constants.PlaceHolder.high24h,
                                price: high24H)
             }
         }

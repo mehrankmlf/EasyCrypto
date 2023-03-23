@@ -28,7 +28,7 @@ struct SortView: View {
                     .foregroundColor(Color.white.opacity(0.1))
                     .cornerRadius(5.0)
                     .overlay {
-                        Text("Market Cap Rank")
+                        Text(Constants.PlaceHolder.marketCapRank)
                             .foregroundColor(Color.white)
                             .font(FontManager.body)
                     }

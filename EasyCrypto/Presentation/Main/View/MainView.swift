@@ -22,6 +22,7 @@ struct MainView: Coordinatable {
     
     @State private var shouldShowDropdown = false
     @State private var searchText : String = ""
+    @State private var isLoading: Bool = false
     
     let subscriber = Subscriber()
     
@@ -36,7 +37,7 @@ struct MainView: Coordinatable {
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     SearchBar(text: $viewModel.searchText,
-                              isLoading: viewModel.isloading,
+                              isLoading: isLoading,
                               isEditing: $shouldShowDropdown)
                     .padding(.horizontal, 5)
                     .overlay(
@@ -57,7 +58,7 @@ struct MainView: Coordinatable {
                     )
                     .zIndex(1)
                     .padding(.top, Constant.topPadding)
-                    SortView(viewModel: self.viewModel)
+                    SortView(viewModel: self.viewModel, viewState: isLoading)
                         .padding(.top, Constant.topPadding)
                     Spacer()
                     ScrollView {
@@ -68,7 +69,7 @@ struct MainView: Coordinatable {
                                         self.viewModel.didTapFirst(item: item)
                                     }
                             }
-                            if viewModel.isloading {
+                            if isLoading {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: Constant.cornerRadius)
                                         .foregroundColor(Color.white.opacity(0.8))
@@ -79,7 +80,7 @@ struct MainView: Coordinatable {
                             }else {
                                 Color.clear
                                     .onAppear {
-                                        if !viewModel.isloading, self.viewModel.marketData.count > 0 {
+                                        if !isLoading, self.viewModel.marketData.count > 0 {
                                             self.viewModel.loadMore()
                                         }
                                     }
@@ -94,7 +95,7 @@ struct MainView: Coordinatable {
             .onAppear {
                 self.viewModel.apply(.onAppear)
             }
-        }
+        }.onAppear(perform: handleState)
     }
 }
 
@@ -102,6 +103,23 @@ extension MainView {
     enum Routes: Routing {
         case first(item: MarketsPrice)
         case second(id: String)
+    }
+}
+
+extension MainView {
+    private func handleState() {
+        self.viewModel.loadinState
+            .receive(on: WorkScheduler.mainThread)
+            .sink { state in
+                switch state {
+                case .loadStart:
+                    self.isLoading = true
+                case .dismissAlert:
+                    self.isLoading = false
+                case .emptyStateHandler(_, _):
+                    self.isLoading = false
+                }
+            }.store(in: subscriber)
     }
 }
 

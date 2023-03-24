@@ -28,7 +28,6 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         switch input {
         case .onAppear:
             self.bindData()
-            self.handleState()
             self.callFirstTime()
         }
     }
@@ -38,7 +37,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         case rankDSC
     }
 
-    let title: String = Constants.mainTitle
+    let title: String = Constants.Title.mainTitle
     
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
     private let searchMarketUsecase: SearchMarketUsecaseProtocol
@@ -46,7 +45,6 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     var page: Int = 1
     var perPage: Int = 15
 
-    @Published var isloading : Bool = false
     @Published var searchText: String = ""
     @Published private(set) var marketData: [MarketsPrice] = []
     @Published private(set) var searchData: [Coin] = []
@@ -127,19 +125,3 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     }
 }
 
-extension MainViewModel {
-    private func handleState() {
-        self.loadinState
-            .receive(on: WorkScheduler.mainThread)
-            .sink { [weak self] state in
-                switch state {
-                case .loadStart:
-                    self?.isloading = true
-                case .dismissAlert:
-                    self?.isloading = false
-                case .emptyStateHandler(_, _):
-                    self?.isloading = false
-                }
-            }.store(in: subscriber)
-    }
-}

@@ -25,7 +25,6 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     func apply(_ input: Input) {
         switch input {
         case .onAppear(let id):
-            self.handleState()
             self.getCoinDetailData(id: id)
         }
     }
@@ -52,22 +51,5 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
             guard let data = data else {return}
             self?.coinData = data
         }
-    }
-}
-
-extension CoinDetailViewModel {
-    private func handleState() {
-        self.loadinState
-            .receive(on: WorkScheduler.mainThread)
-            .sink { [weak self] state in
-                switch state {
-                case .loadStart:
-                    self?.isShowActivity = true
-                case .dismissAlert:
-                    self?.isShowActivity = false
-                case .emptyStateHandler:
-                    self?.isShowActivity = false
-                }
-            }.store(in: subscriber)
     }
 }

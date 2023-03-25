@@ -8,7 +8,7 @@ This project Contains An iOS app designed using Clean Architecture and MVVM wich
 
 ## Description of The App
 
-This is an example of a Crypto Price application, which fetches the data using the CoinGecko services.
+EasyCrypto is a simple crypto market app, built with SwiftUI and Combine framework, retrieved data from CoinGecko free APIs that allows developers to access the market data and functionality by making requests with specific parameters to a URL. Conceptual project to present MVVM with new SwiftUI, Combine + Clean approach.
 
 ## Concepts Used Here
 

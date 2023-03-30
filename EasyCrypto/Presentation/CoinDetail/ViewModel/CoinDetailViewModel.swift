@@ -16,13 +16,13 @@ protocol DefaultCoinDetailViewModel: CoinDetailViewModelInterface, DataFlowProto
 
 final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
-    typealias InputType = Input
+    typealias InputType = _Input
     
-    enum Input {
+    enum _Input {
         case onAppear(id: String)
     }
     
-    func apply(_ input: Input) {
+    func apply(_ input: _Input) {
         switch input {
         case .onAppear(let id):
             self.getCoinDetailData(id: id)

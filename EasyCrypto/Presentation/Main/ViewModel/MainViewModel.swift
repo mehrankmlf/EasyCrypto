@@ -18,13 +18,13 @@ protocol DefaultMainViewModel: MainViewModelInterface, DataFlowProtocol  {}
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
-    typealias InputType = Input
+    typealias InputType = _Input
     
-    enum Input {
+    enum _Input {
         case onAppear
     }
     
-    func apply(_ input: Input) {
+    func apply(_ input: _Input) {
         switch input {
         case .onAppear:
             self.bindData()

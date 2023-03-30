@@ -24,7 +24,7 @@ struct MainView: Coordinatable {
     @State private var searchText : String = ""
     @State private var isLoading: Bool = false
     
-    let subscriber = Subscriber()
+    let subscriber = Cancelable()
     
     init(viewModel: MainViewModel = DIContainer.shared.inject(type: MainViewModel.self)!) {
         self.viewModel = viewModel

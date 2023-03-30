@@ -15,7 +15,7 @@ struct CoinDetailCoordinator: CoordinatorProtocol {
     @State var transition: Transition?
     let id: String
     
-    let subscriber = Subscriber()
+    let subscriber = Cancelable()
 
     var body: some View {
         mainView

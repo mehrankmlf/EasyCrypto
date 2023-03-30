@@ -7,7 +7,7 @@
 
 import Combine
 
-final class Subscriber {
+final class Cancelable {
     
     fileprivate(set) var subscriptions = Set<AnyCancellable>()
     
@@ -17,7 +17,7 @@ final class Subscriber {
 }
 
 extension AnyCancellable {
-    func store(in subscriber: Subscriber) {
+    func store(in subscriber: Cancelable) {
         subscriber.subscriptions.insert(self)
     }
 }

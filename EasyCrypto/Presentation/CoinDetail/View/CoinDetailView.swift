@@ -19,7 +19,7 @@ struct CoinDetailView: Coordinatable {
     @ObservedObject private(set) var viewModel: CoinDetailViewModel
     @State private var isLoading: Bool = false
     
-    let subscriber = Subscriber()
+    let subscriber = Cancelable()
     var id: String?
     var coinData: CoinUnit {
         return self.viewModel.coinData

@@ -1,6 +1,4 @@
-<p align="center">
-	<img src="https://user-images.githubusercontent.com/24524023/226400418-b0833cea-9613-4e2f-a89c-f23e2cc03350.png" alt="SecurityKit" width="580" height="490">
-</p>
+![GitHub Cards Preview](https://user-images.githubusercontent.com/24524023/229110358-dd04566b-eff6-4935-8fb9-ad528189d9df.png?raw=true)
 
 # EasyCrypto
 

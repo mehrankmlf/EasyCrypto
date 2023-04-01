@@ -56,7 +56,18 @@ extension CoreDataSaveProtocol {
     }
 }
 
-protocol CoreDataManagerProtocol: EntityCreating, CoreDataFetchProtocol, CoreDataSaveProtocol {
+protocol CoreDataDeleteModelPublishing {
+    var viewContext: NSManagedObjectContext { get }
+    func publicher(delete request: NSFetchRequest<NSFetchRequestResult>) -> CoreDataDeleteModelPublisher
+}
+
+extension CoreDataDeleteModelPublishing {
+    func publicher(delete request: NSFetchRequest<NSFetchRequestResult>) -> CoreDataDeleteModelPublisher {
+        return CoreDataDeleteModelPublisher(delete: request, context: viewContext)
+    }
+}
+
+protocol CoreDataManagerProtocol: EntityCreating, CoreDataFetchProtocol, CoreDataSaveProtocol, CoreDataDeleteModelPublishing {
     var viewContext: NSManagedObjectContext { get }
 }
 

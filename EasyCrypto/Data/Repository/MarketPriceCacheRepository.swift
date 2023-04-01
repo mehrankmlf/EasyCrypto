@@ -10,17 +10,9 @@ import CoreData
 import Combine
 
 protocol MarketPriceCacheRepositoryProtocol {
-    func save(name: String,
-              price: Double,
-              price24Hours: Double,
-              priceChangePercentage24H: Double,
-              totalSupply: Double,
-              marketCapRank: Int,
-              marketCap: Int,
-              low24H: Double,
-              high24H: Double,
-              circulatingSupply: Double) throws
+    func save(_ data: [MarketsPrice]) throws
     func fetch() throws -> [CoinENT]?
+    func delete() throws
 }
 
 final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
@@ -32,27 +24,38 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         self.coreDataManager = coreDataManager
     }
     
-    func save(name: String,
-              price: Double,
-              price24Hours: Double,
-              priceChangePercentage24H: Double,
-              totalSupply: Double,
-              marketCapRank: Int,
-              marketCap: Int,
-              low24H: Double,
-              high24H: Double,
-              circulatingSupply: Double) {
+    func save(_ data: [MarketsPrice]) {
+
         let action: Action = {
-            let coin: CoinENT = self.coreDataManager.createEntity()
-            coin.name = name
-            coin.price = price
-            coin.priceChange24H = price
-            coin.priceChangePercentage24H = priceChangePercentage24H
-            coin.totalSupply = totalSupply
-            coin.marketCapRank = Int16(marketCapRank)
-            coin.marketCap = Int16(marketCap)
-            coin.low24H = low24H
-            coin.high24H = high24H
+            let fetchRequest: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "name = %@", "name")
+            let results = try? self.coreDataManager.viewContext.fetch(fetchRequest)
+            if let results = results?.first {
+                for item in data {
+                    results.name = item.name
+                    results.price = item.currentPrice ?? 0
+                    results.priceChange24H = item.priceChange24H ?? 0
+                    results.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
+                    results.totalSupply = item.totalSupply ?? 0
+                    results.marketCapRank = Int64(item.marketCapRank ?? 0)
+                    results.marketCap = Int64(item.marketCap ?? 0)
+                    results.low24H = item.low24H ?? 0
+                    results.high24H = item.high24H ?? 0
+                }
+            }else{
+                for item in data {
+                    let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
+                    coin.setValue(item.name, forKey: "name")
+                    coin.setValue(item.currentPrice, forKey: "price")
+                    coin.setValue(item.priceChange24H, forKey: "priceChange24H")
+                    coin.setValue(item.priceChangePercentage24H, forKey: "priceChangePercentage24H")
+                    coin.setValue(item.totalSupply, forKey: "totalSupply")
+                    coin.setValue(item.marketCapRank, forKey: "marketCapRank")
+                    coin.setValue(item.marketCap, forKey: "marketCap")
+                    coin.setValue(item.low24H, forKey: "low24H")
+                    coin.setValue(item.high24H, forKey: "high24H")
+                }
+            }
         }
         self.coreDataManager
             .publisher(save: action)
@@ -86,6 +89,21 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                 outPut.append(contentsOf: value)
             }.store(in: subscriber)
         return outPut
+    }
+    
+    func delete() throws {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
+        self.coreDataManager
+            .publicher(delete: request)
+            .sinkOnMain { completion in
+                switch completion {
+                case .failure(let error):
+                    log("Saving Failure: \(error)")
+                case .finished:
+                    log("Completion")
+                }
+            } receiveValue: { _ in }
+            .store(in: subscriber)
     }
 }
 

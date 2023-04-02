@@ -18,6 +18,7 @@
 		0233493729939D9200C1A20B /* DataFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493629939D9200C1A20B /* DataFlowProtocol.swift */; };
 		0233493929941A8600C1A20B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493829941A8600C1A20B /* DetailView.swift */; };
 		0233493B29941C8800C1A20B /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233493A29941C8800C1A20B /* String + Extension.swift */; };
+		023954C829D96AA200DE6E59 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023954C729D96AA200DE6E59 /* DetailViewModel.swift */; };
 		024515C729B9B4840013B54C /* MarketPriceRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */; };
 		024515CA29B9B5AB0013B54C /* DummyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515C929B9B5AB0013B54C /* DummyEndpoint.swift */; };
 		024515D529B9C67E0013B54C /* MockMarketPriceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */; };
@@ -145,6 +146,7 @@
 		0233493629939D9200C1A20B /* DataFlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowProtocol.swift; sourceTree = "<group>"; };
 		0233493829941A8600C1A20B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0233493A29941C8800C1A20B /* String + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		023954C729D96AA200DE6E59 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRequestTest.swift; sourceTree = "<group>"; };
 		024515C929B9B5AB0013B54C /* DummyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyEndpoint.swift; sourceTree = "<group>"; };
 		024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceUseCase.swift; sourceTree = "<group>"; };
@@ -324,6 +326,14 @@
 				0233493629939D9200C1A20B /* DataFlowProtocol.swift */,
 			);
 			path = DataFlow;
+			sourceTree = "<group>";
+		};
+		023954C629D95F6000DE6E59 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				023954C729D96AA200DE6E59 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		024515C529B9B4400013B54C /* Networking */ = {
@@ -707,6 +717,7 @@
 		A803DFD5297E9F8600357A7F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				023954C629D95F6000DE6E59 /* ViewModel */,
 				0252F0A7299A44EF00CD0062 /* View */,
 			);
 			path = Detail;
@@ -752,6 +763,7 @@
 				A803DFBA297E91BF00357A7F /* Core */,
 				A803DFBB297E91C600357A7F /* Data */,
 				A803DFBC297E91CF00357A7F /* Domain */,
+				A803DFBD297E91E000357A7F /* Presentation */,
 				02BC669529B88E5C00785196 /* Resource */,
 				A81742C8297E593D00023B28 /* Preview Content */,
 			);
@@ -800,7 +812,6 @@
 				02593C4B298E90EF00ADDA20 /* MarketPriceUsecase.swift */,
 				02D986172996AD5E0070A7E0 /* SearchMarketUsecase.swift */,
 				0252F0B2299A4B4000CD0062 /* CoinMarketUsecase.swift */,
-				A803DFBD297E91E000357A7F /* Presentation */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -1089,6 +1100,7 @@
 				02BC668529B8836900785196 /* SortView.swift in Sources */,
 				A851A20C29890B4D007F4CF9 /* NetworkClientProtocol.swift in Sources */,
 				02BC668E29B8853C00785196 /* SafariView.swift in Sources */,
+				023954C829D96AA200DE6E59 /* DetailViewModel.swift in Sources */,
 				0252F0AA299A450B00CD0062 /* CoinDetailViewModel.swift in Sources */,
 				02593C40298E63FC00ADDA20 /* FontNameManager.swift in Sources */,
 				A803DFC9297E93B700357A7F /* FontManager.swift in Sources */,

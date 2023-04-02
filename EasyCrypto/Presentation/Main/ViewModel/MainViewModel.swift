@@ -46,9 +46,9 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     var perPage: Int = 15
 
     @Published var searchText: String = ""
+    @Published var rankSort: SortType = .rankASC
     @Published private(set) var marketData: [MarketsPrice] = []
     @Published private(set) var searchData: [Coin] = []
-    @Published var rankSort: SortType = .rankASC
     
     var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
     

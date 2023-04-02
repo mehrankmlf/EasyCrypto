@@ -17,7 +17,6 @@ extension DIContainer {
         register(type: MarketPriceCacheRepositoryProtocol.self, component: MarketPriceCacheRepository())
         register(type: MarketPriceUsecaseProtocol.self, component: MarketPriceUsecase())
         
-
        // Search Market
         register(type: SearchMarketDataRemoteProtocol.self, component: SearchMarketDataRemote())
         register(type: SearchMarketRepositoryProtocol.self, component: SearchMarketRepository())

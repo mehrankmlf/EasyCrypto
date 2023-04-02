@@ -39,10 +39,15 @@ final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
                                              per_page: per_page,
                                              page: page,
                                              sparkline: sparkline)
-            .handleEvents(receiveOutput: {
-                _ = try? self.persistance.delete()
+             .handleEvents(receiveOutput: {_ in 
+                do {
+                    let a = try? self.persistance.fetch()
+                    print(a)
+                }catch {
+                    
+                }
+               
 //                _ = try? self.persistance.save($0 ?? [])
-                print($0)
             })
         ).eraseToAnyPublisher()
     }

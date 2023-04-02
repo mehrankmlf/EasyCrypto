@@ -12,6 +12,7 @@ import Combine
 protocol MarketPriceCacheRepositoryProtocol {
     func save(_ data: [MarketsPrice]) throws
     func fetch() throws -> [CoinENT]?
+    func fetchItem(_ name: String) -> CoinENT?
     func delete() throws
 }
 
@@ -25,25 +26,19 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
     }
     
     func save(_ data: [MarketsPrice]) {
-
         let action: Action = {
-            let fetchRequest: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "name = %@", "name")
-            let results = try? self.coreDataManager.viewContext.fetch(fetchRequest)
-            if let results = results?.first {
-                for item in data {
-                    results.name = item.name
-                    results.price = item.currentPrice ?? 0
-                    results.priceChange24H = item.priceChange24H ?? 0
-                    results.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
-                    results.totalSupply = item.totalSupply ?? 0
-                    results.marketCapRank = Int64(item.marketCapRank ?? 0)
-                    results.marketCap = Int64(item.marketCap ?? 0)
-                    results.low24H = item.low24H ?? 0
-                    results.high24H = item.high24H ?? 0
-                }
-            }else{
-                for item in data {
+            for item in data {
+                if let name = item.name, let matchData = self.findByID(name) {
+                    matchData.name = item.name
+                    matchData.price = item.currentPrice ?? 0
+                    matchData.priceChange24H = item.priceChange24H ?? 0
+                    matchData.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
+                    matchData.totalSupply = item.totalSupply ?? 0
+                    matchData.marketCapRank = Int64(item.marketCapRank ?? 0)
+                    matchData.marketCap = Int64(item.marketCap ?? 0)
+                    matchData.low24H = item.low24H ?? 0
+                    matchData.high24H = item.high24H ?? 0
+                }else{
                     let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
                     coin.setValue(item.name, forKey: "name")
                     coin.setValue(item.currentPrice, forKey: "price")
@@ -91,6 +86,13 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         return outPut
     }
     
+    func fetchItem(_ name: String) -> CoinENT? {
+        if let matchData = findByID(name) {
+            return matchData
+        }
+        return nil
+    }
+    
     func delete() throws {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
         self.coreDataManager
@@ -107,9 +109,26 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
     }
 }
 
-enum AverageCalculationError: Error {
-    case noProducts
-    case productWithNoPrice
+extension MarketPriceCacheRepository {
+    func findByID(_ matchID: String) -> CoinENT? {
+        let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
+        let idPredicate = NSPredicate(format: "name == %@", matchID)
+        request.predicate = idPredicate
+        var result: [AnyObject]?
+        var coinENT: CoinENT? = nil
+        do {
+            result = try self.coreDataManager.viewContext.fetch(request)
+        } catch let error as NSError {
+            NSLog("Error getting match: \(error)")
+            result = nil
+        }
+        if result != nil {
+            for resultItem : AnyObject in result! {
+                coinENT = resultItem as? CoinENT
+            }
+        }
+        return coinENT
+    }
 }
 
 

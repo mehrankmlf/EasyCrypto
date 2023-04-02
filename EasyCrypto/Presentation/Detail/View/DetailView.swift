@@ -9,7 +9,9 @@ import SwiftUI
 
 struct DetailView: View {
     
-    var item: MarketsPrice
+    var id: String
+    
+    @ObservedObject private(set) var viewModel: DetailViewModel
     
     enum Constant {
         static let spacing: CGFloat = 30
@@ -20,25 +22,25 @@ struct DetailView: View {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: Constant.spacing) {
-                PriceView(item: item)
+                PriceView(item: id)
                     .padding(.horizontal)
                     .padding(.top)
                 Divider()
                     .background(Color.white.opacity(0.5))
                     .padding(.horizontal)
-                CoinDetailAreaView(item: item)
+                CoinDetailAreaView(item: id)
                 Spacer()
             }
             .padding(.top)
         }
-        .navigationBarTitle(item.name.orWhenNilOrEmpty(""), displayMode: .inline)
+        .navigationBarTitle(id.name.orWhenNilOrEmpty(""), displayMode: .inline)
         .navigationBarColor(backgroundColor: .clear, titleColor: .white)
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(item: MarketsPrice.mock)
+        DetailView(id: MarketsPrice.mock)
     }
 }
 

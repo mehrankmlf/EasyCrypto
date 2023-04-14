@@ -9,38 +9,49 @@ import SwiftUI
 
 struct DetailView: View {
     
-    var id: String
-    
-    @ObservedObject private(set) var viewModel: DetailViewModel
-    
     enum Constant {
         static let spacing: CGFloat = 30
+    }
+    
+    @StateObject var viewModel: DetailViewModel = DetailViewModel()
+    
+    var item: MarketsPrice?
+    
+    init(item: MarketsPrice? = nil) {
+        self.item = item
     }
     
     var body: some View {
         ZStack {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack(spacing: Constant.spacing) {
-                PriceView(item: id)
-                    .padding(.horizontal)
-                    .padding(.top)
-                Divider()
-                    .background(Color.white.opacity(0.5))
-                    .padding(.horizontal)
-                CoinDetailAreaView(item: id)
-                Spacer()
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: Constant.spacing) {
+                    if let item = self.item {
+                        PriceView(item: item, viewModel: viewModel)
+                            .padding(.horizontal)
+                            .padding(.top)
+                    }
+                    Divider()
+                        .background(Color.white.opacity(0.5))
+                        .padding(.horizontal)
+                    
+                    if let item = self.item {
+                        CoinDetailAreaView(item: item)
+                    }
+                    Spacer()
+                }
+                .padding(.top)
             }
-            .padding(.top)
         }
-        .navigationBarTitle(id.name.orWhenNilOrEmpty(""), displayMode: .inline)
-        .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+        .navigationBarTitle(viewModel.title, displayMode: .inline)
+        .navigationBarColor(backgroundColor: Color.darkBlue.uiColor(), titleColor: .white)
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(id: MarketsPrice.mock)
+        DetailView(item: MarketsPrice.mock)
     }
 }
 

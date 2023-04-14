@@ -13,6 +13,7 @@ enum Constants {
     }
     enum Title {
         static let mainTitle: String = "EasyCrypto"
+        static let detailTitle: String = "Coin Detail"
     }
     enum PlaceHolder {
         static let searchCoins: String = "Search coins"

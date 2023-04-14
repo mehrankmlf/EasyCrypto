@@ -33,22 +33,10 @@ final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
                  per_page: Int,
                  page: Int,
                  sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError> {
-        return AnyPublisher (
-             self.marketPriceRepository.data(vs_currency: vs_currency,
-                                             order: order,
-                                             per_page: per_page,
-                                             page: page,
-                                             sparkline: sparkline)
-             .handleEvents(receiveOutput: {_ in 
-                do {
-                    let a = try? self.persistance.fetch()
-                    print(a)
-                }catch {
-                    
-                }
-               
-//                _ = try? self.persistance.save($0 ?? [])
-            })
-        ).eraseToAnyPublisher()
+            self.marketPriceRepository.data(vs_currency: vs_currency,
+                                            order: order,
+                                            per_page: per_page,
+                                            page: page,
+                                            sparkline: sparkline)
     }
 }

@@ -13,4 +13,6 @@ enum Assets {
     static let back: String = "Back"
     static let hashtag: String = "Hashtag"
     static let coinGeckod: String = "CoinGecko"
+    static let unsave: String = "unsave"
+    static let save: String = "save"
 }

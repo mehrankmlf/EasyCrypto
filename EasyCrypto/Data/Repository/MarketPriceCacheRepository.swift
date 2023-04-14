@@ -10,14 +10,15 @@ import CoreData
 import Combine
 
 protocol MarketPriceCacheRepositoryProtocol {
-    func save(_ data: [MarketsPrice]) throws
+    func save(_ data: MarketsPrice) throws
     func fetch() throws -> [CoinENT]?
     func fetchItem(_ name: String) -> CoinENT?
-    func delete() throws
+    func findByID(_ matchID: String) -> CoinENT?
+    func delete(_ name: String) throws
 }
 
 final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
-    
+
     let coreDataManager: CoreDataManagerProtocol
     let subscriber = Cancelable()
     
@@ -25,9 +26,8 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         self.coreDataManager = coreDataManager
     }
     
-    func save(_ data: [MarketsPrice]) {
+    func save(_ item: MarketsPrice) {
         let action: Action = {
-            for item in data {
                 if let name = item.name, let matchData = self.findByID(name) {
                     matchData.name = item.name
                     matchData.price = item.currentPrice ?? 0
@@ -50,7 +50,6 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                     coin.setValue(item.low24H, forKey: "low24H")
                     coin.setValue(item.high24H, forKey: "high24H")
                 }
-            }
         }
         self.coreDataManager
             .publisher(save: action)
@@ -93,20 +92,20 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         return nil
     }
     
-    func delete() throws {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
-        self.coreDataManager
-            .publicher(delete: request)
-            .sinkOnMain { completion in
-                switch completion {
-                case .failure(let error):
-                    log("Saving Failure: \(error)")
-                case .finished:
-                    log("Completion")
-                }
-            } receiveValue: { _ in }
-            .store(in: subscriber)
-    }
+//    func delete() throws {
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
+//        self.coreDataManager
+//            .publicher(delete: request)
+//            .sinkOnMain { completion in
+//                switch completion {
+//                case .failure(let error):
+//                    log("Saving Failure: \(error)")
+//                case .finished:
+//                    log("Completion")
+//                }
+//            } receiveValue: { _ in }
+//            .store(in: subscriber)
+//    }
 }
 
 extension MarketPriceCacheRepository {
@@ -128,6 +127,21 @@ extension MarketPriceCacheRepository {
             }
         }
         return coinENT
+    }
+    
+    func delete(_ name: String) throws {
+        let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
+        let idPredicate = NSPredicate(format: "name == %@", name)
+        request.predicate = idPredicate
+        do {
+            let objects = try self.coreDataManager.viewContext.fetch(request)
+            for object in objects {
+                self.coreDataManager.viewContext.delete(object)
+            }
+            try self.coreDataManager.viewContext.save()
+        } catch _ {
+            // error handling
+        }
     }
 }
 

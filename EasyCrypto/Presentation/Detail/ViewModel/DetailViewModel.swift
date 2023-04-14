@@ -7,32 +7,31 @@
 
 import Foundation
 
-final class DetailViewModel: ObservableObject, DataFlowProtocol {
-    
-    typealias InputType = _Input
-    
-    enum _Input {
-        case onAppear
-    }
-    
-    func apply(_ input: _Input) {
-        switch input {
-        case .onAppear:
-            self.fetchMarketPrice()
-        }
-    }
-    
-    
-    @Published var data: MarketsPrice?
+final class DetailViewModel: ObservableObject {
+
+    let title: String = Constants.Title.detailTitle
+    @Published var marketPrice = MarketsPrice()
     
     private let repository: MarketPriceCacheRepositoryProtocol
     
-    init(repository: MarketPriceCacheRepository = DIContainer.shared.inject(type: MarketPriceCacheRepository.self)!) {
+    init(repository: MarketPriceCacheRepositoryProtocol = DIContainer.shared.inject(type: MarketPriceCacheRepositoryProtocol.self)!) {
         self.repository = repository
     }
     
-    func fetchMarketPrice(_ name: String) {
-        guard let item = self.repository.fetchItem(name) else {return}
-        item.
+    func addToWishlist(_ data: MarketsPrice) {
+        _ = try! self.repository.save(data)
+    }
+    
+    func deleteFromWishlist(_ data: MarketsPrice) {
+        guard let name = data.name else {return}
+        _ = try! self.repository.delete(name)
+    }
+    
+    func checkIfItemExist(_ data: MarketsPrice) -> Bool {
+        guard let name = data.name else {return false}
+        if let _ = repository.fetchItem(name) {
+            return true
+        }
+        return false
     }
 }

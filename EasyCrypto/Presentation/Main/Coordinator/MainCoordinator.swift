@@ -41,8 +41,8 @@ extension MainCoordinator {
         @ViewBuilder
         var content: some View {
             switch route {
-            case .first(let data):
-                DetailView(id: "data", viewModel: DetailViewModel())
+            case .first(let item):
+                DetailView(item: item)
             case .second(let data):
                 CoinDetailCoordinator(viewModel: CoinDetailViewModel(), id: data)
             }

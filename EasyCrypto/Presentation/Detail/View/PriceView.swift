@@ -10,6 +10,9 @@ import SwiftUI
 struct PriceView: View {
     
     let item: MarketsPrice
+    var viewModel: DetailViewModel
+    
+    @State var isPersist: Bool = false
     
     var body: some View {
         VStack {
@@ -18,6 +21,20 @@ struct PriceView: View {
                 Text(Constants.PlaceHolder.globalRank)
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
+                Spacer()
+                Button {
+                    self.handleDataPersistance(item: item)
+                } label: {
+                    Image(isPersist ? Assets.save : Assets.unsave)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20.0, height: 20.0)
+                }
+            }
+            HStack {
+                Text(item.name.orWhenNilOrEmpty(""))
+                    .foregroundColor(Color.white)
+                    .font(FontManager.headLine)
                 Spacer()
             }
             HStack {
@@ -38,6 +55,18 @@ struct PriceView: View {
                     Spacer()
                 }
             }
+        }
+        .onAppear {
+            self.isPersist = self.viewModel.checkIfItemExist(item)
+        }
+    }
+    func handleDataPersistance(item: MarketsPrice) {
+        if isPersist {
+            self.isPersist = false
+            self.viewModel.deleteFromWishlist(item)
+        }else{
+            self.isPersist = true
+            self.viewModel.addToWishlist(item)
         }
     }
 }

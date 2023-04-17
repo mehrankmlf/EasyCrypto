@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import CoreData
 
-
 struct CoreDataPublisher<T>: Publisher where T: NSManagedObject, T: Codable {
     
     typealias Output = [T]

@@ -113,7 +113,7 @@ struct MainView: Coordinatable {
         ScrollView {
             if let data = viewModel.wishListData {
                 LazyVStack {
-                    ForEach(data, id: \.id) { item  in
+                    ForEach(data, id: \.name) { item  in
                         CryptoCellView(item: item)
                             .onTapGesture {
                                 self.viewModel.didTapFirst(item: item)

@@ -18,7 +18,6 @@ final class WorkScheduler {
     }()
 
     static let mainScheduler = RunLoop.main
-    
     static let mainThread = DispatchQueue.main
 }
 

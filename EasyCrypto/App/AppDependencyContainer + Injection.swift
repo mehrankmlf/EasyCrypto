@@ -26,6 +26,5 @@ extension DIContainer {
         register(type: CoinDetailRemoteProtocol.self, component: CoinDetailRemote())
         register(type: CoinDetailRepositoryProtocol.self, component: CoinDetailRepository())
         register(type: CoinDetailUsecaseProtocol.self, component: CoinMarketUsecase())
-    
     }
 }

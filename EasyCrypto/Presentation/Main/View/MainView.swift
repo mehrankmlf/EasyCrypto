@@ -36,8 +36,8 @@ struct MainView: Coordinatable {
                 Color.darkBlue
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    SearchBar(text: $viewModel.searchText,
-                              isLoading: isLoading,
+                    SearchBar(isLoading: isLoading,
+                              text: $viewModel.searchText,
                               isEditing: $shouldShowDropdown)
                     .padding(.horizontal, 5)
                     .overlay(

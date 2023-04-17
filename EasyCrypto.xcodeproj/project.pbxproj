@@ -81,6 +81,7 @@
 		02E0D28629E68C5900171D7C /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E0D28529E68C5900171D7C /* Color + Extension.swift */; };
 		02F1EEF429CDAE0E003AD8A9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1EEF329CDAE0E003AD8A9 /* CoreDataManager.swift */; };
 		02F1EEF629CDAE72003AD8A9 /* CoreDataPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F1EEF529CDAE72003AD8A9 /* CoreDataPublisher.swift */; };
+		4556FF6A29ED19E400C62B2E /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4556FF6929ED19E400C62B2E /* TabItemView.swift */; };
 		A803DFC4297E92D000357A7F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC3297E92D000357A7F /* Color.swift */; };
 		A803DFC9297E93B700357A7F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC5297E93B600357A7F /* FontManager.swift */; };
 		A803DFD3297E943100357A7F /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD2297E943100357A7F /* Cancelable.swift */; };
@@ -208,6 +209,7 @@
 		02E0D28529E68C5900171D7C /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
 		02F1EEF329CDAE0E003AD8A9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		02F1EEF529CDAE72003AD8A9 /* CoreDataPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPublisher.swift; sourceTree = "<group>"; };
+		4556FF6929ED19E400C62B2E /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A803DFC3297E92D000357A7F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A803DFC5297E93B600357A7F /* FontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
@@ -595,6 +597,14 @@
 			path = DropDown;
 			sourceTree = "<group>";
 		};
+		4556FF6829ED19D200C62B2E /* TabItemView */ = {
+			isa = PBXGroup;
+			children = (
+				4556FF6929ED19E400C62B2E /* TabItemView.swift */,
+			);
+			path = TabItemView;
+			sourceTree = "<group>";
+		};
 		A803DFB7297E918900357A7F /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +618,7 @@
 		A803DFB9297E91AF00357A7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4556FF6829ED19D200C62B2E /* TabItemView */,
 				02BC668129B8833200785196 /* ActivityIndicator */,
 				02BC667829B881DB00785196 /* ViewModifier */,
 				028D127D29B50BBC00F7874D /* AlertView */,
@@ -1135,6 +1146,7 @@
 				02D986182996AD5E0070A7E0 /* SearchMarketUsecase.swift in Sources */,
 				0250EA7229B2826600AA6040 /* UIScreen + Extension.swift in Sources */,
 				02D986122996A8880070A7E0 /* SearchMarketDataRemote.swift in Sources */,
+				4556FF6A29ED19E400C62B2E /* TabItemView.swift in Sources */,
 				02BC667729B8808D00785196 /* Optional + Extension.swift in Sources */,
 				02593C4A298E8D1200ADDA20 /* MarketsPrice.swift in Sources */,
 				022A25F329980CD7008368B1 /* Int + Extension.swift in Sources */,

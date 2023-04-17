@@ -25,7 +25,6 @@ struct SearchBar: View {
                     .onTapGesture(perform: {
                         isEditing = true
                     })
-                
                 if !text.isEmpty {
                     if isLoading {
                         Button(action: {
@@ -37,7 +36,6 @@ struct SearchBar: View {
                                 }
                         })
                         .frame(width: 35, height: 35)
-                        
                     } else {
                         Button(action: {
                             text = ""
@@ -51,7 +49,7 @@ struct SearchBar: View {
                     }
                 }
             }.padding(.horizontal)
-                .frame(height: 40.0)
+             .frame(height: 40.0)
         }
     }
 }

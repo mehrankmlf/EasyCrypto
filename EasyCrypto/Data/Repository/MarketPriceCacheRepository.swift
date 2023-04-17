@@ -11,7 +11,7 @@ import Combine
 
 protocol MarketPriceCacheRepositoryProtocol {
     func save(_ data: MarketsPrice) throws
-    func fetch() throws -> [CoinENT]?
+    func fetch() -> [CoinENT]?
     func fetchItem(_ name: String) -> CoinENT?
     func findByID(_ matchID: String) -> CoinENT?
     func delete(_ name: String) throws
@@ -29,6 +29,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
     func save(_ item: MarketsPrice) {
         let action: Action = {
                 if let name = item.name, let matchData = self.findByID(name) {
+                    matchData.image = item.image
                     matchData.name = item.name
                     matchData.price = item.currentPrice ?? 0
                     matchData.priceChange24H = item.priceChange24H ?? 0
@@ -40,6 +41,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                     matchData.high24H = item.high24H ?? 0
                 }else{
                     let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
+                    coin.setValue(item.image, forKey: "image")
                     coin.setValue(item.name, forKey: "name")
                     coin.setValue(item.currentPrice, forKey: "price")
                     coin.setValue(item.priceChange24H, forKey: "priceChange24H")
@@ -67,12 +69,12 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
             }.store(in: subscriber)
     }
     
-    func fetch() throws -> [CoinENT]? {
-        let request = NSFetchRequest<CoinENT>(entityName: CoinENT.entityName)
-        var outPut: [CoinENT] = []
+    func fetch() -> [CoinENT]? {
+        let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
+        var output: [CoinENT] = []
         self.coreDataManager
             .publicher(fetch: request)
-            .sinkOnMain { completion in
+            .sink { completion in
                 switch completion {
                 case .failure(let error):
                     log("Saving Failure: \(error)")
@@ -80,9 +82,9 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                     log("Completion")
                 }
             } receiveValue: { value in
-                outPut.append(contentsOf: value)
+                output.append(contentsOf: value)
             }.store(in: subscriber)
-        return outPut
+        return output
     }
     
     func fetchItem(_ name: String) -> CoinENT? {

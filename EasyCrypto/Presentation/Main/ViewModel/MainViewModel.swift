@@ -129,10 +129,12 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     }
     
     func fetchWishlist() {
+    self.wishListData = []
        let _ = self.cacherepository.fetch()
             .map({ items in
             items.forEach { coin in
-                self.wishListData.append(MarketsPrice(name: coin.name,
+                self.wishListData.append(MarketsPrice(symbol: coin.symbol,
+                                                      name: coin.name,
                                                       image: coin.image,
                                                       currentPrice: coin.price,
                                                       marketCap: Int(coin.marketCap),

@@ -14,6 +14,8 @@ struct MainCoordinator: CoordinatorProtocol {
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
     @State var transition: Transition?
     
+    @State private var isLoaded: Bool = Bool()
+    
     let subscriber = Cancelable()
 
     var body: some View {

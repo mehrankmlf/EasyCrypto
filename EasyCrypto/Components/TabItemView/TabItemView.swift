@@ -16,7 +16,7 @@ struct TabItemView: View {
                 HStack {
                     ForEach(titles.indices) {id in
                         let title = Text(titles[id]).id(id)
-                            .font(FontManager.headLine)
+                            .font(FontManager.headLine_2)
                             .onTapGesture {
                                 withAnimation() {
                                     index = id

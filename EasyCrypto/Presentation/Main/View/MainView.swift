@@ -69,7 +69,8 @@ struct MainView: Coordinatable {
                         }else{
                             whishList()
                         }
-                    }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     Spacer()
                 }
             }
@@ -111,18 +112,17 @@ struct MainView: Coordinatable {
     }
     func whishList() -> some View {
         ScrollView {
-            if let data = viewModel.wishListData {
-                LazyVStack {
-                    ForEach(data, id: \.name) { item  in
-                        CryptoCellView(item: item)
-                            .onTapGesture {
-                                self.viewModel.didTapFirst(item: item)
-                            }
-                    }
+            VStack {
+                ForEach(viewModel.wishListData, id: \.symbol) { item  in
+                    CryptoCellView(item: item)
+                        .onTapGesture {
+                            self.viewModel.didTapFirst(item: item)
+                        }
                 }
-                .padding()
             }
+            .padding()
         }.onAppear {
+            
             self.viewModel.fetchWishlist()
         }
     }

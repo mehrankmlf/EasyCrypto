@@ -31,6 +31,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                 if let name = item.name, let matchData = self.findByID(name) {
                     matchData.image = item.image
                     matchData.name = item.name
+                    matchData.symbol = item.symbol
                     matchData.price = item.currentPrice ?? 0
                     matchData.priceChange24H = item.priceChange24H ?? 0
                     matchData.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
@@ -43,6 +44,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                     let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
                     coin.setValue(item.image, forKey: "image")
                     coin.setValue(item.name, forKey: "name")
+                    coin.setValue(item.symbol, forKey: "symbol")
                     coin.setValue(item.currentPrice, forKey: "price")
                     coin.setValue(item.priceChange24H, forKey: "priceChange24H")
                     coin.setValue(item.priceChangePercentage24H, forKey: "priceChangePercentage24H")

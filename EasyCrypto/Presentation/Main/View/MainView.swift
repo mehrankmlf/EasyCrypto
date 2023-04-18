@@ -122,7 +122,6 @@ struct MainView: Coordinatable {
             }
             .padding()
         }.onAppear {
-            
             self.viewModel.fetchWishlist()
         }
     }

@@ -129,23 +129,23 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     }
     
     func fetchWishlist() {
-    self.wishListData = []
-       let _ = self.cacherepository.fetch()
+        self.wishListData = []
+        let _ = self.cacherepository.fetch()
             .map({ items in
-            items.forEach { coin in
-                self.wishListData.append(MarketsPrice(symbol: coin.symbol,
-                                                      name: coin.name,
-                                                      image: coin.image,
-                                                      currentPrice: coin.price,
-                                                      marketCap: Int(coin.marketCap),
-                                                      marketCapRank: Int(coin.marketCapRank),
-                                                      high24H: coin.high24H,
-                                                      low24H: coin.low24H,
-                                                      priceChange24H: coin.priceChange24H,
-                                                      priceChangePercentage24H: coin.priceChangePercentage24H,
-                                                      totalSupply: coin.totalSupply))
-            }
-        })
+                items.forEach { coin in
+                    self.wishListData.append(MarketsPrice(symbol: coin.symbol,
+                                                          name: coin.name,
+                                                          image: coin.image,
+                                                          currentPrice: coin.price,
+                                                          marketCap: Int(coin.marketCap),
+                                                          marketCapRank: Int(coin.marketCapRank),
+                                                          high24H: coin.high24H,
+                                                          low24H: coin.low24H,
+                                                          priceChange24H: coin.priceChange24H,
+                                                          priceChangePercentage24H: coin.priceChangePercentage24H,
+                                                          totalSupply: coin.totalSupply))
+                }
+            })
     }
 }
 

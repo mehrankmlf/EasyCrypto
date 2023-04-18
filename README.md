@@ -1,4 +1,4 @@
-![GitHub Cards Preview](https://user-images.githubusercontent.com/24524023/229110358-dd04566b-eff6-4935-8fb9-ad528189d9df.png?raw=true)
+![GitHub Cards Preview](https://user-images.githubusercontent.com/24524023/232792000-f2265938-f65a-44ac-b4a1-f7777967a7ab.png?raw=true)
 
 # EasyCrypto
 

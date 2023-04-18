@@ -24,7 +24,7 @@ final class DetailViewModel: ObservableObject {
     
     func deleteFromWishlist(_ data: MarketsPrice) {
         guard let name = data.name else {return}
-        _ = try! self.repository.delete(name)
+        _ = try! self.repository.deleteByID(name)
     }
     
     func checkIfItemExist(_ data: MarketsPrice) -> Bool {

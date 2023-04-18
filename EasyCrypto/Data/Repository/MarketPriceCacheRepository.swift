@@ -14,11 +14,11 @@ protocol MarketPriceCacheRepositoryProtocol {
     func fetch() -> [CoinENT]?
     func fetchItem(_ name: String) -> CoinENT?
     func findByID(_ matchID: String) -> CoinENT?
-    func delete(_ name: String) throws
+    func deleteByID(_ name: String) throws
 }
 
 final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
-
+    
     let coreDataManager: CoreDataManagerProtocol
     let subscriber = Cancelable()
     
@@ -28,32 +28,32 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
     
     func save(_ item: MarketsPrice) {
         let action: Action = {
-                if let name = item.name, let matchData = self.findByID(name) {
-                    matchData.image = item.image
-                    matchData.name = item.name
-                    matchData.symbol = item.symbol
-                    matchData.price = item.currentPrice ?? 0
-                    matchData.priceChange24H = item.priceChange24H ?? 0
-                    matchData.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
-                    matchData.totalSupply = item.totalSupply ?? 0
-                    matchData.marketCapRank = Int64(item.marketCapRank ?? 0)
-                    matchData.marketCap = Int64(item.marketCap ?? 0)
-                    matchData.low24H = item.low24H ?? 0
-                    matchData.high24H = item.high24H ?? 0
-                }else{
-                    let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
-                    coin.setValue(item.image, forKey: "image")
-                    coin.setValue(item.name, forKey: "name")
-                    coin.setValue(item.symbol, forKey: "symbol")
-                    coin.setValue(item.currentPrice, forKey: "price")
-                    coin.setValue(item.priceChange24H, forKey: "priceChange24H")
-                    coin.setValue(item.priceChangePercentage24H, forKey: "priceChangePercentage24H")
-                    coin.setValue(item.totalSupply, forKey: "totalSupply")
-                    coin.setValue(item.marketCapRank, forKey: "marketCapRank")
-                    coin.setValue(item.marketCap, forKey: "marketCap")
-                    coin.setValue(item.low24H, forKey: "low24H")
-                    coin.setValue(item.high24H, forKey: "high24H")
-                }
+            if let name = item.name, let matchData = self.findByID(name) {
+                matchData.image = item.image
+                matchData.name = item.name
+                matchData.symbol = item.symbol
+                matchData.price = item.currentPrice ?? 0
+                matchData.priceChange24H = item.priceChange24H ?? 0
+                matchData.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
+                matchData.totalSupply = item.totalSupply ?? 0
+                matchData.marketCapRank = Int64(item.marketCapRank ?? 0)
+                matchData.marketCap = Int64(item.marketCap ?? 0)
+                matchData.low24H = item.low24H ?? 0
+                matchData.high24H = item.high24H ?? 0
+            }else{
+                let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
+                coin.setValue(item.image, forKey: "image")
+                coin.setValue(item.name, forKey: "name")
+                coin.setValue(item.symbol, forKey: "symbol")
+                coin.setValue(item.currentPrice, forKey: "price")
+                coin.setValue(item.priceChange24H, forKey: "priceChange24H")
+                coin.setValue(item.priceChangePercentage24H, forKey: "priceChangePercentage24H")
+                coin.setValue(item.totalSupply, forKey: "totalSupply")
+                coin.setValue(item.marketCapRank, forKey: "marketCapRank")
+                coin.setValue(item.marketCap, forKey: "marketCap")
+                coin.setValue(item.low24H, forKey: "low24H")
+                coin.setValue(item.high24H, forKey: "high24H")
+            }
         }
         self.coreDataManager
             .publisher(save: action)
@@ -79,7 +79,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    log("Saving Failure: \(error)")
+                    log("FetchData Failure: \(error)")
                 case .finished:
                     log("Completion")
                 }
@@ -96,57 +96,40 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         return nil
     }
     
-//    func delete() throws {
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
-//        self.coreDataManager
-//            .publicher(delete: request)
-//            .sinkOnMain { completion in
-//                switch completion {
-//                case .failure(let error):
-//                    log("Saving Failure: \(error)")
-//                case .finished:
-//                    log("Completion")
-//                }
-//            } receiveValue: { _ in }
-//            .store(in: subscriber)
-//    }
-}
-
-extension MarketPriceCacheRepository {
-    func findByID(_ matchID: String) -> CoinENT? {
+    func findByID(_ id: String) -> CoinENT? {
         let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
-        let idPredicate = NSPredicate(format: "name == %@", matchID)
+        let idPredicate = NSPredicate(format: "name == %@", id)
         request.predicate = idPredicate
-        var result: [AnyObject]?
-        var coinENT: CoinENT? = nil
-        do {
-            result = try self.coreDataManager.viewContext.fetch(request)
-        } catch let error as NSError {
-            NSLog("Error getting match: \(error)")
-            result = nil
-        }
-        if result != nil {
-            for resultItem : AnyObject in result! {
-                coinENT = resultItem as? CoinENT
-            }
-        }
-        return coinENT
+        var output: CoinENT?
+        self.coreDataManager
+            .publicher(fetch: request)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    log("FetchData Failure: \(error)")
+                case .finished:
+                    log("Completion")
+                }
+            } receiveValue: { value in
+                output = value.first
+            }.store(in: subscriber)
+        return output
     }
     
-    func delete(_ name: String) throws {
-        let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
+    func deleteByID(_ name: String) throws {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
         let idPredicate = NSPredicate(format: "name == %@", name)
         request.predicate = idPredicate
-        do {
-            let objects = try self.coreDataManager.viewContext.fetch(request)
-            for object in objects {
-                self.coreDataManager.viewContext.delete(object)
-            }
-            try self.coreDataManager.viewContext.save()
-        } catch _ {
-            // error handling
-        }
+        self.coreDataManager
+            .publisher(delete: request)
+            .sinkOnMain { completion in
+                switch completion {
+                case .failure(let error):
+                    log("Delete Failure: \(error)")
+                case .finished:
+                    log("Completion")
+                }
+            } receiveValue: { _ in }
+            .store(in: subscriber)
     }
 }
-
-

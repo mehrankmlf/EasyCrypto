@@ -10,6 +10,7 @@ EasyCrypto is a simple crypto market app, built with SwiftUI and Combine framewo
 
 ## Concepts Used Here
 
+- Core Data
 - Clean Architecture
 - MVVM
 - Coordinator Pattern

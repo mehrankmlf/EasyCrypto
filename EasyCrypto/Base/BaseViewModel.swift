@@ -28,7 +28,7 @@ typealias BaseViewModel = BaseViewModelEventSource & ViewModelService
 open class DefaultViewModel : BaseViewModel, ObservableObject {
     
     var loadinState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
-    let subscriber = Subscriber()
+    let subscriber = Cancelable()
     
     func callWithProgress<ReturnType>(argument: AnyPublisher<ReturnType?, APIError>, callback: @escaping (_ data: ReturnType?) -> Void) {
         self.loadinState.send(.loadStart)

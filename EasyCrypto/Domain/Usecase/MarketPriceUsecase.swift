@@ -19,9 +19,13 @@ protocol MarketPriceUsecaseProtocol : AnyObject {
 final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
     
     private let marketPriceRepository: MarketPricRepositoryProrocol
+    private let persistance: MarketPriceCacheRepositoryProtocol
+    var subscriber = Cancelable()
     
-    init(marketPriceRepository: MarketPricRepositoryProrocol = DIContainer.shared.inject(type: MarketPricRepositoryProrocol.self)!) {
+    init(marketPriceRepository: MarketPricRepositoryProrocol = DIContainer.shared.inject(type: MarketPricRepositoryProrocol.self)!,
+         persistance: MarketPriceCacheRepositoryProtocol = DIContainer.shared.inject(type: MarketPriceCacheRepositoryProtocol.self)!) {
         self.marketPriceRepository = marketPriceRepository
+        self.persistance = persistance
     }
     
     func execute(vs_currency: String,
@@ -29,10 +33,10 @@ final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
                  per_page: Int,
                  page: Int,
                  sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError> {
-        return self.marketPriceRepository.data(vs_currency: vs_currency,
-                                        order: order,
-                                        per_page: per_page,
-                                        page: page,
-                                        sparkline: sparkline)
+            self.marketPriceRepository.data(vs_currency: vs_currency,
+                                            order: order,
+                                            per_page: per_page,
+                                            page: page,
+                                            sparkline: sparkline)
     }
 }

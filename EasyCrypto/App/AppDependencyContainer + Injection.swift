@@ -9,9 +9,12 @@ import Foundation
 
 extension DIContainer {
     func registration() {
+
        // Market price
         register(type: MarketPricRemoteProtocol.self, component: MarketPriceRemote())
         register(type: MarketPricRepositoryProrocol.self, component: MarketPriceRepository())
+        register(type: CoreDataManagerProtocol.self, component: CoreDataManager())
+        register(type: MarketPriceCacheRepositoryProtocol.self, component: MarketPriceCacheRepository())
         register(type: MarketPriceUsecaseProtocol.self, component: MarketPriceUsecase())
         
        // Search Market

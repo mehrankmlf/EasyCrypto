@@ -16,16 +16,15 @@ protocol DefaultCoinDetailViewModel: CoinDetailViewModelInterface, DataFlowProto
 
 final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     
-    typealias InputType = Input
+    typealias InputType = _Input
     
-    enum Input {
+    enum _Input {
         case onAppear(id: String)
     }
     
-    func apply(_ input: Input) {
+    func apply(_ input: _Input) {
         switch input {
         case .onAppear(let id):
-            self.handleState()
             self.getCoinDetailData(id: id)
         }
     }
@@ -52,22 +51,5 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
             guard let data = data else {return}
             self?.coinData = data
         }
-    }
-}
-
-extension CoinDetailViewModel {
-    private func handleState() {
-        self.loadinState
-            .receive(on: WorkScheduler.mainThread)
-            .sink { [weak self] state in
-                switch state {
-                case .loadStart:
-                    self?.isShowActivity = true
-                case .dismissAlert:
-                    self?.isShowActivity = false
-                case .emptyStateHandler:
-                    self?.isShowActivity = false
-                }
-            }.store(in: subscriber)
     }
 }

@@ -9,30 +9,43 @@ import SwiftUI
 
 struct DetailView: View {
     
-    var item: MarketsPrice
-    
     enum Constant {
         static let spacing: CGFloat = 30
+    }
+    
+    @StateObject var viewModel: DetailViewModel = DetailViewModel()
+    
+    var item: MarketsPrice?
+    
+    init(item: MarketsPrice? = nil) {
+        self.item = item
     }
     
     var body: some View {
         ZStack {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack(spacing: Constant.spacing) {
-                PriceView(item: item)
-                    .padding(.horizontal)
-                    .padding(.top)
-                Divider()
-                    .background(Color.white.opacity(0.5))
-                    .padding(.horizontal)
-                CoinDetailAreaView(item: item)
-                Spacer()
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: Constant.spacing) {
+                    if let item = self.item {
+                        PriceView(item: item, viewModel: viewModel)
+                            .padding(.horizontal)
+                            .padding(.top)
+                    }
+                    Divider()
+                        .background(Color.white.opacity(0.5))
+                        .padding(.horizontal)
+                    
+                    if let item = self.item {
+                        CoinDetailAreaView(item: item)
+                    }
+                    Spacer()
+                }
+                .padding(.top)
             }
-            .padding(.top)
         }
-        .navigationBarTitle(item.name.orWhenNilOrEmpty(""), displayMode: .inline)
-        .navigationBarColor(backgroundColor: .clear, titleColor: .white)
+        .navigationBarTitle(viewModel.title, displayMode: .inline)
+        .navigationBarColor(backgroundColor: Color.darkBlue.uiColor(), titleColor: .white)
     }
 }
 

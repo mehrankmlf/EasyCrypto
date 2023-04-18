@@ -18,17 +18,16 @@ protocol DefaultMainViewModel: MainViewModelInterface, DataFlowProtocol  {}
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
-    typealias InputType = Input
+    typealias InputType = _Input
     
-    enum Input {
+    enum _Input {
         case onAppear
     }
     
-    func apply(_ input: Input) {
+    func apply(_ input: _Input) {
         switch input {
         case .onAppear:
             self.bindData()
-            self.handleState()
             self.callFirstTime()
         }
     }
@@ -37,27 +36,30 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         case rankASC
         case rankDSC
     }
-
-    let title: String = Constants.mainTitle
+    
+    let title: String = Constants.Title.mainTitle
     
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
     private let searchMarketUsecase: SearchMarketUsecaseProtocol
+    private let cacherepository: MarketPriceCacheRepositoryProtocol
     
     var page: Int = 1
     var perPage: Int = 15
-
-    @Published var isloading : Bool = false
+    
     @Published var searchText: String = ""
-    @Published private(set) var marketData: [MarketsPrice] = []
-    @Published private(set) var searchData: [Coin] = []
     @Published var rankSort: SortType = .rankASC
+    @Published private(set) var marketData: [MarketsPrice] = []
+    @Published private(set) var wishListData: [MarketsPrice] = []
+    @Published private(set) var searchData: [Coin] = []
     
     var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
     
     init(marketPriceUsecase: MarketPriceUsecaseProtocol = DIContainer.shared.inject(type: MarketPriceUsecaseProtocol.self)!,
-         searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.inject(type: SearchMarketUsecaseProtocol.self)!) {
+         searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.inject(type: SearchMarketUsecaseProtocol.self)!,
+         cacherepository: MarketPriceCacheRepositoryProtocol = DIContainer.shared.inject(type: MarketPriceCacheRepositoryProtocol.self)!) {
         self.marketPriceUsecase = marketPriceUsecase
         self.searchMarketUsecase = searchMarketUsecase
+        self.cacherepository = cacherepository
     }
     
     private func bindData() {
@@ -125,21 +127,25 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
             }
         }
     }
-}
-
-extension MainViewModel {
-    private func handleState() {
-        self.loadinState
-            .receive(on: WorkScheduler.mainThread)
-            .sink { [weak self] state in
-                switch state {
-                case .loadStart:
-                    self?.isloading = true
-                case .dismissAlert:
-                    self?.isloading = false
-                case .emptyStateHandler(_, _):
-                    self?.isloading = false
+    
+    func fetchWishlist() {
+        self.wishListData = []
+        let _ = self.cacherepository.fetch()
+            .map({ items in
+                items.forEach { coin in
+                    self.wishListData.append(MarketsPrice(symbol: coin.symbol,
+                                                          name: coin.name,
+                                                          image: coin.image,
+                                                          currentPrice: coin.price,
+                                                          marketCap: Int(coin.marketCap),
+                                                          marketCapRank: Int(coin.marketCapRank),
+                                                          high24H: coin.high24H,
+                                                          low24H: coin.low24H,
+                                                          priceChange24H: coin.priceChange24H,
+                                                          priceChangePercentage24H: coin.priceChangePercentage24H,
+                                                          totalSupply: coin.totalSupply))
                 }
-            }.store(in: subscriber)
+            })
     }
 }
+

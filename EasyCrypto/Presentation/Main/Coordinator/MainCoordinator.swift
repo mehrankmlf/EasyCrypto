@@ -14,7 +14,9 @@ struct MainCoordinator: CoordinatorProtocol {
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
     @State var transition: Transition?
     
-    let subscriber = Subscriber()
+    @State private var isLoaded: Bool = Bool()
+    
+    let subscriber = Cancelable()
 
     var body: some View {
         mainView
@@ -41,8 +43,8 @@ extension MainCoordinator {
         @ViewBuilder
         var content: some View {
             switch route {
-            case .first(let data):
-                DetailView(item: data)
+            case .first(let item):
+                DetailView(item: item)
             case .second(let data):
                 CoinDetailCoordinator(viewModel: CoinDetailViewModel(), id: data)
             }

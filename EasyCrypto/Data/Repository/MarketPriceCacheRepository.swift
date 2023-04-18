@@ -75,7 +75,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
         var output: [CoinENT] = []
         self.coreDataManager
-            .publicher(fetch: request)
+            .publisher(fetch: request)
             .sink { completion in
                 switch completion {
                 case .failure(let error):
@@ -102,7 +102,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
         request.predicate = idPredicate
         var output: CoinENT?
         self.coreDataManager
-            .publicher(fetch: request)
+            .publisher(fetch: request)
             .sink { completion in
                 switch completion {
                 case .failure(let error):

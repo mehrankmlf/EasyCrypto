@@ -36,11 +36,11 @@ extension EntityCreating {
 
 protocol CoreDataFetchProtocol {
     var viewContext: NSManagedObjectContext { get }
-    func publicher<T: NSManagedObject>(fetch request: NSFetchRequest<T>) -> CoreDataFetchResultsPublisher<T>
+    func publisher<T: NSManagedObject>(fetch request: NSFetchRequest<T>) -> CoreDataFetchResultsPublisher<T>
 }
 
 extension CoreDataFetchProtocol {
-    func publicher<T: NSManagedObject>(fetch request: NSFetchRequest<T>) -> CoreDataFetchResultsPublisher<T> {
+    func publisher<T: NSManagedObject>(fetch request: NSFetchRequest<T>) -> CoreDataFetchResultsPublisher<T> {
         return CoreDataFetchResultsPublisher(request: request, context: viewContext)
     }
 }

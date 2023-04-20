@@ -13,9 +13,9 @@ protocol SearchMarketRepositoryProtocol {
 }
 
 final class SearchMarketRepository {
-    
+
     private let service: SearchMarketDataRemoteProtocol
-    
+
     init(service: SearchMarketDataRemoteProtocol = DIContainer.shared.inject(type: SearchMarketDataRemoteProtocol.self)!) {
         self.service = service
     }

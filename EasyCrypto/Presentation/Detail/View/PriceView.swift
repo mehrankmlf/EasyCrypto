@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct PriceView: View {
-    
+
     let item: MarketsPrice
     var viewModel: DetailViewModel
-    
+
     @State var isPersist: Bool = false
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -48,7 +48,7 @@ struct PriceView: View {
             }
             .padding(.top)
             HStack {
-                if let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0) {
+            if let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H as? NSNumber ?? 0) {
                     Text(priceChange)
                         .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
                         .font(FontManager.title)
@@ -64,7 +64,7 @@ struct PriceView: View {
         if isPersist {
             self.isPersist = false
             self.viewModel.deleteFromWishlist(item)
-        }else{
+        } else {
             self.isPersist = true
             self.viewModel.addToWishlist(item)
         }

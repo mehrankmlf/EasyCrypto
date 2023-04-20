@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SearchBar: View {
-    
+
     @State var isLoading: Bool
     @Binding var text: String
     @Binding var isEditing: Bool
-    
+
     var body: some View {
         ZStack(alignment: .leading) {
             HStack {
@@ -55,14 +55,14 @@ struct SearchBar: View {
 }
 
 struct SearchMarketCellView: View {
-    
+
     var model: Coin
-    
+
     var body: some View {
         HStack {
             ImageView(withURL: model.safeImageURL())
                 .frame(width: 25.0, height: 25.0)
-            
+
             Text(model.name.orWhenNilOrEmpty(""))
                 .foregroundColor(Color.black)
                 .font(FontManager.body)

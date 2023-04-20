@@ -8,9 +8,9 @@
 import Combine
 
 final class Cancelable {
-    
+
     fileprivate(set) var subscriptions = Set<AnyCancellable>()
-    
+
     func cancel() {
         subscriptions.removeAll()
     }

@@ -17,9 +17,9 @@ protocol MarketPricRepositoryProrocol {
 }
 
 final class MarketPriceRepository {
-    
+
     private let service: MarketPricRemoteProtocol
-    
+
     init(service: MarketPricRemoteProtocol = DIContainer.shared.inject(type: MarketPricRemoteProtocol.self)!) {
         self.service = service
     }
@@ -38,4 +38,3 @@ extension MarketPriceRepository: MarketPricRepositoryProrocol {
                                   sparkline: sparkline)
     }
 }
-

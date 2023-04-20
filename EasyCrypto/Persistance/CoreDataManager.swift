@@ -67,14 +67,17 @@ extension CoreDataDeleteModelPublishing {
     }
 }
 
-protocol CoreDataManagerProtocol: EntityCreating, CoreDataFetchProtocol, CoreDataSaveProtocol, CoreDataDeleteModelPublishing {
+protocol CoreDataManagerProtocol: EntityCreating,
+                                    CoreDataFetchProtocol,
+                                    CoreDataSaveProtocol,
+                                    CoreDataDeleteModelPublishing {
     var viewContext: NSManagedObjectContext { get }
 }
 
 struct CoreDataManager: CoreDataManagerProtocol {
 
     var container: NSPersistentContainer
-    
+
     static var preview: CoreDataManager = {
         let result = CoreDataManager(inMemory: false)
         return result
@@ -83,20 +86,15 @@ struct CoreDataManager: CoreDataManagerProtocol {
     var viewContext: NSManagedObjectContext {
         return self.container.viewContext
     }
-    
+
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "CoinsDB")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")

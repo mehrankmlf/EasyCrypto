@@ -13,7 +13,7 @@ protocol DIContainerProtocol {
 }
 
 final class DIContainer: DIContainerProtocol {
-    
+
   static let shared = DIContainer()
 
   private init() {}

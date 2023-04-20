@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CryptoCellView: View {
-    
+
     var item: MarketsPrice
-    
+
     var body: some View {
         HStack {
             ImageView(withURL: item.safeImageURL())
                 .frame(width: 30.0, height: 30.0)
-            
+
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.name.orWhenNilOrEmpty(""))
                     .foregroundColor(Color.white)

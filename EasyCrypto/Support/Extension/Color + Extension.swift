@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
- 
+
     func uiColor() -> UIColor {
 
         if #available(iOS 14.0, *) {

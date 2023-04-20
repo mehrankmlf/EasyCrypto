@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct DetailView: View {
-    
+
     enum Constant {
         static let spacing: CGFloat = 30
     }
-    
+
     @StateObject var viewModel: DetailViewModel = DetailViewModel()
-    
+
     var item: MarketsPrice?
-    
+
     init(item: MarketsPrice? = nil) {
         self.item = item
     }
-    
+
     var body: some View {
         ZStack {
             Color.darkBlue
@@ -35,7 +35,6 @@ struct DetailView: View {
                     Divider()
                         .background(Color.white.opacity(0.5))
                         .padding(.horizontal)
-                    
                     if let item = self.item {
                         CoinDetailAreaView(item: item)
                     }
@@ -54,8 +53,3 @@ struct DetailView_Previews: PreviewProvider {
         DetailView(item: MarketsPrice.mock)
     }
 }
-
-
-
-
-

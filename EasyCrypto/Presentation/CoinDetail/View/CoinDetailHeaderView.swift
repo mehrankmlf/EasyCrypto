@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CoinDetailHeaderView: View {
-    
+
     var item: CoinUnit
     var url: ((String?) -> Void)
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 30.0) {
             HStack {

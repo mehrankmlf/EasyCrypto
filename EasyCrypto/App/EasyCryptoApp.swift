@@ -9,13 +9,11 @@ import SwiftUI
 
 @main
 struct EasyCryptoApp: App {
-    
+
     let coreDataManager = CoreDataManager.preview
-    
+
     var body: some Scene {
-        
         let _ = DIContainer.shared.registration()
-        
         WindowGroup {
             MainCoordinator(viewModel: MainViewModel())
                 .environment(\.managedObjectContext, coreDataManager.container.viewContext)

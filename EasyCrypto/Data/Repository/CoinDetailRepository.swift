@@ -12,9 +12,9 @@ protocol CoinDetailRepositoryProtocol {
 }
 
 final class CoinDetailRepository {
-    
+
     private let service: CoinDetailRemoteProtocol
-    
+
     init(service: CoinDetailRemoteProtocol = DIContainer.shared.inject(type: CoinDetailRemoteProtocol.self)!) {
         self.service = service
     }

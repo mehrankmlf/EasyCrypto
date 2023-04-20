@@ -17,7 +17,7 @@ protocol MarketPricRemoteProtocol: AnyObject {
                 sparkline: Bool) -> AnyPublisher<[MarketsPrice]?, APIError>
 }
 
-final class MarketPriceRemote : NetworkClientManager<HttpRequest>, MarketPricRemoteProtocol {
+final class MarketPriceRemote: NetworkClientManager<HttpRequest>, MarketPricRemoteProtocol {
     func fetch(vs_currency: String,
                order: String,
                per_page: Int,
@@ -33,14 +33,14 @@ final class MarketPriceRemote : NetworkClientManager<HttpRequest>, MarketPricRem
     }
 }
 
-struct MarketPriceRequest : NetworkTarget {
-    
+struct MarketPriceRequest: NetworkTarget {
+
     let vs_currency: String
     let order: String
     let per_page: Int
     let page: Int
     let sparkline: Bool
-    
+
     init(vs_currency: String,
          order: String,
          per_page: Int,
@@ -53,31 +53,31 @@ struct MarketPriceRequest : NetworkTarget {
         self.page = page
         self.sparkline = sparkline
     }
-    
+
     var baseURL: BaseURLType {
         return .baseApi
     }
-    
+
     var version: VersionType {
         return .v3
     }
-    
+
     var path: String? {
         return "/coins/markets"
     }
-    
+
     var methodType: HTTPMethod {
         .get
     }
-    
-    var queryParams: [String : String]? {
+
+    var queryParams: [String: String]? {
         return ["vs_currency": vs_currency,
                 "order": order,
                 "per_page": String(per_page),
                 "page": String(page),
                 "sparkline": String(sparkline)]
     }
-    
+
     var queryParamsEncoding: URLEncoding? {
         return .default
     }

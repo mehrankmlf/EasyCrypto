@@ -14,4 +14,3 @@ protocol Routing: Equatable {}
 protocol Coordinatable: View {
   associatedtype Route: Routing
 }
-

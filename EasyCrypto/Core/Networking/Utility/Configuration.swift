@@ -10,13 +10,12 @@ import Foundation
 enum BaseURLType {
     case baseApi
     case staging
-    
-    var desc : URL {
-        
+
+    var desc: URL {
         switch self {
-        case .baseApi :
+        case .baseApi:
             return URL("https://api.coingecko.com/api")
-        case .staging :
+        case .staging:
             return URL("https://api.coingecko.com/api")
         }
     }
@@ -25,7 +24,7 @@ enum BaseURLType {
 enum VersionType {
     case none
     case v1, v2, v3
-    var desc : String {
+    var desc: String {
         switch self {
         case .none:
             return ""

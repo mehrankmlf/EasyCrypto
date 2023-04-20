@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIError : Error {
+enum APIError: Error {
     case general
     case timeout
     case pageNotFound
@@ -17,45 +17,41 @@ enum APIError : Error {
     case serverError
     case redirection
     case clientError
-    case invalidResponse(httpStatusCode : Int)
-    case statusMessage(message : String)
+    case invalidResponse(httpStatusCode: Int)
+    case statusMessage(message: String)
     case decodingError(Error)
     case connectionError(Error)
     case unauthorizedClient
-    
     case urlError(URLError)
     case httpError(HTTPURLResponse)
-    
     case type(Error)
 }
 
 extension APIError {
-    ///Description of error
+    /// Description of error
     var desc: String {
-        
         switch self {
-        case .general:                    return MessageHelper.serverError.general
-        case .timeout:                    return MessageHelper.serverError.timeOut
-        case .pageNotFound:               return MessageHelper.serverError.notFound
-        case .noData:                     return MessageHelper.serverError.notFound
-        case .noNetwork:                  return MessageHelper.serverError.noInternet
-        case .unknownError:               return MessageHelper.serverError.general
-        case .serverError:                return MessageHelper.serverError.serverError
-        case .redirection:                return MessageHelper.serverError.redirection
-        case .clientError:                return MessageHelper.serverError.clientError
-        case .invalidResponse:            return MessageHelper.serverError.invalidResponse
-        case .unauthorizedClient:         return MessageHelper.serverError.unauthorizedClient
+        case .general:                    return MessageHelper.ServerError.general
+        case .timeout:                    return MessageHelper.ServerError.timeOut
+        case .pageNotFound:               return MessageHelper.ServerError.notFound
+        case .noData:                     return MessageHelper.ServerError.notFound
+        case .noNetwork:                  return MessageHelper.ServerError.noInternet
+        case .unknownError:               return MessageHelper.ServerError.general
+        case .serverError:                return MessageHelper.ServerError.serverError
+        case .redirection:                return MessageHelper.ServerError.redirection
+        case .clientError:                return MessageHelper.ServerError.clientError
+        case .invalidResponse:            return MessageHelper.ServerError.invalidResponse
+        case .unauthorizedClient:         return MessageHelper.ServerError.unauthorizedClient
         case .statusMessage(let message): return message
         case .decodingError(let error):   return "Decoding Error: \(error.localizedDescription)"
         case .connectionError(let error): return "Network connection Error : \(error.localizedDescription)"
-        default : return MessageHelper.serverError.general
+        default: return MessageHelper.ServerError.general
         }
     }
 }
 
 extension NetworkClient {
-    
-    static func errorType(type : Int) -> APIError {
+    static func errorType(type: Int) -> APIError {
         switch type {
         case 300..<400:
             return APIError.redirection
@@ -64,10 +60,9 @@ extension NetworkClient {
         case 500..<600:
             return APIError.serverError
         default:
-            return otherErrorType(type : type)
+            return otherErrorType(type: type)
         }
     }
-    
     private static func otherErrorType(type: Int) -> APIError {
         switch type {
         case -1001:

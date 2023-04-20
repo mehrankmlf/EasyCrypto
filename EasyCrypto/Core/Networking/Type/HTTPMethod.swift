@@ -2,13 +2,15 @@
  Enum to represent a HTTP request method.
 
  */
-public enum HTTPMethod : Equatable {
+public enum HTTPMethod: Equatable {
 
-    /** The GET method requests a representation of the specified resource. Requests using GET should only retrieve data. */
+/** The GET method requests a representation of the specified resource.
+ Requests using GET should only retrieve data. */
     case get
 
-    /**
-     The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server.
+     /**
+     The POST method is used to submit an entity to the specified resource,
+     often causing a change in state or side effects on the server.
      */
     case post
 
@@ -21,7 +23,6 @@ public enum HTTPMethod : Equatable {
      The DELETE method deletes the specified resource.
      */
     case delete
-    
      var name: String {
         switch self {
         case .get:

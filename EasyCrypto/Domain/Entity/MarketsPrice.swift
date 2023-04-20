@@ -16,7 +16,6 @@ struct MarketsPrice: Decodable {
     var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
     var totalSupply, maxSupply: Double?
 
-
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case symbol = "symbol"

@@ -9,28 +9,28 @@ import SwiftUI
 import Combine
 
 struct MainView: Coordinatable {
-    
+
     typealias Route = Routes
-    
+
     @ObservedObject private(set) var viewModel: MainViewModel
-    
+
     enum Constant {
         static let searchHeight: CGFloat = 55
         static let topPadding: CGFloat = 5
         static let cornerRadius: CGFloat = 10
     }
-    
+
     @State var index = 0
     @State private var shouldShowDropdown = false
-    @State private var searchText : String = ""
+    @State private var searchText: String = ""
     @State private var isLoading: Bool = false
-    
+
     let subscriber = Cancelable()
-    
+
     init(viewModel: MainViewModel = DIContainer.shared.inject(type: MainViewModel.self)!) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -66,7 +66,7 @@ struct MainView: Coordinatable {
                     TabView(selection: $index) {
                         if index == 0 {
                             coinsList()
-                        }else{
+                        } else {
                             whishList()
                         }
                     }
@@ -97,11 +97,10 @@ struct MainView: Coordinatable {
                             .frame(width: 40.0, height: 40.0)
                         ActivityIndicator(style: .medium, animate: .constant(true))
                     }
-                    
-                }else {
+                } else {
                     Color.clear
                         .onAppear {
-                            if !isLoading, self.viewModel.marketData.count > 0 {
+                            if !isLoading, !self.viewModel.marketData.isEmpty {
                                 self.viewModel.loadMore()
                             }
                         }

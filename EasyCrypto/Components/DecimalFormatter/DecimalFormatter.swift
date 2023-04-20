@@ -21,7 +21,9 @@ final class DecimalFormatter: NumberFormatter {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override public func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, range rangep: UnsafeMutablePointer<NSRange>?) throws {
+    override public func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?,
+                                        for string: String,
+                                        range rangep: UnsafeMutablePointer<NSRange>?) throws {
         guard obj != nil else { return  }
         let str = string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
         obj?.pointee = NSNumber(value: (Double(str) ?? 0.0)/Double(pow(10.0, Double(minimumFractionDigits))))

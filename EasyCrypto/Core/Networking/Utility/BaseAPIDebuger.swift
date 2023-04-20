@@ -8,8 +8,8 @@
 import Foundation
 
 struct BaseAPIDebuger {
-    
-    func log(request: URLRequest?, error : Error?) {
+
+    func log(request: URLRequest?, error: Error?) {
 
         debugPrint("", terminator: "\n\n")
         debugPrint("--------------- Request Log Starts ---------------", terminator: "\n\n")
@@ -30,7 +30,7 @@ struct BaseAPIDebuger {
         }
         debugPrint("", terminator: "\n\n")
         debugPrint("--------------- Response Headers ---------------", terminator: "\n\n")
-        
+
         if let error = error, let errorFound = error as NSError? {
             debugPrint("--------------- Error ---------------", terminator: "\n\n")
             debugPrint("Error Code - \(errorFound.code)", terminator: "\n")

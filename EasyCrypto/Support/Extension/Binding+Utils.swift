@@ -17,7 +17,7 @@ extension Binding {
             wrappedValue = mappedValueToValue(mappedValue)
         }
     }
-    
+
     func onSet(_ action: @escaping (Value) -> Void) -> Binding<Value> {
         return Binding { () -> Value in
             return wrappedValue
@@ -26,12 +26,4 @@ extension Binding {
             wrappedValue = value
         }
     }
-}
-
-func ??<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {
-    return Binding(get: {
-        binding.wrappedValue ?? fallback
-    }, set: {
-        binding.wrappedValue = $0
-    })
 }

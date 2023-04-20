@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct CoinDetailView: Coordinatable {
-    
+
     typealias Route = Routes
-    
+
     enum Constant {
         static let spacing: CGFloat = 30
         static let cornerRadius: CGFloat = 10
     }
-    
+
     @ObservedObject private(set) var viewModel: CoinDetailViewModel
     @State private var isLoading: Bool = false
-    
+
     let subscriber = Cancelable()
     var id: String?
     var coinData: CoinUnit {
         return self.viewModel.coinData
     }
-    
+
     init(id: String? = nil, viewModel: CoinDetailViewModel) {
         self.id = id
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -67,7 +67,6 @@ struct CoinDetailView: Coordinatable {
     }
 }
 
-
 extension CoinDetailView {
     enum Routes: Routing {
         case first(url: URL?)
@@ -96,9 +95,3 @@ struct CoinDetailView_Previews: PreviewProvider {
         CoinDetailView(viewModel: CoinDetailViewModel())
     }
 }
-
-
-
-
-
-

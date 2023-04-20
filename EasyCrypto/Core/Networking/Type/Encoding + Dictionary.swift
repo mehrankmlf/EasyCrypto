@@ -38,11 +38,10 @@ extension Dictionary where Key == String, Value == Any {
 
 extension CharacterSet {
     public static let nkURLQueryAllowed: CharacterSet = {
-        //https://en.wikipedia.org/wiki/Percent-encoding
+        // https://en.wikipedia.org/wiki/Percent-encoding
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="
         let encodableDelimiters = CharacterSet(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
         return CharacterSet.urlQueryAllowed.subtracting(encodableDelimiters)
     }()
 }
-

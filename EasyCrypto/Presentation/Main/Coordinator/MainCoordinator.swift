@@ -10,12 +10,12 @@ import Combine
 
 struct MainCoordinator: CoordinatorProtocol {
 
-    @StateObject var viewModel : MainViewModel
+    @StateObject var viewModel: MainViewModel
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
     @State var transition: Transition?
-    
+
     @State private var isLoaded: Bool = Bool()
-    
+
     let subscriber = Cancelable()
 
     var body: some View {
@@ -29,7 +29,7 @@ struct MainCoordinator: CoordinatorProtocol {
                     }.store(in: subscriber)
             }
     }
-    
+
     var mainView: MainView {
         return MainView(viewModel: viewModel)
     }
@@ -37,9 +37,9 @@ struct MainCoordinator: CoordinatorProtocol {
 
 extension MainCoordinator {
     struct Destination: DestinationProtocol {
-        
+
         var route: MainView.Routes
-        
+
         @ViewBuilder
         var content: some View {
             switch route {
@@ -49,7 +49,7 @@ extension MainCoordinator {
                 CoinDetailCoordinator(viewModel: CoinDetailViewModel(), id: data)
             }
         }
-        
+
         var transition: Transition {
             switch route {
             case .first: return .push
@@ -58,5 +58,3 @@ extension MainCoordinator {
         }
     }
 }
-
-

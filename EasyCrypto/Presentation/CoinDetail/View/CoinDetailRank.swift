@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CoinRankView: View {
-    
+
     var image: String
     var rank: Int
-    
+
     var body: some View {
         HStack(spacing: 5) {
             Image(image)

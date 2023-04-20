@@ -12,13 +12,13 @@ struct TabItemView: View {
     var titles = ["Coins", "Whishlists"]
     var body: some View {
         ScrollViewReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false){
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(titles.indices) {id in
                         let title = Text(titles[id]).id(id)
                             .font(FontManager.headLine_2)
                             .onTapGesture {
-                                withAnimation() {
+                                withAnimation {
                                     index = id
                                 }
                             }
@@ -33,8 +33,8 @@ struct TabItemView: View {
                 }
                 .padding(.leading, 20)
             }.onChange(of: index) { value in
-                withAnimation() {
-                    proxy.scrollTo(value, anchor: UnitPoint(x: UnitPoint.leading.x + leftOffset, y: UnitPoint.leading.y))
+                withAnimation {
+                 proxy.scrollTo(value, anchor: UnitPoint(x: UnitPoint.leading.x + leftOffset, y: UnitPoint.leading.y))
                 }
             }.animation(.easeInOut)
         }

@@ -8,20 +8,19 @@
 import Foundation
 import Combine
 
-final class NetworkClient : NetworkClientProtocol {
+final class NetworkClient: NetworkClientProtocol {
 
     /// Initializes a new URL Session Client.
     ///
     /// - parameter urlSession: The URLSession to use.
     ///     Default: `URLSession(configuration: .shared)`.
     ///
-    
-    let session : URLSession
-    let debugger : BaseAPIDebuger
+    let session: URLSession
+    let debugger: BaseAPIDebuger
     var subscriber = Set<AnyCancellable>()
-    
-    init(session : URLSession = .shared,
-         debugger : BaseAPIDebuger = BaseAPIDebuger()) {
+
+    init(session: URLSession = .shared,
+         debugger: BaseAPIDebuger = BaseAPIDebuger()) {
         self.session = session
         self.debugger = debugger
     }
@@ -30,21 +29,21 @@ final class NetworkClient : NetworkClientProtocol {
     func perform<M, T>(with request: RequestBuilder,
                        decoder: JSONDecoder,
                        scheduler: T,
-                       responseObject type: M.Type) -> AnyPublisher<M, APIError> where M : Decodable, T : Scheduler {
+                       responseObject type: M.Type) -> AnyPublisher<M, APIError> where M: Decodable, T: Scheduler {
         let urlRequest = request.buildURLRequest()
         return publisher(request: urlRequest)
             .receive(on: scheduler)
-            .tryMap { result, response -> Data in
+            .tryMap { result, _ -> Data in
                 return result
             }
             .decode(type: type.self, decoder: decoder)
             .mapError { error in
-                return error as! APIError
+                return error as? APIError ?? .general
             }
             .eraseToAnyPublisher()
     }
 
-    func publisher(request : URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), APIError> {
+    func publisher(request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), APIError> {
         return self.session.dataTaskPublisher(for: request)
             .mapError { APIError.urlError($0) }
             .map { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in

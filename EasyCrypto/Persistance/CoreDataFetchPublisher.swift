@@ -11,27 +11,27 @@ import CoreData
 struct CoreDataFetchResultsPublisher<T>: Publisher where T: NSManagedObject {
     typealias Output = [T]
     typealias Failure = NSError
-    
+
     private let request: NSFetchRequest<T>
     private let context: NSManagedObjectContext
-    
+
     init(request: NSFetchRequest<T>, context: NSManagedObjectContext) {
         self.request = request
         self.context = context
     }
-    
-    func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
+
+    func receive<S>(subscriber: S) where S: Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
         let subscription = Subscription(subscriber: subscriber, context: context, request: request)
         subscriber.receive(subscription: subscription)
     }
 }
 
 extension CoreDataFetchResultsPublisher {
-    class Subscription<S> where S : Subscriber, Failure == S.Failure, Output == S.Input {
+    class Subscription<S> where S: Subscriber, Failure == S.Failure, Output == S.Input {
         private var subscriber: S?
         private var request: NSFetchRequest<T>
         private var context: NSManagedObjectContext
-        
+
         init(subscriber: S, context: NSManagedObjectContext, request: NSFetchRequest<T>) {
             self.subscriber = subscriber
             self.context = context

@@ -19,5 +19,3 @@ protocol CoordinatorProtocol: View {
   var mainView: MainContent { get }
   var activeRoute: Destination? { get }
 }
-
-

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CoinDetailAreaView: View {
-    
+
     let item: MarketsPrice
-    
+
     var body: some View {
         VStack(spacing: 30) {
             let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
@@ -42,10 +42,10 @@ struct CoinDetailAreaView: View {
 }
 
 struct CoinDetailCell: View {
-    
+
     var title: String
     var price: String
-    
+
     var body: some View {
         HStack(spacing: 20) {
             VStack(alignment: .leading, spacing: 5) {

@@ -8,7 +8,7 @@
 import Foundation
 
 enum Constants {
-    enum DB {
+    enum DBName {
         static let coinENt: String = "CoinENT"
     }
     enum Title {

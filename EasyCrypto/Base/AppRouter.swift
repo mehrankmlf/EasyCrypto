@@ -14,12 +14,12 @@ enum Transition {
 }
 
 struct AppRouter<Destination: DestinationProtocol>: ViewModifier {
-    
+
   @Binding var destination: Destination?
   @State var isLinkActive = false
   @State var isURLActive = false
   @State var isBottomSheetActive = false
-    
+
   func body(content: Content) -> some View {
     ZStack {
       NavigationLink(

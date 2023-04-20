@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct SpinnerView<Content>: View where Content: View {
-    
+
     @Binding var isShowing: Bool
     @Binding var text: String
     var geoSize: CGSize
     var content: () -> Content
-   
-    
+
     var body: some View {
         GeometryReader { _ in
             ZStack(alignment: .center) {
                 self.content()
                     .disabled(self.isShowing)
-                
                 VStack {
                     if !self.text.isEmpty {
                         SpinnerViewIndicator(isAnimating: $isShowing, style: .medium)

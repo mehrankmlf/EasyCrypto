@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import Combine
 
-protocol MarketPriceCacheRepositoryProtocol {
+protocol CacheRepositoryProtocol {
     func save(_ data: MarketsPrice) throws
     func fetch() -> [CoinENT]?
     func fetchItem(_ name: String) -> CoinENT?
@@ -17,15 +17,15 @@ protocol MarketPriceCacheRepositoryProtocol {
     func deleteByID(_ name: String) throws
 }
 
-final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
-    
+final class MarketPriceCacheRepository: CacheRepositoryProtocol {
+
     let coreDataManager: CoreDataManagerProtocol
     let subscriber = Cancelable()
-    
+
     init(coreDataManager: CoreDataManagerProtocol = DIContainer.shared.inject(type: CoreDataManagerProtocol.self)!) {
         self.coreDataManager = coreDataManager
     }
-    
+
     func save(_ item: MarketsPrice) {
         let action: Action = {
             if let name = item.name, let matchData = self.findByID(name) {
@@ -40,8 +40,9 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                 matchData.marketCap = Int64(item.marketCap ?? 0)
                 matchData.low24H = item.low24H ?? 0
                 matchData.high24H = item.high24H ?? 0
-            }else{
-                let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DB.coinENt, into: self.coreDataManager.viewContext)
+            } else {
+                let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DBName.coinENt,
+                                                               into: self.coreDataManager.viewContext)
                 coin.setValue(item.image, forKey: "image")
                 coin.setValue(item.name, forKey: "name")
                 coin.setValue(item.symbol, forKey: "symbol")
@@ -70,7 +71,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
                 }
             }.store(in: subscriber)
     }
-    
+
     func fetch() -> [CoinENT]? {
         let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
         var output: [CoinENT] = []
@@ -88,14 +89,14 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
             }.store(in: subscriber)
         return output
     }
-    
+
     func fetchItem(_ name: String) -> CoinENT? {
         if let matchData = findByID(name) {
             return matchData
         }
         return nil
     }
-    
+
     func findByID(_ id: String) -> CoinENT? {
         let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
         let idPredicate = NSPredicate(format: "name == %@", id)
@@ -115,7 +116,7 @@ final class MarketPriceCacheRepository: MarketPriceCacheRepositoryProtocol {
             }.store(in: subscriber)
         return output
     }
-    
+
     func deleteByID(_ name: String) throws {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: CoinENT.entityName)
         let idPredicate = NSPredicate(format: "name == %@", name)

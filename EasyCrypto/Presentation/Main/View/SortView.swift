@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct SortView: View {
-    
+
     @State var viewModel: MainViewModel
     @State var viewState: Bool = false
-    
+
     var body: some View {
         HStack {
             Button {
                 if !viewState {
-                    if (viewModel.rankSort == .rankASC){
+                    if viewModel.rankSort == .rankASC {
                         viewModel.rankSort = .rankDSC
                     } else {
                         viewModel.rankSort = .rankASC

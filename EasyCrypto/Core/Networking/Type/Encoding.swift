@@ -8,10 +8,10 @@
 import Foundation
 
 public enum URLEncoding: String {
-    //Generally for these methods - GET, HEAD, DELETE, CONNECT, OPTIONS
+    // Generally for these methods - GET, HEAD, DELETE, CONNECT, OPTIONS
     case `default`
     case percentEncoded
-    //Always for POST/PUT METHOD
+    // Always for POST/PUT METHOD
     case xWWWFormURLEncoded = "application/x-www-form-urlencoded"
 }
 

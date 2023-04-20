@@ -14,6 +14,3 @@ struct FontManager {
     static let title = Font.custom(FontNameManager.Arial.regular, size: 18.0)
     static let body = Font.custom(FontNameManager.Arial.regular, size: 14.0)
 }
-
-
-

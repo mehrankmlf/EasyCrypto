@@ -10,11 +10,11 @@ import Combine
 
 struct CoinDetailCoordinator: CoordinatorProtocol {
 
-    @StateObject var viewModel : CoinDetailViewModel
+    @StateObject var viewModel: CoinDetailViewModel
     @State var activeRoute: Destination? = Destination(route: .first(url: nil))
     @State var transition: Transition?
     let id: String
-    
+
     let subscriber = Cancelable()
 
     var body: some View {
@@ -28,7 +28,7 @@ struct CoinDetailCoordinator: CoordinatorProtocol {
                     }.store(in: subscriber)
             }
     }
-    
+
     var mainView: CoinDetailView {
         return CoinDetailView(id: id, viewModel: viewModel)
     }
@@ -36,9 +36,9 @@ struct CoinDetailCoordinator: CoordinatorProtocol {
 
 extension CoinDetailCoordinator {
     struct Destination: DestinationProtocol {
-        
+
         var route: CoinDetailView.Routes
-        
+
         @ViewBuilder
         var content: some View {
             switch route {
@@ -48,7 +48,7 @@ extension CoinDetailCoordinator {
                 }
             }
         }
-        
+
         var transition: Transition {
             switch route {
             case .first: return .url

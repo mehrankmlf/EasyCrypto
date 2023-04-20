@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MarketPriceUsecaseProtocol : AnyObject {
+protocol MarketPriceUsecaseProtocol: AnyObject {
     func execute(vs_currency: String,
                  order: String,
                  per_page: Int,
@@ -17,17 +17,17 @@ protocol MarketPriceUsecaseProtocol : AnyObject {
 }
 
 final class MarketPriceUsecase: MarketPriceUsecaseProtocol {
-    
+
     private let marketPriceRepository: MarketPricRepositoryProrocol
-    private let persistance: MarketPriceCacheRepositoryProtocol
+    private let persistance: CacheRepositoryProtocol
     var subscriber = Cancelable()
-    
+
     init(marketPriceRepository: MarketPricRepositoryProrocol = DIContainer.shared.inject(type: MarketPricRepositoryProrocol.self)!,
-         persistance: MarketPriceCacheRepositoryProtocol = DIContainer.shared.inject(type: MarketPriceCacheRepositoryProtocol.self)!) {
+         persistance: CacheRepositoryProtocol = DIContainer.shared.inject(type: CacheRepositoryProtocol.self)!) {
         self.marketPriceRepository = marketPriceRepository
         self.persistance = persistance
     }
-    
+
     func execute(vs_currency: String,
                  order: String,
                  per_page: Int,

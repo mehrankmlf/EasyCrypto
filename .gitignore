@@ -101,11 +101,6 @@ iOSInjectionProject/
 
 ## Xcode 8 and earlier
 
-### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/project.xcworkspace/
-!*.xcworkspace/contents.xcworkspacedata
-/*.gcno
+
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods

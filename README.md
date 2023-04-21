@@ -15,6 +15,7 @@ EasyCrypto is a simple crypto market app, built with SwiftUI and Combine framewo
 - MVVM
 - Coordinator Pattern
 - Dependency Injection
+- SwiftLint
 
 ## How to run
 EasyCrypto requires iOS 15.0 or later. If you are developer, you can set its deployment target to lower iOS version if needed.

@@ -49,6 +49,7 @@
 		02593C53298E992500ADDA20 /* MarketPriceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02593C52298E992500ADDA20 /* MarketPriceRepository.swift */; };
 		02593C55298ECDF300ADDA20 /* MarketPriceRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02593C54298ECDF300ADDA20 /* MarketPriceRemote.swift */; };
 		02593C58298ED0C000ADDA20 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02593C57298ED0C000ADDA20 /* BaseViewModel.swift */; };
+		025ABE5B29FA784600E460EB /* DetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025ABE5A29FA784600E460EB /* DetailViewModelTest.swift */; };
 		027A1B0829D0830C008B10D2 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A1B0729D0830C008B10D2 /* Log.swift */; };
 		028D127F29B50BD000F7874D /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D127E29B50BD000F7874D /* AlertView.swift */; };
 		02B22A8929CC47DE00A04929 /* CoinsDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02B22A8729CC47DE00A04929 /* CoinsDB.xcdatamodeld */; };
@@ -177,6 +178,7 @@
 		02593C52298E992500ADDA20 /* MarketPriceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRepository.swift; sourceTree = "<group>"; };
 		02593C54298ECDF300ADDA20 /* MarketPriceRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRemote.swift; sourceTree = "<group>"; };
 		02593C57298ED0C000ADDA20 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		025ABE5A29FA784600E460EB /* DetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTest.swift; sourceTree = "<group>"; };
 		027A1B0729D0830C008B10D2 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		028D127E29B50BD000F7874D /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		02B22A8829CC47DE00A04929 /* Coins.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Coins.xcdatamodel; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				02BC669F29B8E3C000785196 /* MainViewModelTest.swift */,
+				025ABE5A29FA784600E460EB /* DetailViewModelTest.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1206,6 +1209,7 @@
 				024515E129BA169F0013B54C /* MockSearchMarketeRepository.swift in Sources */,
 				A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */,
 				024515D529B9C67E0013B54C /* MockMarketPriceUseCase.swift in Sources */,
+				025ABE5B29FA784600E460EB /* DetailViewModelTest.swift in Sources */,
 				024515E529BA42880013B54C /* RequestBuilderTest.swift in Sources */,
 				024515D829B9CCBB0013B54C /* MockMarketPriceRepository.swift in Sources */,
 				02BC66A029B8E3C000785196 /* MainViewModelTest.swift in Sources */,

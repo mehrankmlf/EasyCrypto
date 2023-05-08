@@ -14,11 +14,13 @@ final class DetailViewModelTest: XCTestCase {
     private var viewModelToTest: DetailViewModel!
 
     override func setUp()  {
-        
+        viewModelToTest = DetailViewModel()
     }
     
     override func tearDown() {
-            
+        viewModelToTest = nil
         super.tearDown()
     }
+    
+    
 }

@@ -84,9 +84,7 @@
 		450DCB7B2A08EE36009B6AD3 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450DCB7A2A08EE36009B6AD3 /* CoreDataTest.swift */; };
 		4556FF6A29ED19E400C62B2E /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4556FF6929ED19E400C62B2E /* TabItemView.swift */; };
 		4557D0192A027923008B4AD7 /* BaseViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4557D0182A027923008B4AD7 /* BaseViewModelTest.swift */; };
-		45B8DEFD2A0A286F00BF2EB7 /* CoreDataSavePublisherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DEFC2A0A286F00BF2EB7 /* CoreDataSavePublisherTest.swift */; };
 		45B8DF022A0A3E8400BF2EB7 /* MockDataAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */; };
-		45B8DF042A0A6A5C00BF2EB7 /* Teting .swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF032A0A6A5C00BF2EB7 /* Teting .swift */; };
 		45B8DF062A0A6C7400BF2EB7 /* CacheStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */; };
 		A803DFC4297E92D000357A7F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC3297E92D000357A7F /* Color.swift */; };
 		A803DFC9297E93B700357A7F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC5297E93B600357A7F /* FontManager.swift */; };
@@ -218,9 +216,7 @@
 		450DCB7A2A08EE36009B6AD3 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		4556FF6929ED19E400C62B2E /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		4557D0182A027923008B4AD7 /* BaseViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelTest.swift; sourceTree = "<group>"; };
-		45B8DEFC2A0A286F00BF2EB7 /* CoreDataSavePublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSavePublisherTest.swift; sourceTree = "<group>"; };
 		45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataAction.swift; sourceTree = "<group>"; };
-		45B8DF032A0A6A5C00BF2EB7 /* Teting .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Teting .swift"; sourceTree = "<group>"; };
 		45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStack.swift; sourceTree = "<group>"; };
 		A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A803DFC3297E92D000357A7F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -515,7 +511,6 @@
 				02B53F6929CEF4A30045BD34 /* CoreDataSavePublisher.swift */,
 				02B53F6B29CEF5AB0045BD34 /* CoreDataFetchPublisher.swift */,
 				020EE2A929D8199F0065F5EB /* CoreDataDeletePublisher.swift */,
-				45B8DF032A0A6A5C00BF2EB7 /* Teting .swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -625,7 +620,6 @@
 			isa = PBXGroup;
 			children = (
 				450DCB7A2A08EE36009B6AD3 /* CoreDataTest.swift */,
-				45B8DEFC2A0A286F00BF2EB7 /* CoreDataSavePublisherTest.swift */,
 				45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */,
 			);
 			path = Cache;
@@ -1177,7 +1171,6 @@
 				02BC668729B8838F00785196 /* CryotoCell.swift in Sources */,
 				A851A21529890B9F007F4CF9 /* NetworkTarget + Default.swift in Sources */,
 				02F1EEF429CDAE0E003AD8A9 /* CoreDataManager.swift in Sources */,
-				45B8DF042A0A6A5C00BF2EB7 /* Teting .swift in Sources */,
 				02D986142996AA320070A7E0 /* SearchMarketRepository.swift in Sources */,
 				A851A21429890B9F007F4CF9 /* NetworkTarget.swift in Sources */,
 				A851A20D29890B4D007F4CF9 /* NetworkClient.swift in Sources */,
@@ -1252,7 +1245,6 @@
 				02BC669B29B8D8C200785196 /* SearchMarketTest.swift in Sources */,
 				024515E329BA16FF0013B54C /* MockSearchMarketRemote.swift in Sources */,
 				024515C729B9B4840013B54C /* MarketPriceRequestTest.swift in Sources */,
-				45B8DEFD2A0A286F00BF2EB7 /* CoreDataSavePublisherTest.swift in Sources */,
 				450DCB7B2A08EE36009B6AD3 /* CoreDataTest.swift in Sources */,
 				024515E829BA47CE0013B54C /* MockNetworkTarget.swift in Sources */,
 				02BC669D29B8D94500785196 /* CoinUnitTest.swift in Sources */,

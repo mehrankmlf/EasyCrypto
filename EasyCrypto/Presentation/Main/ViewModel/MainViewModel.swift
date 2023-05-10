@@ -66,7 +66,8 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
         $searchText
             .debounce(for: 1.0, scheduler: WorkScheduler.mainThread)
             .removeDuplicates()
-            .sink { text in
+            .sink { [weak self] text in
+                guard let self = self else {return}
                 if text.isEmpty {
                     self.searchData = []
                 } else {

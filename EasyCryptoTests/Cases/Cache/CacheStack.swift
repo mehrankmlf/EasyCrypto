@@ -10,27 +10,36 @@ import CoreData
 import Combine
 @testable import EasyCrypto
 
-class CacheStack {
+class CacheStack: XCTestCase {
 
-  private static let model: NSManagedObjectModel = {
-    let modelURL = Bundle.main.url(
-        forResource: Constants.DBName.coinENt,
-      withExtension: "momd"
-    )!
-    return NSManagedObjectModel(contentsOf: modelURL)!
-  }()
+    lazy var mockPersistentContainer: NSPersistentContainer = {
+        let persistentContainer = NSPersistentContainer(name: "CoinsDB")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        
+        persistentContainer.persistentStoreDescriptions = [description]
+        persistentContainer.loadPersistentStores { (description, error) in
+            precondition(description.type == NSInMemoryStoreType)
+            
+            if let error = error {
+                fatalError("Unable to create in memory persistent store")
+            }
+        }
+        return persistentContainer
+    }()
 
-  lazy var mainContext: NSManagedObjectContext = {
-    storeContainer.viewContext
-  }()
-
-  lazy var storeContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: Constants.DBName.coinENt)
-    container.loadPersistentStores { _, error in
-      if let error {
-        fatalError("An error occurred while loading the Core Data: \(error.localizedDescription)")
-      }
+    func clearMockData() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "CoinENT")
+        let objects = try! mockPersistentContainer.viewContext.fetch(fetchRequest)
+        
+        objects.forEach { object in
+            guard let object = object as? NSManagedObject else {
+                return
+            }
+            mockPersistentContainer.viewContext.delete(object)
+        }
+        
+        try? mockPersistentContainer.viewContext.save()
     }
-    return container
-  }()
 }

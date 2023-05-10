@@ -10,19 +10,20 @@ import CoreData
 import Combine
 @testable import EasyCrypto
 
-class CoreDataTest: CoreDataManager {
+class CoreDataTest: CacheStack {
     
     var sut: CoreDataManagerProtocol!
     private var subscriber : Set<AnyCancellable> = []
 
     override func setUp() {
-        sut = CoreDataManager()
+        sut = CoreDataManager(container: mockPersistentContainer)
     }
 
     override func tearDown() {
         subscriber.forEach { $0.cancel() }
         subscriber.removeAll()
         sut = nil
+        clearMockData()
         super.tearDown()
     }
 }

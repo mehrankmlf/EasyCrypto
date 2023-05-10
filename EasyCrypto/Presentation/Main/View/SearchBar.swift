@@ -28,7 +28,7 @@ struct SearchBar: View {
                 if !text.isEmpty {
                     if isLoading {
                         Button(action: {
-                            text = ""
+                            text = .empty
                         }, label: {
                             ActivityIndicator(style: .medium, animate: .constant(true))
                                 .configure {
@@ -38,7 +38,7 @@ struct SearchBar: View {
                         .frame(width: 35, height: 35)
                     } else {
                         Button(action: {
-                            text = ""
+                            text = .empty
                             isEditing = false
                             dismissKeyboard()
                         }, label: {
@@ -63,14 +63,14 @@ struct SearchMarketCellView: View {
             ImageView(withURL: model.safeImageURL())
                 .frame(width: 25.0, height: 25.0)
 
-            Text(model.name.orWhenNilOrEmpty(""))
+            Text(model.name.orWhenNilOrEmpty(.empty))
                 .foregroundColor(Color.black)
                 .font(FontManager.body)
-            Text("(\(model.symbol.orWhenNilOrEmpty(""))")
+            Text("(\(model.symbol.orWhenNilOrEmpty(.empty))")
                 .foregroundColor(Color.black)
                 .font(FontManager.body)
             Spacer()
-            Text(model.marketCapRank != nil ? "#" + String(model.marketCapRank ?? 0) : "")
+            Text(model.marketCapRank != nil ? "#" + String(model.marketCapRank ?? 0) : .empty)
                 .foregroundColor(Color.black)
                 .font(FontManager.body)
         }

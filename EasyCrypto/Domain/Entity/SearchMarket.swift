@@ -40,7 +40,7 @@ extension Coin: Equatable {
 extension Coin {
     // make image url safe
     func safeImageURL() -> String {
-        guard let url = self.large else {return ""}
+        guard let url = self.large else {return .empty}
         let safeURL = url.trimmingString()
         return safeURL
     }

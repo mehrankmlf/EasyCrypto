@@ -32,7 +32,7 @@ struct PriceView: View {
                 }
             }
             HStack {
-                Text(item.name.orWhenNilOrEmpty(""))
+                Text(item.name.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
                 Spacer()

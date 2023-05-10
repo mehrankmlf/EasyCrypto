@@ -42,7 +42,7 @@ struct HttpRequest: RequestBuilder {
     var pathAppendedURL: URL {
         var url = baseURL.desc
         url.appendPathComponent(version.desc)
-        url.appendPathComponent(path ?? "")
+        url.appendPathComponent(path ?? .empty)
         return url
     }
     func setQueryTo(urlRequest: inout URLRequest,

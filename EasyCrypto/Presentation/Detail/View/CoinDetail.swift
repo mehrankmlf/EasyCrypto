@@ -15,7 +15,7 @@ struct CoinDetailAreaView: View {
         VStack(spacing: 30) {
             let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
             CoinDetailCell(title: Constants.PlaceHolder.marketCap,
-                                   price: marketCapFormat.orWhenNilOrEmpty(""))
+                           price: marketCapFormat.orWhenNilOrEmpty(.empty))
             if let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H as? NSNumber ?? 0) {
                 CoinDetailCell(title: Constants.PlaceHolder.volume24,
                                        price: price24Hours)

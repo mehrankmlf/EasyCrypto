@@ -22,7 +22,7 @@ struct MainView: Coordinatable {
 
     @State var index = 0
     @State private var shouldShowDropdown = false
-    @State private var searchText: String = ""
+    @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
 
     let subscriber = Cancelable()
@@ -47,7 +47,7 @@ struct MainView: Coordinatable {
                                 Spacer(minLength: Constant.searchHeight + 10)
                                 Dropdown(options: viewModel.searchData,
                                          onOptionSelected: { option in
-                                    self.viewModel.didTapSecond(id: option.id.orWhenNilOrEmpty(""))
+                                    self.viewModel.didTapSecond(id: option.id.orWhenNilOrEmpty(.empty))
                                 })
                                 .padding(.horizontal)
                             }

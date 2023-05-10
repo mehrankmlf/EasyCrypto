@@ -17,10 +17,10 @@ struct CryptoCellView: View {
                 .frame(width: 30.0, height: 30.0)
 
             VStack(alignment: .leading, spacing: 5) {
-                Text(item.name.orWhenNilOrEmpty(""))
+                Text(item.name.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.white)
                     .font(FontManager.body)
-                Text(item.symbol.orWhenNilOrEmpty(""))
+                Text(item.symbol.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
             }

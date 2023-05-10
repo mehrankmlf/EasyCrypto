@@ -15,7 +15,7 @@ struct CoinDetailHeaderView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 30.0) {
             HStack {
-                ImageView(withURL: item.image?.safeImageURL() ?? "")
+                ImageView(withURL: item.image?.safeImageURL() ?? .empty)
                     .frame(width: 50.0, height: 50.0)
                 Spacer()
                 CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
@@ -26,7 +26,7 @@ struct CoinDetailHeaderView: View {
                     Text("Name")
                         .foregroundColor(Color.gray)
                         .font(FontManager.body)
-                    Text(item.name.orWhenNilOrEmpty(""))
+                    Text(item.name.orWhenNilOrEmpty(.empty))
                         .foregroundColor(Color.white)
                         .font(FontManager.title)
                 }
@@ -36,7 +36,7 @@ struct CoinDetailHeaderView: View {
                     Text("Symbol")
                         .foregroundColor(Color.gray)
                         .font(FontManager.body)
-                    Text(item.symbol.orWhenNilOrEmpty(""))
+                    Text(item.symbol.orWhenNilOrEmpty(.empty))
                         .foregroundColor(Color.white)
                         .font(FontManager.title)
                 }
@@ -46,9 +46,9 @@ struct CoinDetailHeaderView: View {
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
                 Button {
-                    self.url(item.links?.homepage?.first.orWhenNilOrEmpty(""))
+                    self.url(item.links?.homepage?.first.orWhenNilOrEmpty(.empty))
                 } label: {
-                    Text(item.links?.homepage?.first ?? "")
+                    Text(item.links?.homepage?.first ?? .empty)
                         .foregroundColor(Color.white)
                         .font(FontManager.title)
                 }
@@ -57,7 +57,7 @@ struct CoinDetailHeaderView: View {
                 Text("Description")
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
-                Text(item.description?.en ?? "")
+                Text(item.description?.en ?? .empty)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.white)
                     .font(FontManager.title)

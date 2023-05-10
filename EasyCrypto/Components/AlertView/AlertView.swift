@@ -55,6 +55,6 @@ struct AlertView: View {
 struct CustomAlert_Previews: PreviewProvider {
 
     static var previews: some View {
-        AlertView(shown: .constant(false), closureA: .constant(.others), isSuccess: false, message: "")
+        AlertView(shown: .constant(false), closureA: .constant(.others), isSuccess: false, message: .empty)
     }
 }

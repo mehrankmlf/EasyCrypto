@@ -43,8 +43,8 @@ final class BaseViewModelTest: XCTestCase {
             XCTAssertEqual(event, .loadStart)
         }.store(in: &subscriber)
 
-        viewModel?.callWithProgress(argument: self.remote.fetch(vs_currency: "",
-                                                                order: "",
+        viewModel?.callWithProgress(argument: self.remote.fetch(vs_currency: .empty,
+                                                                order: .empty,
                                                                 per_page: 1,
                                                                 page: 1,
                                                                 sparkline: false)) { data in
@@ -71,8 +71,8 @@ final class BaseViewModelTest: XCTestCase {
         
         let viewModel = self.viewModelToTest
 
-        viewModel?.callWithoutProgress(argument: self.remote.fetch(vs_currency: "",
-                                                                order: "",
+        viewModel?.callWithoutProgress(argument: self.remote.fetch(vs_currency: .empty,
+                                                                   order: .empty,
                                                                 per_page: 1,
                                                                 page: 1,
                                                                 sparkline: false)) { data in

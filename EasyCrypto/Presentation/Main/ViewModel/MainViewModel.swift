@@ -46,7 +46,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     var page: Int = 1
     var perPage: Int = 15
 
-    @Published var searchText: String = ""
+    @Published var searchText: String = .empty
     @Published var rankSort: SortType = .rankASC
     @Published private(set) var marketData: [MarketsPrice] = []
     @Published private(set) var wishListData: [MarketsPrice] = []

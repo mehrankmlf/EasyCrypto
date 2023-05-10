@@ -30,3 +30,7 @@ extension String {
        return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
+
+extension String {
+    static let empty: String = ""
+}

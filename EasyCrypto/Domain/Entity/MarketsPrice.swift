@@ -46,7 +46,7 @@ extension MarketsPrice: Equatable {
 extension MarketsPrice {
     // make image url safe
     func safeImageURL() -> String {
-        guard let url = self.image else {return ""}
+        guard let url = self.image else {return .empty}
         let safeURL = url.trimmingString()
         return safeURL
     }

@@ -27,7 +27,7 @@ enum VersionType {
     var desc: String {
         switch self {
         case .none:
-            return ""
+            return .empty
         case .v1:
             return "/v1"
         case .v2:

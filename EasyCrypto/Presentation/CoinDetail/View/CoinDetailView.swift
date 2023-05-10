@@ -43,11 +43,11 @@ struct CoinDetailView: Coordinatable {
                             .frame(width: geoSize.width / 3.5, height: 4)
                             .cornerRadius(Constant.cornerRadius)
                             .padding(.top)
-                        SpinnerView(isShowing: $isLoading, text: .constant(""), geoSize: geoSize) {
+                        SpinnerView(isShowing: $isLoading, text: .constant(.empty), geoSize: geoSize) {
                             ScrollView {
                                 VStack(spacing: Constant.spacing) {
                                     CoinDetailHeaderView(item: coinData, url: { url in
-                                        self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(""))
+                                        self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(.empty))
                                     })
                                     .padding(.horizontal)
                                 }
@@ -57,7 +57,7 @@ struct CoinDetailView: Coordinatable {
                         }
                     }
                 }
-                .navigationBarTitle("")
+                .navigationBarTitle(String.empty)
                 .navigationBarHidden(true)
                 .onAppear {
                     self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty("")))

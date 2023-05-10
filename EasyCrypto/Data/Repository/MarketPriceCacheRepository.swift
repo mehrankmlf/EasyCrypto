@@ -32,14 +32,14 @@ final class MarketPriceCacheRepository: CacheRepositoryProtocol {
                 matchData.image = item.image
                 matchData.name = item.name
                 matchData.symbol = item.symbol
-                matchData.price = item.currentPrice ?? 0
-                matchData.priceChange24H = item.priceChange24H ?? 0
-                matchData.priceChangePercentage24H = item.priceChangePercentage24H ?? 0
-                matchData.totalSupply = item.totalSupply ?? 0
+                matchData.price = item.currentPrice ?? .defaultValue
+                matchData.priceChange24H = item.priceChange24H ?? .defaultValue
+                matchData.priceChangePercentage24H = item.priceChangePercentage24H ?? .defaultValue
+                matchData.totalSupply = item.totalSupply ?? .defaultValue
                 matchData.marketCapRank = Int64(item.marketCapRank ?? 0)
                 matchData.marketCap = Int64(item.marketCap ?? 0)
-                matchData.low24H = item.low24H ?? 0
-                matchData.high24H = item.high24H ?? 0
+                matchData.low24H = item.low24H ?? .defaultValue
+                matchData.high24H = item.high24H ?? .defaultValue
             } else {
                 let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DBName.coinENt,
                                                                into: self.coreDataManager.viewContext)

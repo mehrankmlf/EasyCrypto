@@ -21,6 +21,4 @@ final class DetailViewModelTest: XCTestCase {
         viewModelToTest = nil
         super.tearDown()
     }
-    
-    
 }

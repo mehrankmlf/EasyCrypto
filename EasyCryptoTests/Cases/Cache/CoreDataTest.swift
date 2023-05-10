@@ -29,7 +29,7 @@ class CoreDataTest: CacheStack {
 }
 
 extension CoreDataTest {
-    func testCoreSave_WhenSaveData_ShouldSaveMockData() {
+    func testCoreDataSave_WhenSaveData_ShouldSaveMockData() {
         
         let data = MarketsPrice.mock
         
@@ -54,6 +54,16 @@ extension CoreDataTest {
                 
             } receiveValue: { state in
                 XCTAssertEqual(state, true)
+            }.store(in: &subscriber)
+    }
+    
+    func testCoreDataFetch_WhenFetchData_ShouldSaveMockData() {
+        let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
+        sut.publisher(fetch: request)
+            .sinkOnMain { completions in
+
+            } receiveValue: { data in
+                XCTAssertEqual(data.count, 1)
             }.store(in: &subscriber)
     }
 }

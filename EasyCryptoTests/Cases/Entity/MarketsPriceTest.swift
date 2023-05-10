@@ -40,7 +40,7 @@ final class MarketsPriceTest: XCTestCase {
     
     func testMarketPrice_ShouldReturnValidType() {
         XCTAssertTrue(sut.id as Any is String)
-        XCTAssertTrue(sut.id == "bitcoin")
-        XCTAssertTrue(sut.name == "Bitcoin")
+        XCTAssertTrue(sut.id == "test1")
+        XCTAssertTrue(sut.name == "test1")
     }
 }

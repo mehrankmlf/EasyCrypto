@@ -76,7 +76,7 @@ struct MainView: Coordinatable {
             }
             .navigationBarTitle(viewModel.title, displayMode: .inline)
             .navigationBarColor(backgroundColor: .clear, titleColor: .white)
-            .onAppear {
+            .onViewDidLoad {
                 self.viewModel.apply(.onAppear)
             }
         }.onAppear(perform: handleState)

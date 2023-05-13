@@ -21,9 +21,9 @@
 		023954C829D96AA200DE6E59 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023954C729D96AA200DE6E59 /* DetailViewModel.swift */; };
 		024515C729B9B4840013B54C /* MarketPriceRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */; };
 		024515CA29B9B5AB0013B54C /* DummyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515C929B9B5AB0013B54C /* DummyEndpoint.swift */; };
-		024515D529B9C67E0013B54C /* MockMarketPriceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */; };
-		024515D829B9CCBB0013B54C /* MockMarketPriceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D729B9CCBB0013B54C /* MockMarketPriceRepository.swift */; };
-		024515DA29B9CE3F0013B54C /* MockMarketPriceRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D929B9CE3F0013B54C /* MockMarketPriceRemote.swift */; };
+		024515D529B9C67E0013B54C /* MarketPriceUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D429B9C67E0013B54C /* MarketPriceUseCaseMock.swift */; };
+		024515D829B9CCBB0013B54C /* MarketPriceRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D729B9CCBB0013B54C /* MarketPriceRepositoryMock.swift */; };
+		024515DA29B9CE3F0013B54C /* MarketPriceRemoteMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515D929B9CE3F0013B54C /* MarketPriceRemoteMock.swift */; };
 		024515DF29BA14580013B54C /* MockSearchMarketUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515DE29BA14580013B54C /* MockSearchMarketUsecase.swift */; };
 		024515E129BA169F0013B54C /* MockSearchMarketeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515E029BA169F0013B54C /* MockSearchMarketeRepository.swift */; };
 		024515E329BA16FF0013B54C /* MockSearchMarketRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024515E229BA16FF0013B54C /* MockSearchMarketRemote.swift */; };
@@ -85,6 +85,9 @@
 		4556FF6A29ED19E400C62B2E /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4556FF6929ED19E400C62B2E /* TabItemView.swift */; };
 		4557D0192A027923008B4AD7 /* BaseViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4557D0182A027923008B4AD7 /* BaseViewModelTest.swift */; };
 		457B87882A0F7EE400B04D9E /* ViewDidLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B87872A0F7EE400B04D9E /* ViewDidLoadModifier.swift */; };
+		457B878B2A0F844C00B04D9E /* MockCoinDetailRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B878A2A0F844C00B04D9E /* MockCoinDetailRemote.swift */; };
+		457B878F2A0F8DFA00B04D9E /* CoinDetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B878E2A0F8DFA00B04D9E /* CoinDetailViewModelTest.swift */; };
+		457B87922A0F95F200B04D9E /* CoinDetailUsecaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B87912A0F95F200B04D9E /* CoinDetailUsecaseMock.swift */; };
 		459B45D12A0BBCD3001C93BA /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B45D02A0BBCD3001C93BA /* Double + Extension.swift */; };
 		45B8DF022A0A3E8400BF2EB7 /* MockDataAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */; };
 		45B8DF062A0A6C7400BF2EB7 /* CacheStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */; };
@@ -157,9 +160,9 @@
 		023954C729D96AA200DE6E59 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		024515C629B9B4840013B54C /* MarketPriceRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRequestTest.swift; sourceTree = "<group>"; };
 		024515C929B9B5AB0013B54C /* DummyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyEndpoint.swift; sourceTree = "<group>"; };
-		024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceUseCase.swift; sourceTree = "<group>"; };
-		024515D729B9CCBB0013B54C /* MockMarketPriceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceRepository.swift; sourceTree = "<group>"; };
-		024515D929B9CE3F0013B54C /* MockMarketPriceRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketPriceRemote.swift; sourceTree = "<group>"; };
+		024515D429B9C67E0013B54C /* MarketPriceUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceUseCaseMock.swift; sourceTree = "<group>"; };
+		024515D729B9CCBB0013B54C /* MarketPriceRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRepositoryMock.swift; sourceTree = "<group>"; };
+		024515D929B9CE3F0013B54C /* MarketPriceRemoteMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceRemoteMock.swift; sourceTree = "<group>"; };
 		024515DE29BA14580013B54C /* MockSearchMarketUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchMarketUsecase.swift; sourceTree = "<group>"; };
 		024515E029BA169F0013B54C /* MockSearchMarketeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchMarketeRepository.swift; sourceTree = "<group>"; };
 		024515E229BA16FF0013B54C /* MockSearchMarketRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchMarketRemote.swift; sourceTree = "<group>"; };
@@ -219,6 +222,9 @@
 		4556FF6929ED19E400C62B2E /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		4557D0182A027923008B4AD7 /* BaseViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelTest.swift; sourceTree = "<group>"; };
 		457B87872A0F7EE400B04D9E /* ViewDidLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDidLoadModifier.swift; sourceTree = "<group>"; };
+		457B878A2A0F844C00B04D9E /* MockCoinDetailRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoinDetailRemote.swift; sourceTree = "<group>"; };
+		457B878E2A0F8DFA00B04D9E /* CoinDetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModelTest.swift; sourceTree = "<group>"; };
+		457B87912A0F95F200B04D9E /* CoinDetailUsecaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailUsecaseMock.swift; sourceTree = "<group>"; };
 		459B45D02A0BBCD3001C93BA /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataAction.swift; sourceTree = "<group>"; };
 		45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStack.swift; sourceTree = "<group>"; };
@@ -372,9 +378,9 @@
 		024515D629B9CC930013B54C /* MarketPrice */ = {
 			isa = PBXGroup;
 			children = (
-				024515D929B9CE3F0013B54C /* MockMarketPriceRemote.swift */,
-				024515D729B9CCBB0013B54C /* MockMarketPriceRepository.swift */,
-				024515D429B9C67E0013B54C /* MockMarketPriceUseCase.swift */,
+				024515D929B9CE3F0013B54C /* MarketPriceRemoteMock.swift */,
+				024515D729B9CCBB0013B54C /* MarketPriceRepositoryMock.swift */,
+				024515D429B9C67E0013B54C /* MarketPriceUseCaseMock.swift */,
 			);
 			path = MarketPrice;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				4557D0182A027923008B4AD7 /* BaseViewModelTest.swift */,
 				02BC669F29B8E3C000785196 /* MainViewModelTest.swift */,
 				025ABE5A29FA784600E460EB /* DetailViewModelTest.swift */,
+				457B878E2A0F8DFA00B04D9E /* CoinDetailViewModelTest.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -588,6 +595,7 @@
 		02BC66A129B8E4CE00785196 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				457B87902A0F8E5E00B04D9E /* CoinDetail */,
 				45B8DEFE2A0A2F8C00BF2EB7 /* Cache */,
 				024515E629BA47BB0013B54C /* NetworkTarget */,
 				024515DB29BA13F40013B54C /* Search */,
@@ -626,6 +634,15 @@
 				457B87872A0F7EE400B04D9E /* ViewDidLoadModifier.swift */,
 			);
 			path = ViewDidLoadModifier;
+			sourceTree = "<group>";
+		};
+		457B87902A0F8E5E00B04D9E /* CoinDetail */ = {
+			isa = PBXGroup;
+			children = (
+				457B878A2A0F844C00B04D9E /* MockCoinDetailRemote.swift */,
+				457B87912A0F95F200B04D9E /* CoinDetailUsecaseMock.swift */,
+			);
+			path = CoinDetail;
 			sourceTree = "<group>";
 		};
 		45B5DDAE2A07C18A00583979 /* Cache */ = {
@@ -1248,15 +1265,18 @@
 			files = (
 				45B8DF022A0A3E8400BF2EB7 /* MockDataAction.swift in Sources */,
 				4557D0192A027923008B4AD7 /* BaseViewModelTest.swift in Sources */,
+				457B878F2A0F8DFA00B04D9E /* CoinDetailViewModelTest.swift in Sources */,
 				024515E129BA169F0013B54C /* MockSearchMarketeRepository.swift in Sources */,
+				457B87922A0F95F200B04D9E /* CoinDetailUsecaseMock.swift in Sources */,
 				A81742D4297E593D00023B28 /* EasyCryptoTests.swift in Sources */,
-				024515D529B9C67E0013B54C /* MockMarketPriceUseCase.swift in Sources */,
+				024515D529B9C67E0013B54C /* MarketPriceUseCaseMock.swift in Sources */,
 				025ABE5B29FA784600E460EB /* DetailViewModelTest.swift in Sources */,
 				024515E529BA42880013B54C /* RequestBuilderTest.swift in Sources */,
-				024515D829B9CCBB0013B54C /* MockMarketPriceRepository.swift in Sources */,
+				024515D829B9CCBB0013B54C /* MarketPriceRepositoryMock.swift in Sources */,
 				02BC66A029B8E3C000785196 /* MainViewModelTest.swift in Sources */,
 				024515DF29BA14580013B54C /* MockSearchMarketUsecase.swift in Sources */,
 				024515CA29B9B5AB0013B54C /* DummyEndpoint.swift in Sources */,
+				457B878B2A0F844C00B04D9E /* MockCoinDetailRemote.swift in Sources */,
 				45B8DF062A0A6C7400BF2EB7 /* CacheStack.swift in Sources */,
 				02BC669B29B8D8C200785196 /* SearchMarketTest.swift in Sources */,
 				024515E329BA16FF0013B54C /* MockSearchMarketRemote.swift in Sources */,
@@ -1264,7 +1284,7 @@
 				450DCB7B2A08EE36009B6AD3 /* CoreDataTest.swift in Sources */,
 				024515E829BA47CE0013B54C /* MockNetworkTarget.swift in Sources */,
 				02BC669D29B8D94500785196 /* CoinUnitTest.swift in Sources */,
-				024515DA29B9CE3F0013B54C /* MockMarketPriceRemote.swift in Sources */,
+				024515DA29B9CE3F0013B54C /* MarketPriceRemoteMock.swift in Sources */,
 				02BC669929B8D25300785196 /* MarketsPriceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

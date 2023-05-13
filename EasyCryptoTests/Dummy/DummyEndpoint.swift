@@ -8,7 +8,7 @@
 import Foundation
 @testable import EasyCrypto
 
-class DummyTarget: NetworkTarget {
+final class DummyTarget: NetworkTarget {
     var baseURL: EasyCrypto.BaseURLType = .baseApi
     
     var version: EasyCrypto.VersionType = .v1

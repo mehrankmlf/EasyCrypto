@@ -11,12 +11,12 @@ import Combine
 
 final class BaseViewModelTest: XCTestCase {
     
-    private var remote: MockMarketPriceRemote!
+    private var remote: MarketPriceRemoteMock!
     private var viewModelToTest: DefaultViewModel!
     private var subscriber : Set<AnyCancellable> = []
 
     override func setUp()  {
-        remote = MockMarketPriceRemote()
+        remote = MarketPriceRemoteMock()
         viewModelToTest = DefaultViewModel()
     }
     

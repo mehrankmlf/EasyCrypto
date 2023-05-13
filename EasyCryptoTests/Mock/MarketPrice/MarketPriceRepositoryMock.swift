@@ -9,8 +9,8 @@ import Foundation
 import Combine
 @testable import EasyCrypto
 
-class MockMarketPriceRepository: MarketPricRepositoryProrocol {
-    let mockMarketPriceService = MockMarketPriceRemote()
+final class MarketPriceRepositoryMock: MarketPricRepositoryProrocol {
+    let mockMarketPriceService = MarketPriceRemoteMock()
     func data(vs_currency: String, order: String, per_page: Int, page: Int, sparkline: Bool) -> AnyPublisher<[EasyCrypto.MarketsPrice]?, EasyCrypto.APIError> {
          return mockMarketPriceService.fetchedResult
     }

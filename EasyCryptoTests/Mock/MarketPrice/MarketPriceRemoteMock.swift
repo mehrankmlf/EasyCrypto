@@ -9,7 +9,7 @@ import Foundation
 import Combine
 @testable import EasyCrypto
 
-class MockMarketPriceRemote: MarketPricRemoteProtocol {
+final class MarketPriceRemoteMock: MarketPricRemoteProtocol {
     var fetchedResult: AnyPublisher <[EasyCrypto.MarketsPrice]?, APIError>!
     func fetch(vs_currency: String, order: String, per_page: Int, page: Int, sparkline: Bool) -> AnyPublisher<[EasyCrypto.MarketsPrice]?, EasyCrypto.APIError> {
         return fetchedResult

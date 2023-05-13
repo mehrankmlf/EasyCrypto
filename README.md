@@ -35,6 +35,11 @@ I have explained about EasyCrypto in the form of a post on Medium.
 
 https://medium.com/@mehran.kmlf/clean-architecture-combine-for-swiftui-caf252c0f10c
 
+## Style and conventions - SwiftLint
+A script runs when building the app that executes SwiftLint to enforce style & conventions to the code.
+
+You can install SwiftLint with Homebrew: brew install swiftlint
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.

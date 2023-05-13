@@ -12,13 +12,17 @@ import Combine
 final class CoinDetailViewModelTest: XCTestCase {
     
     private var viewModelToTest: CoinDetailViewModel!
+    private var subscriber : Set<AnyCancellable> = []
 
     override func setUp()  {
-        viewModelToTest = CoinDetailViewModel()
+        let usecase = CoinDetailUsecaseMock()
+        viewModelToTest = CoinDetailViewModel(coinDetailUsecase: usecase)
     }
     
     override func tearDown() {
         viewModelToTest = nil
         super.tearDown()
     }
+    
+    
 }

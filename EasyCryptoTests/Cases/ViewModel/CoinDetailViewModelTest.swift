@@ -12,6 +12,7 @@ import Combine
 final class CoinDetailViewModelTest: XCTestCase {
     
     private var viewModelToTest: CoinDetailViewModel!
+    private var remote: CoinDetailRemoteMock!
     private var subscriber : Set<AnyCancellable> = []
     
     private var input: CoinDetailViewModel.InputType!
@@ -19,6 +20,7 @@ final class CoinDetailViewModelTest: XCTestCase {
     override func setUp()  {
         let usecase = CoinDetailUsecaseMock()
         viewModelToTest = CoinDetailViewModel(coinDetailUsecase: usecase)
+        remote = CoinDetailRemoteMock()
         input = CoinDetailViewModel.InputType.onAppear(id: "")
     }
     
@@ -27,6 +29,7 @@ final class CoinDetailViewModelTest: XCTestCase {
         subscriber.removeAll()
         viewModelToTest = nil
         input = nil
+        remote = nil
         super.tearDown()
     }
     

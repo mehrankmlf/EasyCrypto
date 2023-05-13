@@ -34,7 +34,7 @@ final class MainViewModelTest: XCTestCase {
     func testMainViewModel_WhenMarketServiceCalled_ShouldReturnResponse() {
         let data = MarketsPrice.mockArray
 
-        let expectation = XCTestExpectation(description: "State is set to Token")
+        let expectation = XCTestExpectation(description: "State")
 
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
@@ -50,7 +50,7 @@ final class MainViewModelTest: XCTestCase {
     func testMainViewModel_WhenMarketServiceCalled_ShouldReturnNil() {
         let data = [MarketsPrice]()
 
-        let expectation = XCTestExpectation(description: "State is set to Token")
+        let expectation = XCTestExpectation(description: "State")
 
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
@@ -66,7 +66,7 @@ final class MainViewModelTest: XCTestCase {
     func testMainViewModel_MarketSearchCalled_ShouldReturnResponse() {
         let data = SearchMarket.mock
 
-        let expectation = XCTestExpectation(description: "State is set to Token")
+        let expectation = XCTestExpectation(description: "State")
 
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
@@ -82,7 +82,7 @@ final class MainViewModelTest: XCTestCase {
     func testMainViewModel_MarketSearchCalled_ShouldReturnNil() {
         let data = SearchMarket(coins: nil)
 
-        let expectation = XCTestExpectation(description: "State is set to Token")
+        let expectation = XCTestExpectation(description: "State")
 
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)

@@ -12,9 +12,23 @@ protocol CoinDetailViewModelInterface {
     func getCoinDetailData(id: String)
 }
 
-protocol DefaultCoinDetailViewModel: CoinDetailViewModelInterface, DataFlowProtocol { }
+protocol DefaultCoinDetailViewModel: CoinDetailViewModelInterface { }
 
 final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
+    
+    private let coinDetailUsecase: CoinDetailUsecaseProtocol
+    
+    @Published private(set) var coinData = CoinUnit()
+    @Published var isShowActivity: Bool = false
+    
+    var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
+    
+    init(coinDetailUsecase: CoinDetailUsecaseProtocol = DIContainer.shared.inject(type: CoinDetailUsecaseProtocol.self)!) {
+        self.coinDetailUsecase = coinDetailUsecase
+    }
+}
+
+extension CoinDetailViewModel: DataFlowProtocol {
     
     typealias InputType = Load
     
@@ -27,17 +41,6 @@ final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
         case .onAppear(let id):
             self.getCoinDetailData(id: id)
         }
-    }
-    
-    private let coinDetailUsecase: CoinDetailUsecaseProtocol
-    
-    @Published private(set) var coinData = CoinUnit()
-    @Published var isShowActivity: Bool = false
-    
-    var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
-    
-    init(coinDetailUsecase: CoinDetailUsecaseProtocol = DIContainer.shared.inject(type: CoinDetailUsecaseProtocol.self)!) {
-        self.coinDetailUsecase = coinDetailUsecase
     }
     
     func didTapFirst(url: String) {

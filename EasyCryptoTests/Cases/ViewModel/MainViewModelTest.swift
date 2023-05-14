@@ -94,4 +94,8 @@ final class MainViewModelTest: XCTestCase {
 
         wait(for: [expectation], timeout: 1)
     }
+    
+    func testMainViewModel_ResultSort_ShouldReturnSorted() {
+        let data = 
+    }
 }

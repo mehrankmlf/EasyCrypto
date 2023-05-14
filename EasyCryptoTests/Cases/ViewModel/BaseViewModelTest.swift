@@ -82,5 +82,4 @@ final class BaseViewModelTest: XCTestCase {
 
         wait(for: [expectation], timeout: 1)
     }
-    
 }

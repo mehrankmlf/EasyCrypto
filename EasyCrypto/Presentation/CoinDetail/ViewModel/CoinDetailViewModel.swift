@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-protocol CoinDetailViewModelInterface {
+protocol CoinDetailViewModelProtocol {
     func getCoinDetailData(id: String)
 }
 
-protocol DefaultCoinDetailViewModel: CoinDetailViewModelInterface { }
+protocol DefaultCoinDetailViewModel: CoinDetailViewModelProtocol { }
 
 final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
     

@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-protocol MainViewModelInterface {
+protocol MainViewModelProtocol {
     func getMarketData(vs_currency: String,
                        order: String,
                        sparkline: Bool)
 }
 
-protocol DefaultMainViewModel: MainViewModelInterface, DataFlowProtocol { }
+protocol DefaultMainViewModel: MainViewModelProtocol, DataFlowProtocol { }
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
 

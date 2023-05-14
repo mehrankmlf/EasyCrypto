@@ -10,7 +10,7 @@ import CoreData
 import Combine
 @testable import EasyCrypto
 
-class CacheStack: XCTestCase {
+final class CacheStack: XCTestCase {
 
     lazy var mockPersistentContainer: NSPersistentContainer = {
         let persistentContainer = NSPersistentContainer(name: "CoinsDB")

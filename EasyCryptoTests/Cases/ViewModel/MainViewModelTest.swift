@@ -96,6 +96,8 @@ final class MainViewModelTest: XCTestCase {
     }
     
     func testMainViewModel_ResultSort_ShouldReturnSorted() {
-        let data = 
+        let data = MarketsPrice.mockArray
+        
+        
     }
 }

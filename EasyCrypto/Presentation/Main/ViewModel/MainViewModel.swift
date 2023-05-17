@@ -17,7 +17,7 @@ protocol MainViewModelProtocol {
 protocol DefaultMainViewModel: MainViewModelProtocol { }
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
-        
+    
     let title: String = Constants.Title.mainTitle
     
     private let marketPriceUsecase: MarketPriceUsecaseProtocol

@@ -10,7 +10,7 @@ import CoreData
 import Combine
 @testable import EasyCrypto
 
-class CoreDataTest: CacheStack {
+final class CoreDataTest: CacheStack {
     
     var sut: CoreDataManagerProtocol!
     private var subscriber : Set<AnyCancellable> = []
@@ -60,8 +60,7 @@ extension CoreDataTest {
     func testCoreDataFetch_WhenFetchData_ShouldSaveMockData() {
         let request: NSFetchRequest<CoinENT> = CoinENT.fetchRequest()
         sut.publisher(fetch: request)
-            .sinkOnMain { completions in
-
+            .sinkOnMain { _ in
             } receiveValue: { data in
                 XCTAssertEqual(data.count, 1)
             }.store(in: &subscriber)

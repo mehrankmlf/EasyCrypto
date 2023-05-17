@@ -29,7 +29,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
     
     @Published var searchText: String = .empty
     @Published var rankSort: SortType = .rankASC
-    @Published private(set) var marketData: [MarketsPrice] = []
+    @Published var marketData: [MarketsPrice] = []
     @Published private(set) var wishListData: [MarketsPrice] = []
     @Published private(set) var searchData: [Coin] = []
     

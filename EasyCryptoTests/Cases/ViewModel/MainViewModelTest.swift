@@ -95,9 +95,28 @@ final class MainViewModelTest: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
     
-    func testMainViewModel_ResultSort_ShouldReturnSorted() {
+    func testMainViewModel_ResultSortASC_ShouldReturnSorted() {
         let data = MarketsPrice.mockArray
         
+        viewModelToTest.marketData = data
         
+        viewModelToTest.sortList(type: .rankASC)
+        
+        let sorted = viewModelToTest.marketData
+        
+        XCTAssertEqual(sorted, MarketsPrice.mockArray)
     }
+    
+    func testMainViewModel_ResultSortDSC_ShouldReturnSorted() {
+        let data = MarketsPrice.mockArray
+        
+        viewModelToTest.marketData = data
+        
+        viewModelToTest.sortList(type: .rankDSC)
+        
+        let sorted = viewModelToTest.marketData
+        
+        XCTAssertEqual(sorted, MarketsPrice.mockArray.reversed())
+    }
+
 }

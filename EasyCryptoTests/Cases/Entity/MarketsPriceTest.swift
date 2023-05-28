@@ -41,6 +41,11 @@ final class MarketsPriceTest: XCTestCase {
     func testMarketPrice_ShouldReturnValidType() {
         XCTAssertTrue(sut.id as Any is String)
         XCTAssertTrue(sut.id == "test1")
+        XCTAssertTrue(sut.name as Any is String)
         XCTAssertTrue(sut.name == "test1")
+        XCTAssertTrue(sut.symbol as Any is String)
+        XCTAssertTrue(sut.symbol == "test1")
+        XCTAssertTrue(sut.image as Any is String)
+        XCTAssertTrue(sut.image == "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579")
     }
 }

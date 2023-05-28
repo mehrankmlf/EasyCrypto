@@ -39,5 +39,8 @@ final class SearchMarketTest: XCTestCase {
     
     func testCoin_ShouldReturnValidType() {
         XCTAssertTrue(sut.id as Any is String)
+        XCTAssertTrue(sut.id == "zcoin")
+        XCTAssertTrue(sut.name as Any is String)
+        XCTAssertTrue(sut.name == "Firo")
     }
 }

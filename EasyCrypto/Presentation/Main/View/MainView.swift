@@ -9,28 +9,30 @@ import SwiftUI
 import Combine
 
 struct MainView: Coordinatable {
-
+    
     typealias Route = Routes
-
+    
     @ObservedObject private(set) var viewModel: MainViewModel
-
+    
     enum Constant {
         static let searchHeight: CGFloat = 55
         static let topPadding: CGFloat = 5
         static let cornerRadius: CGFloat = 10
     }
-
+    
     @State var index = 0
     @State private var shouldShowDropdown = false
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
-
+    @State private var presentAlert = true
+    @State private var alertMesagee: String = ""
+    
     let subscriber = Cancelable()
-
+    
     init(viewModel: MainViewModel = DIContainer.shared.inject(type: MainViewModel.self)!) {
         self.viewModel = viewModel
     }
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -72,6 +74,8 @@ struct MainView: Coordinatable {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     Spacer()
+                    self.showAlert("Error", alertMesagee)
+                        .hidden(presentAlert)
                 }
             }
             .navigationBarTitle(viewModel.title, displayMode: .inline)
@@ -79,7 +83,8 @@ struct MainView: Coordinatable {
             .onViewDidLoad {
                 self.viewModel.apply(.onAppear)
             }
-        }.onAppear(perform: handleState)
+        }
+        .onAppear(perform: handleState)
     }
     func coinsList() -> some View {
         ScrollView {
@@ -143,10 +148,23 @@ extension MainView {
                     self.isLoading = true
                 case .dismissAlert:
                     self.isLoading = false
-                case .emptyStateHandler(_, _):
+                case .emptyStateHandler(let message, _):
                     self.isLoading = false
+                    self.presentAlert = false
+                    self.alertMesagee = message
                 }
             }.store(in: subscriber)
+    }
+}
+
+extension MainView {
+    func showAlert(_ title: String, _ message: String) -> some View {
+        CustomAlertView(title: title, message: message, primaryButtonLabel: "Retry", primaryButtonAction: {
+            self.presentAlert = true
+            self.viewModel.callFirstTime()
+        })
+        .previewLayout(.sizeThatFits)
+        .padding()
     }
 }
 

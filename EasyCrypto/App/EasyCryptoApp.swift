@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let isRunningUITests = ProcessInfo.processInfo.arguments.contains("isRunningUITests")
+
 @main
 struct EasyCryptoApp: App {
 

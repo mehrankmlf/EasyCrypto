@@ -20,7 +20,7 @@ struct MainView: Coordinatable {
         static let cornerRadius: CGFloat = 10
     }
     
-    @State var index = 0
+    @State var tabIndex = 0
     @State private var shouldShowDropdown = false
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
@@ -63,10 +63,10 @@ struct MainView: Coordinatable {
                     .padding(.top, Constant.topPadding)
                     SortView(viewModel: self.viewModel, viewState: isLoading)
                         .padding(.top, Constant.topPadding)
-                    TabItemView(index: $index)
+                    TabItemView(index: $tabIndex)
                         .padding(.top, 20)
-                    TabView(selection: $index) {
-                        if index == 0 {
+                    TabView(selection: $tabIndex) {
+                        if tabIndex == 0 {
                             coinsList()
                         } else {
                             whishList()

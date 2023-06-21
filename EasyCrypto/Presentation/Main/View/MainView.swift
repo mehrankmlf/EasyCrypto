@@ -74,8 +74,9 @@ struct MainView: Coordinatable {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     Spacer()
-                    self.showAlert("Error", alertMesagee)
-                        .hidden(presentAlert)
+                    if !presentAlert{
+                        self.showAlert("Error", alertMesagee)
+                    }
                 }
             }
             .navigationBarTitle(viewModel.title, displayMode: .inline)

@@ -16,10 +16,13 @@ final class MainViewModelTest: XCTestCase {
     private var searchMarket: MockSearchMarketRemote!
     private var subscriber : Set<AnyCancellable> = []
     
+    private var input: MainViewModel.InputType!
+    
     override func setUp()  {
         viewModelToTest = MainViewModel()
         marketPrice = MarketPriceRemoteMock()
         searchMarket = MockSearchMarketRemote()
+        input = MainViewModel.InputType.onAppear
     }
     
     override func tearDown() {
@@ -28,6 +31,7 @@ final class MainViewModelTest: XCTestCase {
         viewModelToTest = nil
         marketPrice = nil
         searchMarket = nil
+        input = nil
         super.tearDown()
     }
     

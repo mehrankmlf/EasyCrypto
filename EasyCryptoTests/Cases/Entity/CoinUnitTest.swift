@@ -13,6 +13,7 @@ final class CoinUnitTest: XCTestCase {
     var sut: CoinUnit!
 
     override func setUp() {
+        // Arrange
         sut = CoinUnit.mock
     }
 

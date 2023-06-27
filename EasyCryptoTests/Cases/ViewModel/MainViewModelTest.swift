@@ -36,15 +36,16 @@ final class MainViewModelTest: XCTestCase {
     }
     
     func testMainViewModel_WhenMarketServiceCalled_ShouldReturnResponse() {
+        //Arrange
         let data = MarketsPrice.mockArray
 
         let expectation = XCTestExpectation(description: "State")
-
+        // Act
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
-
+        // Assert
         marketPrice.fetchedResult = Result.success(data).publisher.eraseToAnyPublisher()
         viewModelToTest.getMarketData()
 
@@ -52,15 +53,16 @@ final class MainViewModelTest: XCTestCase {
     }
     
     func testMainViewModel_WhenMarketServiceCalled_ShouldReturnNil() {
+        //Arrange
         let data = [MarketsPrice]()
 
         let expectation = XCTestExpectation(description: "State")
-
+        // Act
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
-
+        // Assert
         marketPrice.fetchedResult = Result.success(data).publisher.eraseToAnyPublisher()
         viewModelToTest.getMarketData()
 
@@ -68,15 +70,16 @@ final class MainViewModelTest: XCTestCase {
     }
     
     func testMainViewModel_MarketSearchCalled_ShouldReturnResponse() {
+        //Arrange
         let data = SearchMarket.mock
 
         let expectation = XCTestExpectation(description: "State")
-
+        // Act
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
-
+        // Assert
         searchMarket.fetchedResult = Result.success(data).publisher.eraseToAnyPublisher()
         viewModelToTest.searchMarketData(text: "")
 
@@ -84,15 +87,16 @@ final class MainViewModelTest: XCTestCase {
     }
     
     func testMainViewModel_MarketSearchCalled_ShouldReturnNil() {
+        //Arrange
         let data = SearchMarket(coins: nil)
 
         let expectation = XCTestExpectation(description: "State")
-
+        // Act
         viewModelToTest.loadinState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
-
+        // Assert
         searchMarket.fetchedResult = Result.success(data).publisher.eraseToAnyPublisher()
         viewModelToTest.searchMarketData(text: "")
 
@@ -100,26 +104,28 @@ final class MainViewModelTest: XCTestCase {
     }
     
     func testMainViewModel_ResultSortASC_ShouldReturnSorted() {
+        //Arrange
         let data = MarketsPrice.mockArray
         
         viewModelToTest.marketData = data
-        
+        // Act
         viewModelToTest.sortList(type: .rankASC)
         
         let sorted = viewModelToTest.marketData
-        
+        // Assert
         XCTAssertEqual(sorted, MarketsPrice.mockArray)
     }
     
     func testMainViewModel_ResultSortDSC_ShouldReturnSorted() {
+        //Arrange
         let data = MarketsPrice.mockArray
         
         viewModelToTest.marketData = data
-        
+        // Act
         viewModelToTest.sortList(type: .rankDSC)
         
         let sorted = viewModelToTest.marketData
-        
+        // Assert
         XCTAssertEqual(sorted, MarketsPrice.mockArray.reversed())
     }
 

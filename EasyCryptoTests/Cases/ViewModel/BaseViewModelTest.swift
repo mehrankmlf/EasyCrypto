@@ -29,15 +29,14 @@ final class BaseViewModelTest: XCTestCase {
     }
     
     func testBaseViewModel_WhenCallWithProgress_ShouldReturnValue() {
-        
+        //Arrange
         let data = MarketsPrice.mockArray
         
         remote.fetchedResult = Result.success(data).publisher.eraseToAnyPublisher()
         
         let expectation = XCTestExpectation(description: "State is set to Token")
-        
         let viewModel = self.viewModelToTest
-        
+        // Act
         viewModel?.loadinState.dropFirst().sink { event in
             expectation.fulfill()
             XCTAssertEqual(event, .loadStart)
@@ -47,7 +46,9 @@ final class BaseViewModelTest: XCTestCase {
                                                                 order: .empty,
                                                                 per_page: 1,
                                                                 page: 1,
+                
                                                                 sparkline: false)) { data in
+        // Assert
         expectation.fulfill()
         XCTAssertTrue(data as Any is [MarketsPrice])
         XCTAssertTrue(data as Any is Decodable)
@@ -62,7 +63,7 @@ final class BaseViewModelTest: XCTestCase {
     }
     
     func testBaseViewModel_WhenCallWithProgress_ShouldReturnNil() {
-        
+        //Arrange
         let data: [MarketsPrice] = []
         
         remote.fetchedResult = Result.success(data).publisher.eraseToAnyPublisher()
@@ -70,12 +71,13 @@ final class BaseViewModelTest: XCTestCase {
         let expectation = XCTestExpectation(description: "State is set to Token")
         
         let viewModel = self.viewModelToTest
-
+        // Act
         viewModel?.callWithoutProgress(argument: self.remote.fetch(vs_currency: .empty,
                                                                    order: .empty,
                                                                 per_page: 1,
                                                                 page: 1,
                                                                 sparkline: false)) { data in
+        // Assert
         expectation.fulfill()
         XCTAssertTrue(data as Any is [MarketsPrice])
         }

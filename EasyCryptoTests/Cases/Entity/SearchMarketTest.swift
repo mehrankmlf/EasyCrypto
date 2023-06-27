@@ -13,6 +13,7 @@ final class SearchMarketTest: XCTestCase {
     var sut: Coin!
 
     override func setUp() {
+        // Arrange
         sut = Coin.mock
     }
 

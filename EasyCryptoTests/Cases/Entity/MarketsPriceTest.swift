@@ -13,6 +13,7 @@ final class MarketsPriceTest: XCTestCase {
     var sut: MarketsPrice!
 
     override func setUp() {
+        // Arrange
         sut = MarketsPrice.mock
     }
 

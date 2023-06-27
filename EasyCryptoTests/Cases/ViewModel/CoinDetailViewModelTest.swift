@@ -34,8 +34,10 @@ final class CoinDetailViewModelTest: XCTestCase {
     }
     
     func testCoinDetailViewModel_WhenOnAppear_ShouldReturnValid() {
+        // Act
         viewModelToTest.$coinData
             .sinkOnMain { data in
+                // Assert
                 XCTAssertTrue(data as Any is CoinUnit)
                 XCTAssertTrue(data as Any is Decodable)
                 XCTAssertEqual(data.id, "bitcoin")

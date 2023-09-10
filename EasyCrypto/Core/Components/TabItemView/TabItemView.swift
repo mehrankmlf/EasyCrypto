@@ -10,34 +10,41 @@ import SwiftUI
 struct TabItemView: View {
     @Binding var index: Int
     var titles = ["Coins", "Whishlists"]
+    private let leftOffset: CGFloat = 0.1
+    
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(titles.indices) {id in
-                        let title = Text(titles[id]).id(id)
-                            .font(FontManager.headLine_2)
+                HStack(spacing: 20) {
+                    ForEach(titles.indices) { id in
+                        TabTitleView(title: titles[id], isSelected: index == id)
                             .onTapGesture {
                                 withAnimation {
                                     index = id
                                 }
                             }
-                        if self.index == id {
-                            title.foregroundColor(.white)
-                        } else {
-                            title.foregroundColor(.white.opacity(0.5))
-                        }
                     }
-                    .font(.title)
-                    .padding(.horizontal, 5)
                 }
-                .padding(.leading, 20)
-            }.onChange(of: index) { value in
+                .padding(.horizontal, 20)
+            }
+            .onChange(of: index) { newValue in
                 withAnimation {
-                 proxy.scrollTo(value, anchor: UnitPoint(x: UnitPoint.leading.x + leftOffset, y: UnitPoint.leading.y))
+                    proxy.scrollTo(newValue, anchor: .leading)
                 }
-            }.animation(.easeInOut)
+            }
+            .animation(.easeInOut)
         }
     }
-    private let leftOffset: CGFloat = 0.1
+}
+
+struct TabTitleView: View {
+    let title: String
+    let isSelected: Bool
+    
+    var body: some View {
+        Text(title)
+            .font(FontManager.headLine_2)
+            .font(.title)
+            .foregroundColor(isSelected ? .white : Color.white.opacity(0.5))
+    }
 }

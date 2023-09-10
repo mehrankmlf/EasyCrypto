@@ -41,7 +41,7 @@ final class MainViewModelTest: XCTestCase {
 
         let expectation = XCTestExpectation(description: "State")
         // Act
-        viewModelToTest.loadinState.dropFirst().sink { event in
+        viewModelToTest.loadingState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
@@ -58,7 +58,7 @@ final class MainViewModelTest: XCTestCase {
 
         let expectation = XCTestExpectation(description: "State")
         // Act
-        viewModelToTest.loadinState.dropFirst().sink { event in
+        viewModelToTest.loadingState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
@@ -75,7 +75,7 @@ final class MainViewModelTest: XCTestCase {
 
         let expectation = XCTestExpectation(description: "State")
         // Act
-        viewModelToTest.loadinState.dropFirst().sink { event in
+        viewModelToTest.loadingState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)
@@ -92,7 +92,7 @@ final class MainViewModelTest: XCTestCase {
 
         let expectation = XCTestExpectation(description: "State")
         // Act
-        viewModelToTest.loadinState.dropFirst().sink { event in
+        viewModelToTest.loadingState.dropFirst().sink { event in
             XCTAssertEqual(event, .loadStart)
               expectation.fulfill()
         }.store(in: &subscriber)

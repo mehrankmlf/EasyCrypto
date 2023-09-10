@@ -1,3 +1,11 @@
+
+//
+//  CustomAlertView.swift
+//  EasyCrypto
+//
+//  Created by Mehran on 12/17/1401 AP.
+//
+
 import SwiftUI
 
 struct CustomAlertView: View {

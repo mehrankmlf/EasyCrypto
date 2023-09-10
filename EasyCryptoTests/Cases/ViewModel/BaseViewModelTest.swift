@@ -37,7 +37,7 @@ final class BaseViewModelTest: XCTestCase {
         let expectation = XCTestExpectation(description: "State is set to Token")
         let viewModel = self.viewModelToTest
         // Act
-        viewModel?.loadinState.dropFirst().sink { event in
+        viewModel?.loadingState.dropFirst().sink { event in
             expectation.fulfill()
             XCTAssertEqual(event, .loadStart)
         }.store(in: &subscriber)
@@ -54,7 +54,7 @@ final class BaseViewModelTest: XCTestCase {
         XCTAssertTrue(data as Any is Decodable)
         }
         
-        viewModel?.loadinState.dropFirst().sink(receiveValue: { event in
+        viewModel?.loadingState.dropFirst().sink(receiveValue: { event in
             expectation.fulfill()
             XCTAssertEqual(event, .dismissAlert)
         }).store(in: &subscriber)

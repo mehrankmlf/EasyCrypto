@@ -30,7 +30,7 @@ final class CoreDataTest: CacheStack {
 
 extension CoreDataTest {
     func testCoreDataSave_WhenSaveData_ShouldSaveMockData() {
-        let data = MarketsPrice.mock
+        let  data = MarketsPrice.mock
         
         let mockAction: Action = {
             let coin = NSEntityDescription.insertNewObject(forEntityName: "CoinENT",

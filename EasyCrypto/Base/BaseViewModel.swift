@@ -15,7 +15,7 @@ enum ViewModelStatus: Equatable {
 }
 
 protocol BaseViewModelEventSource: AnyObject {
-    var loadinState: CurrentValueSubject<ViewModelStatus, Never> { get }
+    var loadingState: CurrentValueSubject<ViewModelStatus, Never> { get }
 }
 
 protocol ViewModelService: AnyObject {
@@ -31,21 +31,21 @@ typealias BaseViewModel = BaseViewModelEventSource & ViewModelService
 
 open class DefaultViewModel: BaseViewModel, ObservableObject {
 
-    var loadinState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
+    var loadingState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
     let subscriber = Cancelable()
 
     func callWithProgress<ReturnType>(argument: AnyPublisher<ReturnType?,
                                       APIError>,
                                       callback: @escaping (_ data: ReturnType?) -> Void) {
-        self.loadinState.send(.loadStart)
+        self.loadingState.send(.loadStart)
 
         let completionHandler: (Subscribers.Completion<APIError>) -> Void = { [weak self] completion in
             switch completion {
             case .failure(let error):
-                self?.loadinState.send(.dismissAlert)
-                self?.loadinState.send(.emptyStateHandler(title: error.desc, isShow: true))
+                self?.loadingState.send(.dismissAlert)
+                self?.loadingState.send(.emptyStateHandler(title: error.desc, isShow: true))
             case .finished:
-                self?.loadinState.send(.dismissAlert)
+                self?.loadingState.send(.dismissAlert)
             }
         }
 

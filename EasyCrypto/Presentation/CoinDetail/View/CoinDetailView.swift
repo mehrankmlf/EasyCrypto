@@ -75,7 +75,7 @@ extension CoinDetailView {
 
 extension CoinDetailView {
     private func handleState() {
-        self.viewModel.loadinState
+        self.viewModel.loadingState
             .receive(on: WorkScheduler.mainThread)
             .sink { state in
                 switch state {

@@ -12,7 +12,7 @@ struct MainView: Coordinatable {
     
     typealias Route = Routes
     
-    @ObservedObject private(set) var viewModel: MainViewModel
+    @StateObject var viewModel: MainViewModel = MainViewModel()
     
     enum Constant {
         static let searchHeight: CGFloat = 55
@@ -28,11 +28,7 @@ struct MainView: Coordinatable {
     @State private var alertMesagee: String = ""
     
     let subscriber = Cancelable()
-    
-    init(viewModel: MainViewModel = DIContainer.shared.inject(type: MainViewModel.self)!) {
-        self.viewModel = viewModel
-    }
-    
+ 
     var body: some View {
         NavigationView {
             ZStack {
@@ -141,7 +137,7 @@ extension MainView {
 
 extension MainView {
     private func handleState() {
-        self.viewModel.loadinState
+        self.viewModel.loadingState
             .receive(on: WorkScheduler.mainThread)
             .sink { state in
                 switch state {

@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Select Xcode
-        run: sudo Xcode-select -switch /Applications/Xcode_14.3.0.app
+        run: sudo Xcode-select -switch /Applications/Xcode_14.3.app
       - name: Build & Test
         run: xcodebuild test -scheme EasyCrypto -project EasyCrypto.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=$' | xcpretty && exit ${PIPESTATUS[0]}

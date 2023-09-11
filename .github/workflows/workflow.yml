@@ -14,4 +14,4 @@ jobs:
       - name: Select Xcode
         run: sudo Xcode-select -switch /Applications/Xcode_13.2.1.app
       - name: Build & Test
-        run: xcodebuild clean build test -workspace EasyCrypto.xcodeproj -scheme EasyCrypto -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=15.2'
+        run: xcodebuild clean build test -project EasyCrypto.xcodeproj -scheme EasyCrypto -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=15.2'

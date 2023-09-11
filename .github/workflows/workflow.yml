@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Select Xcode
-        run: sudo Xcode-select -switch /Applications/Xcode_14.3.0.app
+        run: sudo Xcode-select -switch /Applications/Xcode_14.2.app
       - name: Build & Test
         run: xcodebuild clean build test -project EasyCrypto.xcodeproj -scheme EasyCrypto CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO

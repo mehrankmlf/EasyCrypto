@@ -2,10 +2,10 @@ name: Tests EasyCrypto using CI process
 on:
  push:
   branches:
-   - [master]
+   - master
  pull_request:
   branches:
-   - [master]
+   - master
 jobs:
  build-and-test:
   runs-on: macos-latest

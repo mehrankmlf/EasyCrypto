@@ -10,7 +10,7 @@ import Combine
 
 struct MainCoordinator: CoordinatorProtocol {
 
-    @StateObject var viewModel: MainViewModel
+    @StateObject var viewModel = MainViewModel()
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
     @State var transition: Transition?
 

@@ -12,7 +12,7 @@ struct MainView: Coordinatable {
 
     typealias Route = Routes
 
-    @StateObject var viewModel: MainViewModel = MainViewModel()
+    @StateObject var viewModel: MainViewModel
 
     enum Constant {
         static let searchHeight: CGFloat = 55

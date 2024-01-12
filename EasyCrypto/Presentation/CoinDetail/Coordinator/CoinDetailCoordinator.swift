@@ -10,7 +10,7 @@ import Combine
 
 struct CoinDetailCoordinator: CoordinatorProtocol {
 
-    @StateObject var viewModel: CoinDetailViewModel
+    @ObservedObject var viewModel: CoinDetailViewModel
     @State var activeRoute: Destination? = Destination(route: .first(url: nil))
     @State var transition: Transition?
     let id: String

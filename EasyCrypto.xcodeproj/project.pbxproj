@@ -477,7 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				A81742C2297E593800023B28 /* EasyCryptoApp.swift */,
-				A8D4A114299E45D300C11107 /* AppDependencyContainer.swift */,
 				0250EA6F29B27F4200AA6040 /* AppDependencyContainer + Injection.swift */,
 			);
 			path = App;
@@ -513,6 +512,14 @@
 				A8D4A108299E0A6F00C11107 /* CoinDetailCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		02B004542B518B0D00AB7B6C /* DIManager */ = {
+			isa = PBXGroup;
+			children = (
+				A8D4A114299E45D300C11107 /* AppDependencyContainer.swift */,
+			);
+			path = DIManager;
 			sourceTree = "<group>";
 		};
 		02B22A8629CC476800A04929 /* Persistance */ = {
@@ -833,6 +840,7 @@
 				A8D4A10A299E0DFA00C11107 /* Base */,
 				A803DFB7297E918900357A7F /* Theme */,
 				A803DFCD297E93F600357A7F /* Support */,
+				02B004542B518B0D00AB7B6C /* DIManager */,
 				02B22A8629CC476800A04929 /* Persistance */,
 				A803DFBA297E91BF00357A7F /* Core */,
 				A803DFBB297E91C600357A7F /* Data */,
@@ -1103,6 +1111,8 @@
 				Base,
 			);
 			mainGroup = A81742B6297E593800023B28;
+			packageReferences = (
+			);
 			productRefGroup = A81742C0297E593800023B28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

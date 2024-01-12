@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SortView: View {
 
-    @State var viewModel: MainViewModel
+    @ObservedObject var viewModel: MainViewModel
     @State var viewState: Bool = false
 
     var body: some View {

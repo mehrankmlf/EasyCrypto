@@ -14,13 +14,15 @@ struct EasyCryptoApp: App {
 
     let coreDataManager = CoreDataManager.preview
 
+    @StateObject var viewModel: MainViewModel = MainViewModel()
+
     init() {
         DIContainer.shared.registration()
     }
 
     var body: some Scene {
         WindowGroup {
-            MainCoordinator(viewModel: MainViewModel())
+            MainCoordinator(viewModel: viewModel)
                 .environment(\.managedObjectContext, coreDataManager.container.viewContext)
         }
     }

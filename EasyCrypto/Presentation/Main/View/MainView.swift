@@ -9,26 +9,26 @@ import SwiftUI
 import Combine
 
 struct MainView: Coordinatable {
-    
+
     typealias Route = Routes
-    
+
     @StateObject var viewModel: MainViewModel = MainViewModel()
-    
+
     enum Constant {
         static let searchHeight: CGFloat = 55
         static let topPadding: CGFloat = 5
         static let cornerRadius: CGFloat = 10
     }
-    
+
     @State var tabIndex = 0
     @State private var shouldShowDropdown = false
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
     @State private var presentAlert = true
     @State private var alertMesagee: String = ""
-    
+
     let subscriber = Cancelable()
- 
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -70,7 +70,7 @@ struct MainView: Coordinatable {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     Spacer()
-                    if !presentAlert{
+                    if !presentAlert {
                         self.showAlert("Error", alertMesagee)
                     }
                 }

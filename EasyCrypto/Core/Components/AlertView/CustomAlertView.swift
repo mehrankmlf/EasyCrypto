@@ -1,4 +1,3 @@
-
 //
 //  CustomAlertView.swift
 //  EasyCrypto
@@ -16,7 +15,7 @@ struct CustomAlertView: View {
     var secondaryButtonLabel: String?
     var secondaryButtonAction: (() -> Void)?
     var image: Image?
-    
+
     var body: some View {
         VStack {
             if let image = image {
@@ -24,7 +23,8 @@ struct CustomAlertView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80)
-            } else if let title = title{
+                // swiftlint:disable:next opening_brace
+            } else if let title = title {
                 Text(title)
                     .font(.headline)
                     .multilineTextAlignment(.center)
@@ -35,7 +35,6 @@ struct CustomAlertView: View {
                     .multilineTextAlignment(.center)
                     .padding()
             }
-            
             HStack(spacing: 16) {
                 Button(action: {
                     self.primaryButtonAction()

@@ -17,24 +17,24 @@ protocol MainViewModelProtocol {
 protocol DefaultMainViewModel: MainViewModelProtocol { }
 
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
-    
+
     let title: String = Constants.Title.mainTitle
-    
+
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
     private let searchMarketUsecase: SearchMarketUsecaseProtocol
     private let cacherepository: CacheRepositoryProtocol
-    
+
     var page: Int = 1
     var perPage: Int = 15
-    
+
     @Published var searchText: String = .empty
     @Published var rankSort: SortType = .rankASC
     @Published var marketData: [MarketsPrice] = []
     @Published private(set) var wishListData: [MarketsPrice] = []
     @Published private(set) var searchData: [Coin] = []
-    
+
     var navigateSubject = PassthroughSubject<MainView.Routes, Never>()
-    
+
     init(marketPriceUsecase: MarketPriceUsecaseProtocol = DIContainer.shared.inject(type: MarketPriceUsecaseProtocol.self)!,
          searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.inject(type: SearchMarketUsecaseProtocol.self)!,
          cacherepository: CacheRepositoryProtocol = DIContainer.shared.inject(type: CacheRepositoryProtocol.self)!) {
@@ -45,13 +45,13 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
 }
 
 extension MainViewModel: DataFlowProtocol {
-    
+
     typealias InputType = Load
-    
+
     enum Load {
         case onAppear
     }
-    
+
     func apply(_ input: Load) {
         switch input {
         case .onAppear:
@@ -59,12 +59,12 @@ extension MainViewModel: DataFlowProtocol {
             self.callFirstTime()
         }
     }
-    
+
     enum SortType {
         case rankASC
         case rankDSC
     }
-    
+
     private func bindData() {
         $searchText
             .debounce(for: 1.0, scheduler: WorkScheduler.mainThread)
@@ -79,24 +79,24 @@ extension MainViewModel: DataFlowProtocol {
                 }
             }.store(in: subscriber)
     }
-    
+
     func didTapFirst(item: MarketsPrice) {
         self.navigateSubject.send(.first(item: item))
     }
-    
+
     func didTapSecond(id: String) {
         self.navigateSubject.send(.second(id: id))
     }
-    
+
     func callFirstTime() {
         guard self.marketData.isEmpty else {return}
         self.getMarketData()
     }
-    
+
     func loadMore() {
         self.getMarketData()
     }
-    
+
     func getMarketData(vs_currency: String = "usd",
                        order: String = "market_cap_desc",
                        sparkline: Bool = false) {
@@ -110,7 +110,7 @@ extension MainViewModel: DataFlowProtocol {
             self?.page += 1
         }
     }
-    
+
     func searchMarketData(text: String) {
         self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
             let coin = data?.coins ?? []
@@ -118,7 +118,7 @@ extension MainViewModel: DataFlowProtocol {
             self?.searchData = coin
         }
     }
-    
+
     func sortList(type: SortType) {
         switch type {
         case .rankASC:
@@ -131,7 +131,7 @@ extension MainViewModel: DataFlowProtocol {
             }
         }
     }
-    
+
     func fetchWishlist() {
         self.wishListData = []
         let _ = self.cacherepository.fetch()

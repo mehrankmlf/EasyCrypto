@@ -11,7 +11,7 @@ struct TabItemView: View {
     @Binding var index: Int
     var titles = ["Coins", "Whishlists"]
     private let leftOffset: CGFloat = 0.1
-    
+
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
@@ -40,7 +40,7 @@ struct TabItemView: View {
 struct TabTitleView: View {
     let title: String
     let isSelected: Bool
-    
+
     var body: some View {
         Text(title)
             .font(FontManager.headLine_2)

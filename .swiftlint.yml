@@ -1,5 +1,5 @@
 disabled_rules: # rule identifiers to exclude from running
-  - variable_name
+  - identifier_name
   - nesting
   - function_parameter_count
   - redundant_discardable_let

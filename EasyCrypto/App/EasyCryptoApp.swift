@@ -13,7 +13,7 @@ let isRunningUITests = ProcessInfo.processInfo.arguments.contains("isRunningUITe
 struct EasyCryptoApp: App {
 
     let coreDataManager = CoreDataManager.preview
-    
+
     init() {
         DIContainer.shared.registration()
     }

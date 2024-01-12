@@ -101,7 +101,7 @@ struct CoreDataManager: CoreDataManagerProtocol {
             }
         })
     }
-    
+
     init(container: NSPersistentContainer) {
         self.container = container
     }

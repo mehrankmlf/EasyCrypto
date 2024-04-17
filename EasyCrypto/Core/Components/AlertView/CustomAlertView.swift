@@ -23,7 +23,6 @@ struct CustomAlertView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80)
-                // swiftlint:disable:next opening_brace
             } else if let title = title {
                 Text(title)
                     .font(.headline)

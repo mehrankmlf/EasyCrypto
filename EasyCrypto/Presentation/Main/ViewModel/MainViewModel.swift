@@ -19,6 +19,7 @@ protocol DefaultMainViewModel: MainViewModelProtocol { }
 final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
 
     let title: String = Constants.Title.mainTitle
+    let errorTitle: String = Constants.Title.errorTitle
 
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
     private let searchMarketUsecase: SearchMarketUsecaseProtocol
@@ -100,7 +101,13 @@ extension MainViewModel: DataFlowProtocol {
     func getMarketData(vs_currency: String = "usd",
                        order: String = "market_cap_desc",
                        sparkline: Bool = false) {
-        self.callWithProgress(argument: self.marketPriceUsecase.execute(vs_currency: vs_currency,
+
+        // Check if the number of market data entries is already 30 to limit service calls
+        if marketData.count == 30 {
+            return
+        }
+
+        self.call(argument: self.marketPriceUsecase.execute(vs_currency: vs_currency,
                                                                         order: order,
                                                                         per_page: self.perPage,
                                                                         page: self.page,
@@ -112,7 +119,7 @@ extension MainViewModel: DataFlowProtocol {
     }
 
     func searchMarketData(text: String) {
-        self.callWithProgress(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
+        self.call(argument: self.searchMarketUsecase.execute(text: text)) { [weak self] data in
             let coin = data?.coins ?? []
             self?.searchData = []
             self?.searchData = coin

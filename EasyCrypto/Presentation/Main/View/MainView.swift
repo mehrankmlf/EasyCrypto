@@ -12,7 +12,7 @@ struct MainView: Coordinatable {
 
     typealias Route = Routes
 
-    @StateObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: MainViewModel
 
     enum Constant {
         static let searchHeight: CGFloat = 55
@@ -24,12 +24,16 @@ struct MainView: Coordinatable {
     @State private var shouldShowDropdown = false
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
-    @State private var presentAlert = true
-    @State private var alertMesagee: String = ""
+    @State private var presentAlert = false
+    @State private var alertMessage: String = ""
 
     let subscriber = Cancelable()
 
     var body: some View {
+        content
+    }
+
+    var content: some View {
         NavigationView {
             ZStack {
                 Color.darkBlue
@@ -63,15 +67,15 @@ struct MainView: Coordinatable {
                         .padding(.top, 20)
                     TabView(selection: $tabIndex) {
                         if tabIndex == 0 {
-                            coinsList()
+                            coinsList
                         } else {
-                            whishList()
+                            whishList
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     Spacer()
-                    if !presentAlert {
-                        self.showAlert("Error", alertMesagee)
+                    if presentAlert {
+                        self.showAlert(viewModel.errorTitle, alertMessage)
                     }
                 }
             }
@@ -80,10 +84,14 @@ struct MainView: Coordinatable {
             .onViewDidLoad {
                 self.viewModel.apply(.onAppear)
             }
+            .handleViewModelState(viewModel: viewModel,
+                                  isLoading: $isLoading,
+                                  alertMessage: $alertMessage,
+                                  presentAlert: $presentAlert)
         }
-        .onAppear(perform: handleState)
     }
-    func coinsList() -> some View {
+
+    var coinsList: some View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.marketData, id: \.id) { item  in
@@ -111,7 +119,8 @@ struct MainView: Coordinatable {
             .padding()
         }
     }
-    func whishList() -> some View {
+
+    var whishList: some View {
         ScrollView {
             VStack {
                 ForEach(viewModel.wishListData, id: \.symbol) { item  in
@@ -132,25 +141,6 @@ extension MainView {
     enum Routes: Routing {
         case first(item: MarketsPrice)
         case second(id: String)
-    }
-}
-
-extension MainView {
-    private func handleState() {
-        self.viewModel.loadingState
-            .receive(on: WorkScheduler.mainThread)
-            .sink { state in
-                switch state {
-                case .loadStart:
-                    self.isLoading = true
-                case .dismissAlert:
-                    self.isLoading = false
-                case .emptyStateHandler(let message, _):
-                    self.isLoading = false
-                    self.presentAlert = false
-                    self.alertMesagee = message
-                }
-            }.store(in: subscriber)
     }
 }
 

@@ -18,6 +18,8 @@ struct CoinDetailView: Coordinatable {
 
     @ObservedObject private(set) var viewModel: CoinDetailViewModel
     @State private var isLoading: Bool = false
+    @State private var presentAlert = false
+    @State private var alertMessage: String = ""
 
     let subscriber = Cancelable()
     var id: String?
@@ -62,31 +64,18 @@ struct CoinDetailView: Coordinatable {
                 .onAppear {
                     self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty("")))
                 }
+                .handleViewModelState(viewModel: viewModel,
+                                      isLoading: $isLoading,
+                                      alertMessage: $alertMessage,
+                                      presentAlert: $presentAlert)
             }
-        }.onAppear(perform: handleState)
+        }
     }
 }
 
 extension CoinDetailView {
     enum Routes: Routing {
         case first(url: URL?)
-    }
-}
-
-extension CoinDetailView {
-    private func handleState() {
-        self.viewModel.loadingState
-            .receive(on: WorkScheduler.mainThread)
-            .sink { state in
-                switch state {
-                case .loadStart:
-                    self.isLoading = true
-                case .dismissAlert:
-                    self.isLoading = false
-                case .emptyStateHandler(_, _):
-                    self.isLoading = false
-                }
-            }.store(in: subscriber)
     }
 }
 

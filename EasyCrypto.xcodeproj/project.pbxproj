@@ -92,6 +92,7 @@
 		459B45D12A0BBCD3001C93BA /* Double + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B45D02A0BBCD3001C93BA /* Double + Extension.swift */; };
 		45B8DF022A0A3E8400BF2EB7 /* MockDataAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */; };
 		45B8DF062A0A6C7400BF2EB7 /* CacheStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */; };
+		65239A462BCD0F3B001FC67D /* HandleViewModelStateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65239A452BCD0F3B001FC67D /* HandleViewModelStateModifier.swift */; };
 		A803DFC4297E92D000357A7F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC3297E92D000357A7F /* Color.swift */; };
 		A803DFC9297E93B700357A7F /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFC5297E93B600357A7F /* FontManager.swift */; };
 		A803DFD3297E943100357A7F /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A803DFD2297E943100357A7F /* Cancelable.swift */; };
@@ -230,6 +231,7 @@
 		459B45D02A0BBCD3001C93BA /* Double + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension.swift"; sourceTree = "<group>"; };
 		45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataAction.swift; sourceTree = "<group>"; };
 		45B8DF052A0A6C7400BF2EB7 /* CacheStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStack.swift; sourceTree = "<group>"; };
+		65239A452BCD0F3B001FC67D /* HandleViewModelStateModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleViewModelStateModifier.swift; sourceTree = "<group>"; };
 		A803DFBE297E91FF00357A7F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A803DFC3297E92D000357A7F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A803DFC5297E93B600357A7F /* FontManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
@@ -637,14 +639,6 @@
 			path = TabItemView;
 			sourceTree = "<group>";
 		};
-		457B87862A0F7ECE00B04D9E /* ViewDidLoadModifier */ = {
-			isa = PBXGroup;
-			children = (
-				457B87872A0F7EE400B04D9E /* ViewDidLoadModifier.swift */,
-			);
-			path = ViewDidLoadModifier;
-			sourceTree = "<group>";
-		};
 		457B87902A0F8E5E00B04D9E /* CoinDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +664,15 @@
 				45B8DF012A0A3E8400BF2EB7 /* MockDataAction.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		65239A482BCD104F001FC67D /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				65239A452BCD0F3B001FC67D /* HandleViewModelStateModifier.swift */,
+				457B87872A0F7EE400B04D9E /* ViewDidLoadModifier.swift */,
+			);
+			path = ViewModifier;
 			sourceTree = "<group>";
 		};
 		A803DFB7297E918900357A7F /* Theme */ = {
@@ -701,7 +704,6 @@
 		A803DFBA297E91BF00357A7F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				457B87862A0F7ECE00B04D9E /* ViewDidLoadModifier */,
 				A803DFB9297E91AF00357A7F /* Components */,
 				027A1B0629D08301008B10D2 /* Log */,
 				02D8622229BBAE4500F77BC7 /* WorkScheduler */,
@@ -772,6 +774,7 @@
 		A803DFCD297E93F600357A7F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				65239A482BCD104F001FC67D /* ViewModifier */,
 				A851A2342989155F007F4CF9 /* MessageHelper */,
 				A851A22F29891214007F4CF9 /* Extension */,
 			);
@@ -1203,6 +1206,7 @@
 				A851A22B29890C0B007F4CF9 /* Configuration.swift in Sources */,
 				A8D4A10E299E0E1300C11107 /* AppRouter.swift in Sources */,
 				02BC668029B882F400785196 /* PlaceholderModifier.swift in Sources */,
+				65239A462BCD0F3B001FC67D /* HandleViewModelStateModifier.swift in Sources */,
 				A8D4A109299E0A6F00C11107 /* CoinDetailCoordinator.swift in Sources */,
 				02593C53298E992500ADDA20 /* MarketPriceRepository.swift in Sources */,
 				A851A21029890B75007F4CF9 /* NetworkClientManager.swift in Sources */,

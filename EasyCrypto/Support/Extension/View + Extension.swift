@@ -18,3 +18,15 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
+extension View {
+    func handleViewModelState(viewModel: DefaultViewModel,
+                              isLoading: Binding<Bool>,
+                              alertMessage: Binding<String>,
+                              presentAlert: Binding<Bool>) -> some View {
+        self.modifier(HandleViewModelStateModifier(viewModel: viewModel,
+                                                   isLoading: isLoading,
+                                                   alertMessage: alertMessage,
+                                                   presentAlert: presentAlert))
+    }
+}

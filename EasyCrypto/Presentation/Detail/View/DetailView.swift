@@ -22,6 +22,10 @@ struct DetailView: View {
     }
 
     var body: some View {
+        content
+    }
+
+    var content: some View {
         ZStack {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)

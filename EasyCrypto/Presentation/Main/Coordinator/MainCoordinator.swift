@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct MainCoordinator: CoordinatorProtocol {
-    
+
     @StateObject var viewModel: MainViewModel
 
     @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
@@ -38,9 +38,9 @@ struct MainCoordinator: CoordinatorProtocol {
 
 extension MainCoordinator {
     struct Destination: DestinationProtocol {
-   
+
         var route: MainView.Routes
-   
+
         @ViewBuilder
         var content: some View {
             switch route {

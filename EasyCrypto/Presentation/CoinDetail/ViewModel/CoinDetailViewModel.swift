@@ -50,7 +50,7 @@ extension CoinDetailViewModel: DataFlowProtocol {
 
     func getCoinDetailData(id: String) {
         guard !String.isNilOrEmpty(string: id) else {return}
-        self.callWithProgress(argument: self.coinDetailUsecase.execute(id: id)) { [weak self] data in
+        self.call(argument: self.coinDetailUsecase.execute(id: id)) { [weak self] data in
             guard let data = data else {return}
             self?.coinData = data
         }

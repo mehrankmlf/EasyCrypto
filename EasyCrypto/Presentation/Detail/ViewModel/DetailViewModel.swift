@@ -10,6 +10,7 @@ import Foundation
 final class DetailViewModel: ObservableObject {
 
     let title: String = Constants.Title.detailTitle
+    
     @Published var marketPrice = MarketsPrice()
 
     private let repository: CacheRepositoryProtocol

@@ -17,11 +17,13 @@ struct CoinDetailView: Coordinatable {
     }
 
     @ObservedObject private(set) var viewModel: CoinDetailViewModel
+
     @State private var isLoading: Bool = false
     @State private var presentAlert = false
     @State private var alertMessage: String = ""
 
     let subscriber = Cancelable()
+    
     var id: String?
     var coinData: CoinUnit {
         return self.viewModel.coinData
@@ -33,6 +35,10 @@ struct CoinDetailView: Coordinatable {
     }
 
     var body: some View {
+        content
+    }
+
+    var content: some View {
         NavigationView {
             GeometryReader { geo in
                 let geoSize = geo.size

@@ -14,6 +14,10 @@ struct SearchBar: View {
     @Binding var isEditing: Bool
 
     var body: some View {
+        content
+    }
+
+    var content: some View {
         ZStack(alignment: .leading) {
             HStack {
                 TextField("", text: $text)
@@ -49,7 +53,7 @@ struct SearchBar: View {
                     }
                 }
             }.padding(.horizontal)
-             .frame(height: 40.0)
+                .frame(height: 40.0)
         }
     }
 }

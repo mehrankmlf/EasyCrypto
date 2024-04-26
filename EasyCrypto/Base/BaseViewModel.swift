@@ -29,19 +29,19 @@ protocol ViewModelService: AnyObject {
 typealias BaseViewModel = BaseViewModelEventSource & ViewModelService
 
 open class DefaultViewModel: BaseViewModel, ObservableObject {
-    
+
     var loadingState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
     let subscriber = Cancelable()
-    
+
     func call<ReturnType>(callWithIndicator: Bool = true,
                           argument: AnyPublisher<ReturnType?,
                           APIError>,
                           callback: @escaping (_ data: ReturnType?) -> Void) {
-        
+
         if callWithIndicator {
             self.loadingState.send(.loadStart)
         }
-        
+
         let completionHandler: (Subscribers.Completion<APIError>) -> Void = { [weak self] completion in
             switch completion {
             case .failure(let error):
@@ -51,11 +51,11 @@ open class DefaultViewModel: BaseViewModel, ObservableObject {
                 self?.loadingState.send(.dismissAlert)
             }
         }
-        
+
         let resultValueHandler: (ReturnType?) -> Void = { data in
             callback(data)
         }
-        
+
         argument
             .subscribe(on: WorkScheduler.backgroundWorkScheduler)
             .receive(on: WorkScheduler.mainScheduler)

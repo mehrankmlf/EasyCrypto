@@ -10,6 +10,7 @@ import SwiftUI
 struct PriceView: View {
 
     let item: MarketsPrice
+    
     var viewModel: DetailViewModel
 
     @State var isPersist: Bool = false
@@ -23,7 +24,7 @@ struct PriceView: View {
                     .font(FontManager.body)
                 Spacer()
                 Button {
-                    self.handleDataPersistance(item: item)
+                    self.handleDataPersistence(for: item)
                 } label: {
                     Image(isPersist ? Assets.save : Assets.unsave)
                         .resizable()
@@ -60,13 +61,14 @@ struct PriceView: View {
             self.isPersist = self.viewModel.checkIfItemExist(item)
         }
     }
-    func handleDataPersistance(item: MarketsPrice) {
+
+    private func handleDataPersistence(for item: MarketsPrice) {
+        isPersist.toggle()
+
         if isPersist {
-            self.isPersist = false
-            self.viewModel.deleteFromWishlist(item)
+            viewModel.addToWishlist(item)
         } else {
-            self.isPersist = true
-            self.viewModel.addToWishlist(item)
+            viewModel.deleteFromWishlist(item)
         }
     }
 }

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct HandleViewModelStateModifier: ViewModifier {
-    
+
     @ObservedObject var viewModel: DefaultViewModel
     @Binding var isLoading: Bool
     @Binding var alertMessage: String
     @Binding var presentAlert: Bool
-    
+
     func body(content: Content) -> some View {
         content
             .onReceive(viewModel.loadingState.receive(on: DispatchQueue.main)) { state in

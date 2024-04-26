@@ -50,7 +50,7 @@ extension MainCoordinator {
                 CoinDetailCoordinator(viewModel: CoinDetailViewModel(), id: data)
             }
         }
-    
+
         var transition: Transition {
             switch route {
             case .first: return .push

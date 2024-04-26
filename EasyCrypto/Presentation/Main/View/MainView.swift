@@ -91,7 +91,7 @@ struct MainView: Coordinatable {
         }
     }
 
-    var coinsList: some View {
+   private var coinsList: some View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.marketData, id: \.id) { item  in
@@ -120,7 +120,7 @@ struct MainView: Coordinatable {
         }
     }
 
-    var whishList: some View {
+   private var whishList: some View {
         ScrollView {
             VStack {
                 ForEach(viewModel.wishListData, id: \.symbol) { item  in

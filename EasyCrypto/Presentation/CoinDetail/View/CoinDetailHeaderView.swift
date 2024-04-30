@@ -10,7 +10,7 @@ import SwiftUI
 struct CoinDetailHeaderView: View {
 
     var item: CoinUnit
-    
+
     var url: ((String?) -> Void)
 
     var body: some View {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 public struct ViewDidLoadModifier: ViewModifier {
+
     @State private var viewDidLoad = false
     let action: (() -> Void)?
 

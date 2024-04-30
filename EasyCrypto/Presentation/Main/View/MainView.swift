@@ -20,7 +20,7 @@ struct MainView: Coordinatable {
         static let cornerRadius: CGFloat = 10
     }
 
-    @State var tabIndex = 0
+    @State private var tabIndex = 0
     @State private var shouldShowDropdown = false
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
@@ -34,7 +34,7 @@ struct MainView: Coordinatable {
     }
 
     var content: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color.darkBlue
                     .edgesIgnoringSafeArea(.all)
@@ -78,6 +78,7 @@ struct MainView: Coordinatable {
                         self.showAlert(viewModel.errorTitle, alertMessage)
                     }
                 }
+                .edgesIgnoringSafeArea(.bottom)
             }
             .navigationBarTitle(viewModel.title, displayMode: .inline)
             .navigationBarColor(backgroundColor: .clear, titleColor: .white)

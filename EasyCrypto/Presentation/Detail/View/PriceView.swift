@@ -10,10 +10,10 @@ import SwiftUI
 struct PriceView: View {
 
     let item: MarketsPrice
-    
+
     var viewModel: DetailViewModel
 
-    @State var isPersist: Bool = false
+    @State private var isPersist: Bool = false
 
     var body: some View {
         VStack {

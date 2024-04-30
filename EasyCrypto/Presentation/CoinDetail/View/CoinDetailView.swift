@@ -23,7 +23,7 @@ struct CoinDetailView: Coordinatable {
     @State private var alertMessage: String = ""
 
     let subscriber = Cancelable()
-    
+
     var id: String?
     var coinData: CoinUnit {
         return self.viewModel.coinData
@@ -39,7 +39,7 @@ struct CoinDetailView: Coordinatable {
     }
 
     var content: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geo in
                 let geoSize = geo.size
                 ZStack {

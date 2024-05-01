@@ -8,12 +8,10 @@ on:
       - master
 jobs:
   build-and-test:
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up Xcode
-        uses: actions/setup-xcode@v2
-        with:
-          xcode-version: latest-stable
+        run: sudo Xcode-select -switch /Applications/Xcode_15.0.app
       - name: Build & Test
         run: xcodebuild test -scheme EasyCrypto -project EasyCrypto.xcodeproj -destination 'platform=iOS Simulator,OS=16.0,name=iPhone 14'

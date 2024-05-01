@@ -14,4 +14,4 @@ jobs:
       - name: Set up Xcode
         run: sudo Xcode-select -switch /Applications/Xcode_15.0.app
       - name: Build & Test
-        run: xcodebuild test -scheme EasyCrypto -project EasyCrypto.xcodeproj -destination 'platform=iOS Simulator,OS=16.0,name=iPhone 14'
+        run: xcodebuild test -scheme EasyCrypto -project EasyCrypto.xcodeproj -destination "platform=iOS Simulator,OS=16.1,name=iPhone 14 Pro Max" CODE_SIGNING_ALLOWED=No

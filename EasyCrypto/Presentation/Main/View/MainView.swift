@@ -61,7 +61,7 @@ struct MainView: Coordinatable {
                     )
                     .zIndex(1)
                     .padding(.top, Constant.topPadding)
-                    SortView(viewModel: self.viewModel, viewState: isLoading)
+                    SortView(viewModel: self.viewModel, isLoading: isLoading)
                         .padding(.top, Constant.topPadding)
                     TabItemView(index: $tabIndex)
                         .padding(.top, 20)
@@ -133,7 +133,7 @@ struct MainView: Coordinatable {
             }
             .padding()
         }.onAppear {
-            self.viewModel.fetchWishlist()
+            self.viewModel.fetchWishlistData()
         }
     }
 }

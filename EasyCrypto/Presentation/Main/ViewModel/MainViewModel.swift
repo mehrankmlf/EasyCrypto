@@ -23,7 +23,7 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
 
     private let marketPriceUsecase: MarketPriceUsecaseProtocol
     private let searchMarketUsecase: SearchMarketUsecaseProtocol
-    private let cacherepository: CacheRepositoryProtocol
+    private let cacheRepository: CacheRepositoryProtocol
 
     var page: Int = 1
     var perPage: Int = 15
@@ -38,10 +38,10 @@ final class MainViewModel: DefaultViewModel, DefaultMainViewModel {
 
     init(marketPriceUsecase: MarketPriceUsecaseProtocol = DIContainer.shared.inject(type: MarketPriceUsecaseProtocol.self)!,
          searchMarketUsecase: SearchMarketUsecaseProtocol = DIContainer.shared.inject(type: SearchMarketUsecaseProtocol.self)!,
-         cacherepository: CacheRepositoryProtocol = DIContainer.shared.inject(type: CacheRepositoryProtocol.self)!) {
+         cacheRepository: CacheRepositoryProtocol = DIContainer.shared.inject(type: CacheRepositoryProtocol.self)!) {
         self.marketPriceUsecase = marketPriceUsecase
         self.searchMarketUsecase = searchMarketUsecase
-        self.cacherepository = cacherepository
+        self.cacheRepository = cacheRepository
     }
 }
 
@@ -139,23 +139,23 @@ extension MainViewModel: DataFlowProtocol {
         }
     }
 
-    func fetchWishlist() {
-        self.wishListData = []
-        let _ = self.cacherepository.fetch()
-            .map({ items in
-                items.forEach { coin in
-                    self.wishListData.append(MarketsPrice(symbol: coin.symbol,
-                                                          name: coin.name,
-                                                          image: coin.image,
-                                                          currentPrice: coin.price,
-                                                          marketCap: Int(coin.marketCap),
-                                                          marketCapRank: Int(coin.marketCapRank),
-                                                          high24H: coin.high24H,
-                                                          low24H: coin.low24H,
-                                                          priceChange24H: coin.priceChange24H,
-                                                          priceChangePercentage24H: coin.priceChangePercentage24H,
-                                                          totalSupply: coin.totalSupply))
+    func fetchWishlistData() {
+        cacheRepository.fetch()
+            .map { items in
+                self.wishListData = items.map { coin in
+                    return MarketsPrice(symbol: coin.symbol,
+                                        name: coin.name,
+                                        image: coin.image,
+                                        marketCap: Int(coin.marketCap),
+                                        marketCapRank: Int(coin.marketCapRank),
+                                        high24H: coin.high24H,
+                                        low24H: coin.low24H,
+                                        priceChange24H: coin.priceChange24H,
+                                        priceChangePercentage24H: coin.priceChangePercentage24H,
+                                        marketCapChangePercentage24H: Double(coin.marketCapRank),
+                                        circulatingSupply: coin.circulatingSupply,
+                                        totalSupply: coin.totalSupply)
                 }
-            })
+            }
     }
 }

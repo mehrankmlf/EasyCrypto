@@ -44,7 +44,7 @@ struct PriceView: View {
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
                 Spacer()
-                ImageView(withURL: item.safeImageURL())
+                ImageDownloaderView(withURL: item.safeImageURL())
                     .frame(width: 40.0, height: 40.0)
             }
             .padding(.top)

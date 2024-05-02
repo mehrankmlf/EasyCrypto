@@ -25,7 +25,7 @@ struct CoinDetailView: Coordinatable {
     let subscriber = Cancelable()
 
     var id: String?
-    var coinData: CoinUnit {
+    var coinData: CoinUnit? {
         return self.viewModel.coinData
     }
 
@@ -54,10 +54,12 @@ struct CoinDetailView: Coordinatable {
                         SpinnerView(isShowing: $isLoading, text: .constant(.empty), geoSize: geoSize) {
                             ScrollView {
                                 VStack(spacing: Constant.spacing) {
-                                    CoinDetailHeaderView(item: coinData, url: { url in
-                                        self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(.empty))
-                                    })
-                                    .padding(.horizontal)
+                                    if let unwrappedCoinData = coinData {
+                                        CoinDetailHeaderView(item: unwrappedCoinData, url: { url in
+                                            self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(.empty))
+                                        })
+                                        .padding(.horizontal)
+                                    }
                                 }
                                 Spacer()
                             }

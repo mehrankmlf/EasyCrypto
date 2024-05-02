@@ -12,7 +12,7 @@ struct MainCoordinator: CoordinatorProtocol {
 
     @StateObject var viewModel: MainViewModel
 
-    @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice()))
+    @State var activeRoute: Destination? = Destination(route: .first(item: MarketsPrice.mock))
     @State var transition: Transition?
 
     @State private var isLoaded: Bool = Bool()

@@ -8,13 +8,50 @@
 import Foundation
 
 struct MarketsPrice: Decodable {
-    var id, symbol, name: String?
-    var image: String?
-    var currentPrice: Double?
-    var marketCap, marketCapRank: Int?
-    var totalVolume, high24H, low24H, priceChange24H: Double?
-    var priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
-    var totalSupply, maxSupply: Double?
+    let id, symbol, name: String?
+    let image: String?
+    let currentPrice: Double?
+    let marketCap, marketCapRank: Int?
+    let totalVolume, high24H, low24H, priceChange24H: Double?
+    let priceChangePercentage24H, marketCapChange24H, marketCapChangePercentage24H, circulatingSupply: Double?
+    let totalSupply, maxSupply: Double?
+
+    init(id: String? = nil,
+         symbol: String? = nil,
+         name: String? = nil,
+         image: String? = nil,
+         currentPrice: Double? = nil,
+         marketCap: Int? = nil,
+         marketCapRank: Int? = nil,
+         totalVolume: Double? = nil,
+         high24H: Double? = nil,
+         low24H: Double? = nil,
+         priceChange24H: Double? = nil,
+         priceChangePercentage24H: Double? = nil,
+         marketCapChange24H: Double? = nil,
+         marketCapChangePercentage24H: Double? = nil,
+         circulatingSupply: Double? = nil,
+         totalSupply: Double? = nil,
+         maxSupply: Double? = nil) {
+
+        self.id = id
+        self.symbol = symbol
+        self.name = name
+        self.image = image
+        self.currentPrice = currentPrice
+        self.marketCap = marketCap
+        self.marketCapRank = marketCapRank
+        self.totalVolume = totalVolume
+        self.high24H = high24H
+        self.low24H = low24H
+        self.priceChange24H = priceChange24H
+        self.priceChangePercentage24H = priceChangePercentage24H
+        self.marketCapChange24H = marketCapChange24H
+        self.marketCapChangePercentage24H = marketCapChangePercentage24H
+        self.circulatingSupply = circulatingSupply
+        self.totalSupply = totalSupply
+        self.maxSupply = maxSupply
+    }
 
     enum CodingKeys: String, CodingKey {
         case id = "id"

@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-struct ImageView: View {
+struct ImageDownloaderView: View {
 
     @ObservedObject var imageLoader: ImageDownloader
 

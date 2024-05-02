@@ -10,13 +10,13 @@ import SwiftUI
 struct SortView: View {
 
     @ObservedObject var viewModel: MainViewModel
-  
-    @State var viewState: Bool = false
+
+    @State var isLoading: Bool = false
 
     var body: some View {
         HStack {
             Button {
-                if !viewState {
+                if !isLoading {
                     if viewModel.rankSort == .rankASC {
                         viewModel.rankSort = .rankDSC
                     } else {

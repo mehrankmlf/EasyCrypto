@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchBar: View {
 
     @State var isLoading: Bool
- 
     @Binding var text: String
     @Binding var isEditing: Bool
 
@@ -18,7 +17,7 @@ struct SearchBar: View {
         content
     }
 
-    var content: some View {
+    private var content: some View {
         ZStack(alignment: .leading) {
             HStack {
                 TextField("", text: $text)
@@ -65,7 +64,7 @@ struct SearchMarketCellView: View {
 
     var body: some View {
         HStack {
-            ImageView(withURL: model.safeImageURL())
+            ImageDownloaderView(withURL: model.safeImageURL())
                 .frame(width: 25.0, height: 25.0)
 
             Text(model.name.orWhenNilOrEmpty(.empty))

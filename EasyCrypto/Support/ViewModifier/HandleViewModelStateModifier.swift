@@ -10,7 +10,7 @@ import SwiftUI
 struct HandleViewModelStateModifier: ViewModifier {
 
     @ObservedObject var viewModel: DefaultViewModel
-  
+
     @Binding var isLoading: Bool
     @Binding var alertMessage: String
     @Binding var presentAlert: Bool

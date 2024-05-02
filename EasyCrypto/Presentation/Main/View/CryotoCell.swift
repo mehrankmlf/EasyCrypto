@@ -13,9 +13,8 @@ struct CryptoCellView: View {
 
     var body: some View {
         HStack {
-            ImageView(withURL: item.safeImageURL())
+            ImageDownloaderView(withURL: item.safeImageURL())
                 .frame(width: 30.0, height: 30.0)
-
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.name.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.white)
@@ -25,7 +24,9 @@ struct CryptoCellView: View {
                     .font(FontManager.body)
             }
             .padding(.leading, 5)
+
             Spacer()
+            
             VStack(alignment: .trailing, spacing: 5) {
                 if let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice?.toNSNumber ?? 0) {
                     Text(price)

@@ -16,7 +16,7 @@ struct CoinDetailHeaderView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 30.0) {
             HStack {
-                ImageView(withURL: item.image?.safeImageURL() ?? .empty)
+                ImageDownloaderView(withURL: item.image?.safeImageURL() ?? .empty)
                     .frame(width: 50.0, height: 50.0)
                 Spacer()
                 CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)

@@ -40,13 +40,13 @@ final class CoinDetailViewModelTest: XCTestCase {
                 // Assert
                 XCTAssertTrue(data as Any is CoinUnit)
                 XCTAssertTrue(data as Any is Decodable)
-                XCTAssertEqual(data.id, "bitcoin")
-                XCTAssertEqual(data.symbol, "btc")
-                XCTAssertEqual(data.name, "Bitcoin")
-                XCTAssertEqual(data.description?.en, "Bitcoin is the first successful internet money based on peer-to-peer technology.")
-                XCTAssertEqual(data.links?.homepage?.first, "http://www.bitcoin.org")
-                XCTAssertEqual(data.marketCapRank, 1)
-                XCTAssertEqual(data.coingeckoRank, 1)
+                XCTAssertEqual(data?.id, "bitcoin")
+                XCTAssertEqual(data?.symbol, "btc")
+                XCTAssertEqual(data?.name, "Bitcoin")
+                XCTAssertEqual(data?.description?.en, "Bitcoin is the first successful internet money based on peer-to-peer technology.")
+                XCTAssertEqual(data?.links?.homepage?.first, "http://www.bitcoin.org")
+                XCTAssertEqual(data?.marketCapRank, 1)
+                XCTAssertEqual(data?.coingeckoRank, 1)
             }.store(in: &subscriber)
     }
 }

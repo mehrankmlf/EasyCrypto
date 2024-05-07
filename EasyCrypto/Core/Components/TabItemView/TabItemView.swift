@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct TabItemView: View {
+
     @Binding var index: Int
+    
     var titles = ["Coins", "Whishlists"]
     private let leftOffset: CGFloat = 0.1
 

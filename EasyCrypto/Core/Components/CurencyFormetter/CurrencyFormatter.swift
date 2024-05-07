@@ -6,26 +6,25 @@
 //
 
 import Foundation
-// old school way :D
-final class CurrencyFormatter: NumberFormatter {
 
-  required init(coder aDecoder: NSCoder) {
-      super.init(coder: aDecoder)!
-  }
+class CurrencyFormatter: NumberFormatter {
 
-  override init() {
-    super.init()
-    self.locale = NSLocale.current
-    self.maximumFractionDigits = 2
-    self.minimumFractionDigits = 2
-    self.alwaysShowsDecimalSeparator = true
-    self.numberStyle = .currency
-  }
+    static let shared = CurrencyFormatter()
 
-  class var sharedInstance: CurrencyFormatter {
-    struct Static {
-      static let instance = CurrencyFormatter()
+    private override init() {
+        super.init()
+        configureFormatter()
     }
-    return Static.instance
-  }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func configureFormatter() {
+        locale = Locale.current
+        maximumFractionDigits = 2
+        minimumFractionDigits = 2
+        alwaysShowsDecimalSeparator = true
+        numberStyle = .currency
+    }
 }

@@ -39,12 +39,14 @@ struct HttpRequest: RequestBuilder {
         self.queryParams = request.queryParams
         self.queryParamsEncoding = request.queryParamsEncoding
     }
+
     var pathAppendedURL: URL {
         var url = baseURL.desc
         url.appendPathComponent(version.desc)
         url.appendPathComponent(path ?? .empty)
         return url
     }
+
     func setQueryTo(urlRequest: inout URLRequest,
                     urlEncoding: URLEncoding,
                     queryParams: [String: String]) {

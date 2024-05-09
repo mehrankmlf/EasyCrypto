@@ -16,13 +16,11 @@ final class NetworkClient: NetworkClientProtocol {
     ///     Default: `URLSession(configuration: .shared)`.
     ///
     let session: URLSession
-    let debugger: BaseAPIDebuger
-    var subscriber = Set<AnyCancellable>()
+    let logging: Logging
 
-    init(session: URLSession = .shared,
-         debugger: BaseAPIDebuger = BaseAPIDebuger()) {
+    init(session: URLSession = .shared, loggin: Logging = APIDebugger()) {
         self.session = session
-        self.debugger = debugger
+        self.logging = loggin
     }
 
     @discardableResult
@@ -31,6 +29,7 @@ final class NetworkClient: NetworkClientProtocol {
                        scheduler: T,
                        responseObject type: M.Type) -> AnyPublisher<M, APIError> where M: Decodable, T: Scheduler {
         let urlRequest = request.buildURLRequest()
+        self.logging.logRequest(request: urlRequest)
         return publisher(request: urlRequest)
             .receive(on: scheduler)
             .tryMap { result, _ -> Data in
@@ -47,6 +46,7 @@ final class NetworkClient: NetworkClientProtocol {
         return self.session.dataTaskPublisher(for: request)
             .mapError { APIError.urlError($0) }
             .map { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in
+                self.logging.logResponse(response: response.response, data: response.data)
                 guard let httpResponse = response.response as? HTTPURLResponse else {
                     return Fail(error: APIError.invalidResponse(httpStatusCode: 0))
                         .eraseToAnyPublisher()

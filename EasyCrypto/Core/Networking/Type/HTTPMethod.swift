@@ -23,6 +23,7 @@ public enum HTTPMethod: Equatable {
      The DELETE method deletes the specified resource.
      */
     case delete
+
      var name: String {
         switch self {
         case .get:

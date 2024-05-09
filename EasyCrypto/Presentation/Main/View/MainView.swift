@@ -25,7 +25,7 @@ struct MainView: Coordinatable {
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
     @State private var presentAlert = false
-    @State private var alertMessage: String = ""
+    @State private var alertMessage: String = .empty
 
     let subscriber = Cancelable()
 

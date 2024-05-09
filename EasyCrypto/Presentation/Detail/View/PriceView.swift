@@ -39,7 +39,7 @@ struct PriceView: View {
                 Spacer()
             }
             HStack {
-                let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice?.toNSNumber ?? 0)!
+                let price = CurrencyFormatter.shared.string(from: item.currentPrice?.toNSNumber ?? 0)!
                 Text(price)
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
@@ -49,7 +49,7 @@ struct PriceView: View {
             }
             .padding(.top)
             HStack {
-                if let priceChange = CurrencyFormatter.sharedInstance.string(from: item.priceChangePercentage24H?.toNSNumber ?? 0) {
+                if let priceChange = CurrencyFormatter.shared.string(from: item.priceChangePercentage24H?.toNSNumber ?? 0) {
                     Text(priceChange)
                         .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
                         .font(FontManager.title)

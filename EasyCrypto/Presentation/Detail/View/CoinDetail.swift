@@ -16,7 +16,7 @@ struct CoinDetailAreaView: View {
             let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
             CoinDetailCell(title: Constants.PlaceHolder.marketCap,
                            price: marketCapFormat.orWhenNilOrEmpty(.empty))
-            if let price24Hours = CurrencyFormatter.sharedInstance.string(from: item.priceChange24H?.toNSNumber ?? 0) {
+            if let price24Hours = CurrencyFormatter.shared.string(from: item.priceChange24H?.toNSNumber ?? 0) {
                 CoinDetailCell(title: Constants.PlaceHolder.volume24,
                                        price: price24Hours)
             }
@@ -28,11 +28,11 @@ struct CoinDetailAreaView: View {
                 CoinDetailCell(title: Constants.PlaceHolder.totalSupply,
                                price: totalSupply)
             }
-            if let low24H = CurrencyFormatter.sharedInstance.string(from: item.low24H?.toNSNumber ?? 0) {
+            if let low24H = CurrencyFormatter.shared.string(from: item.low24H?.toNSNumber ?? 0) {
                 CoinDetailCell(title: Constants.PlaceHolder.low24h,
                                price: low24H)
             }
-            if let high24H = CurrencyFormatter.sharedInstance.string(from: item.high24H?.toNSNumber ?? 0) {
+            if let high24H = CurrencyFormatter.shared.string(from: item.high24H?.toNSNumber ?? 0) {
                 CoinDetailCell(title: Constants.PlaceHolder.high24h,
                                price: high24H)
             }

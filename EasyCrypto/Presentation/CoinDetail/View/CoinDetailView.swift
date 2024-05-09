@@ -20,7 +20,7 @@ struct CoinDetailView: Coordinatable {
 
     @State private var isLoading: Bool = false
     @State private var presentAlert = false
-    @State private var alertMessage: String = ""
+    @State private var alertMessage: String = .empty
 
     let subscriber = Cancelable()
 
@@ -70,7 +70,7 @@ struct CoinDetailView: Coordinatable {
                 .navigationBarTitle(String.empty)
                 .navigationBarHidden(true)
                 .onAppear {
-                    self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty("")))
+                    self.viewModel.apply(.onAppear(id: self.id.orWhenNilOrEmpty(.empty)))
                 }
                 .handleViewModelState(viewModel: viewModel,
                                       isLoading: $isLoading,

@@ -26,9 +26,9 @@ struct CryptoCellView: View {
             .padding(.leading, 5)
 
             Spacer()
-            
+
             VStack(alignment: .trailing, spacing: 5) {
-                if let price = CurrencyFormatter.sharedInstance.string(from: item.currentPrice?.toNSNumber ?? 0) {
+                if let price = CurrencyFormatter.shared.string(from: item.currentPrice?.toNSNumber ?? 0) {
                     Text(price)
                         .foregroundColor(Color.white)
                         .font(FontManager.body)

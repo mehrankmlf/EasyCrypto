@@ -23,7 +23,7 @@ struct HandleViewModelStateModifier: ViewModifier {
                     isLoading = true
                 case .dismissAlert:
                     isLoading = false
-                    alertMessage = ""
+                    alertMessage = .empty
                     presentAlert = false
                 case .emptyStateHandler(let message):
                     isLoading = false

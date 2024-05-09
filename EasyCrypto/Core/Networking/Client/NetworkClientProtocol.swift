@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-typealias BaseAPIProtocol = NetworkClientProtocol & DebuggerProtocol
+typealias BaseAPIProtocol = NetworkClientProtocol
 
 typealias AnyPublisherResult<M> = AnyPublisher<M, APIError>
 
@@ -23,15 +23,13 @@ protocol NetworkClientProtocol: AnyObject {
 
     @available(iOS 13.0, *)
     @discardableResult
-    // swiftlint:disable line_length
     func perform<M: Decodable, T>(with request: RequestBuilder,
                                   decoder: JSONDecoder,
                                   scheduler: T,
                                   responseObject type: M.Type) -> AnyPublisher<M, APIError> where M: Decodable, T: Scheduler
 }
 
-protocol DebuggerProtocol {
-    var debugger: BaseAPIDebuger { get }
+protocol Logging {
+    func logRequest(request: URLRequest)
+    func logResponse(response: URLResponse?, data: Data?)
 }
-
-// swiftlint:enable line_length

@@ -33,33 +33,32 @@ open class DefaultViewModel: BaseViewModel, ObservableObject {
     var loadingState = CurrentValueSubject<ViewModelStatus, Never>(.dismissAlert)
     let subscriber = Cancelable()
 
-    func call<ReturnType>(callWithIndicator: Bool = true,
-                          argument: AnyPublisher<ReturnType?,
-                          APIError>,
-                          callback: @escaping (_ data: ReturnType?) -> Void) {
-
+    func call<ReturnType>(
+        callWithIndicator: Bool = true,
+        argument: AnyPublisher<ReturnType, APIError>,
+        callback: @escaping (_ data: ReturnType) -> Void
+    ) {
         if callWithIndicator {
             self.loadingState.send(.loadStart)
-        }
-
-        let completionHandler: (Subscribers.Completion<APIError>) -> Void = { [weak self] completion in
-            switch completion {
-            case .failure(let error):
-                self?.loadingState.send(.dismissAlert)
-                self?.loadingState.send(.emptyStateHandler(title: error.desc))
-            case .finished:
-                self?.loadingState.send(.dismissAlert)
-            }
-        }
-
-        let resultValueHandler: (ReturnType?) -> Void = { data in
-            callback(data)
         }
 
         argument
             .subscribe(on: WorkScheduler.backgroundWorkScheduler)
             .receive(on: WorkScheduler.mainScheduler)
-            .sink(receiveCompletion: completionHandler, receiveValue: resultValueHandler)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .failure(let error):
+                        self?.loadingState.send(.dismissAlert)
+                        self?.loadingState.send(.emptyStateHandler(title: error.desc))
+                    case .finished:
+                        self?.loadingState.send(.dismissAlert)
+                    }
+                },
+                receiveValue: { data in
+                    callback(data)
+                }
+            )
             .store(in: subscriber)
     }
 }

@@ -17,12 +17,22 @@ final class DetailViewModel: ObservableObject {
     }
 
     func addToWishlist(_ data: MarketsPrice) {
-        _ = try? self.repository.save(data)
+        do {
+            try repository.save(data)
+        } catch {
+            // Handle error, e.g., log it or show an alert
+            print("Error saving to wishlist: \(error.localizedDescription)")
+        }
     }
 
     func deleteFromWishlist(_ data: MarketsPrice) {
-        guard let name = data.name else {return}
-        _ = try? self.repository.deleteByID(name)
+        guard let name = data.name else { return }
+        do {
+            try repository.deleteByID(name)
+        } catch {
+            // Handle error, e.g., log it or show an alert
+            print("Error deleting from wishlist: \(error.localizedDescription)")
+        }
     }
 
     func checkIfItemExist(_ data: MarketsPrice) -> Bool {

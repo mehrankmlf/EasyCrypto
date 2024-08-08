@@ -1,9 +1,8 @@
 //
-//  HoverProtocol.swift
-//  Hover
+//  NetworkClientProtocol.swift
+//  
 //
-//  Created by Onur Cantay on 08/01/2022.
-//  Copyright © 2022 Onur Hüseyin Çantay. All rights reserved.
+//  Created by Mehran on 7/6/1401 AP.
 //
 
 import Foundation

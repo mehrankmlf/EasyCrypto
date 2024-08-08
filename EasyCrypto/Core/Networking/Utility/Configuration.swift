@@ -1,6 +1,6 @@
 //
 //  Configuration.swift
-//  Amadeus
+//  
 //
 //  Created by Mehran on 3/30/1401 AP.
 //

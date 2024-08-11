@@ -14,46 +14,74 @@ struct SearchBar: View {
     @Binding var isEditing: Bool
 
     var body: some View {
-        content
-    }
-
-    private var content: some View {
         ZStack(alignment: .leading) {
             HStack {
-                TextField("", text: $text)
-                    .background(Color.clear)
-                    .foregroundColor(.white)
-                    .font(FontManager.headLine_2)
-                    .placeHolder(Text(Constants.PlaceHolder.searchCoins).font(FontManager.headLine_2)
-                        .foregroundColor(.white.opacity(0.3)), show: text.isEmpty)
-                    .onTapGesture(perform: {
-                        isEditing = true
-                    })
+                searchField
                 if !text.isEmpty {
-                    if isLoading {
-                        Button(action: {
-                            text = .empty
-                        }, label: {
-                            ActivityIndicator(style: .medium, animate: .constant(true))
-                                .configure {
-                                    $0.color = .black
-                                }
-                        })
-                        .frame(width: 35, height: 35)
-                    } else {
-                        Button(action: {
-                            text = .empty
-                            isEditing = false
-                            dismissKeyboard()
-                        }, label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.white)
-                                .frame(width: 35, height: 35)
-                        }).frame(width: 35, height: 35)
-                    }
+                    clearButton
                 }
-            }.padding(.horizontal)
-                .frame(height: 40.0)
+            }
+            .padding(.horizontal)
+            .frame(height: 40.0)
+        }
+    }
+
+    private var searchField: some View {
+        TextField("", text: $text)
+            .background(Color.clear)
+            .foregroundColor(.white)
+            .font(FontManager.headLine_2)
+            .placeHolder(
+                Text(Constants.PlaceHolder.searchCoins)
+                    .font(FontManager.headLine_2)
+                    .foregroundColor(.white.opacity(0.3)),
+                show: text.isEmpty
+            )
+            .onTapGesture {
+                isEditing = true
+            }
+    }
+
+    private var clearButton: some View {
+        Group {
+            if isLoading {
+                ActivityIndicatorButton(action: {
+                    text = .empty
+                })
+            } else {
+                ClearTextButton(action: {
+                    text = .empty
+                    isEditing = false
+                    dismissKeyboard()
+                })
+            }
+        }
+        .frame(width: 35, height: 35)
+    }
+}
+
+private struct ActivityIndicatorButton: View {
+    
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            ActivityIndicator(style: .medium, animate: .constant(true))
+                .configure {
+                    $0.color = .black
+                }
+        }
+    }
+}
+
+private struct ClearTextButton: View {
+    
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "xmark.circle.fill")
+                .foregroundColor(.white)
         }
     }
 }
@@ -67,16 +95,20 @@ struct SearchMarketCellView: View {
             ImageDownloaderView(withURL: model.safeImageURL())
                 .frame(width: 25.0, height: 25.0)
 
-            Text(model.name.orWhenNilOrEmpty(.empty))
-                .foregroundColor(Color.black)
-                .font(FontManager.body)
-            Text("(\(model.symbol.orWhenNilOrEmpty(.empty))")
-                .foregroundColor(Color.black)
-                .font(FontManager.body)
+            VStack(alignment: .leading) {
+                Text(model.name.orWhenNilOrEmpty(.empty))
+                Text(model.symbol.orWhenNilOrEmpty(.empty))
+            }
+            .foregroundColor(.black)
+            .font(FontManager.body)
+
             Spacer()
-            Text(model.marketCapRank != nil ? "#" + String(model.marketCapRank ?? 0) : .empty)
-                .foregroundColor(Color.black)
-                .font(FontManager.body)
+
+            if let rank = model.marketCapRank {
+                Text("#\(rank)")
+                    .foregroundColor(.black)
+                    .font(FontManager.body)
+            }
         }
         .padding(.vertical, 5)
     }

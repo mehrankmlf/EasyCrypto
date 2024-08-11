@@ -12,15 +12,16 @@ final class NetworkClient: NetworkClientProtocol {
 
     /// Initializes a new URL Session Client.
     ///
-    /// - parameter urlSession: The URLSession to use.
-    ///     Default: `URLSession(configuration: .shared)`.
+    /// - Parameters:
+    ///   - session: The URLSession to use. Default: `URLSession.shared`.
+    ///   - logging: The logging utility to use. Default: `APIDebugger()`.
     ///
     let session: URLSession
     let logging: Logging
 
-    init(session: URLSession = .shared, loggin: Logging = APIDebugger()) {
+    init(session: URLSession = .shared, logging: Logging = APIDebugger()) {
         self.session = session
-        self.logging = loggin
+        self.logging = logging
     }
 
     @discardableResult
@@ -37,15 +38,19 @@ final class NetworkClient: NetworkClientProtocol {
             }
             .decode(type: type.self, decoder: decoder)
             .mapError { error in
+                // Improved error handling and logging
+                if let decodingError = error as? DecodingError {
+                    print("Decoding error: \(decodingError)")
+                }
                 return error as? APIError ?? .general
             }
             .eraseToAnyPublisher()
     }
 
-    func publisher(request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), APIError> {
+    private func publisher(request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), APIError> {
         return self.session.dataTaskPublisher(for: request)
             .mapError { APIError.urlError($0) }
-            .map { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in
+            .flatMap { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in
                 self.logging.logResponse(response: response.response, data: response.data)
                 guard let httpResponse = response.response as? HTTPURLResponse else {
                     return Fail(error: APIError.invalidResponse(httpStatusCode: 0))
@@ -62,7 +67,6 @@ final class NetworkClient: NetworkClientProtocol {
                     .setFailureType(to: APIError.self)
                     .eraseToAnyPublisher()
             }
-            .switchToLatest()
             .eraseToAnyPublisher()
     }
 }

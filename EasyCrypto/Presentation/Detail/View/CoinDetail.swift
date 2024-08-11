@@ -13,31 +13,43 @@ struct CoinDetailAreaView: View {
 
     var body: some View {
         VStack(spacing: 30) {
-            let marketCapFormat = item.marketCap?.formatUsingAbbrevation()
-            CoinDetailCell(title: Constants.PlaceHolder.marketCap,
-                           price: marketCapFormat.orWhenNilOrEmpty(.empty))
-            if let price24Hours = CurrencyFormatter.shared.string(from: item.priceChange24H?.toNSNumber ?? 0) {
-                CoinDetailCell(title: Constants.PlaceHolder.volume24,
-                                       price: price24Hours)
-            }
-            if let circulatingSupply = DecimalFormatter().string(from: item.circulatingSupply?.toNSNumber ?? 0) {
-                CoinDetailCell(title: Constants.PlaceHolder.circulatingSupply,
-                               price: circulatingSupply)
-            }
-            if let totalSupply = DecimalFormatter().string(from: item.totalSupply?.toNSNumber ?? 0) {
-                CoinDetailCell(title: Constants.PlaceHolder.totalSupply,
-                               price: totalSupply)
-            }
-            if let low24H = CurrencyFormatter.shared.string(from: item.low24H?.toNSNumber ?? 0) {
-                CoinDetailCell(title: Constants.PlaceHolder.low24h,
-                               price: low24H)
-            }
-            if let high24H = CurrencyFormatter.shared.string(from: item.high24H?.toNSNumber ?? 0) {
-                CoinDetailCell(title: Constants.PlaceHolder.high24h,
-                               price: high24H)
-            }
+            coinDetailCells
         }
         .padding(.horizontal)
+    }
+
+    private var coinDetailCells: some View {
+        Group {
+            CoinDetailCell(
+                title: Constants.PlaceHolder.marketCap,
+                price: item.marketCap?.formatUsingAbbrevation() ?? .empty
+            )
+            CoinDetailCellIfAvailable(
+                title: Constants.PlaceHolder.volume24,
+                value: item.priceChange24H?.toNSNumber,
+                formatter: CurrencyFormatter.shared
+            )
+            CoinDetailCellIfAvailable(
+                title: Constants.PlaceHolder.circulatingSupply,
+                value: item.circulatingSupply?.toNSNumber,
+                formatter: DecimalFormatter()
+            )
+            CoinDetailCellIfAvailable(
+                title: Constants.PlaceHolder.totalSupply,
+                value: item.totalSupply?.toNSNumber,
+                formatter: DecimalFormatter()
+            )
+            CoinDetailCellIfAvailable(
+                title: Constants.PlaceHolder.low24h,
+                value: item.low24H?.toNSNumber,
+                formatter: CurrencyFormatter.shared
+            )
+            CoinDetailCellIfAvailable(
+                title: Constants.PlaceHolder.high24h,
+                value: item.high24H?.toNSNumber,
+                formatter: CurrencyFormatter.shared
+            )
+        }
     }
 }
 
@@ -50,13 +62,29 @@ struct CoinDetailCell: View {
         HStack(spacing: 20) {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(.gray)
                     .font(FontManager.body)
                 Text(price)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(.white)
                     .font(FontManager.title)
             }
             Spacer()
+        }
+    }
+}
+
+struct CoinDetailCellIfAvailable: View {
+
+    var title: String
+    var value: NSNumber?
+    var formatter: Formatter
+
+    var body: some View {
+        if let value = value,
+           let formattedPrice = formatter.string(for: value) {
+            CoinDetailCell(title: title, price: formattedPrice)
+        } else {
+            EmptyView()
         }
     }
 }

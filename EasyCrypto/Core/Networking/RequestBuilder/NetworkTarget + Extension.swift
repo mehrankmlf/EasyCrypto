@@ -18,18 +18,18 @@ private struct HTTPHeader {
 }
 
 struct HttpRequest: RequestBuilder {
-
+    
     var baseURL: BaseURLType
-
     var version: VersionType
-
     var path: String?
-
     var methodType: HTTPMethod
-
     var queryParams: [String: String]?
-
     var queryParamsEncoding: URLEncoding?
+    var headers: [String: String]?
+    var parameters: [String: Any]?
+    var bodyEncoding: BodyEncoding?
+    var cachePolicy: URLRequest.CachePolicy?
+    var timeoutInterval: TimeInterval?
 
     init(request: NetworkTarget) {
         self.baseURL = request.baseURL
@@ -40,94 +40,63 @@ struct HttpRequest: RequestBuilder {
         self.queryParamsEncoding = request.queryParamsEncoding
     }
 
-    var pathAppendedURL: URL {
+    internal var pathAppendedURL: URL {
         var url = baseURL.desc
         url.appendPathComponent(version.desc)
-        url.appendPathComponent(path ?? .empty)
+        if let path = path {
+            url.appendPathComponent(path)
+        }
         return url
     }
 
-    func setQueryTo(urlRequest: inout URLRequest,
-                    urlEncoding: URLEncoding,
-                    queryParams: [String: String]) {
-        guard let url = urlRequest.url else {
-            return
-        }
-        var urlComponents = URLComponents.init(url: url, resolvingAgainstBaseURL: false)
-        switch urlEncoding {
+    internal func setQuery(to urlRequest: inout URLRequest) {
+        guard let url = urlRequest.url else { return }
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        
+        switch queryParamsEncoding {
         case .default:
-            urlComponents?.queryItems = [URLQueryItem]()
-            for (name, value) in queryParams {
-                urlComponents?.queryItems?.append(URLQueryItem.init(name: name, value: value))
-            }
-            urlRequest.url = urlComponents?.url
+            urlComponents?.queryItems = queryParams?.map { URLQueryItem(name: $0.key, value: $0.value) }
         case .percentEncoded:
-            urlComponents?.percentEncodedQueryItems = [URLQueryItem]()
-            for (name, value) in queryParams {
-                let encodedName = name.addingPercentEncoding(withAllowedCharacters: .nkURLQueryAllowed) ?? name
-                let encodedValue = value.addingPercentEncoding(withAllowedCharacters: .nkURLQueryAllowed) ?? value
-                let queryItem = URLQueryItem.init(name: encodedName, value: encodedValue)
-                urlComponents?.percentEncodedQueryItems?.append(queryItem)
+            urlComponents?.percentEncodedQueryItems = queryParams?.map {
+                URLQueryItem(name: $0.key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? $0.key,
+                             value: $0.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? $0.value)
             }
-            urlRequest.url = urlComponents?.url
-            // Applicable for PUT and POST method.
-            // When queryParamsEncoding is xWWWFormURLEncoded,
-            // All query parameters are sent inside body.
         case .xWWWFormURLEncoded:
-            if let queryParamsData = self.queryParams?.urlEncodedQueryParams().data(using: .utf8) {
+            if let queryParamsData = queryParams?.urlEncodedQueryParams().data(using: .utf8) {
                 urlRequest.httpBody = queryParamsData
                 urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: HTTPHeader.contentType)
             }
+        default:
+            break
         }
+        
+        urlRequest.url = urlComponents?.url
     }
 
-    func encodedBody(bodyEncoding: BodyEncoding,
-                     requestBody: [String: Any]) -> Data? {
+    internal func encodedBody() -> Data? {
+        guard let bodyEncoding = bodyEncoding else { return nil }
+        
         switch bodyEncoding {
         case .JSON:
-            do {
-                return try JSONSerialization.data(withJSONObject: requestBody)
-            } catch {
-                return nil
-            }
+            return try? JSONSerialization.data(withJSONObject: parameters ?? [:])
         case .xWWWFormURLEncoded:
-            do {
-                return try requestBody.urlEncodedBody()
-            } catch {
-                return nil
-            }
+            return try? parameters?.urlEncodedBody()
         }
     }
 
     func buildURLRequest() -> URLRequest {
-        let url = self.pathAppendedURL
-        // prepare a url request
-        var urlRequest = URLRequest(url: url)
-        // set method for request
-        urlRequest.httpMethod = self.methodType.name
-        // set requestHeaders for request
-        urlRequest.allHTTPHeaderFields = self.headers
-
-        // set query parameters for request
-        if let queryParams = self.queryParams, !queryParams.isEmpty,
-           let queryParamsEncoding = self.queryParamsEncoding {
-            self.setQueryTo(urlRequest: &urlRequest,
-                            urlEncoding: queryParamsEncoding,
-                            queryParams: queryParams)
+        var urlRequest = URLRequest(url: pathAppendedURL)
+        urlRequest.httpMethod = methodType.name
+        urlRequest.allHTTPHeaderFields = headers
+        
+        if let queryParams = queryParams, !queryParams.isEmpty {
+            setQuery(to: &urlRequest)
         }
-        // set body for request
-        if let requestBody = self.parameters {
-            /// Encoding
-            if let bodyEncoding = self.bodyEncoding {
-                urlRequest.httpBody = self.encodedBody(bodyEncoding: bodyEncoding,
-                                                       requestBody: requestBody)
-            } else {
-                urlRequest.httpBody = self.encodedBody(bodyEncoding: .JSON,
-                                                       requestBody: requestBody)
-            }
-        }
-        urlRequest.cachePolicy = self.cachePolicy ?? URLRequest.CachePolicy.useProtocolCachePolicy
-        urlRequest.timeoutInterval = self.timeoutInterval ?? 60
+        
+        urlRequest.httpBody = encodedBody()
+        urlRequest.cachePolicy = cachePolicy ?? .useProtocolCachePolicy
+        urlRequest.timeoutInterval = timeoutInterval ?? 60
+        
         return urlRequest
     }
 }

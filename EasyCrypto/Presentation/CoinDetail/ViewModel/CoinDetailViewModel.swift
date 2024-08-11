@@ -39,20 +39,22 @@ extension CoinDetailViewModel: DataFlowProtocol {
     func apply(_ input: Load) {
         switch input {
         case .onAppear(let id):
-            self.getCoinDetailData(id: id)
+            getCoinDetailData(id: id)
         }
     }
 
     func didTapFirst(url: String) {
-        guard let url = URL(string: url) else {return}
-        self.navigateSubject.send(.first(url: url))
+        guard let url = URL(string: url) else { return }
+        navigateSubject.send(.first(url: url))
     }
 
     func getCoinDetailData(id: String) {
-        guard !String.isNilOrEmpty(string: id) else {return}
-        self.call(argument: self.coinDetailUsecase.execute(id: id)) { [weak self] data in
-            guard let data = data else {return}
+        guard !id.isEmpty else { return }
+        isShowActivity = true
+        call(argument: coinDetailUsecase.execute(id: id)) { [weak self] data in
+            guard let data = data else { return }
             self?.coinData = data
+            self?.isShowActivity = false
         }
     }
 }

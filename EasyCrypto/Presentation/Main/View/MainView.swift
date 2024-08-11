@@ -9,30 +9,30 @@ import SwiftUI
 import Combine
 
 struct MainView: Coordinatable {
-
+    
     typealias Route = Routes
-
+    
     @ObservedObject var viewModel: MainViewModel
-
+    
     enum Constant {
         static let searchHeight: CGFloat = 55
         static let topPadding: CGFloat = 5
         static let cornerRadius: CGFloat = 10
     }
-
+    
     @State private var tabIndex = 0
     @State private var shouldShowDropdown = false
     @State private var searchText: String = .empty
     @State private var isLoading: Bool = false
     @State private var presentAlert = false
     @State private var alertMessage: String = .empty
-
+    
     let subscriber = Cancelable()
-
+    
     var body: some View {
         content
     }
-
+    
     var content: some View {
         NavigationStack {
             ZStack {
@@ -91,8 +91,8 @@ struct MainView: Coordinatable {
                                   presentAlert: $presentAlert)
         }
     }
-
-   private var coinsList: some View {
+    
+    private var coinsList: some View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.marketData, id: \.id) { item  in
@@ -120,8 +120,8 @@ struct MainView: Coordinatable {
             .padding()
         }
     }
-
-   private var whishList: some View {
+    
+    private var whishList: some View {
         ScrollView {
             VStack {
                 ForEach(viewModel.wishListData, id: \.symbol) { item  in

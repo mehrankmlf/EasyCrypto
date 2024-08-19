@@ -65,6 +65,14 @@ struct CoinDetailView: Coordinatable {
                             }
                             .padding(.top)
                         }
+                        Spacer()
+                        if presentAlert {
+                            CustomAlertView(title: viewModel.errorTitle,
+                                             message: alertMessage ,
+                                             primaryButtonLabel: "Ok") {
+                                self.presentAlert = false
+                            }
+                        }
                     }
                 }
                 .navigationBarTitle(String.empty)

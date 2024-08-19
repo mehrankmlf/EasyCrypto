@@ -16,11 +16,15 @@ final class NetworkClient: NetworkClientProtocol {
     ///   - session: The URLSession to use. Default: `URLSession.shared`.
     ///   - logging: The logging utility to use. Default: `APIDebugger()`.
     ///
-    let session: URLSession
+    var session: URLSession {
+        let configuration = URLSessionConfiguration.default
+        configuration.waitsForConnectivity = true
+        return URLSession(configuration: configuration)
+    }
+    
     let logging: Logging
 
-    init(session: URLSession = .shared, logging: Logging = APIDebugger()) {
-        self.session = session
+    init(logging: Logging = APIDebugger()) {
         self.logging = logging
     }
 
@@ -33,8 +37,21 @@ final class NetworkClient: NetworkClientProtocol {
         self.logging.logRequest(request: urlRequest)
         return publisher(request: urlRequest)
             .receive(on: scheduler)
-            .tryMap { result, _ -> Data in
-                return result
+            .tryMap { result, response -> Data in
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw APIError.invalidResponse(httpStatusCode: 0)
+                }
+                
+                if httpResponse.isResponseOK {
+                    return result
+                } else {
+                    // Attempt to decode error response
+                    if let apiErrorResponse = try? decoder.decode(APIErrorResponse.self, from: result) {
+                        throw APIError.statusMessage(message: apiErrorResponse.status.errorMessage)
+                    } else {
+                        throw APIError.invalidResponse(httpStatusCode: httpResponse.statusCode)
+                    }
+                }
             }
             .decode(type: type.self, decoder: decoder)
             .mapError { error in
@@ -52,17 +69,6 @@ final class NetworkClient: NetworkClientProtocol {
             .mapError { APIError.urlError($0) }
             .flatMap { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in
                 self.logging.logResponse(response: response.response, data: response.data)
-                guard let httpResponse = response.response as? HTTPURLResponse else {
-                    return Fail(error: APIError.invalidResponse(httpStatusCode: 0))
-                        .eraseToAnyPublisher()
-                }
-
-                if !httpResponse.isResponseOK {
-                    let error = NetworkClient.errorType(type: httpResponse.statusCode)
-                    return Fail(error: error)
-                        .eraseToAnyPublisher()
-                }
-
                 return Just(response)
                     .setFailureType(to: APIError.self)
                     .eraseToAnyPublisher()

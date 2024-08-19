@@ -17,9 +17,10 @@ protocol DefaultCoinDetailViewModel: CoinDetailViewModelProtocol { }
 final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
 
     private let coinDetailUsecase: CoinDetailUsecaseProtocol
+    
+    let errorTitle: String = Constants.Title.errorTitle
 
     @Published private(set) var coinData: CoinUnit?
-    @Published var isShowActivity: Bool = false
 
     var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
 
@@ -50,11 +51,9 @@ extension CoinDetailViewModel: DataFlowProtocol {
 
     func getCoinDetailData(id: String) {
         guard !id.isEmpty else { return }
-        isShowActivity = true
         call(argument: coinDetailUsecase.execute(id: id)) { [weak self] data in
             guard let data = data else { return }
             self?.coinData = data
-            self?.isShowActivity = false
         }
     }
 }

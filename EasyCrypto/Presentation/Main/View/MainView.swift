@@ -148,7 +148,7 @@ extension MainView {
 extension MainView {
     func showAlert(_ title: String, _ message: String) -> some View {
         CustomAlertView(title: title, message: message, primaryButtonLabel: "Retry", primaryButtonAction: {
-            self.presentAlert = true
+            self.presentAlert = false
             self.viewModel.callFirstTime()
         })
         .previewLayout(.sizeThatFits)

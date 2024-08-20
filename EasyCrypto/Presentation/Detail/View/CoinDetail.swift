@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CoinDetailAreaView: View {
 
-    let item: MarketsPrice
+    let marketPrice: MarketsPrice
 
     var body: some View {
         VStack(spacing: .hugeSpace) {
@@ -22,31 +22,31 @@ struct CoinDetailAreaView: View {
         Group {
             CoinDetailCell(
                 title: Constants.PlaceHolder.marketCap,
-                price: item.marketCap?.formatUsingAbbrevation() ?? .empty
+                price: marketPrice.marketCap?.formatUsingAbbrevation() ?? .empty
             )
             CoinDetailCellIfAvailable(
                 title: Constants.PlaceHolder.volume24,
-                value: item.priceChange24H?.toNSNumber,
+                value: marketPrice.priceChange24H?.toNSNumber,
                 formatter: CurrencyFormatter.shared
             )
             CoinDetailCellIfAvailable(
                 title: Constants.PlaceHolder.circulatingSupply,
-                value: item.circulatingSupply?.toNSNumber,
+                value: marketPrice.circulatingSupply?.toNSNumber,
                 formatter: DecimalFormatter()
             )
             CoinDetailCellIfAvailable(
                 title: Constants.PlaceHolder.totalSupply,
-                value: item.totalSupply?.toNSNumber,
+                value: marketPrice.totalSupply?.toNSNumber,
                 formatter: DecimalFormatter()
             )
             CoinDetailCellIfAvailable(
                 title: Constants.PlaceHolder.low24h,
-                value: item.low24H?.toNSNumber,
+                value: marketPrice.low24H?.toNSNumber,
                 formatter: CurrencyFormatter.shared
             )
             CoinDetailCellIfAvailable(
                 title: Constants.PlaceHolder.high24h,
-                value: item.high24H?.toNSNumber,
+                value: marketPrice.high24H?.toNSNumber,
                 formatter: CurrencyFormatter.shared
             )
         }

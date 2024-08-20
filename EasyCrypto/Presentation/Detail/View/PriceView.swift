@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PriceView: View {
 
-    let item: MarketsPrice
+    let marketPrice: MarketsPrice
 
     var viewModel: DetailViewModel
 
@@ -18,13 +18,13 @@ struct PriceView: View {
     var body: some View {
         VStack {
             HStack {
-                CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
+                CoinRankView(image: Assets.hashtag, rank: marketPrice.marketCapRank ?? 0)
                 Text(Constants.PlaceHolder.globalRank)
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
                 Spacer()
                 Button {
-                    self.handleDataPersistence(for: item)
+                    self.handleDataPersistence(for: marketPrice)
                 } label: {
                     Image(isPersist ? Assets.save : Assets.unsave)
                         .resizable()
@@ -33,32 +33,32 @@ struct PriceView: View {
                 }
             }
             HStack {
-                Text(item.name.orWhenNilOrEmpty(.empty))
+                Text(marketPrice.name.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
                 Spacer()
             }
             HStack {
-                let price = CurrencyFormatter.shared.string(from: item.currentPrice?.toNSNumber ?? 0)!
+                let price = CurrencyFormatter.shared.string(from: marketPrice.currentPrice?.toNSNumber ?? 0)!
                 Text(price)
                     .foregroundColor(Color.white)
                     .font(FontManager.headLine)
                 Spacer()
-                ImageDownloaderView(withURL: item.safeImageURL())
+                ImageDownloaderView(withURL: marketPrice.safeImageURL())
                     .frame(width: 40.0, height: 40.0)
             }
             .padding(.top)
             HStack {
-                if let priceChange = CurrencyFormatter.shared.string(from: item.priceChangePercentage24H?.toNSNumber ?? 0) {
+                if let priceChange = CurrencyFormatter.shared.string(from: marketPrice.priceChangePercentage24H?.toNSNumber ?? 0) {
                     Text(priceChange)
-                        .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
+                        .foregroundColor(marketPrice.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
                         .font(FontManager.title)
                     Spacer()
                 }
             }
         }
         .onAppear {
-            self.isPersist = self.viewModel.checkIfItemExist(item)
+            self.isPersist = self.viewModel.checkIfItemExist(marketPrice)
         }
     }
 

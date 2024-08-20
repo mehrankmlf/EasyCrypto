@@ -54,7 +54,7 @@ struct CoinDetailView: Coordinatable {
                             ScrollView {
                                 VStack(spacing: .hugeSpace) {
                                     if let unwrappedCoinData = coinData {
-                                        CoinDetailHeaderView(item: unwrappedCoinData, url: { url in
+                                        CoinDetailHeaderView(coinUnit: unwrappedCoinData, url: { url in
                                             self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(.empty))
                                         })
                                         .padding(.horizontal)

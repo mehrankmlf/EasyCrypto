@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CoinDetailHeaderView: View {
 
-    var item: CoinUnit
+    var coinUnit: CoinUnit
     var url: (String?) -> Void
 
     var body: some View {
@@ -23,23 +23,23 @@ struct CoinDetailHeaderView: View {
 
     private var headerSection: some View {
         HStack {
-            ImageDownloaderView(withURL: item.image?.safeImageURL() ?? .empty)
+            ImageDownloaderView(withURL: coinUnit.image?.safeImageURL() ?? .empty)
                 .frame(width: 50.0, height: 50.0)
             Spacer()
-            CoinRankView(image: Assets.hashtag, rank: item.marketCapRank ?? 0)
-            CoinRankView(image: Assets.coinGeckod, rank: item.coingeckoRank ?? 0)
+            CoinRankView(image: Assets.hashtag, rank: coinUnit.marketCapRank ?? 0)
+            CoinRankView(image: Assets.coinGeckod, rank: coinUnit.coingeckoRank ?? 0)
         }
     }
 
     private var nameAndSymbolSection: some View {
         HStack {
             VStack(alignment: .leading, spacing: .regularSpace) {
-                CoinDetailLabel(title: "Name", value: item.name.orWhenNilOrEmpty(.empty))
+                CoinDetailLabel(title: "Name", value: coinUnit.name.orWhenNilOrEmpty(.empty))
             }
             Spacer()
                 .frame(width: 100)
             VStack(alignment: .leading, spacing: .regularSpace) {
-                CoinDetailLabel(title: "Symbol", value: item.symbol.orWhenNilOrEmpty(.empty))
+                CoinDetailLabel(title: "Symbol", value: coinUnit.symbol.orWhenNilOrEmpty(.empty))
             }
         }
     }
@@ -50,9 +50,9 @@ struct CoinDetailHeaderView: View {
                 .foregroundColor(.gray)
                 .font(FontManager.body)
             Button {
-                url(item.links?.homepage?.first.orWhenNilOrEmpty(.empty))
+                url(coinUnit.links?.homepage?.first.orWhenNilOrEmpty(.empty))
             } label: {
-                Text(item.links?.homepage?.first ?? .empty)
+                Text(coinUnit.links?.homepage?.first ?? .empty)
                     .foregroundColor(.white)
                     .font(FontManager.title)
             }
@@ -64,7 +64,7 @@ struct CoinDetailHeaderView: View {
             Text("Description")
                 .foregroundColor(.gray)
                 .font(FontManager.body)
-            Text(item.description?.en ?? .empty)
+            Text(coinUnit.description?.en ?? .empty)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.white)
                 .font(FontManager.title)

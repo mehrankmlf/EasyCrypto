@@ -17,12 +17,10 @@ protocol DefaultCoinDetailViewModel: CoinDetailViewModelProtocol { }
 final class CoinDetailViewModel: DefaultViewModel, DefaultCoinDetailViewModel {
 
     private let coinDetailUsecase: CoinDetailUsecaseProtocol
-    
-    let errorTitle: String = Constants.Title.errorTitle
 
     @Published private(set) var coinData: CoinUnit?
-
-    var navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
+    let errorTitle: String = Constants.Title.errorTitle
+    let navigateSubject = PassthroughSubject<CoinDetailView.Routes, Never>()
 
     init(coinDetailUsecase: CoinDetailUsecaseProtocol = DIContainer.shared.inject(type: CoinDetailUsecaseProtocol.self)!) {
         self.coinDetailUsecase = coinDetailUsecase

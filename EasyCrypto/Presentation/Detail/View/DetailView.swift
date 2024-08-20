@@ -11,10 +11,10 @@ struct DetailView: View {
 
     @StateObject var viewModel: DetailViewModel = DetailViewModel()
 
-    var item: MarketsPrice?
+    var marketPrice: MarketsPrice?
 
     init(item: MarketsPrice? = nil) {
-        self.item = item
+        self.marketPrice = item
     }
 
     var body: some View {
@@ -27,16 +27,16 @@ struct DetailView: View {
                 .edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: .hugeSpace) {
-                    if let item = self.item {
-                        PriceView(item: item, viewModel: viewModel)
+                    if let item = self.marketPrice {
+                        PriceView(marketPrice: item, viewModel: viewModel)
                             .padding(.horizontal)
                             .padding(.top)
                     }
                     Divider()
                         .background(Color.white.opacity(0.5))
                         .padding(.horizontal)
-                    if let item = self.item {
-                        CoinDetailAreaView(item: item)
+                    if let item = self.marketPrice {
+                        CoinDetailAreaView(marketPrice: item)
                     }
                     Spacer()
                 }

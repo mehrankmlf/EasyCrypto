@@ -9,17 +9,17 @@ import SwiftUI
 
 struct CryptoCellView: View {
 
-    var item: MarketsPrice
+    var marketPrice: MarketsPrice
 
     var body: some View {
         HStack {
-            ImageDownloaderView(withURL: item.safeImageURL())
+            ImageDownloaderView(withURL: marketPrice.safeImageURL())
                 .frame(width: 30.0, height: 30.0)
             VStack(alignment: .leading, spacing: .regularSpace) {
-                Text(item.name.orWhenNilOrEmpty(.empty))
+                Text(marketPrice.name.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.white)
                     .font(FontManager.body)
-                Text(item.symbol.orWhenNilOrEmpty(.empty))
+                Text(marketPrice.symbol.orWhenNilOrEmpty(.empty))
                     .foregroundColor(Color.gray)
                     .font(FontManager.body)
             }
@@ -28,13 +28,13 @@ struct CryptoCellView: View {
             Spacer()
 
             VStack(alignment: .trailing, spacing: .regularSpace) {
-                if let price = CurrencyFormatter.shared.string(from: item.currentPrice?.toNSNumber ?? 0) {
+                if let price = CurrencyFormatter.shared.string(from: marketPrice.currentPrice?.toNSNumber ?? 0) {
                     Text(price)
                         .foregroundColor(Color.white)
                         .font(FontManager.body)
                 }
-                Text(String(item.priceChangePercentage24H ?? 0.0))
-                    .foregroundColor(item.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
+                Text(String(marketPrice.priceChangePercentage24H ?? 0.0))
+                    .foregroundColor(marketPrice.priceChangePercentage24H?.sign == .minus ? Color.red : Color.lightGreen)
                     .font(FontManager.body)
             }
         }

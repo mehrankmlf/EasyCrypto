@@ -12,7 +12,6 @@ struct CoinDetailView: Coordinatable {
     typealias Route = Routes
 
     enum Constant {
-        static let spacing: CGFloat = 30
         static let cornerRadius: CGFloat = 10
     }
 
@@ -53,7 +52,7 @@ struct CoinDetailView: Coordinatable {
                             .padding(.top)
                         SpinnerView(isShowing: $isLoading, text: .constant(.empty), geoSize: geoSize) {
                             ScrollView {
-                                VStack(spacing: Constant.spacing) {
+                                VStack(spacing: .hugeSpace) {
                                     if let unwrappedCoinData = coinData {
                                         CoinDetailHeaderView(item: unwrappedCoinData, url: { url in
                                             self.viewModel.didTapFirst(url: url.orWhenNilOrEmpty(.empty))

@@ -42,7 +42,7 @@ struct MainView: Coordinatable {
                     SearchBar(isLoading: isLoading,
                               text: $viewModel.searchText,
                               isEditing: $shouldShowDropdown)
-                    .padding(.horizontal, 5)
+                    .padding(.horizontal, .regularSpace)
                     .overlay(
                         VStack {
                             if self.shouldShowDropdown {

@@ -13,7 +13,7 @@ struct CoinRankView: View {
     var rank: Int
 
     var body: some View {
-        HStack(spacing: 5) {
+        HStack(spacing: .regularSpace) {
             Image(image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)

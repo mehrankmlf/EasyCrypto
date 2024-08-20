@@ -9,10 +9,6 @@ import SwiftUI
 
 struct DetailView: View {
 
-    enum Constant {
-        static let spacing: CGFloat = 30
-    }
-
     @StateObject var viewModel: DetailViewModel = DetailViewModel()
 
     var item: MarketsPrice?
@@ -30,7 +26,7 @@ struct DetailView: View {
             Color.darkBlue
                 .edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: Constant.spacing) {
+                VStack(spacing: .hugeSpace) {
                     if let item = self.item {
                         PriceView(item: item, viewModel: viewModel)
                             .padding(.horizontal)

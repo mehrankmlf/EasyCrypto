@@ -13,7 +13,7 @@ struct CoinDetailHeaderView: View {
     var url: (String?) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 30.0) {
+        VStack(alignment: .leading, spacing: .hugeSpace) {
             headerSection
             nameAndSymbolSection
             linkSection
@@ -33,19 +33,19 @@ struct CoinDetailHeaderView: View {
 
     private var nameAndSymbolSection: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: .regularSpace) {
                 CoinDetailLabel(title: "Name", value: item.name.orWhenNilOrEmpty(.empty))
             }
             Spacer()
                 .frame(width: 100)
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: .regularSpace) {
                 CoinDetailLabel(title: "Symbol", value: item.symbol.orWhenNilOrEmpty(.empty))
             }
         }
     }
 
     private var linkSection: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: .regularSpace) {
             Text("Link")
                 .foregroundColor(.gray)
                 .font(FontManager.body)
@@ -60,7 +60,7 @@ struct CoinDetailHeaderView: View {
     }
 
     private var descriptionSection: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: .regularSpace) {
             Text("Description")
                 .foregroundColor(.gray)
                 .font(FontManager.body)
@@ -78,7 +78,7 @@ private struct CoinDetailLabel: View {
     var value: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: .regularSpace) {
             Text(title)
                 .foregroundColor(.gray)
                 .font(FontManager.body)

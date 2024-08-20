@@ -12,7 +12,7 @@ struct CoinDetailAreaView: View {
     let item: MarketsPrice
 
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: .hugeSpace) {
             coinDetailCells
         }
         .padding(.horizontal)
@@ -60,7 +60,7 @@ struct CoinDetailCell: View {
 
     var body: some View {
         HStack(spacing: 20) {
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: .regularSpace) {
                 Text(title)
                     .foregroundColor(.gray)
                     .font(FontManager.body)
